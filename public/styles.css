@@ -102,8 +102,10 @@ input:focus,select:focus{border-color:var(--line2);box-shadow:0 0 0 3px rgba(214
 .wrap:has(#detailView.open) .site-head{border-bottom-color:transparent}
 /* breadcrumb: ‹ Resonators / [icon] Name */
 .crumbs{display:flex;align-items:center;gap:8px;min-width:0;font-size:13.5px}
-.crumb-back{font:inherit;display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 10px 0 6px;margin-left:-6px;border:0;border-radius:8px;background:none;color:var(--muted);cursor:pointer;transition:color .18s,background .18s}
-.crumb-back:hover{color:var(--text);background:rgba(255,255,255,.05)}
+.crumb-back{font:inherit;display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 8px 0 4px;border:0;border-radius:6px;background:none;color:var(--muted);cursor:pointer;transition:color .18s}
+.crumb-back .back-ico{transition:transform .18s}
+.crumb-back:hover{color:var(--text)}
+.crumb-back:hover .back-ico{transform:translateX(-3px)}
 .crumb-back:focus-visible{outline:1px solid var(--line2);outline-offset:0;color:var(--text)}
 .crumb-sep{color:#3d4d59}
 .crumb-cur{display:inline-flex;align-items:center;gap:7px;min-width:0;color:var(--gold2);font-weight:600}
@@ -514,5 +516,4 @@ dialog#mechDialog::backdrop{background:rgba(3,6,8,.7);backdrop-filter:blur(3px)}
 }
 @media (max-width: 360px){
   .crumb-root,.crumb-sep{display:none}
-  .crumb-back{padding-right:4px}
 }

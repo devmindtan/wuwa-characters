@@ -791,7 +791,7 @@ function openDetail(slug) {
   listView.style.display = 'none';
   detailView.classList.add('open');
   window.scrollTo({top: 0, behavior: 'instant'});
-  backBtn.focus({preventScroll: true});
+  backBtn.focus({preventScroll: true, focusVisible: false});
   if (state.pendingTarget) {
     const {id, term} = state.pendingTarget;
     state.pendingTarget = null;
