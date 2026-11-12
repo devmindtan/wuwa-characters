@@ -49,7 +49,7 @@
 
 - `python scripts/review.py` phải pass (hoặc ghi rõ ngoại lệ đã kiểm tra).
 - Test API bằng `curl` và test UI bằng Playwright ở desktop + mobile.
-- Kiểm tra thực tế: mở chi tiết, bấm link kỹ năng, mở popup cơ chế, đổi EN/VI, back, filter.
+- Kiểm tra thực tế: mở chi tiết, đổi tab (Skill Tree / Bộ kỹ năng / Resonance Chain / Nguyên liệu), kéo thanh cấp, bấm link kỹ năng, mở popup cơ chế (danh sách Resonators, nhảy tới đoạn có hiệu ứng), đổi EN/VI, back, filter.
 - Không tuyên bố "đã kiểm tra" nếu chưa chạy lệnh thật.
 
 ## 6. Quy trình Git commit
