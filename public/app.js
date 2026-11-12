@@ -812,6 +812,7 @@ function renderDetail(c) {
   $('d-element').innerHTML = `${elIcon(c.element)}${esc(c.element)}${vi ? ' · ' + esc(elVi(c.element)) : ''}`;
   $('d-weapon').innerHTML = `${weapIcon(c.weapon)}${esc(c.weapon)}${vi ? ' · ' + esc(weapVi(c.weapon)) : ''}`;
   $('d-version').textContent = `Patch ${state.meta.patch}`;
+  $('d-crumb').innerHTML = `${elIcon(c.element)}<span>${esc(c.name)}</span>`;
   $('d-tags').innerHTML =
     `<span class="tag el" style="--c:${col}">${elIcon(c.element)}${esc(c.element)}</span>
      <span class="tag">${weapIcon(c.weapon)}${esc(c.weapon)}</span>

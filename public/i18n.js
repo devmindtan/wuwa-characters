@@ -41,7 +41,7 @@ const I18N = {
     card_aria: 'Mở hồ sơ {name}',
 
     back_aria: 'Quay lại danh sách Resonators',
-    back_prefix: 'Danh sách ',
+    crumbs_aria: 'Đường dẫn',
     version_title: 'Thông tin theo bản game hiện tại',
     profile_kicker: 'Hồ sơ Resonator',
     tabs_aria: 'Nội dung hồ sơ',
@@ -170,7 +170,7 @@ const I18N = {
     card_aria: "Open {name}'s profile",
 
     back_aria: 'Back to the Resonator list',
-    back_prefix: 'All ',
+    crumbs_aria: 'Breadcrumb',
     version_title: 'Data for the current game version',
     profile_kicker: 'Resonator profile',
     tabs_aria: 'Profile sections',

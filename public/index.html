@@ -83,10 +83,17 @@
 
   <main id="detailView" aria-live="polite">
     <div class="detail-top">
-      <button class="btn btn-back" id="back" data-i18n-attr="aria-label:back_aria"><svg class="back-ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg><span><span class="hide-sm" data-i18n="back_prefix"></span>Resonators</span></button>
+      <nav class="crumbs" data-i18n-attr="aria-label:crumbs_aria">
+        <button type="button" class="crumb-back" id="back" data-i18n-attr="aria-label:back_aria"><svg class="back-ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="crumb-root">Resonators</span></button>
+        <span class="crumb-sep" aria-hidden="true">/</span>
+        <span class="crumb-cur" id="d-crumb" aria-current="page"></span>
+      </nav>
       <div class="detail-actions">
-        <span class="version-pill" id="d-version" data-i18n-attr="title:version_title"></span>
-        <div class="lang-switch" role="group" data-i18n-attr="aria-label:lang_aria"><button type="button" data-lang="vi">VI</button><button type="button" data-lang="en">EN</button></div>
+        <div class="toolbox">
+          <span class="version-pill" id="d-version" data-i18n-attr="title:version_title"></span>
+          <span class="tb-div" aria-hidden="true"></span>
+          <div class="lang-switch" role="group" data-i18n-attr="aria-label:lang_aria"><button type="button" data-lang="vi">VI</button><button type="button" data-lang="en">EN</button></div>
+        </div>
       </div>
     </div>
     <article class="profile">
