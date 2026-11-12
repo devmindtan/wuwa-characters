@@ -33,6 +33,8 @@
 - Bản dịch Resonance Chain nằm ở `data/translations/resonance_chain_vi.json` (khóa theo tên node, kèm bản EN gốc). Khi EN trên wiki đổi, bản dịch cũ tự bị bỏ và `merge_wiki.py --export-missing FILE` liệt kê node cần dịch lại; dịch xong chạy `review.py` (kiểm tra số dòng và các con số khớp EN).
 - Không vượt rào chặn bot (Cloudflare/403) của bất kỳ nguồn nào; nguồn chặn thì dùng nguồn khác hoặc nhờ người dùng.
 - Mỗi nhân vật phải có `references` liệt kê nguồn đã dùng cho từng phần dữ liệu.
+- Thứ tự pipeline: `fetch_wiki.py` → `merge_wiki.py` → `fetch_assets.py` (tải icon kỹ năng/chuỗi/vật phẩm và ảnh icon/card nhân vật về `public/assets/`, trỏ dữ liệu về file nội bộ; ảnh full giữ remote vì nặng) → `apply_overrides.py` → `check_names.py` → `review.py`.
+- Tên riêng trong game (trạng thái, đòn, tài nguyên, tên trong ngoặc kép như "Cruelty") không được dịch. `scripts/check_names.py` phát hiện dòng VI làm mất tên riêng của dòng EN; sửa bằng cách dịch lại dòng đó vào `data/translations/skill_overrides_vi.json` (kèm EN gốc) rồi chạy `apply_overrides.py`.
 - Hệ số kỹ năng Lv1–10 (`skills[].scaling`) lấy từ template `Skill Scaling` trên trang từng kỹ năng của wiki, chỉ nhận khi `resonator` của trang khớp nhân vật; giữ nguyên chuỗi giá trị của wiki (ví dụ `31.74%+47.60`), không tự quy đổi. Chi phí từng cấp (`level_costs`) lấy từ trang `<Resonator>/Combat`.
 - Chưa có nguồn cho giá trị các nút Stat Bonus trong skill tree: không tự điền số.
 - Chạy dự án: `./run.sh` → `http://127.0.0.1:8000`.

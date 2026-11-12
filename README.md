@@ -77,6 +77,9 @@ Chạy bằng Python trong `.venv`:
 | `scripts/build_mechanics.py` | Sinh `data/mechanics.json` từ dữ liệu nhân vật. |
 | `scripts/fetch_wiki.py` | Lấy Resonance Chain, tổng nguyên liệu, chi phí từng cấp (trang `/Combat`) và hệ số kỹ năng Lv1–10 (trang từng kỹ năng) từ [Wuthering Waves Wiki](https://wutheringwaves.fandom.com/) qua MediaWiki API công khai; cache ở `data/wiki_raw.json` (không commit). `--refresh` để lấy lại toàn bộ. |
 | `scripts/merge_wiki.py` | Ghi `resonance_chain`, `materials`, `references` vào `data/characters.json`, ghép bản dịch từ `data/translations/`. `--export-missing FILE` xuất các node chưa có bản dịch. |
+| `scripts/fetch_assets.py` | Tải icon kỹ năng, icon nút chuỗi, icon vật phẩm, ảnh icon/card nhân vật về `public/assets/` và trỏ dữ liệu về file nội bộ (ảnh full giữ remote). `--check` chỉ báo còn bao nhiêu ảnh remote. |
+| `scripts/check_names.py` | Tìm dòng mô tả tiếng Việt làm mất tên riêng của game (ví dụ "Cruelty" bị dịch thành "Tàn ác"). |
+| `scripts/apply_overrides.py` | Áp các dòng dịch lại thủ công từ `data/translations/skill_overrides_vi.json` (chỉ khi bản EN gốc còn khớp). |
 | `scripts/review.py` | Kiểm tra chất lượng bản dịch (kỹ năng + Resonance Chain: số dòng, con số khớp EN), glossary, schema, nguyên liệu và references. `--sample N` in N dòng ngẫu nhiên để đọc tay. |
 | `scripts/glossary.py` | Glossary và quy tắc hậu xử lý dùng chung. |
 
