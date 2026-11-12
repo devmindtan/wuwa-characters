@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Wuthering Waves — Resonators Archive</title>
-<meta name="description" content="Tổng hợp hồ sơ và bộ kỹ năng của 61 Resonators Wuthering Waves bằng tiếng Việt, có quản lý phiên bản theo patch.">
+<meta name="description" content="Tổng hợp hồ sơ và bộ kỹ năng của 61 Resonators Wuthering Waves bằng tiếng Việt, cập nhật theo bản game hiện tại.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23070b0e'/%3E%3Crect x='16' y='4' width='17' height='17' transform='rotate(45 16 12.5)' fill='%23d6c4a1'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,8 +43,8 @@
         <select id="f-weap" aria-label="Vũ khí"><option value="">Mọi vũ khí</option></select>
         <select id="f-r" aria-label="Độ hiếm">
           <option value="">Mọi độ hiếm</option>
-          <option value="5">5★</option>
-          <option value="4">4★</option>
+          <option value="5">5 sao</option>
+          <option value="4">4 sao</option>
         </select>
       </div>
       <div class="toolbar-foot">
@@ -59,7 +59,7 @@
     <div id="error" class="empty" style="display:none"></div>
 
     <footer class="page-foot">
-      Dữ liệu tham chiếu từ <a href="https://www.prydwen.gg/wuthering-waves/characters" target="_blank" rel="noopener noreferrer">prydwen.gg</a>, trích tại <strong id="foot-patch">patch 3.7</strong>. Mô tả tiếng Việt là bản dịch tham khảo đã rà soát; thuật ngữ và tên kỹ năng giữ nguyên tiếng Anh để bảo toàn cơ chế game.
+      Dữ liệu tham chiếu từ <a href="https://www.prydwen.gg/wuthering-waves/characters" target="_blank" rel="noopener noreferrer">prydwen.gg</a>, theo <strong id="foot-patch">bản game hiện tại</strong>. Mô tả tiếng Việt là bản dịch tham khảo đã rà soát; thuật ngữ và tên kỹ năng giữ nguyên tiếng Anh để bảo toàn cơ chế game.
     </footer>
   </main>
 
@@ -67,7 +67,7 @@
     <div class="detail-top">
       <button class="btn" id="back" aria-label="Quay lại danh sách Resonators">← <span class="hide-sm">Danh sách </span>Resonators</button>
       <div class="detail-actions">
-        <span class="version-pill" id="d-version"></span>
+        <span class="version-pill" id="d-version" title="Thông tin theo bản game hiện tại"></span>
         <button class="btn" id="toggle-en" aria-pressed="false">Bản gốc EN</button>
       </div>
     </div>
@@ -92,7 +92,7 @@
           <div id="d-skills"></div>
         </section>
         <details class="changes" id="d-changes" open>
-          <summary>Lịch sử cập nhật</summary>
+          <summary>Lịch sử thay đổi trong game</summary>
           <ul id="d-changes-list"></ul>
         </details>
         <div class="source" id="d-source"></div>
