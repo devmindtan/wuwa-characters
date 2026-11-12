@@ -20,7 +20,6 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / 'data' / 'characters.json'
-NOTE = 'Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy'
 DATE = '2026-11-12'
 
 # (vi pattern, en must match, replacement)
@@ -278,7 +277,6 @@ def main() -> None:
     changes = []
 
     for c in characters:
-        touched = 0
         for s in c['skills']:
             for i, (en, vi) in enumerate(zip(s['desc'], s['desc_vi'])):
                 new = apply_line(en, vi)
@@ -288,11 +286,6 @@ def main() -> None:
                 if new != vi:
                     changes.append((c['slug'], s['name'], vi, new))
                     s['desc_vi'][i] = new
-                    touched += 1
-        if touched:
-            log = c.setdefault('changes', [])
-            if not any(ch.get('note') == NOTE for ch in log):
-                log.append({'version': c['version'], 'date': DATE, 'note': NOTE})
 
     print(f'{len(changes)} lines changed in {len({x[0] for x in changes})} characters')
     if args.dry_run:

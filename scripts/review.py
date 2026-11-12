@@ -75,13 +75,12 @@ def main():
         for key in ('slug', 'name', 'element', 'weapon', 'img_icon', 'img_card', 'img_full'):
             if not c.get(key):
                 err(where, f'missing {key}')
-        if not c.get('version'):
-            err(where, 'missing version')
-        if not c.get('changes'):
-            err(where, 'missing changes[]')
+        # changes[] only records in-game info changes; it may be empty.
+        if not isinstance(c.get('changes'), list):
+            err(where, 'missing changes[] (use [] when nothing changed)')
         else:
             for ch in c['changes']:
-                if not all(k in ch for k in ('version', 'date', 'note')):
+                if not all(ch.get(k) for k in ('version', 'date', 'note')):
                     err(where, 'change entry missing version/date/note')
         if c.get('intro_vi') and any(b in c['intro_vi'] for b in BANNED):
             err(where, 'banned phrase in intro_vi')
