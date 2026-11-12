@@ -104,10 +104,16 @@ def main():
         owner = w['title'].split('-')[0]  # "Rover-Aero" -> "Rover"
         for sk in c['skills']:
             sc = raw.get('scaling', {}).get(sk['name'])
-            if sc and sc['rows'] and (not sc['resonator'] or sc['resonator'] in (w['title'], owner)):
+            same = sc and (not sc['resonator'] or sc['resonator'] in (w['title'], owner))
+            if same and sc['rows']:
                 sk['scaling'] = {'rows': sc['rows'], 'source': wiki_url(sk['name'])}
             else:
                 sk.pop('scaling', None)
+            icon = thumb(images.get(sc.get('image', ''), ''), 96) if same else ''
+            if icon:
+                sk['icon'] = icon
+            else:
+                sk.pop('icon', None)
 
         level_costs = {}
         combat = raw.get('combat', {}).get(c['name'], {})

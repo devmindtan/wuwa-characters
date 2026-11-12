@@ -178,8 +178,9 @@ def parse_skill_scaling(src):
     """{{Skill Scaling}} wikitext -> {resonator, rows[{label, values}]} (values: 10 levels or 1 constant)."""
     m = re.search(r'\{\{Skill Scaling(.*?)\n\}\}', src, re.S)
     resonator = infobox(src, 'resonator')
+    image = infobox(src, 'image').split('\n')[0].strip()
     if not m:
-        return {'resonator': resonator, 'rows': []}
+        return {'resonator': resonator, 'image': image, 'rows': []}
     params = dict(SCALING_PARAM.findall(m.group(1)))
     order = [x.strip() for x in params.get('order', '').split(',') if x.strip()]
     titles = [x.strip() for x in params.get('titles', '').split(',')]
@@ -194,7 +195,7 @@ def parse_skill_scaling(src):
                 continue
         label = titles[idx] if idx < len(titles) else key
         rows.append({'label': label, 'values': values})
-    return {'resonator': resonator, 'rows': rows}
+    return {'resonator': resonator, 'image': image, 'rows': rows}
 
 
 def wikitext(titles):
@@ -297,6 +298,7 @@ def main():
 
     images = cache.setdefault('images', {})
     files = {n['image'] for n in node_src.values() if n['image']}
+    files |= {s['image'] for s in scaling.values() if s.get('image')}
     files |= {i['image_key'].replace('_', ' ') for c in chars.values() for b in c['costs'] for i in b['items']}
     files |= {i['image_key'].replace('_', ' ') for c in combat.values() for rows in c['level_costs'].values()
               for r in rows for i in r['items']}
