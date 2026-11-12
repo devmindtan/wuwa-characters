@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / 'data'
 PUBLIC = ROOT / 'public'
 
-app = FastAPI(title='Wuthering Waves Resonators Archive', version='3.7')
+app = FastAPI(title='Wuthering Waves Resonators Archive')
 
 
 def load_json(name: str) -> dict:
@@ -28,7 +28,7 @@ def meta_payload() -> dict:
     meta = dict(payload['meta'])
     meta['characters'] = len(characters)
     meta['skills'] = sum(len(c['skills']) for c in characters)
-    meta['versions'] = sorted({c['version'] for c in characters})
+    meta['changed_characters'] = sum(1 for c in characters if c.get('changes'))
     return meta
 
 
@@ -65,22 +65,18 @@ def mechanics():
 @app.get('/api/changes')
 def changes():
     payload = character_payload()
-    entries = []
-    for c in payload['characters']:
-        entries.append({
-            'slug': c['slug'],
-            'name': c['name'],
-            'version': c['version'],
-            'updated': c.get('updated', ''),
-            'changes': c.get('changes', []),
-        })
+    # Only characters whose in-game info changed have entries.
+    entries = [
+        {'slug': c['slug'], 'name': c['name'], 'changes': c['changes']}
+        for c in payload['characters'] if c.get('changes')
+    ]
     return {'meta': payload['meta'], 'entries': entries}
 
 
 @app.get('/api/version')
 def version():
     meta = meta_payload()
-    return {'patch': meta['patch'], 'updated': meta['updated'], 'versions': meta['versions']}
+    return {'patch': meta['patch'], 'updated': meta['updated']}
 
 
 app.mount('/', StaticFiles(directory=str(PUBLIC), html=True), name='public')

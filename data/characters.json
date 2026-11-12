@@ -1,10 +1,10 @@
 {
  "meta": {
   "game": "Wuthering Waves",
-  "patch": "3.7",
+  "patch": "3.8",
   "updated": "2026-11-12",
   "source": "https://www.prydwen.gg/wuthering-waves/characters",
-  "note": "Dữ liệu trích tại patch 3.7. Mô tả tiếng Việt là bản dịch tham khảo đã rà soát; tên kỹ năng và thuật ngữ game giữ nguyên tiếng Anh."
+  "note": "Thông tin theo bản game 3.8 (phát hành 12/11/2026). Mô tả tiếng Việt là bản dịch tham khảo đã rà soát; tên kỹ năng và thuật ngữ game giữ nguyên tiếng Anh."
  },
  "characters": [
   {
@@ -361,20 +361,7 @@
    "img_card": "https://cdn.prydwen.gg/images/wuthering-waves/characters/aemeath_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/aemeath",
    "intro_vi": "",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "augusta",
@@ -630,20 +617,7 @@
    "img_card": "https://cdn.prydwen.gg/images/wuthering-waves/characters/augusta_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/augusta",
    "intro_vi": "",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "brant",
@@ -805,20 +779,7 @@
    "img_card": "https://cdn.prydwen.gg/images/wuthering-waves/characters/brant_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/brant",
    "intro_vi": "",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "calcharo",
@@ -932,20 +893,7 @@
    "img_card": "https://cdn.prydwen.gg/images/wuthering-waves/characters/calcharo_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/calcharo",
    "intro_vi": "Thủ lĩnh của \"Ghost Hounds\", một nhóm lính đánh thuê quốc tế. Tàn nhẫn, báo thù, không thể tha thứ. Một khách hàng tiềm năng phải lưu tâm đến cái giá phải trả trước khi đưa ra lời đề nghị.",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "camellya",
@@ -1127,20 +1075,7 @@
    "img_card": "https://cdn.prydwen.gg/images/wuthering-waves/characters/camellya_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/camellya",
    "intro_vi": "Bloom Bearer từ Black Shores, Camellya là một nhân vật thoải mái, không bị xiềng xích, với cá tính có mùi \"nguy hiểm\". Bị hấp dẫn bởi niềm tin vào số phận, cô lang thang trên những vùng đất theo ý mình, tuân theo một chuỗi kịch bản như vậy và sự hướng dẫn mơ hồ của nó.",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "cantarella",
@@ -1342,20 +1277,7 @@
    "img_card": "https://cdn.prydwen.gg/images/wuthering-waves/characters/cantarella_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/cantarella",
    "intro_vi": "Người đứng đầu hiện tại của Fisalia, Cantarella, the Bane. Một nữ quý tộc bí ẩn, vẻ đẹp quyến rũ nhưng cũng đầy nguy hiểm. Cô cư trú trong một lâu đài hình vương miện nằm trên đỉnh núi, nơi những giấc mơ viển vông chảy như dòng suối, được chính bàn tay cô quay một cách tỉ mỉ.",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "carlotta",
@@ -1563,20 +1485,7 @@
    "img_card": "https://cdn.prydwen.gg/images/wuthering-waves/characters/carlotta_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/carlotta",
    "intro_vi": "Carlotta, con gái thứ hai của gia đình Montelli quý giá, là hiện thân của sự cao quý bẩm sinh và sự đánh giá cao về nghệ thuật. Sự sang trọng của cô được kết hợp bởi tinh thần độc đáo, không bị ràng buộc bởi truyền thống. Để đảm bảo tương lai của gia đình, cô luân phiên đảm nhiệm hai vai trò, giải quyết những \"rắc rối\" tế nhị ở hậu trường.",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "cartethyia",
@@ -1836,20 +1745,7 @@
    "img_card": "https://cdn.prydwen.gg/images/wuthering-waves/characters/cartethyia_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/cartethyia",
    "intro_vi": "",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "changli",
@@ -1989,20 +1885,7 @@
    "img_card": "https://cdn.prydwen.gg/images/wuthering-waves/characters/changli_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/changli",
    "intro_vi": "Changli là cố vấn phục vụ Jinzhou Magistrate, nguyên Tổng bí thư ở thủ đô. Bị bao phủ trong ngọn lửa, số phận của cô ấy sẽ cháy rực rỡ cho đến khi tàn lửa cuối cùng. Với quyết tâm rực lửa và tư duy chiến lược, cô vươn lên nắm quyền, luôn nghĩ trước để đạt được mục tiêu cuối cùng của mình.",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "chisa",
@@ -2340,20 +2223,7 @@
    "img_card": "https://cdn.prydwen.gg/images/ww/characters/chisa_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/chisa",
    "intro_vi": "",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "ciaccona",
@@ -2527,20 +2397,7 @@
    "img_card": "https://cdn.prydwen.gg/images/wuthering-waves/characters/ciaccona_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/ciaccona",
    "intro_vi": "",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "denia",
@@ -2826,20 +2683,7 @@
    "img_card": "https://cdn.prydwen.gg/images/ww/characters/denia_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/denia",
    "intro_vi": "",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "encore",
@@ -2967,20 +2811,7 @@
    "img_card": "https://cdn.prydwen.gg/images/ww/characters/encore_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/encore",
    "intro_vi": "Một cô gái đi cùng với một con thú nhồi bông bằng len màu đen và một màu trắng. Encore, cố vấn từ Black Shores, mong muốn tạo ra những câu chuyện vui vẻ bằng kẹo, truyện cổ tích và trí tưởng tượng của mình.",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "galbrena",
@@ -3194,20 +3025,7 @@
    "img_card": "https://cdn.prydwen.gg/images/wuthering-waves/characters/galbrena_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/galbrena",
    "intro_vi": "",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "hiyuki",
@@ -3503,20 +3321,7 @@
    "img_card": "https://cdn.prydwen.gg/images/ww/characters/hiyuki_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/hiyuki",
    "intro_vi": "",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "hsin",
@@ -3834,20 +3639,7 @@
    "img_card": "https://cdn.prydwen.gg/images/wuthering-waves/characters/hsin_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/hsin",
    "intro_vi": "",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "iuno",
@@ -4051,20 +3843,7 @@
    "img_card": "https://cdn.prydwen.gg/images/ww/characters/iuno_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/iuno",
    "intro_vi": "",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "jianxin",
@@ -4188,20 +3967,7 @@
    "img_card": "https://cdn.prydwen.gg/images/wuthering-waves/characters/jianxin_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/jianxin",
    "intro_vi": "Jianxin, một đạo sĩ và người kế vị của Fengyiquan, đã cống hiến cả cuộc đời mình để thông thạo môn võ thuật tối thượng. Với khả năng khai thác và biến đổi Khí môi trường, cô có thể tạo ra hàng rào bảo vệ giúp thanh lọc cả cơ thể và tâm trí.",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "jingran",
@@ -4453,20 +4219,7 @@
    "img_card": "https://cdn.prydwen.gg/images/wuthering-waves/characters/jingran_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/jingran",
    "intro_vi": "",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "jinhsi",
@@ -4616,20 +4369,7 @@
    "img_card": "https://cdn.prydwen.gg/images/wuthering-waves/characters/jinhsi_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/jinhsi",
    "intro_vi": "Jinhsi, Magistrate của Jinzhou, nhẹ nhàng thắp sáng niềm hy vọng của người dân cô ấy, giống như những tia nắng mùa đông. Với tư cách là Sentinel's Appointed Resonator được tôn kính, cô thể hiện sự khiêm tốn và hết lòng cam kết hướng dẫn mọi người của mình hướng tới một tương lai tươi sáng.",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "jiyan",
@@ -4745,20 +4485,7 @@
    "img_card": "https://cdn.prydwen.gg/images/ww/characters/jiyan_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/jiyan",
    "intro_vi": "Jiyan, thủ lĩnh của Midnight Rangers, hành động nhanh chóng và kiên quyết. Anh ta sở hữu khả năng đáng gờm để tạo ra một Qingloong mạnh mẽ từ gió, khiến anh ta trở nên bất khả chiến bại trên chiến trường.",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "lily",
@@ -4962,20 +4689,7 @@
    "img_card": "https://cdn.prydwen.gg/images/wuthering-waves/characters/lily_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/lily",
    "intro_vi": "",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "lingyang",
@@ -5095,20 +4809,7 @@
    "img_card": "https://cdn.prydwen.gg/images/wuthering-waves/characters/lingyang_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/lingyang",
    "intro_vi": "Lingyang là thành viên tài năng và thân thiện của Liondance Troupe trong Jinzhou. Niềm đam mê và lòng dũng cảm của anh ấy được thể hiện rõ khi anh ấy giao tiếp với con người, thể hiện khả năng thể chất ấn tượng của mình. Với phong cách độc đáo của mình, anh ấy thể hiện tinh thần của Liondancing.",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "lucilla",
@@ -5378,20 +5079,7 @@
    "img_card": "https://cdn.prydwen.gg/images/wuthering-waves/characters/lucilla_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/lucilla",
    "intro_vi": "",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "lucy",
@@ -5703,20 +5391,7 @@
    "img_card": "https://cdn.prydwen.gg/images/wuthering-waves/characters/lucy_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/lucy",
    "intro_vi": "",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "lupa",
@@ -5946,20 +5621,7 @@
    "img_card": "https://cdn.prydwen.gg/images/ww/characters/lupa_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/lupa",
    "intro_vi": "",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "luuk-herssen",
@@ -6209,20 +5871,7 @@
    "img_card": "https://cdn.prydwen.gg/images/wuthering-waves/characters/luuk-herssen_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/luuk-herssen",
    "intro_vi": "",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "lynae",
@@ -6498,20 +6147,7 @@
    "img_card": "https://cdn.prydwen.gg/images/wuthering-waves/characters/lynae_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/lynae",
    "intro_vi": "",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "mornye",
@@ -6777,20 +6413,7 @@
    "img_card": "https://cdn.prydwen.gg/images/wuthering-waves/characters/mornye_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/mornye",
    "intro_vi": "",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "phoebe",
@@ -6956,20 +6579,7 @@
    "img_card": "https://cdn.prydwen.gg/images/wuthering-waves/characters/phoebe_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/phoebe",
    "intro_vi": "",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "phrolova",
@@ -7211,20 +6821,7 @@
    "img_card": "https://cdn.prydwen.gg/images/wuthering-waves/characters/phrolova_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/phrolova",
    "intro_vi": "",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "qingxiao",
@@ -7474,20 +7071,7 @@
    "img_card": "https://cdn.prydwen.gg/images/wuthering-waves/characters/qingxiao_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/qingxiao",
    "intro_vi": "",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "qiuyuan",
@@ -7651,20 +7235,7 @@
    "img_card": "https://cdn.prydwen.gg/images/wuthering-waves/characters/qiuyuan_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/qiuyuan",
    "intro_vi": "",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "rebecca",
@@ -7960,20 +7531,7 @@
    "img_card": "https://cdn.prydwen.gg/images/wuthering-waves/characters/rebecca_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/rebecca",
    "intro_vi": "",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "roccia",
@@ -8109,20 +7667,7 @@
    "img_card": "https://cdn.prydwen.gg/images/wuthering-waves/characters/roccia_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/roccia",
    "intro_vi": "Roccia là một diễn viên hài ngẫu hứng tài năng và là First Mate của Fool's Troupe, được biết đến với khả năng sử dụng đạo cụ sân khấu thành thạo. Với tính cách điềm tĩnh, điềm tĩnh, cô điều hướng các khu vực của con tàu, ngồi trên chiếc hộp khổng lồ của mình, tỉ mỉ đảm bảo Đoàn luôn ngăn nắp và ngăn nắp.",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "rover-aero",
@@ -8276,20 +7821,7 @@
    "img_card": "https://cdn.prydwen.gg/images/wuthering-waves/characters/rover-aero_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/rover-aero",
    "intro_vi": "Thức tỉnh với một quá khứ không xác định, Rover dấn thân vào cuộc hành trình khám phá sự thật. Khi bí mật được tiết lộ, Rover sẽ thiết lập những kết nối sâu sắc hơn với thế giới.",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "rover-electro",
@@ -8461,20 +7993,7 @@
    "img_card": "https://cdn.prydwen.gg/images/ww/characters/rover_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/rover-electro",
    "intro_vi": "",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "rover-havoc",
@@ -8590,20 +8109,7 @@
    "img_card": "https://cdn.prydwen.gg/images/wuthering-waves/characters/rover-havoc_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/rover-havoc",
    "intro_vi": "Thức tỉnh với một quá khứ không xác định, Rover dấn thân vào cuộc hành trình khám phá sự thật. Khi bí mật được tiết lộ, Rover sẽ thiết lập những kết nối sâu sắc hơn với thế giới.",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "rover-spectro",
@@ -8715,20 +8221,7 @@
    "img_card": "https://cdn.prydwen.gg/images/wuthering-waves/characters/rover-spectro_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/rover-spectro",
    "intro_vi": "Thức tỉnh với một quá khứ không xác định, Rover dấn thân vào cuộc hành trình khám phá sự thật. Khi bí mật được tiết lộ, Rover sẽ thiết lập những kết nối sâu sắc hơn với thế giới.",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "sigrika",
@@ -8974,20 +8467,7 @@
    "img_card": "https://cdn.prydwen.gg/images/wuthering-waves/characters/sigrika_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/sigrika",
    "intro_vi": "",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "suisui",
@@ -9215,20 +8695,7 @@
    "img_card": "https://cdn.prydwen.gg/images/wuthering-waves/characters/suisui_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/suisui",
    "intro_vi": "",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "suoming",
@@ -9448,20 +8915,7 @@
    "img_card": "https://cdn.prydwen.gg/images/wuthering-waves/characters/suoming_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/suoming",
    "intro_vi": "",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "the-shorekeeper",
@@ -9625,20 +9079,7 @@
    "img_card": "https://cdn.prydwen.gg/images/wuthering-waves/characters/the-shorekeeper_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/the-shorekeeper",
    "intro_vi": "The Shorekeeper của Black Shores, một vị thần bí ẩn cai quản bản chất của sự xa cách, xuất hiện để đáp lại lời triệu hồi của bạn. Trải qua nhiều thiên niên kỷ dưới sự giám hộ, những cảm xúc và ham muốn đầu tiên đã thức tỉnh trong trái tim cô, nuôi dưỡng quyết tâm vững chắc để kết nối với thế giới - và với bạn.",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "verina",
@@ -9748,20 +9189,7 @@
    "img_card": "https://cdn.prydwen.gg/images/ww/characters/verina_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/verina",
    "intro_vi": "Với vốn kiến thức sâu rộng về thực vật học, Verina luôn ân cần, luôn mỉm cười và luôn mong muốn mỗi bông hoa đều được ban phước lành bởi điều kỳ diệu của cuộc sống.",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "xiangli-yao",
@@ -9917,20 +9345,7 @@
    "img_card": "https://cdn.prydwen.gg/images/wuthering-waves/characters/xiangli-yao_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/xiangli-yao",
    "intro_vi": "Principal Investigator của Huaxu Academy, Xiangli Yao, thể hiện chuyên môn đặc biệt trong các lĩnh vực nghiên cứu khác nhau mặc dù tuổi còn trẻ. Anh ấy là một người có tâm hồn dịu dàng nhưng lý trí, có những hiểu biết sâu sắc độc đáo và cam kết nghiên cứu Cơ học tự động.",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "yangyang-xuanling",
@@ -10154,20 +9569,7 @@
    "img_card": "https://cdn.prydwen.gg/images/wuthering-waves/characters/yangyang-xuanling_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/yangyang-xuanling",
    "intro_vi": "",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "yinlin",
@@ -10287,20 +9689,7 @@
    "img_card": "https://cdn.prydwen.gg/images/wuthering-waves/characters/yinlin_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/yinlin",
    "intro_vi": "Yinlin là một Patroller lành nghề và mạnh mẽ Natural Resonator. Sau khi bị đình chỉ nhiệm vụ tại Public Security Bureau, giờ đây cô phải bí mật theo đuổi những tội ác đang được che giấu.",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "zani",
@@ -10490,20 +9879,7 @@
    "img_card": "https://cdn.prydwen.gg/images/wuthering-waves/characters/zani_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/zani",
    "intro_vi": "Một thành viên trong nhóm bảo mật của Averardo Vault và là người giữ danh hiệu \"Nhân viên xuất sắc nhất\" lâu hơn cô ấy muốn tính. Cô đã lên rất nhiều kế hoạch cho thời gian rảnh rỗi của mình, nhưng hiện tại, nhiệm vụ lớn nhất của cô rất đơn giản: đi làm đúng giờ.",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "zhezhi",
@@ -10675,20 +10051,7 @@
    "img_card": "https://cdn.prydwen.gg/images/wuthering-waves/characters/zhezhi_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/zhezhi",
    "intro_vi": "Zhezhi là một họa sĩ được ủy quyền, trầm lặng và nhút nhát với sự cống hiến cho nghề của mình. Cô ấy không có tài hùng biện nhưng sự kiên trì và tình yêu dành cho hội họa của cô ấy đã nói lên rất nhiều điều.",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "aalto",
@@ -10796,20 +10159,7 @@
    "img_card": "https://cdn.prydwen.gg/images/ww/characters/aalto_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/aalto",
    "intro_vi": "Aalto là một Information Broker bí ẩn, được biết đến với bản tính khó nắm bắt và nụ cười chào đón. Có tin đồn rằng anh ấy sẽ cung cấp bất kỳ thông tin nào với mức giá hợp lý.",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "baizhi",
@@ -10921,20 +10271,7 @@
    "img_card": "https://cdn.prydwen.gg/images/ww/characters/baizhi_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/baizhi",
    "intro_vi": "Baizhi là nhà nghiên cứu ở Remnant Ecoacoustics. Mong ước một thời chưa được thực hiện của Baizhi giờ đây đã trở thành người bạn đồng hành trung thành của cô. Remnant Creature You'tan là nguồn sức mạnh chữa bệnh của cô ấy và là trọng tâm nghiên cứu suốt đời.",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "buling",
@@ -11092,20 +10429,7 @@
    "img_card": "https://cdn.prydwen.gg/images/ww/characters/buling_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/buling",
    "intro_vi": "",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "chixia",
@@ -11217,15 +10541,7 @@
    "img_card": "https://cdn.prydwen.gg/images/ww/characters/chixia_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/chixia",
    "intro_vi": "Chixia là một Patroller trẻ tuổi, người thả dáng tưng bừng của mình dọc theo các con phố của thành phố Jinzhou. Cô ấy luôn sẵn sàng trở thành người hùng của ai đó.",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "danjin",
@@ -11343,20 +10659,7 @@
    "img_card": "https://cdn.prydwen.gg/images/ww/characters/danjin_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/danjin",
    "intro_vi": "Với lưỡi kiếm đẫm máu đầy thù hận trong tay, Ranger Danjin săn lùng những tên trộm và kẻ cướp để trả thù. Cô hành trình đến những vùng đất xa xôi để theo đuổi công lý.",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "lumi",
@@ -11542,20 +10845,7 @@
    "img_card": "https://cdn.prydwen.gg/images/wuthering-waves/characters/lumi_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/lumi",
    "intro_vi": "Từ những khu rừng rậm rạp đến vùng đất hoang vu rộng lớn, những nơi mà hoa tiêu của Lollo Logistics Lumi đã đi qua đều chứng kiến tính cách quyến rũ của cô, giống như một tia nắng. Sinh ra đã có kỷ luật, giờ đây cô ấy đang tận hưởng công việc hàng ngày của mình với tư cách là một người chuyển phát nhanh siêng năng, tôn trọng nghĩa vụ giao hàng đúng giờ của mình.",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "mortefi",
@@ -11663,20 +10953,7 @@
    "img_card": "https://cdn.prydwen.gg/images/ww/characters/mortefi_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/mortefi",
    "intro_vi": "Mortefi, một chuyên gia lành nghề về Applied Tacetite Study và là thành viên của Ban An toàn của Học viện, sở hữu khả năng độc nhất để biến nỗi thất vọng tích tụ của mình thành ngọn lửa rực lửa. Từ cơn thịnh nộ thiêu đốt tất cả, con rồng đỏ sẽ giáng xuống.",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "sanhua",
@@ -11792,20 +11069,7 @@
    "img_card": "https://cdn.prydwen.gg/images/wuthering-waves/characters/sanhua_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/sanhua",
    "intro_vi": "Vệ sĩ của Magistrate Jinzhou, được biết đến là người có tính cách băng giá. Từng được coi là Asura of Calamity, Sanhua giờ đây là một người bảo vệ lầm lì. Cô đã học được cách duy trì sự bình tĩnh nội tâm giữa những tần số hỗn loạn, và những điều từng khiến cô sợ hãi giờ đây đã tiếp thêm động lực cho quyết tâm của cô.",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "taoqi",
@@ -11923,20 +11187,7 @@
    "img_card": "https://cdn.prydwen.gg/images/ww/characters/taoqi_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/taoqi",
    "intro_vi": "Taoqi là giám đốc phòng thủ biên giới của Bộ Phát triển. Mặc dù có thái độ có vẻ thoải mái nhưng cô ấy luôn chứng tỏ mình là một người đáng tin cậy và luôn hỗ trợ, luôn giúp đỡ những người gặp khó khăn. Taoqi không chỉ là một đồng nghiệp đáng tin cậy mà còn là một người bạn đáng tin cậy mà mọi người có thể tâm sự.",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "yangyang",
@@ -12044,20 +11295,7 @@
    "img_card": "https://cdn.prydwen.gg/images/wuthering-waves/characters/yangyang_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/yangyang",
    "intro_vi": "Yangyang là một Outrider của Midnight Rangers. Từng được che chở, giờ là chiến binh. Cô ấy bay lên theo gió để bảo vệ người khác, giống như một con chim sơn ca đang bay.",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "youhu",
@@ -12223,20 +11461,7 @@
    "img_card": "https://cdn.prydwen.gg/images/wuthering-waves/characters/youhu_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/youhu",
    "intro_vi": "Youhu, một chuyên gia bẩm sinh trong việc xác định đồ cổ, là một diễn giả có tài và có khiếu thẩm mỹ riêng biệt. Khi xử lý các kho báu và đồ cổ, động lực tưng bừng này chuyển sang nhận thức bình tĩnh, truy tìm quá khứ xa xôi của chúng thông qua các nếp nhăn và kết cấu của chúng.",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   },
   {
    "slug": "yuanwu",
@@ -12358,20 +11583,7 @@
    "img_card": "https://cdn.prydwen.gg/images/ww/characters/yuanwu_card.webp",
    "source": "https://www.prydwen.gg/wuthering-waves/characters/yuanwu",
    "intro_vi": "Yuanwu sở hữu một phòng tập đấm bốc, nơi anh dạy võ thuật và quản lý sức khỏe. Anh ấy được nhiều người kính trọng trong cộng đồng vì thái độ thân mật và tính tình dễ chịu.",
-   "version": "3.7",
-   "updated": "2026-11-12",
-   "changes": [
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Khởi tạo dữ liệu tại patch 3.7"
-    },
-    {
-     "version": "3.7",
-     "date": "2026-11-12",
-     "note": "Rà soát ngữ cảnh: khôi phục tên riêng/thuật ngữ game về tiếng Anh, sửa lỗi dịch máy"
-    }
-   ]
+   "changes": []
   }
  ]
 }

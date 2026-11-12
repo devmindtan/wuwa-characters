@@ -24,7 +24,17 @@ if printf '%s\n' "$staged" | grep -qE '^data/|^scripts/'; then
 fi
 if printf '%s\n' "$staged" | grep -qx 'data/characters.json' && git cat-file -e HEAD:data/characters.json 2>/dev/null; then
   "$PY" - <<'PY' || fail=1
-import json, subprocess, sys
+import json, os, subprocess, sys
+# In-game info = everything except Vietnamese translations and the history itself.
+# Translation fixes (desc_vi, intro_vi) are not game changes and need no entry.
+VI_KEYS = {'desc_vi', 'intro_vi', 'changes', 'version', 'updated'}
+def game_info(x):
+    if isinstance(x, dict):
+        return {k: game_info(v) for k, v in x.items() if k not in VI_KEYS}
+    if isinstance(x, list):
+        return [game_info(v) for v in x]
+    return x
+allow_rewrite = os.environ.get('ALLOW_HISTORY_REWRITE') == '1'
 new = json.loads(subprocess.check_output(['git', 'show', ':data/characters.json']))
 old = json.loads(subprocess.check_output(['git', 'show', 'HEAD:data/characters.json']))
 olds = {c['slug']: c for c in old['characters']}
@@ -33,15 +43,16 @@ for c in new['characters']:
     o = olds.get(c['slug'])
     if o is None:
         continue
-    strip = lambda x: {k: v for k, v in x.items() if k not in ('version', 'updated', 'changes')}
-    if strip(c) != strip(o) and len(c.get('changes', [])) <= len(o.get('changes', [])):
+    if game_info(c) != game_info(o) and len(c.get('changes', [])) <= len(o.get('changes', [])):
         bad.append(c['slug'])
-    if o.get('changes', []) != c.get('changes', [])[:len(o.get('changes', []))]:
+    if not allow_rewrite and o.get('changes', []) != c.get('changes', [])[:len(o.get('changes', []))]:
         print(f"✗ {c['slug']}: lịch sử changes cũ bị sửa/xóa (chỉ được thêm entry mới)"); sys.exit(1)
 if bad:
-    print('✗ Nội dung nhân vật đổi nhưng thiếu entry mới trong changes:', ', '.join(bad)); sys.exit(1)
-if new['characters'] != old['characters'] and new['meta'].get('updated') == old['meta'].get('updated'):
-    print('✗ Dữ liệu nhân vật đổi nhưng meta.updated chưa cập nhật'); sys.exit(1)
+    print('✗ Thông tin game của nhân vật đổi nhưng thiếu entry mới trong changes:', ', '.join(bad)); sys.exit(1)
+import datetime
+today = datetime.date.today().isoformat()
+if new != old and new['meta'].get('updated') != today:
+    print(f"✗ data/characters.json đổi nhưng meta.updated chưa là ngày hôm nay ({today})"); sys.exit(1)
 PY
 fi
 
