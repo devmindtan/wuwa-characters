@@ -4,6 +4,7 @@
 
 - `meta.patch` là **bản game mới nhất hiện tại** (đang là **3.8**, phát hành 12/11/2026). Đây là phiên bản duy nhất UI hiển thị; nhân vật không có `version` riêng.
 - Khi game ra bản mới: kiểm tra bản mới nhất từ nguồn chính thức/tin tức, cập nhật `meta.patch` và `meta.updated`.
+  Đồng thời cập nhật số patch/số Resonators trong thẻ `og:*`/`twitter:*`/`<title>` của `public/index.html` và trong `scripts/og/og.html`, rồi chạy `node scripts/og/render.js` để tạo lại `public/assets/og-image.jpg` (ảnh xem trước khi chia sẻ link, 1200×630, domain `https://wuwa-characters.vercel.app/`).
 - `changes` của mỗi nhân vật **chỉ ghi khi thông tin của nhân vật trong game thay đổi** (kỹ năng, chỉ số, mô tả gốc EN, ảnh...). Entry: `{ "version": "<bản game>", "date", "note" }`. Không có thay đổi thì để `[]`; UI ẩn mục lịch sử khi rỗng.
 - Việc nội bộ của dự án (sửa bản dịch `desc_vi`/`intro_vi`, rà soát, đổi giao diện) **không** ghi vào `changes`.
 - Giữ nguyên lịch sử `changes` cũ, chỉ thêm entry mới. Chỉ xóa/sửa entry khi người dùng yêu cầu rõ (commit với `ALLOW_HISTORY_REWRITE=1`).
