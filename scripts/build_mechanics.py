@@ -5,6 +5,7 @@ from the actual kit so the UI never invents explanations.
 """
 
 import json
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -47,7 +48,8 @@ CURATED = {
     'Inferno Mode': ('Trạng thái đặc biệt của Zani, thay đổi Resonance Skill và bộ chiêu.', 'mode'),
     'Chainsaw Mode': ('Trạng thái đặc biệt của Chisa; một số kỹ năng bị khóa khi ở trạng thái này.', 'mode'),
     'True Sight': ('Trạng thái Changli nhận sau Basic Attack Stage 4, kéo dài 12 giây.', 'mode'),
-    'Unison': ('Cơ chế cộng hưởng/phối hợp của Hsin, mở Unison Response.', 'mode'),
+    'Unison': ('Hiệu ứng/Resonance Mode dùng chung của một số Resonators (Hsin, Jinhsi, Suoming, Lily…); khi có Unison có thể kích hoạt Unison Response. Tóm tắt từ bộ kỹ năng.', 'mode'),
+    'Heart Manifest': ('Trạng thái của Hsin: thi triển Formshift để mở Manifold Sanctum, Hsin chuyển sang Illumining Form và vào Heart Manifest; trở lại Answering Form thì rời trạng thái này. Tóm tắt từ bộ kỹ năng.', 'mode'),
     'Deathblade Gear': ('Trạng thái sau Resonance Liberation của Calcharo, thay đổi bộ chiêu.', 'mode'),
     'Fleurdelys': ('Dạng biến đổi của Cartethyia khi HP dưới 50%, mở khóa chiêu mới.', 'mode'),
     'Manifest': ('Trạng thái Cartethyia nhận sau khi biến thành Fleurdelys.', 'mode'),
@@ -55,7 +57,7 @@ CURATED = {
     'Trace': ('Tài nguyên tích lũy của Lucilla.', 'resource'),
     'Photos': ('Ba biểu tượng Lucilla cần thu thập để mở Resonance Liberation.', 'resource'),
     'Payload': ('Resonance Skill dạng lao tới của Lucy.', 'skill'),
-    'Hack': ('Trạng thái đánh dấu mục tiêu của Lucy, có thể gây Shift.', 'system'),
+    'Hack': ('Hiệu ứng lên mục tiêu, dùng bởi Lucy và Rebecca (Hack - Shifting, Hack - Interfered). Tóm tắt từ bộ kỹ năng.', 'system'),
     'Spoofing Program': ('Các hiệu ứng Lucy chọn trong Protocol Interface, tiêu tốn RAM.', 'system'),
     'Protocol Interface': ('Giao diện kỹ năng của Lucy trong Resonance Liberation.', 'system'),
     'Algorithm Compaction': ('Trạng thái thay đổi Basic Attack của Lucy.', 'mode'),
@@ -76,6 +78,41 @@ CURATED = {
 }
 
 
+# Resonator-specific mechanics: only linked on their owners' pages, so a common
+# word (e.g. "Manifest" inside Hsin's "Heart Manifest") never opens another
+# character's explanation. Terms not listed here are shared/global.
+OWNERS = {
+    'jinhsi': ['Incarnation', 'Ordination Glow', 'Eras in Unity'],
+    'aemeath': ['Form Switch', 'Stardust Resonance', 'Heavenfall Edict'],
+    'lynae': ['Kaleidoscopic Parade', 'Lumiflow', 'Overflow', 'Optical Sampling Stage', 'Spark Collision'],
+    'camellya': ['Blossom Mode', 'Crimson Blossom'],
+    'zani': ['Inferno Mode'],
+    'chisa': ['Chainsaw Mode'],
+    'changli': ['True Sight'],
+    'hsin': ['Heart Manifest'],
+    'calcharo': ['Deathblade Gear'],
+    'cartethyia': ['Fleurdelys', 'Manifest'],
+    'lucilla': ['Reminiscence', 'Trace', 'Photos'],
+    'lucy': ['Payload', 'Spoofing Program', 'Protocol Interface', 'Algorithm Compaction', 'Involuntary Sharing'],
+    'luuk-herssen': ['Ichor Blade', 'Golden Reflux'],
+    'zhezhi': ['Afflatus'],
+    'ciaccona': ['Solo Concert', 'Ensemble Sylph'],
+    'qingxiao': ['Ephemeral Transcendence', 'Qin Heart', 'Sword Cadence', 'Stringblade'],
+}
+# Distinct named things that merely contain a mechanic's name. They are matched
+# first (longest match wins) and rendered as plain text, so e.g. "Unison" inside
+# "Unison Boon" does not open the Unison explanation.
+NO_LINK = [
+    'Unison Boon', 'Unison Response', 'Unison Reponse', 'Manifold Unison',
+    'Tune Rupture Response', 'Hack Response',
+]
+OWNER_OF = {term: slug for slug, terms in OWNERS.items() for term in terms}
+
+
+def term_in(term, text):
+    return re.search(r'(?<![A-Za-z0-9])' + re.escape(term) + r'(?![A-Za-z0-9])', text) is not None
+
+
 def main():
     payload = json.loads(DATA.read_text(encoding='utf-8'))
     chars = payload['characters']
@@ -84,14 +121,18 @@ def main():
         count = 0
         users = []
         sample = ''
+        owner = OWNER_OF.get(term)
         for c in chars:
+            if owner and c['slug'] != owner:
+                continue
             hit = 0
-            for s in c['skills']:
-                for en, vi in zip(s['desc'], s['desc_vi']):
-                    if term in en or term in vi:
-                        hit += 1
-                        if not sample:
-                            sample = vi if term in vi else en
+            texts = [(en, vi) for s in c['skills'] for en, vi in zip(s['desc'], s['desc_vi'])]
+            texts += [(en, vi) for n in c.get('resonance_chain', []) for en, vi in zip(n['desc'], n['desc_vi'])]
+            for en, vi in texts:
+                if term_in(term, en) or term_in(term, vi):
+                    hit += 1
+                    if not sample:
+                        sample = vi if term_in(term, vi) else en
             if hit:
                 count += hit
                 users.append(c['slug'])
@@ -106,9 +147,13 @@ def main():
             'sample_vi': sample[:320],
             'count': count,
             'characters': users,
+            'owners': [owner] if owner else [],
         })
+    missing_owner = [t for t in OWNER_OF if t not in {m['term'] for m in mechanics}]
+    if missing_owner:
+        print('warning: owner terms not found in data:', missing_owner)
     mechanics.sort(key=lambda m: (-m['count'], m['term']))
-    OUT.write_text(json.dumps({'mechanics': mechanics}, ensure_ascii=False, indent=1), encoding='utf-8')
+    OUT.write_text(json.dumps({'mechanics': mechanics, 'no_link': NO_LINK}, ensure_ascii=False, indent=1), encoding='utf-8')
     print(f'wrote {OUT} with {len(mechanics)} mechanics')
 
 
