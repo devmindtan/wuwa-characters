@@ -157,6 +157,18 @@ input:focus,select:focus{border-color:var(--line2);box-shadow:0 0 0 3px rgba(214
 .changes ul{margin:10px 0 0;padding-left:18px;line-height:1.8}
 .changes li::marker{color:rgba(214,196,161,.6)}
 .changes b{color:var(--gold2);font-weight:600}
+/* language switch */
+.show-xs{display:none}
+.head-meta{display:flex;align-items:center;gap:12px;justify-content:flex-end}
+#patch-label{white-space:nowrap}
+.lang-switch{display:inline-flex;padding:3px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.03);flex:none}
+.lang-switch button{font:inherit;font-size:11.5px;font-weight:600;letter-spacing:.08em;min-width:36px;padding:5px 9px;border:0;border-radius:999px;background:none;color:var(--muted);cursor:pointer}
+.lang-switch button:hover{color:var(--text)}
+.lang-switch button[aria-pressed="true"]{color:#081014;background:var(--gold2)}
+.lang-switch button:focus-visible{outline:2px solid var(--gold2);outline-offset:1px}
+.wrap:has(#detailView.open) .head-meta .lang-switch{display:none}
+.sec-kicker{margin:0 0 4px;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+
 /* back button: svg arrow, optically centred */
 .btn-back{display:inline-flex;align-items:center;gap:7px}
 .back-ico{width:14px;height:14px;flex:none}
@@ -453,7 +465,7 @@ dialog#mechDialog::backdrop{background:rgba(3,6,8,.7);backdrop-filter:blur(3px)}
   .section-head h2{font-size:32px}
   .detail-top{position:relative}
   .site-head{align-items:flex-start}
-  .head-meta{max-width:52%;line-height:1.5}
+  .head-meta{line-height:1.5;gap:8px}
   .site-foot{grid-template-columns:1fr}
   .foot-links{justify-content:flex-start}
 }
@@ -465,8 +477,12 @@ dialog#mechDialog::backdrop{background:rgba(3,6,8,.7);backdrop-filter:blur(3px)}
   .grid{grid-template-columns:1fr}
   .stat-row{grid-template-columns:1fr 1fr}
 }
-@media (max-width: 380px){
+@media (max-width: 420px){
   .hide-xs{display:none}
+  .show-xs{display:inline}
+}
+@media (max-width: 380px){
+  .tabs button{padding:9px 4px;font-size:11.5px}
 }
 @media (prefers-reduced-motion: reduce){
   *{scroll-behavior:auto!important;transition:none!important;animation:none!important}

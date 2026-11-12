@@ -1,6 +1,5 @@
 const EL_VI = {Spectro:'Quang Phổ',Havoc:'Hỗn Độn',Aero:'Khí',Electro:'Lôi',Fusion:'Nhiệt',Glacio:'Băng'};
 const WEAP_VI = {Sword:'Kiếm',Broadblade:'Đại Kiếm',Pistols:'Súng Lục',Gauntlets:'Găng Tay',Rectifier:'Pháp Khí'};
-const KIND_VI = {system:'Cơ chế',resource:'Tài nguyên',status:'Negative Status',mode:'Trạng thái',skill:'Kỹ năng',summon:'Triệu hồi',stat:'Chỉ số'};
 // Official element text colors (in-game / Wuthering Waves Wiki dark theme).
 const COLOR_HEX = {Spectro:'#F8E56C',Havoc:'#E649A6',Aero:'#55FFB5',Electro:'#B46BFF',Fusion:'#F0744E',Glacio:'#41AEFB'};
 // "<Element> DMG ..." phrases are coloured by element (colour only, no bold).
@@ -20,7 +19,8 @@ const state = {
   mechTerm: null,
   bySlug: new Map(),
   current: null,
-  showEn: false,
+  lang: (() => { try { return localStorage.getItem('lang') === 'en' ? 'en' : 'vi'; } catch { return 'vi'; } })(),
+  get showEn() { return this.lang === 'en'; },
   savedScroll: 0,
   detailOpen: false,
 };
@@ -37,7 +37,6 @@ const q = $('q');
 const fEl = $('f-el');
 const fWeap = $('f-weap');
 const fR = $('f-r');
-const toggleEn = $('toggle-en');
 const backBtn = $('back');
 const dSkills = $('d-skills');
 const dChain = $('d-chain');
@@ -49,6 +48,58 @@ const elColor = (el) => COLOR_HEX[el] || '#d6c4a1';
 const regexEsc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 const elVi = (el) => EL_VI[el] || el || '';
 const weapVi = (w) => WEAP_VI[w] || w || '';
+
+/* ---------- language ---------- */
+function applyStaticI18n() {
+  document.documentElement.lang = t('html_lang');
+  document.querySelector('meta[name="description"]')?.setAttribute('content', t('meta_desc'));
+  document.querySelectorAll('[data-i18n]').forEach((el) => { el.textContent = t(el.dataset.i18n); });
+  document.querySelectorAll('[data-i18n-html]').forEach((el) => { el.innerHTML = t(el.dataset.i18nHtml); });
+  document.querySelectorAll('[data-i18n-attr]').forEach((el) => {
+    for (const pair of el.dataset.i18nAttr.split(';')) {
+      const [attr, key] = pair.split(':');
+      el.setAttribute(attr, t(key));
+    }
+  });
+  document.querySelectorAll('.lang-switch [data-lang]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === state.lang)));
+}
+
+// (Re)build the three filter dropdowns in the current language, keeping selections.
+function buildFilters() {
+  const keep = {el: fEl.value, weap: fWeap.value, r: fR.value};
+  document.querySelectorAll('.toolbar .dd').forEach((dd) => dd.remove());
+  const vi = !state.showEn;
+  const els = [...new Set(state.characters.map((c) => c.element).filter(Boolean))].sort();
+  const weaps = [...new Set(state.characters.map((c) => c.weapon).filter(Boolean))].sort();
+  const opts = (sel, all, values, label) => {
+    sel.innerHTML = '';
+    fillSelect(sel, [''], () => all);
+    fillSelect(sel, values, label);
+  };
+  opts(fEl, t('all_elements'), els, (v) => (vi && EL_VI[v] ? `${v} · ${EL_VI[v]}` : v));
+  opts(fWeap, t('all_weapons'), weaps, (v) => (vi && WEAP_VI[v] ? `${v} · ${WEAP_VI[v]}` : v));
+  opts(fR, t('all_rarities'), ['5', '4'], (v) => t('rarity_n', {n: v}));
+  fEl.value = keep.el; fWeap.value = keep.weap; fR.value = keep.r;
+  enhanceSelect(fEl, elDot);
+  enhanceSelect(fWeap, weapDot);
+  enhanceSelect(fR, rarityMark);
+}
+
+function setLang(lang) {
+  state.lang = lang === 'en' ? 'en' : 'vi';
+  try { localStorage.setItem('lang', state.lang); } catch { /* private mode */ }
+  if (mechDialog.open) mechDialog.close();
+  applyStaticI18n();
+  if (!state.meta) return;
+  renderMeta();
+  buildFilters();
+  apply();
+  if (state.current) {
+    renderDetail(state.current);
+    renderSkills();
+    setTab(state.tab);
+  }
+}
 
 function fillSelect(sel, values, labelFn) {
   values.forEach((v) => {
@@ -174,7 +225,7 @@ const rarityMark = (v) => v ? `<i class="dd-star r${v}">★</i>` : '';
 
 function cardHTML(c) {
   const col = elColor(c.element);
-  return `<article class="card" data-slug="${esc(c.slug)}" tabindex="0" role="button" aria-label="Mở hồ sơ ${esc(c.name)}" style="--el:${col};--tint-soft:${col}22">
+  return `<article class="card" data-slug="${esc(c.slug)}" tabindex="0" role="button" aria-label="${esc(t('card_aria', {name: c.name}))}" style="--el:${col};--tint-soft:${col}22">
     <div class="card-media">
       <img src="${esc(c.img_card || c.img_icon)}" alt="${esc(c.name)}" loading="lazy" onerror="this.onerror=null;this.src='${esc(c.img_icon)}'">
       <span class="card-badge">${elIcon(c.element)}${esc(c.element)}</span>
@@ -225,13 +276,13 @@ function renderHero() {
 
 function renderMeta() {
   const m = state.meta;
-  $('patch-label').textContent = `Patch ${m.patch} · ${m.characters} Resonators`;
+  $('patch-label').innerHTML = `Patch ${esc(m.patch)}<span class="hide-sm"> · ${esc(m.characters)} Resonators</span>`;
   $('stat-count').textContent = m.characters;
   $('stat-elements').textContent = new Set(state.characters.map((c) => c.element).filter(Boolean)).size;
   $('stat-weapons').textContent = new Set(state.characters.map((c) => c.weapon).filter(Boolean)).size;
   $('total').textContent = m.characters;
-  $('foot-patch').textContent = `bản game ${m.patch}`;
-  document.title = `Wuthering Waves — Resonators Archive · Patch ${m.patch}`;
+  $('list-foot').innerHTML = t('list_foot_html', {p: esc(m.patch)});
+  if (!state.current) document.title = t('title_list', {p: m.patch});
 }
 
 function lineHTML(line) {
@@ -261,7 +312,7 @@ function renderSkills() {
   if (!c) return;
   let out = '';
   (c.skills || []).forEach((s, i) => {
-    const body = linesHTML((state.showEn ? s.desc : s.desc_vi) || []) || '<p>Chưa có mô tả chi tiết cho kỹ năng này.</p>';
+    const body = linesHTML((state.showEn ? s.desc : s.desc_vi) || []) || `<p>${esc(t('no_desc'))}</p>`;
     out += `<section class="skill" id="skill-${i}" data-index="${i}" tabindex="-1">
       <div class="skill-head">${skillIcon(s, 'skill-ico')}<span class="skill-type">${esc(s.type)}</span><h3>${esc(s.name)}</h3></div>
       <div class="skill-body">${body}</div>
@@ -307,18 +358,18 @@ function scaleHTML(s, i, open = false) {
   const rows = leveled(s);
   const consts = constants(s);
   if (!rows.length && !consts.length) {
-    return open ? '<p class="tn-muted">Chưa có hệ số theo cấp từ nguồn tham khảo.</p>' : '';
+    return open ? `<p class="tn-muted">${esc(t('no_scaling'))}</p>` : '';
   }
   return `<details class="mult" data-si="${i}"${open ? ' open' : ''}>
-    <summary>Multipliers <svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 6.5 6 1.5l5 5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></summary>
+    <summary>${esc(t('mult_title'))} <svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 6.5 6 1.5l5 5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></summary>
     <div class="mult-body">
       ${rows.length ? `<label class="mult-lv"><span>Lv. <b class="lv-num">${state.level}</b></span>
-        <input type="range" class="lv-range" min="1" max="10" step="1" value="${state.level}" aria-label="Cấp kỹ năng"></label>` : ''}
+        <input type="range" class="lv-range" min="1" max="10" step="1" value="${state.level}" aria-label="${esc(t('lv_aria'))}"></label>` : ''}
       <ul class="mult-rows">
         ${rows.map((r, ri) => `<li data-ri="${ri}"><span>${esc(r.label)}</span><b class="sr-val"></b></li>`).join('')}
         ${consts.map((r) => `<li><span>${esc(r.label)}</span><b>${esc(r.values[0])}</b></li>`).join('')}
       </ul>
-      ${s.scaling?.source ? `<p class="scaling-src">Nguồn: <a href="${esc(s.scaling.source)}" target="_blank" rel="noopener noreferrer">Wuthering Waves Wiki — ${esc(s.name)}</a></p>` : ''}
+      ${s.scaling?.source ? `<p class="scaling-src">${esc(t('source'))}: <a href="${esc(s.scaling.source)}" target="_blank" rel="noopener noreferrer">Wuthering Waves Wiki — ${esc(s.name)}</a></p>` : ''}
     </div>
   </details>`;
 }
@@ -392,7 +443,7 @@ function renderTree() {
       nodes = (in2 ? diamond(in2, 'Inherent Skill', false) : '')
         + (in1 ? circle('skill-' + in1.i, skillIcon(in1, 'fn-ico'), '', 'Inherent Skill: ' + in1.name) : '');
     } else {
-      nodes = [2, 1].map((n) => circle(`stat-${ci}-${n}`, STAT_ICON[col.stat], '', `Stat Bonus · ${col.label} · bậc ${n}`)).join('');
+      nodes = [2, 1].map((n) => circle(`stat-${ci}-${n}`, STAT_ICON[col.stat], '', t('stat_node_title', {col: col.label, n}))).join('');
     }
     return `<div class="fcol fcol-${col.pos}">${nodes}${main ? diamond(main, col.label) : `<span class="fn-empty">${esc(col.label)}</span>`}</div>`;
   }).join('');
@@ -409,7 +460,7 @@ function renderTree() {
       <div class="forte-bottom">${bottom}</div>
     </div>`;
   renderTreeDetail();
-  $('d-tree-note').textContent = 'Bố cục theo màn Forte trong game. Bấm một nút để xem chi tiết; kéo thanh Lv. trong Multipliers để đổi cấp cho cả cây. Nút Stat Bonus (tròn ✦/⚔) chưa có số liệu chỉ số từ nguồn tham khảo.';
+  $('d-tree-note').textContent = t('tree_note');
 }
 
 function renderTreeDetail() {
@@ -419,9 +470,9 @@ function renderTreeDetail() {
     const col = TREE_COLS[sel.col];
     const cost = (c.level_costs || {}).stat_bonus?.[sel.n - 1];
     $('d-tree-detail').innerHTML = `<div class="td-head"><span class="td-ico td-stat">${STAT_ICON[col.stat]}</span>
-        <div><p class="td-type">Stat Bonus · nhánh ${esc(col.label)}</p><h3>Bậc ${sel.n}</h3></div>
-        <button type="button" class="btn td-go" data-tabgo="mats">Xem chi phí <span aria-hidden="true">→</span></button></div>
-      <p class="td-desc">Nút chỉ số cộng thêm của cây Forte. Nguồn tham khảo (Wuthering Waves Wiki) chưa có loại và giá trị chỉ số của nút này nên chưa hiển thị số liệu.${cost ? ` Mở bậc ${sel.n} cần ${cost.ascension === '-' ? 'không yêu cầu đột phá' : 'đột phá ' + esc(cost.ascension)}.` : ''}</p>`;
+        <div><p class="td-type">${esc(t('stat_branch', {col: col.label}))}</p><h3>${esc(t('stat_tier', {n: sel.n}))}</h3></div>
+        <button type="button" class="btn td-go" data-tabgo="mats">${esc(t('view_cost'))} <span aria-hidden="true">→</span></button></div>
+      <p class="td-desc">${esc(t('stat_desc'))}${cost ? esc(cost.ascension === '-' ? t('stat_noreq', {n: sel.n}) : t('stat_req', {n: sel.n, a: cost.ascension})) : ''}</p>`;
     return;
   }
   const s = c.skills[sel.i];
@@ -429,7 +480,7 @@ function renderTreeDetail() {
   const lines = ((state.showEn ? s.desc : s.desc_vi) || []).filter((l) => !lineHTML(l).sub).slice(0, 2);
   $('d-tree-detail').innerHTML = `<div class="td-head">${skillIcon(s, 'td-ico')}
       <div><p class="td-type">${esc(s.type)}</p><h3>${esc(s.name)}</h3></div>
-      <button type="button" class="btn td-go" data-goto="skill-${sel.i}">Xem mô tả đầy đủ <span aria-hidden="true">→</span></button>
+      <button type="button" class="btn td-go" data-goto="skill-${sel.i}">${esc(t('view_full'))} <span aria-hidden="true">→</span></button>
     </div>
     ${lines.length ? `<p class="td-desc">${esc(lines.map((l) => l.replace(/^• /, '')).join(' '))}</p>` : ''}
     ${scaleHTML(s, sel.i, true)}`;
@@ -441,7 +492,7 @@ function renderChain() {
   const chain = c.resonance_chain || [];
   dChain.lang = state.showEn ? 'en' : 'vi';
   if (!chain.length) {
-    dChain.innerHTML = `<p class="empty-note">Nguồn tham khảo chưa cập nhật Resonance Chain cho ${esc(c.name)}. Mục này sẽ được bổ sung khi wiki có dữ liệu.</p>`;
+    dChain.innerHTML = `<p class="empty-note">${esc(t('chain_empty', {name: c.name}))}</p>`;
     return;
   }
   dChain.innerHTML = chain.map((n) => {
@@ -449,7 +500,7 @@ function renderChain() {
     return `<article class="chain-node" id="chain-${n.node}" tabindex="-1">
       <div class="chain-head">
         <div class="chain-icon">${n.img ? `<img src="${esc(n.img)}" alt="" loading="lazy" referrerpolicy="no-referrer" width="56" height="56">` : ''}<span>S${n.node}</span></div>
-        <div><p class="chain-seq">Sequence Node ${n.node}</p><h3>${esc(n.name)}</h3></div>
+        <div><p class="chain-seq">Sequence Node · ${esc(t('sequence_node', {n: n.node}))}</p><h3>${esc(n.name)}</h3></div>
       </div>
       <div class="chain-body">${linesHTML(lines || [])}</div>
     </article>`;
@@ -457,12 +508,7 @@ function renderChain() {
 }
 
 /* ---------- materials & upgrade costs ---------- */
-const MAT_GROUPS = [
-  ['ascension', 'Đột phá', 'Tổng nguyên liệu đột phá nhân vật (0✦ → 6✦)'],
-  ['forte', 'Nâng một kỹ năng chính', 'Kéo để xem tổng nguyên liệu cần cho một kỹ năng trong Forte'],
-  ['inherent', 'Inherent Skill', 'Hai bậc mở khóa Inherent Skill'],
-  ['stat_bonus', 'Một nhánh Stat Bonus', 'Hai bậc của một nhánh chỉ số cộng thêm'],
-];
+const MAT_GROUPS = [['ascension', 'mat_ascension'], ['forte', 'mat_forte'], ['inherent', 'mat_inherent'], ['stat_bonus', 'mat_stat']];
 const qtyFmt = (n) => n.toLocaleString('vi-VN');
 
 function matCards(items) {
@@ -489,22 +535,24 @@ function renderMaterials(c) {
   const costs = c.level_costs || {};
   const groups = MAT_GROUPS.filter(([key]) => mats[key]?.items?.length || costs[key]?.length);
   $('tab-btn-mats').hidden = !groups.length;
-  $('d-mats').innerHTML = groups.map(([key, title, hint]) => {
+  $('d-mats').innerHTML = groups.map(([key, tkey]) => {
+    const title = t(tkey);
+    const hint = t(tkey + '_hint');
     const rows = costs[key] || [];
     let body;
     if (key === 'forte' && rows.length) {
       const to = Math.min(state.forteTo, rows.length + 1);
       body = `<div class="upgrade" data-key="forte">
-        <div class="up-head"><span>Từ <b>Lv 1</b> lên <b class="up-to">Lv ${to}</b></span><small class="up-steps-count">${to - 1} bước nâng cấp</small></div>
-        <input type="range" class="up-range" min="2" max="${rows.length + 1}" step="1" value="${to}" aria-label="Nâng tới cấp">
-        <ol class="up-track">${rows.map((r, idx) => `<li class="${idx < to - 1 ? 'on' : ''}" title="${esc(r.level)}${r.ascension !== '-' ? ' · cần ' + esc(r.ascension) : ''}">
+        <div class="up-head"><span>${t('up_from_to_html', {to})}</span><small class="up-steps-count">${esc(t('up_steps', {n: to - 1}))}</small></div>
+        <input type="range" class="up-range" min="2" max="${rows.length + 1}" step="1" value="${to}" aria-label="${esc(t('up_aria'))}">
+        <ol class="up-track">${rows.map((r, idx) => `<li class="${idx < to - 1 ? 'on' : ''}" title="${esc(r.level)}${r.ascension !== '-' ? ' · ' + esc(t('up_need', {a: r.ascension})) : ''}">
           <span class="up-dot">${idx + 2}</span>${r.ascension !== '-' ? `<span class="up-gate">${esc(r.ascension)}</span>` : ''}</li>`).join('')}</ol>
-        <p class="up-note">Mốc ✦ là bậc đột phá nhân vật cần đạt trước khi nâng lên cấp đó.</p>
+        <p class="up-note">${esc(t('up_note'))}</p>
         <div class="up-total">${matCards(sumSteps(rows, to - 1))}</div>
       </div>`;
     } else if (rows.length && key !== 'ascension') {
       body = `<ol class="steps">${rows.map((r, idx) => `<li class="step">
-        <div class="step-head"><span class="step-no">Bậc ${idx + 1}</span>${r.ascension !== '-' ? `<span class="up-gate">Cần ${esc(r.ascension)}</span>` : ''}</div>
+        <div class="step-head"><span class="step-no">${esc(t('step_no', {n: idx + 1}))}</span>${r.ascension !== '-' ? `<span class="up-gate">${esc(t('gate_need', {a: r.ascension}))}</span>` : ''}</div>
         ${matCards(r.items)}
       </li>`).join('')}</ol>`;
     } else {
@@ -524,7 +572,7 @@ function updateUpgrade(input) {
   state.forteTo = to;
   const box = input.closest('.upgrade');
   box.querySelector('.up-to').textContent = `Lv ${to}`;
-  box.querySelector('.up-steps-count').textContent = `${to - 1} bước nâng cấp`;
+  box.querySelector('.up-steps-count').textContent = t('up_steps', {n: to - 1});
   box.querySelectorAll('.up-track li').forEach((li, idx) => li.classList.toggle('on', idx < to - 1));
   input.style.setProperty('--p', `${((to - 2) / (rows.length - 1)) * 100}%`);
   box.querySelector('.up-total').innerHTML = matCards(sumSteps(rows, to - 1));
@@ -536,7 +584,7 @@ function renderReferences(c) {
     let host = '';
     try { host = new URL(r.url).hostname.replace(/^www\./, ''); } catch { /* keep empty */ }
     return `<li><a href="${esc(r.url)}" target="_blank" rel="noopener noreferrer">${esc(r.title)}</a>
-      <span class="ref-host">${esc(host)}</span>${r.used_for ? `<span class="ref-use">${esc(r.used_for)}</span>` : ''}</li>`;
+      <span class="ref-host">${esc(host)}</span>${(state.showEn ? r.used_for_en : r.used_for) ? `<span class="ref-use">${esc(state.showEn ? r.used_for_en : r.used_for)}</span>` : ''}</li>`;
   }).join('');
 }
 
@@ -683,34 +731,9 @@ function openDetail(slug) {
   const c = state.bySlug.get(slug);
   if (!c) { location.hash = '#/'; return; }
   state.current = c;
-  state.showEn = false;
-  toggleEn.setAttribute('aria-pressed', 'false');
-  toggleEn.textContent = 'Bản gốc EN';
-  const col = elColor(c.element);
-  $('d-frame').style.setProperty('--tint-soft', col + '22');
-  const img = $('d-img');
-  img.src = c.img_full || c.img_card || c.img_icon;
-  img.alt = c.name;
-  img.onerror = () => { img.onerror = null; img.src = c.img_icon; };
-  $('d-name').textContent = c.name;
-  $('d-element').innerHTML = `${elIcon(c.element)}${esc(c.element)} · ${esc(elVi(c.element))}`;
-  $('d-weapon').innerHTML = `${weapIcon(c.weapon)}${esc(c.weapon)} · ${esc(weapVi(c.weapon))}`;
-  $('d-version').textContent = `Patch ${state.meta.patch}`;
-  $('d-tags').innerHTML =
-    `<span class="tag el" style="--c:${col}">${elIcon(c.element)}${esc(c.element)} · ${esc(elVi(c.element))}</span>
-     <span class="tag">${weapIcon(c.weapon)}${esc(c.weapon)} · ${esc(weapVi(c.weapon))}</span>
-     <span class="tag" style="color:${c.rarity===5?'var(--r5)':'var(--r4)'}">${stars(c.rarity)}</span>`;
-  $('d-stats').innerHTML = `
-    <div class="stat"><div class="k">Nguyên tố</div><div class="v v-ico" style="color:${col}">${elIcon(c.element, 'ico-lg')}<span>${esc(c.element)}<small>${esc(elVi(c.element))}</small></span></div></div>
-    <div class="stat"><div class="k">Vũ khí</div><div class="v v-ico">${weapIcon(c.weapon, 'ico-lg')}<span>${esc(c.weapon)}<small>${esc(weapVi(c.weapon))}</small></span></div></div>
-    <div class="stat"><div class="k">Độ hiếm</div><div class="v" style="color:${c.rarity===5?'var(--r5)':'var(--r4)'}">${c.rarity ? c.rarity + '★' : '—'}</div></div>
-    <div class="stat"><div class="k">Kỹ năng</div><div class="v">${(c.skills || []).length}<small>mục chính</small></div></div>`;
+  renderDetail(c);
   state.treeSel = null;
-  renderMaterials(c);
-  renderReferences(c);
-  renderChanges(c);
   renderSkills();
-  document.title = `${c.name} — Resonators Archive · Patch ${state.meta.patch}`;
   setTab(state.tab);
   if (!state.detailOpen) state.savedScroll = window.scrollY;
   state.detailOpen = true;
@@ -725,10 +748,38 @@ function openDetail(slug) {
   }
 }
 
+// Everything on the profile that depends on the language, except the skill/tree/chain bodies.
+function renderDetail(c) {
+  const col = elColor(c.element);
+  $('d-frame').style.setProperty('--tint-soft', col + '22');
+  const img = $('d-img');
+  img.src = c.img_full || c.img_card || c.img_icon;
+  img.alt = c.name;
+  img.onerror = () => { img.onerror = null; img.src = c.img_icon; };
+  $('d-name').textContent = c.name;
+  const vi = !state.showEn;
+  $('d-element').innerHTML = `${elIcon(c.element)}${esc(c.element)}${vi ? ' · ' + esc(elVi(c.element)) : ''}`;
+  $('d-weapon').innerHTML = `${weapIcon(c.weapon)}${esc(c.weapon)}${vi ? ' · ' + esc(weapVi(c.weapon)) : ''}`;
+  $('d-version').textContent = `Patch ${state.meta.patch}`;
+  $('d-tags').innerHTML =
+    `<span class="tag el" style="--c:${col}">${elIcon(c.element)}${esc(c.element)}</span>
+     <span class="tag">${weapIcon(c.weapon)}${esc(c.weapon)}</span>
+     <span class="tag" style="color:${c.rarity===5?'var(--r5)':'var(--r4)'}">${stars(c.rarity)}</span>`;
+  $('d-stats').innerHTML = `
+    <div class="stat"><div class="k">${esc(t('k_element'))}</div><div class="v v-ico" style="color:${col}">${elIcon(c.element, 'ico-lg')}<span>${esc(c.element)}${vi ? `<small>${esc(elVi(c.element))}</small>` : ''}</span></div></div>
+    <div class="stat"><div class="k">${esc(t('k_weapon'))}</div><div class="v v-ico">${weapIcon(c.weapon, 'ico-lg')}<span>${esc(c.weapon)}${vi ? `<small>${esc(weapVi(c.weapon))}</small>` : ''}</span></div></div>
+    <div class="stat"><div class="k">${esc(t('k_rarity'))}</div><div class="v" style="color:${c.rarity===5?'var(--r5)':'var(--r4)'}">${c.rarity ? c.rarity + '★' : '—'}</div></div>
+    <div class="stat"><div class="k">${esc(t('k_skills'))}</div><div class="v">${(c.skills || []).length}<small>${esc(t('skills_unit'))}</small></div></div>`;
+  renderMaterials(c);
+  renderReferences(c);
+  renderChanges(c);
+  document.title = t('title_detail', {name: c.name, p: state.meta.patch});
+}
+
 function closeDetail() {
   state.current = null;
   state.detailOpen = false;
-  if (state.meta) document.title = `Wuthering Waves — Resonators Archive · Patch ${state.meta.patch}`;
+  if (state.meta) document.title = t('title_list', {p: state.meta.patch});
   listView.style.display = '';
   detailView.classList.remove('open');
   window.scrollTo({top: state.savedScroll || 0, behavior: 'instant'});
@@ -743,15 +794,15 @@ function route() {
 function openMechanic(termName) {
   const m = state.mechanics.find((x) => x.term === termName);
   if (!m) return;
-  $('mech-kind').textContent = KIND_VI[m.kind] || 'Cơ chế';
+  $('mech-kind').textContent = t('kind_' + m.kind) || t('mech_kind');
   $('mech-title').textContent = m.term;
-  $('mech-summary').textContent = m.summary_vi;
+  $('mech-summary').textContent = (state.showEn ? m.summary_en : m.summary_vi) || m.summary_vi;
   const c = state.current;
   const occurrences = [];
   const seen = new Set();
   const sources = [
-    ...(c?.skills || []).map((s, i) => ({title: s.name, target: 'skill-' + i, go: 'Tới kỹ năng', lines: (state.showEn ? s.desc : s.desc_vi) || []})),
-    ...(c?.resonance_chain || []).map((n) => ({title: `S${n.node} · ${n.name}`, target: 'chain-' + n.node, go: 'Tới Resonance Chain',
+    ...(c?.skills || []).map((s, i) => ({title: s.name, target: 'skill-' + i, go: t('go_skill'), lines: (state.showEn ? s.desc : s.desc_vi) || []})),
+    ...(c?.resonance_chain || []).map((n) => ({title: `S${n.node} · ${n.name}`, target: 'chain-' + n.node, go: t('go_chain'),
       lines: (state.showEn || !(n.desc_vi || []).length ? n.desc : n.desc_vi) || []})),
   ];
   const cap = {skill: 8, chain: 6};
@@ -774,11 +825,11 @@ function openMechanic(termName) {
       `<div class="mech-occ-item">
         <div class="mech-occ-head"><b>${esc(o.title)}</b><button type="button" class="mech-go" data-target="${esc(o.target)}" data-term="${esc(m.term)}">${esc(o.go)} <span aria-hidden="true">↓</span></button></div>
         <p class="mech-occ-text">${esc(o.line)}</p>
-        <button type="button" class="mech-more" hidden aria-expanded="false">Xem thêm</button>
+        <button type="button" class="mech-more" hidden aria-expanded="false">${esc(t('more'))}</button>
       </div>`
     ).join('');
   } else {
-    occBox.innerHTML = `<p class="mech-occ-item" style="cursor:default">${esc(m.sample_vi || 'Không có trong bộ kỹ năng hiện tại.')}</p>`;
+    occBox.innerHTML = `<p class="mech-occ-item" style="cursor:default">${esc((state.showEn ? m.sample_en : m.sample_vi) || t('no_occ'))}</p>`;
   }
   state.mechTerm = m;
   state.roleFilter = 'all';
@@ -795,13 +846,13 @@ function openMechanic(termName) {
 
 // Heuristic roles from the English line that mentions a mechanic.
 const ROLE_RULES = [
-  ['apply', 'Gây / kích hoạt', /\b(inflicts?|inflicted|appl(y|ies)|triggers?|triggered|grants?|gains?|enters?|causes?|summons?)\b/i],
-  ['stack', 'Tăng tầng / giới hạn', /(stack limit|max(imum)?( stack| number of stacks)|additional(ly)?[^.]*\bstacks?\b|\bstacks?\b[^.]*\b(increased|doubled)\b)/i],
-  ['amplify', 'Tăng sát thương', /(amplif|dmg bonus|dmg multiplier|more dmg|increased dmg|take[s]? \d+(\.\d+)?% (more|increased))/i],
-  ['use', 'Tận dụng / tiêu hao', /(consum|\bremov|affected by|inflicted with|targets? with|has \d+ stacks)/i],
-  ['restore', 'Hồi / tích lũy', /(restor|recover|regen)/i],
+  ['apply', 'role_apply', /\b(inflicts?|inflicted|appl(y|ies)|triggers?|triggered|grants?|gains?|enters?|causes?|summons?)\b/i],
+  ['stack', 'role_stack', /(stack limit|max(imum)?( stack| number of stacks)|additional(ly)?[^.]*\bstacks?\b|\bstacks?\b[^.]*\b(increased|doubled)\b)/i],
+  ['amplify', 'role_amplify', /(amplif|dmg bonus|dmg multiplier|more dmg|increased dmg|take[s]? \d+(\.\d+)?% (more|increased))/i],
+  ['use', 'role_use', /(consum|\bremov|affected by|inflicted with|targets? with|has \d+ stacks)/i],
+  ['restore', 'role_restore', /(restor|recover|regen)/i],
 ];
-const ROLE_LABEL = Object.fromEntries(ROLE_RULES.map(([k, label]) => [k, label]));
+const roleLabel = (k) => t('role_' + k);
 
 function mechUsers(m) {
   const re = new RegExp('(?<![A-Za-z0-9])' + regexEsc(m.term) + '(?![A-Za-z0-9])');
@@ -837,7 +888,7 @@ function renderMechUsers() {
   $('mech-users-count').textContent = `(${users.length})`;
   const present = ROLE_RULES.map(([k]) => k).filter((k) => users.some((u) => u.roles.includes(k)));
   $('mech-roles').innerHTML = users.length > 1 && present.length > 1
-    ? [['all', 'Tất cả'], ...present.map((k) => [k, ROLE_LABEL[k]])].map(([k, label]) =>
+    ? [['all', t('role_all')], ...present.map((k) => [k, roleLabel(k)])].map(([k, label]) =>
       `<button type="button" class="role-chip" data-role="${k}" aria-pressed="${state.roleFilter === k}">${esc(label)}${k === 'all' ? '' : ` <small>${users.filter((u) => u.roles.includes(k)).length}</small>`}</button>`).join('')
     : '';
   const shown = state.roleFilter === 'all' ? users : users.filter((u) => u.roles.includes(state.roleFilter));
@@ -846,12 +897,12 @@ function renderMechUsers() {
   const row = ({c, roles, target, count}, mine) => `<li${mine ? ' class="mu-me"' : ''}>
     <button type="button" class="mech-user${mine ? ' is-current' : ''}" data-slug="${esc(c.slug)}" data-target="${esc(target)}">
       <img src="${esc(c.img_icon)}" alt="" width="${mine ? 52 : 40}" height="${mine ? 52 : 40}">
-      <span class="mu-main">${mine ? '<span class="mu-badge">Nhân vật này</span>' : ''}<b>${esc(c.name)}</b>${elIcon(c.element)}<small>${count} vị trí</small></span>
-      <span class="mu-roles">${roles.map((r) => `<i class="role role-${r}">${esc(ROLE_LABEL[r])}</i>`).join('')}</span>
-      <span class="mu-go">${mine ? 'Tới đoạn có hiệu ứng' : 'Mở hồ sơ'} <span aria-hidden="true">→</span></span>
+      <span class="mu-main">${mine ? `<span class="mu-badge">${esc(t('me_badge'))}</span>` : ''}<b>${esc(c.name)}</b>${elIcon(c.element)}<small>${esc(t('n_places', {n: count}))}</small></span>
+      <span class="mu-roles">${roles.map((r) => `<i class="role role-${r}">${esc(roleLabel(r))}</i>`).join('')}</span>
+      <span class="mu-go">${esc(mine ? t('go_here') : t('open_profile'))} <span aria-hidden="true">→</span></span>
     </button></li>`;
   $('mech-users-list').innerHTML = (me ? row(me, true) : '')
-    + (others.length && me ? `<li class="mu-sep">Resonators khác (${others.length})</li>` : '')
+    + (others.length && me ? `<li class="mu-sep">${esc(t('others', {n: others.length}))}</li>` : '')
     + others.map((u) => row(u, false)).join('');
 }
 
@@ -861,7 +912,7 @@ async function boot() {
       fetch('/api/characters'),
       fetch('/api/mechanics'),
     ]);
-    if (!charsRes.ok) throw new Error(`API /api/characters trả về ${charsRes.status}`);
+    if (!charsRes.ok) throw new Error(`API /api/characters → HTTP ${charsRes.status}`);
     const chars = await charsRes.json();
     state.meta = chars.meta;
     state.characters = chars.characters;
@@ -874,17 +925,13 @@ async function boot() {
     loading.style.display = 'none';
     renderMeta();
     renderHero();
-    fillSelect(fEl, [...new Set(state.characters.map((c) => c.element).filter(Boolean))].sort(), (v) => `${v} · ${EL_VI[v] || ''}`);
-    fillSelect(fWeap, [...new Set(state.characters.map((c) => c.weapon).filter(Boolean))].sort(), (v) => `${v} · ${WEAP_VI[v] || ''}`);
-    enhanceSelect(fEl, elDot);
-    enhanceSelect(fWeap, weapDot);
-    enhanceSelect(fR, rarityMark);
+    buildFilters();
     apply();
     route();
   } catch (err) {
     loading.style.display = 'none';
     errorBox.style.display = 'block';
-    errorBox.innerHTML = `Không tải được dữ liệu từ API.<br><small>${esc(err.message)}. Hãy chạy <code>./run.sh</code> rồi mở <code>http://127.0.0.1:8000</code>.</small>`;
+    errorBox.innerHTML = t('error_html', {msg: esc(err.message)});
   }
 }
 
@@ -899,11 +946,9 @@ grid.addEventListener('keydown', (e) => {
   }
 });
 backBtn.addEventListener('click', () => { location.hash = '#/'; });
-toggleEn.addEventListener('click', () => {
-  state.showEn = !state.showEn;
-  toggleEn.setAttribute('aria-pressed', String(state.showEn));
-  toggleEn.textContent = state.showEn ? 'Đang xem EN' : 'Bản gốc EN';
-  renderSkills();
+document.addEventListener('click', (e) => {
+  const b = e.target.closest('.lang-switch [data-lang]');
+  if (b && b.dataset.lang !== state.lang) setLang(b.dataset.lang);
 });
 [q, fEl, fWeap, fR].forEach((el) => el.addEventListener('input', apply));
 window.addEventListener('hashchange', route);
@@ -1007,7 +1052,7 @@ mechDialog.addEventListener('click', (e) => {
   if (more) {
     const item = more.closest('.mech-occ-item');
     const open = item.classList.toggle('expanded');
-    more.textContent = open ? 'Thu gọn' : 'Xem thêm';
+    more.textContent = open ? t('less') : t('more');
     more.setAttribute('aria-expanded', String(open));
     return;
   }
@@ -1019,4 +1064,5 @@ mechDialog.addEventListener('click', (e) => {
 });
 mechDialog.addEventListener('close', () => { pressedOnBackdrop = false; });
 
+applyStaticI18n();
 boot();

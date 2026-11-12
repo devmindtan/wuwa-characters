@@ -18,19 +18,19 @@
 <div class="wrap">
   <header class="site-head">
     <div class="brand"><span class="dot"></span><span><b>Wuthering Waves</b> · Resonators Archive</span></div>
-    <div class="head-meta"><span id="patch-label">Đang tải…</span></div>
+    <div class="head-meta"><span id="patch-label" data-i18n="loading_short"></span><div class="lang-switch" role="group" data-i18n-attr="aria-label:lang_aria"><button type="button" data-lang="vi">VI</button><button type="button" data-lang="en">EN</button></div></div>
   </header>
 
   <main id="listView">
     <section class="hero">
       <div class="hero-copy">
-        <p class="kicker">Solaris · Resonator Codex</p>
-        <h1>Resonators<br><em>Archive</em></h1>
-        <p class="lede">Tra cứu thông tin và toàn bộ bộ kỹ năng của 61 Resonators Wuthering Waves. Tên kỹ năng và thuật ngữ game được giữ nguyên tiếng Anh; phần mô tả đã được Việt hóa và rà soát ngữ cảnh.</p>
+        <p class="kicker" data-i18n="hero_kicker"></p>
+        <h1 data-i18n-html="hero_title_html"></h1>
+        <p class="lede" data-i18n="hero_lede"></p>
         <div class="hero-stats">
-          <div><strong id="stat-count">—</strong>Resonators</div>
-          <div><strong id="stat-elements">—</strong>Nguyên tố</div>
-          <div><strong id="stat-weapons">—</strong>Loại vũ khí</div>
+          <div><strong id="stat-count">—</strong><span data-i18n="stat_resonators"></span></div>
+          <div><strong id="stat-elements">—</strong><span data-i18n="stat_elements"></span></div>
+          <div><strong id="stat-weapons">—</strong><span data-i18n="stat_weapons"></span></div>
         </div>
       </div>
       <div class="hero-art">
@@ -39,39 +39,33 @@
       </div>
     </section>
 
-    <section class="toolbar" aria-label="Bộ lọc nhân vật">
+    <section class="toolbar" data-i18n-attr="aria-label:filters_aria">
       <div class="toolbar-grid">
-        <input id="q" type="search" placeholder="Tìm theo tên, kỹ năng hoặc mô tả..." aria-label="Tìm kiếm">
-        <select id="f-el" aria-label="Nguyên tố"><option value="">Mọi nguyên tố</option></select>
-        <select id="f-weap" aria-label="Vũ khí"><option value="">Mọi vũ khí</option></select>
-        <select id="f-r" aria-label="Độ hiếm">
-          <option value="">Mọi độ hiếm</option>
-          <option value="5">5 sao</option>
-          <option value="4">4 sao</option>
-        </select>
+        <input id="q" type="search" data-i18n-attr="placeholder:search_ph;aria-label:search_aria">
+        <select id="f-el" data-i18n-attr="aria-label:el_aria"></select>
+        <select id="f-weap" data-i18n-attr="aria-label:weap_aria"></select>
+        <select id="f-r" data-i18n-attr="aria-label:rar_aria"></select>
       </div>
       <div class="toolbar-foot">
-        <span>Đang hiển thị <strong id="shown">0</strong> / <span id="total">0</span> Resonators</span>
-        <span>Chọn một thẻ để mở hồ sơ đầy đủ.</span>
+        <span><span data-i18n="showing"></span> <strong id="shown">0</strong> / <span id="total">0</span> Resonators</span>
+        <span data-i18n="pick_hint"></span>
       </div>
     </section>
 
     <section id="grid" class="grid" aria-live="polite"></section>
-    <div id="empty" class="empty" style="display:none">Không tìm thấy Resonators phù hợp với bộ lọc hiện tại.</div>
-    <div id="loading" class="empty">Đang tải dữ liệu từ API…</div>
+    <div id="empty" class="empty" style="display:none" data-i18n="empty"></div>
+    <div id="loading" class="empty" data-i18n="loading"></div>
     <div id="error" class="empty" style="display:none"></div>
 
-    <footer class="page-foot">
-      Dữ liệu tham chiếu từ <a href="https://www.prydwen.gg/wuthering-waves/characters" target="_blank" rel="noopener noreferrer">prydwen.gg</a>, theo <strong id="foot-patch">bản game hiện tại</strong>. Mô tả tiếng Việt là bản dịch tham khảo đã rà soát; thuật ngữ và tên kỹ năng giữ nguyên tiếng Anh để bảo toàn cơ chế game.
-    </footer>
+    <footer class="page-foot" id="list-foot"></footer>
   </main>
 
   <main id="detailView" aria-live="polite">
     <div class="detail-top">
-      <button class="btn btn-back" id="back" aria-label="Quay lại danh sách Resonators"><svg class="back-ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg><span><span class="hide-sm">Danh sách </span>Resonators</span></button>
+      <button class="btn btn-back" id="back" data-i18n-attr="aria-label:back_aria"><svg class="back-ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg><span><span class="hide-sm" data-i18n="back_prefix"></span>Resonators</span></button>
       <div class="detail-actions">
-        <span class="version-pill" id="d-version" title="Thông tin theo bản game hiện tại"></span>
-        <button class="btn" id="toggle-en" aria-pressed="false">Bản gốc EN</button>
+        <span class="version-pill" id="d-version" data-i18n-attr="title:version_title"></span>
+        <div class="lang-switch" role="group" data-i18n-attr="aria-label:lang_aria"><button type="button" data-lang="vi">VI</button><button type="button" data-lang="en">EN</button></div>
       </div>
     </div>
     <article class="profile">
@@ -81,71 +75,74 @@
       </aside>
       <div class="profile-body">
         <header class="profile-head">
-          <p class="kicker">Hồ sơ Resonator</p>
+          <p class="kicker" data-i18n="profile_kicker"></p>
           <h1 id="d-name"></h1>
           <div class="profile-tags" id="d-tags"></div>
           <p class="intro" id="d-intro" hidden></p>
         </header>
         <div class="stat-row" id="d-stats"></div>
-        <nav class="tabs" role="tablist" aria-label="Nội dung hồ sơ" id="d-tabs">
-          <button type="button" role="tab" id="tab-btn-tree" aria-controls="tab-tree" data-tab="tree">Skill Tree</button>
-          <button type="button" role="tab" id="tab-btn-skills" aria-controls="tab-skills" data-tab="skills">Bộ kỹ năng</button>
-          <button type="button" role="tab" id="tab-btn-chain" aria-controls="tab-chain" data-tab="chain"><span class="hide-xs">Resonance </span>Chain</button>
-          <button type="button" role="tab" id="tab-btn-mats" aria-controls="tab-mats" data-tab="mats">Nguyên liệu</button>
+        <nav class="tabs" role="tablist" id="d-tabs" data-i18n-attr="aria-label:tabs_aria">
+          <button type="button" role="tab" id="tab-btn-tree" aria-controls="tab-tree" data-tab="tree" data-i18n="tab_tree"></button>
+          <button type="button" role="tab" id="tab-btn-skills" aria-controls="tab-skills" data-tab="skills" data-i18n="tab_skills"></button>
+          <button type="button" role="tab" id="tab-btn-chain" aria-controls="tab-chain" data-tab="chain"><span class="hide-xs" data-i18n="tab_chain"></span><span class="show-xs" data-i18n="tab_chain_short"></span></button>
+          <button type="button" role="tab" id="tab-btn-mats" aria-controls="tab-mats" data-tab="mats" data-i18n="tab_mats"></button>
         </nav>
 
         <section class="tab-panel" role="tabpanel" id="tab-tree" aria-labelledby="tab-btn-tree" tabindex="-1">
+          <div class="section-head">
+            <div><p class="sec-kicker" data-i18n="sec_tree_kicker"></p><h2 data-i18n="sec_tree_title"></h2></div>
+          </div>
           <div id="d-tree" class="tree"></div>
           <div id="d-tree-detail" class="tree-detail" aria-live="polite"></div>
-          <p class="tree-note" id="d-tree-note"></p>
+          <p class="tree-note" id="d-tree-note" data-i18n="tree_note"></p>
         </section>
 
         <section class="tab-panel" role="tabpanel" id="tab-skills" aria-labelledby="tab-btn-skills" tabindex="-1" hidden>
           <div class="section-head">
-            <h2>Bộ kỹ năng</h2>
-            <span class="note">Tên kỹ năng &amp; thuật ngữ: EN · Mô tả: VI · Kéo thanh cấp để xem hệ số</span>
+            <div><p class="sec-kicker" data-i18n="sec_skills_kicker"></p><h2 data-i18n="sec_skills_title"></h2></div>
+            <span class="note" data-i18n="sec_skills_note"></span>
           </div>
           <div id="d-skills"></div>
         </section>
 
         <section class="tab-panel" role="tabpanel" id="tab-chain" aria-labelledby="tab-btn-chain" tabindex="-1" hidden>
           <div class="section-head">
-            <h2>Resonance Chain</h2>
-            <span class="note">Sequence Node S1 → S6 · Tên: EN · Mô tả: VI</span>
+            <div><p class="sec-kicker" data-i18n="sec_chain_kicker"></p><h2 data-i18n="sec_chain_title"></h2></div>
+            <span class="note" data-i18n="sec_chain_note"></span>
           </div>
           <div id="d-chain" class="chain-grid"></div>
         </section>
 
         <section class="tab-panel" role="tabpanel" id="tab-mats" aria-labelledby="tab-btn-mats" tabindex="-1" hidden>
           <div class="section-head">
-            <h2>Nguyên liệu</h2>
-            <span class="note">Theo Wuthering Waves Wiki · tên vật phẩm: EN</span>
+            <div><p class="sec-kicker" data-i18n="sec_mats_kicker"></p><h2 data-i18n="sec_mats_title"></h2></div>
+            <span class="note" data-i18n="sec_mats_note"></span>
           </div>
           <div id="d-mats"></div>
         </section>
 
         <details class="changes" id="d-changes" open>
-          <summary>Lịch sử thay đổi trong game</summary>
+          <summary data-i18n="changes_title"></summary>
           <ul id="d-changes-list"></ul>
         </details>
         <section class="refs">
-          <h2 class="refs-title">Tham khảo</h2>
+          <h2 class="refs-title" data-i18n="refs_title"></h2>
           <ol id="d-refs"></ol>
         </section>
       </div>
     </article>
-    <footer class="page-foot">Bản dịch tiếng Việt đã được rà soát ngữ cảnh; dùng nút “Bản gốc EN” để đối chiếu nguyên văn. Liên kết kỹ năng sẽ cuộn tới đúng mục; thuật ngữ đặc biệt mở bảng giải thích.</footer>
+    <footer class="page-foot" data-i18n="detail_foot"></footer>
   </main>
 
   <footer class="site-foot">
     <div class="foot-author">
       <img src="assets/icons/element/spectro.png" alt="" width="36" height="36">
       <div>
-        <p class="kicker">Tác giả</p>
+        <p class="kicker" data-i18n="author"></p>
         <strong>NGUYỄN KHẮC MINH TÂN</strong>
       </div>
     </div>
-    <nav class="foot-links" aria-label="Liên hệ">
+    <nav class="foot-links" data-i18n-attr="aria-label:contact_aria">
       <a href="mailto:devmind.tan@gmail.com">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6.5h18v11H3z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="m3.5 7 8.5 6.5L20.5 7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
         devmind.tan@gmail.com
@@ -154,37 +151,38 @@
         <svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
         devmindtan/wuwa-characters
       </a>
-      <a href="https://www.facebook.com/tan.deptrai.104/" target="_blank" rel="noopener noreferrer" aria-label="Facebook của Nguyễn Khắc Minh Tân">
+      <a href="https://www.facebook.com/tan.deptrai.104/" target="_blank" rel="noopener noreferrer" data-i18n-attr="aria-label:fb_aria">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M24 12.07C24 5.41 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.5c-1.5 0-1.96.93-1.96 1.89v2.26h3.32l-.53 3.5h-2.8V24C19.62 23.1 24 18.1 24 12.07"/></svg>
         Facebook
       </a>
     </nav>
-    <p class="foot-legal">Wuthering Waves, hình ảnh nhân vật và icon trong game thuộc bản quyền Kuro Games. Đây là dự án tra cứu phi thương mại của người hâm mộ.</p>
+    <p class="foot-legal" data-i18n="legal"></p>
   </footer>
 </div>
 
 <dialog id="mechDialog" aria-labelledby="mech-title">
   <div class="mech-head">
     <div>
-      <p class="kicker" id="mech-kind">Cơ chế</p>
+      <p class="kicker" id="mech-kind"></p>
       <h2 id="mech-title"></h2>
     </div>
-    <button class="btn mech-close" id="mech-close" aria-label="Đóng">✕</button>
+    <button class="btn mech-close" id="mech-close" data-i18n-attr="aria-label:close">✕</button>
   </div>
   <p class="mech-summary" id="mech-summary"></p>
   <div class="mech-occ">
-    <h3>Xuất hiện trong bộ kỹ năng</h3>
+    <h3 data-i18n="occ_title"></h3>
     <div id="mech-occ-list"></div>
   </div>
   <div class="mech-users" id="mech-users">
-    <h3>Resonators có hiệu ứng này <span id="mech-users-count"></span></h3>
-    <div class="mech-roles" id="mech-roles" role="group" aria-label="Lọc theo vai trò"></div>
+    <h3><span data-i18n="users_title"></span> <span id="mech-users-count"></span></h3>
+    <div class="mech-roles" id="mech-roles" role="group" data-i18n-attr="aria-label:roles_aria"></div>
     <ul id="mech-users-list"></ul>
-    <p class="mech-users-note">Vai trò được phân loại tự động từ mô tả kỹ năng/Resonance Chain (bản EN). Bấm một Resonator để mở hồ sơ và tới đúng vị trí.</p>
+    <p class="mech-users-note" data-i18n="users_note"></p>
   </div>
-  <p class="mech-note">Tóm tắt dựa trên dữ liệu bộ kỹ năng; xem thêm bản gốc EN trong từng mục.</p>
+  <p class="mech-note" data-i18n="mech_note"></p>
 </dialog>
 
+<script src="i18n.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
