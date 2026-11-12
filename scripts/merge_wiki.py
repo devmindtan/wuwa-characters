@@ -127,23 +127,28 @@ def main():
         c['level_costs'] = level_costs
 
         refs = [{'title': f"prydwen.gg — {c['name']}", 'url': c['source'],
-                 'used_for': 'Kỹ năng, mô tả nhân vật, hình ảnh'}]
+                 'used_for': 'Kỹ năng, mô tả nhân vật, hình ảnh',
+                 'used_for_en': 'Skills, character description, images'}]
         main_page = w['pages'][0] if w['pages'] else w['title']
         shared = [p for p in w['pages'] if p == 'Rover']
-        uses = []
+        uses, uses_en = [], []
         if chain:
-            uses.append('Resonance Chain')
+            uses.append('Resonance Chain'); uses_en.append('Resonance Chain')
         if materials:
             uses.append('nguyên liệu nâng kỹ năng' if shared else 'nguyên liệu')
+            uses_en.append('skill upgrade materials' if shared else 'materials')
         refs.append({'title': f'Wuthering Waves Wiki — {main_page}', 'url': wiki_url(main_page),
-                     'used_for': ', '.join(uses)})
+                     'used_for': ', '.join(uses), 'used_for_en': ', '.join(uses_en)})
         if combat.get('page') and (level_costs or any('scaling' in sk for sk in c['skills'])):
             refs.append({'title': f"Wuthering Waves Wiki — {combat['page']}", 'url': wiki_url(combat['page']),
                          'used_for': 'hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), '
-                                     'chi phí nâng cấp theo từng cấp'})
+                                     'chi phí nâng cấp theo từng cấp',
+                         'used_for_en': 'skill multipliers Lv1–10 (Attribute Scaling, see each skill page), '
+                                        'per-level upgrade costs'})
         for page in shared:
             refs.append({'title': f'Wuthering Waves Wiki — {page}', 'url': wiki_url(page),
-                         'used_for': 'nguyên liệu đột phá (dùng chung cho mọi dạng Rover)'})
+                         'used_for': 'nguyên liệu đột phá (dùng chung cho mọi dạng Rover)',
+                         'used_for_en': 'ascension materials (shared by every Rover form)'})
         c['references'] = refs
 
     payload['meta']['updated'] = datetime.date.today().isoformat()

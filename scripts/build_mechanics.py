@@ -99,6 +99,71 @@ OWNERS = {
     'ciaccona': ['Solo Concert', 'Ensemble Sylph'],
     'qingxiao': ['Ephemeral Transcendence', 'Qin Heart', 'Sword Cadence', 'Stringblade'],
 }
+# English summaries (same meaning as the Vietnamese ones above) for the EN UI.
+SUMMARY_EN = {
+    'Concerto Energy': 'Energy built up in combat, used to cast the Outro Skill when switching Resonators.',
+    'Resonance Energy': 'Energy used to cast Resonance Liberation.',
+    'Resonance Mode': "Each Resonator's own resonance mode, which changes how their kit's effects work.",
+    'Off-Tune Level': 'Gauge built up on a target affected by Tune Strain; when full, Tune Break can be triggered.',
+    'Tune Strain': 'A mark on the target; follow-up hits can fill the Off-Tune Level and trigger Tune Break/Tune Rupture.',
+    'Tune Break': "Attack/effect triggered when the target's Off-Tune Level is full.",
+    'Tune Rupture': "Reaction when Tune Strain is broken, dealing damage or effects depending on the kit.",
+    'Tune Break Boost': 'Stat that increases the Tune Break damage of some Resonators.',
+    'Negative Status': 'Debuffs inflicted on targets: Spectro Frazzle, Aero Erosion, Havoc Bane, Fusion Burst, Glacio Chafe, Electro Flare...',
+    'Spectro Frazzle': 'Spectro Negative Status that deals damage over time / weakens the target.',
+    'Aero Erosion': 'Aero Negative Status that stacks on the target and deals damage.',
+    'Havoc Bane': 'Havoc Negative Status that makes the target take more damage.',
+    'Fusion Burst': 'Fusion Negative Status that explodes to deal damage.',
+    'Glacio Chafe': "Glacio Negative Status that slows / hinders the target.",
+    'Electro Flare': 'Electro Negative Status that deals spreading damage.',
+    'Coordinated Attack': "Follow-up attack triggered outside the Resonator's own actions.",
+    'Echo Skill': 'Skill originating from an Echo, counted as Echo Skill DMG.',
+    'Vibration Strength': "Target's resistance to crowd control; at 0 the target is stunned.",
+    'All-DMG Amplification': 'Increases the damage of every type of attack.',
+    'DMG Amplification': 'Final damage amplification multiplier, separate from DMG Bonus.',
+    'Incarnation': "Jinhsi's transformed state; replaces Basic/Heavy/Resonance Skill and Dodge with Incarnation versions, ending after Incarnation - Basic Attack Stage 4.",
+    'Ordination Glow': "Effect Jinhsi gains after Incarnation ends, boosting her moveset.",
+    'Eras in Unity': 'Resonance effect Jinhsi grants nearby Resonators while she is in the team.',
+    'Form Switch': 'Switching between Aemeath and Mech; each form has its own moveset and mechanics.',
+    'Stardust Resonance': 'Buff state Aemeath gains after Resonance Liberation.',
+    'Heavenfall Edict': "Aemeath's enhanced Heavy Attack state after Resonance Liberation.",
+    'Kaleidoscopic Parade': "Lynae's alternate moveset state with its own Basic/Heavy/Dodge Counter.",
+    'Blossom Mode': "Camellya's special combat state.",
+    'Crimson Blossom': "Stacks/special effect in Camellya's Blossom Mode.",
+    'Inferno Mode': "Zani's special state that changes her Resonance Skill and moveset.",
+    'Chainsaw Mode': "Chisa's special state; some skills are locked while in it.",
+    'True Sight': 'State Changli gains after Basic Attack Stage 4, lasting 12s.',
+    'Unison': 'Effect/Resonance Mode shared by some Resonators (Hsin, Jinhsi, Suoming, Lily…); with Unison, Unison Response can be triggered. Summary from the kits.',
+    'Heart Manifest': "Hsin's state: casting Formshift unfurls the Manifold Sanctum, Hsin turns into Illumining Form and enters Heart Manifest; returning to Answering Form exits it. Summary from the kit.",
+    'Deathblade Gear': "Calcharo's state after Resonance Liberation that changes his moveset.",
+    'Fleurdelys': "Cartethyia's transformed form when HP drops below 50%, unlocking new moves.",
+    'Manifest': 'State Cartethyia gains after turning into Fleurdelys.',
+    'Reminiscence': "Lucilla's special state that changes her Intro/Resonance Skill.",
+    'Trace': "Lucilla's accumulated resource.",
+    'Photos': 'Three icons Lucilla collects to unlock her Resonance Liberation.',
+    'Payload': "Lucy's dash-type Resonance Skill.",
+    'Hack': 'Effect on targets used by Lucy and Rebecca (Hack - Shifting, Hack - Interfered). Summary from the kits.',
+    'Spoofing Program': "Effects Lucy selects in the Protocol Interface, costing RAM.",
+    'Protocol Interface': "Lucy's skill interface during Resonance Liberation.",
+    'Algorithm Compaction': "State that changes Lucy's Basic Attack.",
+    'Ichor Blade': 'Blade summoned by Luuk Herssen.',
+    'Afflatus': "Zhezhi's accumulated resource.",
+    'Lumiflow': "Lynae's accumulated resource, used for Spark Collision.",
+    'Overflow': "Resource gauge filled during Lynae's Optical Sampling Stage.",
+    'Optical Sampling Stage': "Lynae's phase for building up Overflow.",
+    'Spark Collision': "Lynae's special attack, stronger with more Lumiflow.",
+    'Golden Reflux': "Luuk Herssen's stacking/charge mechanic.",
+    'Solo Concert': "Ciaccona's performance state after Basic Attack Stage 4.",
+    'Ensemble Sylph': "Ciaccona's summon/resonance mechanic.",
+    'Ephemeral Transcendence': "Qingxiao's special state after consuming Qin Heart and Sword Cadence.",
+    'Qin Heart': "Qingxiao's accumulated resource.",
+    'Sword Cadence': "Qingxiao's accumulated resource.",
+    'Stringblade': "Qingxiao's weapon form / moveset.",
+    'Involuntary Sharing': 'Effect Lucy grants team Resonators, letting them see targets behind obstacles.',
+}
+missing_en = [t for t in CURATED if t not in SUMMARY_EN]
+assert not missing_en, f'SUMMARY_EN missing: {missing_en}'
+
 # Distinct named things that merely contain a mechanic's name. They are matched
 # first (longest match wins) and rendered as plain text, so e.g. "Unison" inside
 # "Unison Boon" does not open the Unison explanation.
@@ -121,6 +186,7 @@ def main():
         count = 0
         users = []
         sample = ''
+        sample_en = ''
         owner = OWNER_OF.get(term)
         for c in chars:
             if owner and c['slug'] != owner:
@@ -133,6 +199,8 @@ def main():
                     hit += 1
                     if not sample:
                         sample = vi if term_in(term, vi) else en
+                    if not sample_en and term_in(term, en):
+                        sample_en = en
             if hit:
                 count += hit
                 users.append(c['slug'])
@@ -144,6 +212,8 @@ def main():
             'term': term,
             'kind': kind,
             'summary_vi': summary,
+            'summary_en': SUMMARY_EN[term],
+            'sample_en': sample_en[:320],
             'sample_vi': sample[:320],
             'count': count,
             'characters': users,

@@ -4,6 +4,8 @@
    "term": "Resonance Mode",
    "kind": "system",
    "summary_vi": "Chế độ cộng hưởng riêng của từng Resonator, thay đổi hiệu ứng của bộ kỹ năng.",
+   "summary_en": "Each Resonator's own resonance mode, which changes how their kit's effects work.",
+   "sample_en": "Resonance Mode",
    "sample_vi": "Resonance Mode",
    "count": 102,
    "characters": [
@@ -19,6 +21,8 @@
    "term": "Echo Skill",
    "kind": "system",
    "summary_vi": "Kỹ năng có nguồn gốc từ Echo, được tính là Echo Skill DMG.",
+   "summary_en": "Skill originating from an Echo, counted as Echo Skill DMG.",
+   "sample_en": "When in Mirage, Resonance Skill becomes Flickering Reverie, which is considered an Echo Skill when being cast. Attack the target, dealing Havoc DMG, and send them into Hazy Dream.",
    "sample_vi": "Khi ở trong Mirage, Resonance Skill trở thành Flickering Reverie, được coi là Echo Skill khi được thi triển. Tấn công mục tiêu, gây Havoc DMG và đưa chúng vào Hazy Dream.",
    "count": 65,
    "characters": [
@@ -38,6 +42,8 @@
    "term": "Unison",
    "kind": "mode",
    "summary_vi": "Hiệu ứng/Resonance Mode dùng chung của một số Resonators (Hsin, Jinhsi, Suoming, Lily…); khi có Unison có thể kích hoạt Unison Response. Tóm tắt từ bộ kỹ năng.",
+   "summary_en": "Effect/Resonance Mode shared by some Resonators (Hsin, Jinhsi, Suoming, Lily…); with Unison, Unison Response can be triggered. Summary from the kits.",
+   "sample_en": "• While in Resonance Mode - Unison, Hsin gains the following effects: Hsin can trigger Unison Response, but not in Co-op Mode. After casting Intro Skill - Answering Form or Intro Skill - Answering Form: Manifold Unison, the next Resonance Liberation - Formshift grants Hsin Unison for 5s. When Hsin triggers Unison Respo",
    "sample_vi": "• Khi ở Resonance Mode - Unison, Hsin đạt được các hiệu ứng sau: Hsin có thể kích hoạt Unison Response, nhưng không ở Chế độ Co-op. Sau khi sử dụng Intro Skill - Answering Form hoặc Intro Skill - Answering Form: Manifold Unison, Resonance Liberation - Formshift tiếp theo cấp Hsin Unison trong 5 giây. Khi Hsin kích hoạt",
    "count": 53,
    "characters": [
@@ -52,6 +58,8 @@
    "term": "Fleurdelys",
    "kind": "mode",
    "summary_vi": "Dạng biến đổi của Cartethyia khi HP dưới 50%, mở khóa chiêu mới.",
+   "summary_en": "Cartethyia's transformed form when HP drops below 50%, unlocking new moves.",
+   "sample_en": "• By reducing HP to 50% of the Max HP, Cartethyia transforms into Fleurdelys, unlocking new moves and entering the Manifest state for 12s.",
    "sample_vi": "• Bằng cách giảm HP xuống 50% Max HP, Cartethyia biến thành Fleurdelys, mở khóa các chiêu thức mới và vào trạng thái Manifest trong 12 giây.",
    "count": 46,
    "characters": [
@@ -65,6 +73,8 @@
    "term": "Tune Strain",
    "kind": "system",
    "summary_vi": "Dấu ấn lên mục tiêu; đòn đánh tiếp theo có thể làm đầy Off-Tune Level và kích hoạt Tune Break/Tune Rupture.",
+   "summary_en": "A mark on the target; follow-up hits can fill the Off-Tune Level and trigger Tune Break/Tune Rupture.",
+   "sample_en": "Resonance Mode - Tune Strain",
    "sample_vi": "Resonance Mode - Tune Strain",
    "count": 46,
    "characters": [
@@ -80,6 +90,8 @@
    "term": "Tune Break",
    "kind": "system",
    "summary_vi": "Đòn/hiệu ứng kích hoạt khi Off-Tune Level của mục tiêu đã đầy.",
+   "summary_en": "Attack/effect triggered when the target's Off-Tune Level is full.",
+   "sample_en": "When the target's Off-Tune Level is full, Aemeath can cast Tune Break on the target.",
    "sample_vi": "Khi Off-Tune Level của mục tiêu đầy, Aemeath có thể sử dụng Tune Break lên mục tiêu.",
    "count": 44,
    "characters": [
@@ -108,6 +120,8 @@
    "term": "Concerto Energy",
    "kind": "resource",
    "summary_vi": "Năng lượng tích lũy khi chiến đấu, dùng để thi triển Outro Skill khi chuyển Resonator.",
+   "summary_en": "Energy built up in combat, used to cast the Outro Skill when switching Resonators.",
+   "sample_en": "When Calcharo has 3 \"Cruelty\", his Heavy Attack is replaced with Heavy Attack \"Mercy\". When casting Heavy Attack \"Mercy\", Calcharo consumes 3 \"Cruelty\" to deal Electro DMG, considered as Heavy Attack damage, and recovers Resonance Energy and Concerto Energy.",
    "sample_vi": "Khi Calcharo có 3 \"Cruelty\", Heavy Attack của anh ta được thay thế bằng Heavy Attack \"Mercy\". Khi sử dụng Heavy Attack \"Mercy\", Calcharo tiêu tốn 3 \"Cruelty\" để gây Electro DMG, được coi là Heavy Attack sát thương và hồi phục Resonance Energy và Concerto Energy.",
    "count": 42,
    "characters": [
@@ -140,6 +154,8 @@
    "term": "Glacio Chafe",
    "kind": "status",
    "summary_vi": "Negative Status hệ Glacio, làm chậm/giảm hiệu suất mục tiêu.",
+   "summary_en": "Glacio Negative Status that slows / hinders the target.",
+   "sample_en": "After Resonators in the team inflict Havoc Bane, Fusion Burst, Spectro Frazzle, Electro Flare, Glacio Chafe, or Aero Erosion, all Resonators in the team gain 20% DMG Bonus for all Attributes for 20s.",
    "sample_vi": "Sau khi Resonators trong đội gây Havoc Bane, Fusion Burst, Spectro Frazzle, Electro Flare, Glacio Chafe hoặc Aero Erosion, mọi Resonators trong đội nhận 20% DMG Bonus cho mọi Attribute trong 20 giây.",
    "count": 41,
    "characters": [
@@ -156,6 +172,8 @@
    "term": "DMG Amplification",
    "kind": "stat",
    "summary_vi": "Hệ số khuếch đại sát thương cuối, khác với DMG Bonus.",
+   "summary_en": "Final damage amplification multiplier, separate from DMG Bonus.",
+   "sample_en": "In Instant Response, Heavy Attack - Aemeath and Heavy Attack - Mech gain 200% DMG Amplification.",
    "sample_vi": "Trong Instant Response, Heavy Attack - Aemeath và Heavy Attack - Mech tăng 200% DMG Amplification.",
    "count": 38,
    "characters": [
@@ -188,6 +206,8 @@
    "term": "Chainsaw Mode",
    "kind": "mode",
    "summary_vi": "Trạng thái đặc biệt của Chisa; một số kỹ năng bị khóa khi ở trạng thái này.",
+   "summary_en": "Chisa's special state; some skills are locked while in it.",
+   "sample_en": "• This skill cannot be cast while in Chainsaw Mode.",
    "sample_vi": "• Không thể sử dụng kỹ năng này khi đang ở Chainsaw Mode.",
    "count": 36,
    "characters": [
@@ -201,6 +221,8 @@
    "term": "Kaleidoscopic Parade",
    "kind": "mode",
    "summary_vi": "Trạng thái thay thế bộ chiêu của Lynae, gồm Basic/Heavy/Dodge Counter riêng.",
+   "summary_en": "Lynae's alternate moveset state with its own Basic/Heavy/Dodge Counter.",
+   "sample_en": "Kaleidoscopic Parade - Basic Attack",
    "sample_vi": "Kaleidoscopic Parade - Basic Attack",
    "count": 35,
    "characters": [
@@ -214,6 +236,8 @@
    "term": "Fusion Burst",
    "kind": "status",
    "summary_vi": "Negative Status hệ Fusion, phát nổ gây sát thương.",
+   "summary_en": "Fusion Negative Status that explodes to deal damage.",
+   "sample_en": "• In Resonance Mode - Fusion Burst, when Resonators in the team inflict Fusion Burst, inflict 1 stack of Fusion Trail for 30s, stacking up to 30 times.",
    "sample_vi": "• Trong Resonance Mode - Fusion Burst, khi Resonators trong đội gây ra Fusion Burst, gây 1 điểm Fusion Trail trong 30 giây, cộng dồn tối đa 30 lần.",
    "count": 34,
    "characters": [
@@ -230,6 +254,8 @@
    "term": "Tune Rupture",
    "kind": "system",
    "summary_vi": "Phản ứng khi phá vỡ Tune Strain, gây sát thương hoặc hiệu ứng theo bộ kỹ năng.",
+   "summary_en": "Reaction when Tune Strain is broken, dealing damage or effects depending on the kit.",
+   "sample_en": "• In Resonance Mode - Tune Rupture, when Resonators in the team respond to Tune Rupture - Interfered, inflict 10 stacks of Rupturous Trail on the target for 30s, stacking up to 30 times.",
    "sample_vi": "• Trong Resonance Mode - Tune Rupture, khi Resonators trong đội phản ứng với Tune Rupture - Interfered, gây 10 điểm cộng dồn Rupturous Trail lên mục tiêu trong 30 giây, cộng dồn tối đa 30 lần.",
    "count": 33,
    "characters": [
@@ -243,6 +269,8 @@
    "term": "Electro Flare",
    "kind": "status",
    "summary_vi": "Negative Status hệ Electro, gây sát thương lan.",
+   "summary_en": "Electro Negative Status that deals spreading damage.",
+   "sample_en": "After Resonators in the team inflict Havoc Bane, Fusion Burst, Spectro Frazzle, Electro Flare, Glacio Chafe, or Aero Erosion, all Resonators in the team gain 20% DMG Bonus for all Attributes for 20s.",
    "sample_vi": "Sau khi Resonators trong đội gây Havoc Bane, Fusion Burst, Spectro Frazzle, Electro Flare, Glacio Chafe hoặc Aero Erosion, mọi Resonators trong đội nhận 20% DMG Bonus cho mọi Attribute trong 20 giây.",
    "count": 32,
    "characters": [
@@ -260,6 +288,8 @@
    "term": "Resonance Energy",
    "kind": "resource",
    "summary_vi": "Năng lượng dùng để thi triển Resonance Liberation.",
+   "summary_en": "Energy used to cast Resonance Liberation.",
+   "sample_en": "In the 2D Digital Ghost state, Aemeath grants Resonators in the team a Shield equal to 360% of her ATK for 5s. As she exits from the 2D Digital Ghost state, she revives and recovers 100% of her Max HP and 30 points of Resonance Energy. This effect can be triggered once every 10 min.",
    "sample_vi": "Ở trạng thái 2D Digital Ghost, Aemeath cấp cho Resonators trong đội Shield bằng 360% ATK của cô trong 5 giây. Khi rời trạng thái 2D Digital Ghost, cô hồi sinh, hồi 100% Max HP và 30 điểm Resonance Energy. Hiệu ứng này kích hoạt được 1 lần mỗi 10 phút.",
    "count": 32,
    "characters": [
@@ -294,6 +324,8 @@
    "term": "Aero Erosion",
    "kind": "status",
    "summary_vi": "Negative Status hệ Aero, tích lũy trên mục tiêu và gây sát thương.",
+   "summary_en": "Aero Negative Status that stacks on the target and deals damage.",
+   "sample_en": "Following Basic Attack - Cartethyia Stage 4, inflict 1 stack of Aero Erosion on targets hit and summon Sword of Divinity's Shadow.",
    "sample_vi": "Theo sau Basic Attack - Cartethyia Stage 4, gây 1 điểm cộng dồn Aero Erosion cho các mục tiêu đánh trúng và triệu hồi Sword of Divinity's Shadow.",
    "count": 29,
    "characters": [
@@ -309,6 +341,8 @@
    "term": "Havoc Bane",
    "kind": "status",
    "summary_vi": "Negative Status hệ Havoc, làm mục tiêu nhận thêm sát thương.",
+   "summary_en": "Havoc Negative Status that makes the target take more damage.",
+   "sample_en": "After Resonators in the team inflict Havoc Bane, Fusion Burst, Spectro Frazzle, Electro Flare, Glacio Chafe, or Aero Erosion, all Resonators in the team gain 20% DMG Bonus for all Attributes for 20s.",
    "sample_vi": "Sau khi Resonators trong đội gây Havoc Bane, Fusion Burst, Spectro Frazzle, Electro Flare, Glacio Chafe hoặc Aero Erosion, mọi Resonators trong đội nhận 20% DMG Bonus cho mọi Attribute trong 20 giây.",
    "count": 28,
    "characters": [
@@ -325,6 +359,8 @@
    "term": "Heavenfall Edict",
    "kind": "mode",
    "summary_vi": "Trạng thái nâng cấp Heavy Attack của Aemeath sau Resonance Liberation.",
+   "summary_en": "Aemeath's enhanced Heavy Attack state after Resonance Liberation.",
+   "sample_en": "• When in Instant Response, Heavy Attack - Aemeath: Charged II charges more quickly. Casting Heavy Attack - Aemeath: Charged II, Heavy Attack - Mech: Charged II, or Resonance Liberation Heavenfall Edict: Finale ends Instant Response.",
    "sample_vi": "• Khi ở Instant Response, Heavy Attack - Aemeath: Charged II sạc nhanh hơn. Đang thi triển Heavy Attack - Aemeath: Charged II, Heavy Attack - Mech: Charged II, hoặc Resonance Liberation Heavenfall Edict: Finale kết thúc Instant Response.",
    "count": 28,
    "characters": [
@@ -338,6 +374,8 @@
    "term": "Stringblade",
    "kind": "skill",
    "summary_vi": "Dạng vũ khí/chiêu thức của Qingxiao.",
+   "summary_en": "Qingxiao's weapon form / moveset.",
+   "sample_en": "• Basic Attack - Stringblade Stage 1 and Basic Attack - Stringblade Stage 4 are in Sheathed Stance.",
    "sample_vi": "• Basic Attack - Stringblade Stage 1 và Basic Attack - Stringblade Stage 4 đang ở trạng thái Sheathed Stance.",
    "count": 26,
    "characters": [
@@ -351,6 +389,8 @@
    "term": "Hack",
    "kind": "system",
    "summary_vi": "Hiệu ứng lên mục tiêu, dùng bởi Lucy và Rebecca (Hack - Shifting, Hack - Interfered). Tóm tắt từ bộ kỹ năng.",
+   "summary_en": "Effect on targets used by Lucy and Rebecca (Hack - Shifting, Hack - Interfered). Summary from the kits.",
+   "sample_en": "• Consume STA to attack the target, dealing Spectro DMG and inflicting Hack - Shifting on the target. SQL can be consumed for a 270% increase in this attack's DMG Multiplier.",
    "sample_vi": "• Tiêu hao STA để tấn công mục tiêu, gây Spectro DMG và gây Hack - Shift mục tiêu. SQL có thể được sử dụng để tăng 270% trong DMG Multiplier của cuộc tấn công này.",
    "count": 23,
    "characters": [
@@ -363,6 +403,8 @@
    "term": "Off-Tune Level",
    "kind": "system",
    "summary_vi": "Thanh tích lũy trên mục tiêu bị Tune Strain; khi đầy có thể kích hoạt Tune Break.",
+   "summary_en": "Gauge built up on a target affected by Tune Strain; when full, Tune Break can be triggered.",
+   "sample_en": "• Resonance Skill Seraphic Duet gains the following enhancements based on Aemeath's Resonance Mode: When in Resonance Mode - Tune Rupture, Resonance Skill Seraphic Duet removes Rupturous Trail stacks on nearby targets and additionally deals 5 instances of Tune Rupture DMG, each time to a random target within range. For",
    "sample_vi": "• Resonance Skill Seraphic Duet nhận được các cải tiến sau dựa trên Resonance Mode của Aemeath: Khi ở Resonance Mode - Tune Rupture, Resonance Skill Seraphic Duet loại bỏ Rupturous Trail cộng dồn trên các mục tiêu gần đó và gây thêm 5 lần Tune Rupture DMG, mỗi lần cho một mục tiêu ngẫu nhiên trong phạm vi. Đối với mỗi ",
    "count": 23,
    "characters": [
@@ -390,6 +432,8 @@
    "term": "Spectro Frazzle",
    "kind": "status",
    "summary_vi": "Negative Status hệ Spectro, gây sát thương theo thời gian/làm suy yếu mục tiêu.",
+   "summary_en": "Spectro Negative Status that deals damage over time / weakens the target.",
+   "sample_en": "After Resonators in the team inflict Havoc Bane, Fusion Burst, Spectro Frazzle, Electro Flare, Glacio Chafe, or Aero Erosion, all Resonators in the team gain 20% DMG Bonus for all Attributes for 20s.",
    "sample_vi": "Sau khi Resonators trong đội gây Havoc Bane, Fusion Burst, Spectro Frazzle, Electro Flare, Glacio Chafe hoặc Aero Erosion, mọi Resonators trong đội nhận 20% DMG Bonus cho mọi Attribute trong 20 giây.",
    "count": 23,
    "characters": [
@@ -408,6 +452,8 @@
    "term": "Ephemeral Transcendence",
    "kind": "mode",
    "summary_vi": "Trạng thái đặc biệt của Qingxiao sau khi tiêu hao Qin Heart và Sword Cadence.",
+   "summary_en": "Qingxiao's special state after consuming Qin Heart and Sword Cadence.",
+   "sample_en": "• Casting this skill consumes all Qin Heart and Sword Cadence and sends Qingxiao into the Ephemeral Transcendence state.",
    "sample_vi": "• Thi triển kỹ năng này tiêu tốn tất cả Qin Heart và Sword Cadence và đưa Qingxiao vào trạng thái Ephemeral Transcendence.",
    "count": 22,
    "characters": [
@@ -421,6 +467,8 @@
    "term": "Lumiflow",
    "kind": "resource",
    "summary_vi": "Tài nguyên tích lũy của Lynae, dùng cho Spark Collision.",
+   "summary_en": "Lynae's accumulated resource, used for Spark Collision.",
+   "sample_en": "• During this state, 15 points of Overflow will be converted to 12.5% of Lumiflow every 0.2s. Lynae is immune to interruption and takes 50% less DMG.",
    "sample_vi": "• Trong trạng thái này, 15 điểm của Overflow sẽ được chuyển đổi thành 12,5% của Lumiflow cứ sau 0,2 giây. Lynae không bị gián đoạn và tốn ít hơn 50% DMG.",
    "count": 22,
    "characters": [
@@ -434,6 +482,8 @@
    "term": "Algorithm Compaction",
    "kind": "mode",
    "summary_vi": "Trạng thái thay đổi Basic Attack của Lucy.",
+   "summary_en": "State that changes Lucy's Basic Attack.",
+   "sample_en": "• When in Algorithm Compaction, Lucy's Basic Attack is replaced with Basic Attack - Thread Shredding.",
    "sample_vi": "• Khi trong Algorithm Compaction, Basic Attack của Lucy được thay thế bằng Basic Attack - Thread Shredding.",
    "count": 21,
    "characters": [
@@ -447,6 +497,8 @@
    "term": "Spoofing Program",
    "kind": "system",
    "summary_vi": "Các hiệu ứng Lucy chọn trong Protocol Interface, tiêu tốn RAM.",
+   "summary_en": "Effects Lucy selects in the Protocol Interface, costing RAM.",
+   "sample_en": "• Lucy deep dives into cyberspace and pulls up the Protocol Interface for 10s. While the Protocol Interface is active, choose up to 7 different Spoofing Program effects, each requiring different RAM costs. Lucy starts with 24 points of RAM.",
    "sample_vi": "• Lucy đi sâu vào không gian ảo và kéo Protocol Interface lên trong 10 giây. Trong khi Protocol Interface đang hoạt động, hãy chọn tối đa 7 hiệu ứng Spoofing Program khác nhau, mỗi hiệu ứng yêu cầu chi phí RAM khác nhau. Lucy bắt đầu với 24 điểm RAM.",
    "count": 15,
    "characters": [
@@ -460,6 +512,8 @@
    "term": "Coordinated Attack",
    "kind": "system",
    "summary_vi": "Đòn đánh phối hợp, kích hoạt ngoài lượt điều khiển của Resonator.",
+   "summary_en": "Follow-up attack triggered outside the Resonator's own actions.",
+   "sample_en": "When the Resonator on the field deals damage to a target, summon Dreamweavers to perform Coordinated Attack, dealing Havoc DMG (considered as Basic Attack DMG).",
    "sample_vi": "Khi Resonator trên sân gây sát thương cho mục tiêu, triệu hồi Dreamweavers để thực hiện Coordinated Attack, gây Havoc DMG (được coi là Basic Attack DMG).",
    "count": 13,
    "characters": [
@@ -479,6 +533,8 @@
    "term": "Inferno Mode",
    "kind": "mode",
    "summary_vi": "Trạng thái đặc biệt của Zani, thay đổi Resonance Skill và bộ chiêu.",
+   "summary_en": "Zani's special state that changes her Resonance Skill and moveset.",
+   "sample_en": "When Zani is not in Inferno Mode and has full Redundant Energy, her Resonance Skill is replaced with Resonance Skill Crisis Response Protocol.",
    "sample_vi": "Khi Zani không có trong Inferno Mode và có đầy đủ Redundant Energy, Resonance Skill của cô ấy được thay thế bằng Resonance Skill Crisis Response Protocol.",
    "count": 13,
    "characters": [
@@ -492,6 +548,8 @@
    "term": "Trace",
    "kind": "resource",
    "summary_vi": "Tài nguyên tích lũy của Lucilla.",
+   "summary_en": "Lucilla's accumulated resource.",
+   "sample_en": "• While casting Basic Attack Stage 3, hold Normal Attack to deploy Focus Ring. A cursor will move around the Focus Ring. Releasing the Normal Attack button when the cursor falls outside of Perfect Focus will trigger Basic Attack Stage 3 - Unremarkable, dealing Glacio DMG and restoring Trace. Releasing the Normal Attack",
    "sample_vi": "• Trong khi thi triển Basic Attack Stage 3, giữ Normal Attack để triển khai Focus Ring. Con trỏ sẽ di chuyển xung quanh Focus Ring. Nút Releasing the Normal Attack khi con trỏ rơi ra ngoài Perfect Focus sẽ kích hoạt Basic Attack Stage 3 - Không đáng kể, gây Glacio DMG và khôi phục Trace. Nút Releasing the Normal Attack",
    "count": 13,
    "characters": [
@@ -505,6 +563,8 @@
    "term": "True Sight",
    "kind": "mode",
    "summary_vi": "Trạng thái Changli nhận sau Basic Attack Stage 4, kéo dài 12 giây.",
+   "summary_en": "State Changli gains after Basic Attack Stage 4, lasting 12s.",
+   "sample_en": "Perform up to 4 consecutive attacks, dealing Fusion DMG. After releasing Basic Attack 4, enter True Sight, lasting for 12s.",
    "sample_vi": "Thực hiện tối đa 4 đòn tấn công liên tiếp, gây Fusion DMG. Sau khi thả Basic Attack 4, nhập True Sight, kéo dài trong 12 giây.",
    "count": 13,
    "characters": [
@@ -518,6 +578,8 @@
    "term": "Vibration Strength",
    "kind": "system",
    "summary_vi": "Độ bền kháng khống chế của mục tiêu; giảm về 0 thì mục tiêu bị choáng.",
+   "summary_en": "Target's resistance to crowd control; at 0 the target is stunned.",
+   "sample_en": "The Vibration Strength Reduction Rate of Sawring - Blitz, Chainsaw Mode - Dodge Counter and Sawring - Eradication is increased by 50%.",
    "sample_vi": "Vibration Strength Reduction Rate của Sawring - Blitz, Chainsaw Mode - Dodge Counter và Sawring - Eradication tăng 50%.",
    "count": 13,
    "characters": [
@@ -534,6 +596,8 @@
    "term": "Manifest",
    "kind": "mode",
    "summary_vi": "Trạng thái Cartethyia nhận sau khi biến thành Fleurdelys.",
+   "summary_en": "State Cartethyia gains after turning into Fleurdelys.",
+   "sample_en": "• By reducing HP to 50% of the Max HP, Cartethyia transforms into Fleurdelys, unlocking new moves and entering the Manifest state for 12s.",
    "sample_vi": "• Bằng cách giảm HP xuống 50% Max HP, Cartethyia biến thành Fleurdelys, mở khóa các chiêu thức mới và vào trạng thái Manifest trong 12 giây.",
    "count": 12,
    "characters": [
@@ -547,6 +611,8 @@
    "term": "Incarnation",
    "kind": "mode",
    "summary_vi": "Trạng thái biến đổi của Jinhsi; thay Basic/Heavy/Resonance Skill và Dodge bằng phiên bản Incarnation, kết thúc sau Incarnation - Basic Attack Stage 4.",
+   "summary_en": "Jinhsi's transformed state; replaces Basic/Heavy/Resonance Skill and Dodge with Incarnation versions, ending after Incarnation - Basic Attack Stage 4.",
+   "sample_en": "After Jinhsi uses Basic Attack 4 or, while not in Incarnation, Intro Skill Loong's Halo, an alternative Resonance Skill Overflowing Radiance is available within 5s.",
    "sample_vi": "Sau khi Jinhsi sử dụng Basic Attack 4 hoặc, mặc dù không có trong Incarnation, Intro Skill Loong's Halo, một Resonance Skill Overflowing Radiance thay thế sẽ có sẵn trong vòng 5 giây.",
    "count": 11,
    "characters": [
@@ -560,6 +626,8 @@
    "term": "Tune Break Boost",
    "kind": "stat",
    "summary_vi": "Chỉ số tăng sát thương Tune Break của một số Resonator.",
+   "summary_en": "Stat that increases the Tune Break damage of some Resonators.",
+   "sample_en": "When responding to Tune Strain - Interfered: For each stack of Tune Strain - Interfered on the target, each point of Denia's Tune Break Boost increases her total DMG against the target by 0.12%.",
    "sample_vi": "Khi phản hồi Tune Strain - Interfered: Với mỗi điểm cộng dồn Tune Strain - Interfered vào mục tiêu, mỗi điểm Tune Break Boost của Denia sẽ tăng tổng DMG của cô ấy lên mục tiêu thêm 0,12%.",
    "count": 11,
    "characters": [
@@ -576,6 +644,8 @@
    "term": "Overflow",
    "kind": "resource",
    "summary_vi": "Thanh tài nguyên đầy trong Optical Sampling Stage của Lynae.",
+   "summary_en": "Resource gauge filled during Lynae's Optical Sampling Stage.",
+   "sample_en": "• With full Overflow in the Optical Sampling Stage, hold Normal Attack to enter a charging state.",
    "sample_vi": "• Khi Overflow đầy trong Optical Sampling Stage, hãy giữ Normal Attack để chuyển sang trạng thái sạc.",
    "count": 9,
    "characters": [
@@ -589,6 +659,8 @@
    "term": "Reminiscence",
    "kind": "mode",
    "summary_vi": "Trạng thái đặc biệt của Lucilla, thay đổi Intro/Resonance Skill.",
+   "summary_en": "Lucilla's special state that changes her Intro/Resonance Skill.",
+   "sample_en": "• Deal Glacio DMG and enter Reminiscence: When in Resonance Mode - Glacio Chafe, the DMG dealt is considered Basic Attack DMG. Casting this skill grants Lucilla 30% Basic Attack DMG Bonus for 10s. When in Resonance Mode - Echo, the DMG dealt is considered Echo Skill DMG. Casting this skill grants Lucilla 30% Echo Skill",
    "sample_vi": "• Gây Glacio DMG và nhập Reminiscence: Khi ở Resonance Mode - Glacio Chafe, DMG được chia được coi là Basic Attack DMG. Thi triển kỹ năng này sẽ cấp Lucilla 30% Basic Attack DMG Bonus trong 10 giây. Khi ở Resonance Mode - Echo, phần Gây DMG được coi là Echo Skill DMG. Thi triển kỹ năng này sẽ cấp Lucilla 30% Echo Skill",
    "count": 9,
    "characters": [
@@ -602,6 +674,8 @@
    "term": "Solo Concert",
    "kind": "mode",
    "summary_vi": "Trạng thái biểu diễn của Ciaccona sau Basic Attack Stage 4.",
+   "summary_en": "Ciaccona's performance state after Basic Attack Stage 4.",
+   "sample_en": "• After Basic Attack Stage 4, Ciaccona starts a Solo Concert. If Ciaccona's Basic Attack Stage 4 or Solo Concert ends early (proactively or being interrupted), an Ensemble Sylph is generated.",
    "sample_vi": "• Sau Basic Attack Stage 4, Ciaccona bắt đầu Solo Concert. Nếu Ciaccona's Basic Attack Stage 4 hoặc Solo Concert kết thúc sớm (chủ động hoặc bị gián đoạn), thì Ensemble Sylph sẽ được tạo.",
    "count": 9,
    "characters": [
@@ -615,6 +689,8 @@
    "term": "Heart Manifest",
    "kind": "mode",
    "summary_vi": "Trạng thái của Hsin: thi triển Formshift để mở Manifold Sanctum, Hsin chuyển sang Illumining Form và vào Heart Manifest; trở lại Answering Form thì rời trạng thái này. Tóm tắt từ bộ kỹ năng.",
+   "summary_en": "Hsin's state: casting Formshift unfurls the Manifold Sanctum, Hsin turns into Illumining Form and enters Heart Manifest; returning to Answering Form exits it. Summary from the kit.",
+   "sample_en": "• Cast Formshift to unfurl the Manifold Sanctum. Hsin turns into Illumining Form, unlocking a new set of combat abilities, and enters the Heart Manifest state.",
    "sample_vi": "• Sử dụng Formshift để mở Manifold Sanctum. Hsin biến thành Illumining Form, mở khóa một loạt khả năng chiến đấu mới và chuyển sang trạng thái Heart Manifest.",
    "count": 8,
    "characters": [
@@ -628,6 +704,8 @@
    "term": "Negative Status",
    "kind": "status",
    "summary_vi": "Hiệu ứng bất lợi gây lên mục tiêu, gồm Spectro Frazzle, Aero Erosion, Havoc Bane, Fusion Burst, Glacio Chafe, Electro Flare...",
+   "summary_en": "Debuffs inflicted on targets: Spectro Frazzle, Aero Erosion, Havoc Bane, Fusion Burst, Glacio Chafe, Electro Flare...",
+   "sample_en": "• When an attack hits, increase the max stacks of Negative Status and Electro Rage the target can receive by 3 for 15s. Unstackable.",
    "sample_vi": "• Khi một đòn tấn công xảy ra, hãy tăng số điểm cộng dồn tối đa của Negative Status và Electro Rage mà mục tiêu có thể nhận thêm 3 trong 15 giây. Không thể xếp chồng lên nhau.",
    "count": 8,
    "characters": [
@@ -640,6 +718,8 @@
    "term": "Afflatus",
    "kind": "resource",
    "summary_vi": "Tài nguyên tích lũy của Zhezhi.",
+   "summary_en": "Zhezhi's accumulated resource.",
+   "sample_en": "Deal Glacio DMG. If Afflatus is no less than 60, consume 60 Afflatus to summon Phantasmic Imprint - Left and Phantasmic Imprint - Right.",
    "sample_vi": "Gây Glacio DMG. Nếu Afflatus không dưới 60, tiêu thụ 60 Afflatus để triệu hồi Phantasmic Imprint - Trái và Phantasmic Imprint - Phải.",
    "count": 7,
    "characters": [
@@ -653,6 +733,8 @@
    "term": "Optical Sampling Stage",
    "kind": "system",
    "summary_vi": "Pha tích lũy Overflow của Lynae.",
+   "summary_en": "Lynae's phase for building up Overflow.",
+   "sample_en": "• With full Overflow in the Optical Sampling Stage, hold Normal Attack to enter a charging state.",
    "sample_vi": "• Khi Overflow đầy trong Optical Sampling Stage, hãy giữ Normal Attack để chuyển sang trạng thái sạc.",
    "count": 7,
    "characters": [
@@ -666,6 +748,8 @@
    "term": "Payload",
    "kind": "skill",
    "summary_vi": "Resonance Skill dạng lao tới của Lucy.",
+   "summary_en": "Lucy's dash-type Resonance Skill.",
+   "sample_en": "Resonance Skill - Payload",
    "sample_vi": "Resonance Skill - Payload",
    "count": 7,
    "characters": [
@@ -679,6 +763,8 @@
    "term": "Qin Heart",
    "kind": "resource",
    "summary_vi": "Tài nguyên tích lũy của Qingxiao.",
+   "summary_en": "Qingxiao's accumulated resource.",
+   "sample_en": "• When Qin Heart and Sword Cadence are full, Heavy Attack - Stringblade becomes available.",
    "sample_vi": "• Khi Qin Heart và Sword Cadence đã đầy, Heavy Attack - Stringblade sẽ khả dụng.",
    "count": 7,
    "characters": [
@@ -692,6 +778,8 @@
    "term": "Spark Collision",
    "kind": "skill",
    "summary_vi": "Đòn đánh đặc biệt của Lynae, mạnh dần theo Lumiflow.",
+   "summary_en": "Lynae's special attack, stronger with more Lumiflow.",
+   "sample_en": "Spark Collision",
    "sample_vi": "Spark Collision",
    "count": 7,
    "characters": [
@@ -705,6 +793,8 @@
    "term": "Blossom Mode",
    "kind": "mode",
    "summary_vi": "Trạng thái chiến đấu đặc biệt của Camellya.",
+   "summary_en": "Camellya's special combat state.",
+   "sample_en": "Attack the target, dealing Havoc DMG (considered Basic Attack DMG), then enter Blossom Mode.",
    "sample_vi": "Tấn công mục tiêu, gây Havoc DMG (được coi là Basic Attack DMG), sau đó nhập Blossom Mode.",
    "count": 6,
    "characters": [
@@ -718,6 +808,8 @@
    "term": "Form Switch",
    "kind": "mode",
    "summary_vi": "Chuyển đổi giữa Aemeath và Mech; mỗi dạng có bộ chiêu và cơ chế riêng.",
+   "summary_en": "Switching between Aemeath and Mech; each form has its own moveset and mechanics.",
+   "sample_en": "Form Switch",
    "sample_vi": "Form Switch",
    "count": 6,
    "characters": [
@@ -731,6 +823,8 @@
    "term": "Ichor Blade",
    "kind": "summon",
    "summary_vi": "Lưỡi kiếm Luuk Herssen triệu hồi.",
+   "summary_en": "Blade summoned by Luuk Herssen.",
+   "sample_en": "• Spin and dash forward, dealing Spectro DMG to enemies along the path and resetting the Mid-air Attack cycle to Stage 1. Then, hurl out an Ichor Blade.",
    "sample_vi": "• Xoay và lao về phía trước, gây Spectro DMG cho kẻ địch trên đường đi và đặt lại chu kỳ Mid-air Attack thành Stage 1. Sau đó, ném ra một Ichor Blade.",
    "count": 6,
    "characters": [
@@ -744,6 +838,8 @@
    "term": "Sword Cadence",
    "kind": "resource",
    "summary_vi": "Tài nguyên tích lũy của Qingxiao.",
+   "summary_en": "Qingxiao's accumulated resource.",
+   "sample_en": "• When Qin Heart and Sword Cadence are full, Heavy Attack - Stringblade becomes available.",
    "sample_vi": "• Khi Qin Heart và Sword Cadence đã đầy, Heavy Attack - Stringblade sẽ khả dụng.",
    "count": 6,
    "characters": [
@@ -757,6 +853,8 @@
    "term": "Ensemble Sylph",
    "kind": "summon",
    "summary_vi": "Cơ chế triệu hồi/cộng hưởng của Ciaccona.",
+   "summary_en": "Ciaccona's summon/resonance mechanic.",
+   "sample_en": "• After Basic Attack Stage 4, Ciaccona starts a Solo Concert. If Ciaccona's Basic Attack Stage 4 or Solo Concert ends early (proactively or being interrupted), an Ensemble Sylph is generated.",
    "sample_vi": "• Sau Basic Attack Stage 4, Ciaccona bắt đầu Solo Concert. Nếu Ciaccona's Basic Attack Stage 4 hoặc Solo Concert kết thúc sớm (chủ động hoặc bị gián đoạn), thì Ensemble Sylph sẽ được tạo.",
    "count": 5,
    "characters": [
@@ -770,6 +868,8 @@
    "term": "Golden Reflux",
    "kind": "system",
    "summary_vi": "Cơ chế cộng dồn/lượt sạc của Luuk Herssen.",
+   "summary_en": "Luuk Herssen's stacking/charge mechanic.",
+   "sample_en": "Golden Reflux",
    "sample_vi": "Golden Reflux",
    "count": 5,
    "characters": [
@@ -783,6 +883,8 @@
    "term": "Stardust Resonance",
    "kind": "mode",
    "summary_vi": "Trạng thái buff Aemeath nhận sau Resonance Liberation.",
+   "summary_en": "Buff state Aemeath gains after Resonance Liberation.",
+   "sample_en": "• Casting this skill grants the following effects: Enter Stardust Resonance for 30s. Enter Heavenfall Edict: Unbound for 60s.",
    "sample_vi": "• Thi triển kỹ năng này sẽ mang lại các hiệu ứng sau: vào Stardust Resonance trong 30 giây. vào Heavenfall Edict: Unbound trong 60 giây.",
    "count": 5,
    "characters": [
@@ -796,6 +898,8 @@
    "term": "Crimson Blossom",
    "kind": "mode",
    "summary_vi": "Cộng dồn/hiệu ứng đặc biệt trong Blossom Mode của Camellya.",
+   "summary_en": "Stacks/special effect in Camellya's Blossom Mode.",
+   "sample_en": "Crimson Blossom",
    "sample_vi": "Crimson Blossom",
    "count": 4,
    "characters": [
@@ -809,6 +913,8 @@
    "term": "Deathblade Gear",
    "kind": "mode",
    "summary_vi": "Trạng thái sau Resonance Liberation của Calcharo, thay đổi bộ chiêu.",
+   "summary_en": "Calcharo's state after Resonance Liberation that changes his moveset.",
+   "sample_en": "Calcharo attacks the target, dealing Electro DMG and enters Deathblade Gear state. After Resonance Liberation Deathblade Gear state ends, Calcharo's next Intro Skill is replaced with Intro Skill \"Necessary Means\", which deals Electro DMG, considered as Intro Skill damage.",
    "sample_vi": "Calcharo tấn công mục tiêu, gây Electro DMG và rơi vào trạng thái Deathblade Gear. Sau khi trạng thái Resonance Liberation Deathblade Gear kết thúc, Intro Skill tiếp theo của Calcharo được thay thế bằng Intro Skill \"Phương tiện cần thiết\", gây ra Electro DMG, được coi là Intro Skill sát thương.",
    "count": 4,
    "characters": [
@@ -822,6 +928,8 @@
    "term": "Photos",
    "kind": "resource",
    "summary_vi": "Ba biểu tượng Lucilla cần thu thập để mở Resonance Liberation.",
+   "summary_en": "Three icons Lucilla collects to unlock her Resonance Liberation.",
+   "sample_en": "Clear As Day unlocks when Lucilla holds all 3 Photos.",
    "sample_vi": "Clear As Day mở khóa khi Lucilla giữ cả 3 Photos.",
    "count": 3,
    "characters": [
@@ -835,6 +943,8 @@
    "term": "Protocol Interface",
    "kind": "system",
    "summary_vi": "Giao diện kỹ năng của Lucy trong Resonance Liberation.",
+   "summary_en": "Lucy's skill interface during Resonance Liberation.",
+   "sample_en": "• Lucy deep dives into cyberspace and pulls up the Protocol Interface for 10s. While the Protocol Interface is active, choose up to 7 different Spoofing Program effects, each requiring different RAM costs. Lucy starts with 24 points of RAM.",
    "sample_vi": "• Lucy đi sâu vào không gian ảo và kéo Protocol Interface lên trong 10 giây. Trong khi Protocol Interface đang hoạt động, hãy chọn tối đa 7 hiệu ứng Spoofing Program khác nhau, mỗi hiệu ứng yêu cầu chi phí RAM khác nhau. Lucy bắt đầu với 24 điểm RAM.",
    "count": 3,
    "characters": [
@@ -848,6 +958,8 @@
    "term": "All-DMG Amplification",
    "kind": "stat",
    "summary_vi": "Tăng sát thương của mọi loại đòn đánh.",
+   "summary_en": "Increases the damage of every type of attack.",
+   "sample_en": "• In Resonance Mode - Tune Rupture: all Resonators in the team except Aemeath gain 10% All-DMG Amplification for 20s. The All-DMG Amplification effect is increased to 20% for Resonators who inflict Tune Rupture - Shifting.",
    "sample_vi": "• Trong Resonance Mode - Tune Rupture: tất cả Resonators trong đội ngoại trừ Aemeath tăng 10% All-DMG Amplification trong 20 giây. Hiệu ứng All-DMG Amplification được tăng lên 20% đối với Resonators người gây ra Tune Rupture - Shift.",
    "count": 2,
    "characters": [
@@ -859,6 +971,8 @@
    "term": "Eras in Unity",
    "kind": "mode",
    "summary_vi": "Hiệu ứng cộng hưởng Jinhsi cấp cho các Resonator gần đó khi có mặt trong đội.",
+   "summary_en": "Resonance effect Jinhsi grants nearby Resonators while she is in the team.",
+   "sample_en": "When Jinhsi is in the party, all nearby Resonators in the party gain Eras in Unity. Eras in Unity provides 2 independent effects:",
    "sample_vi": "Khi Jinhsi ở trong nhóm, tất cả Resonators ở gần trong nhóm sẽ nhận được Eras in Unity. Eras in Unity cung cấp 2 hiệu ứng độc lập:",
    "count": 2,
    "characters": [
@@ -872,6 +986,8 @@
    "term": "Ordination Glow",
    "kind": "mode",
    "summary_vi": "Hiệu ứng Jinhsi nhận sau khi kết thúc Incarnation, tăng sát thương cho bộ chiêu.",
+   "summary_en": "Effect Jinhsi gains after Incarnation ends, boosting her moveset.",
+   "sample_en": "After Stage 4 of Incarnation - Basic Attack, Incarnation terminates and Jinhsi gains Ordination Glow. Can be cast in mid-air.",
    "sample_vi": "Sau Stage 4 của Incarnation - Basic Attack, Incarnation chấm dứt và Jinhsi tăng Ordination Glow. Có thể thi triển giữa không trung.",
    "count": 2,
    "characters": [
@@ -885,6 +1001,8 @@
    "term": "Involuntary Sharing",
    "kind": "system",
    "summary_vi": "Hiệu ứng Lucy cấp cho Resonator trong đội, cho phép thấy mục tiêu sau vật cản.",
+   "summary_en": "Effect Lucy grants team Resonators, letting them see targets behind obstacles.",
+   "sample_en": "Attack the target, dealing Spectro DMG and granting Resonators in the team Involuntary Sharing, allowing them to see targets behind obstacles for 25s. Additionally, Involuntary Sharing is enhanced on Rebecca, allowing her to lock onto targets behind obstacles. If Rebecca's turret is on the field, its Overload effect is",
    "sample_vi": "Tấn công mục tiêu, gây Spectro DMG và cấp Resonators trong đội Involuntary Sharing, cho phép họ nhìn thấy mục tiêu phía sau chướng ngại vật trong 25 giây. Ngoài ra, Involuntary Sharing được tăng cường trên Rebecca, cho phép cô khóa mục tiêu phía sau chướng ngại vật. Nếu tháp pháo của Rebecca ở trên sân, hiệu ứng Overlo",
    "count": 1,
    "characters": [

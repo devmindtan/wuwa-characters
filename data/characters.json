@@ -1118,17 +1118,20 @@
     {
      "title": "prydwen.gg — Aemeath",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/aemeath",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Aemeath",
      "url": "https://wutheringwaves.fandom.com/wiki/Aemeath",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Aemeath/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Aemeath/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -2491,17 +2494,20 @@
     {
      "title": "prydwen.gg — Augusta",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/augusta",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Augusta",
      "url": "https://wutheringwaves.fandom.com/wiki/Augusta",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Augusta/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Augusta/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -3790,17 +3796,20 @@
     {
      "title": "prydwen.gg — Brant",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/brant",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Brant",
      "url": "https://wutheringwaves.fandom.com/wiki/Brant",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Brant/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Brant/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -4964,17 +4973,20 @@
     {
      "title": "prydwen.gg — Calcharo",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/calcharo",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Calcharo",
      "url": "https://wutheringwaves.fandom.com/wiki/Calcharo",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Calcharo/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Calcharo/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -6234,17 +6246,20 @@
     {
      "title": "prydwen.gg — Camellya",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/camellya",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Camellya",
      "url": "https://wutheringwaves.fandom.com/wiki/Camellya",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Camellya/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Camellya/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -7532,17 +7547,20 @@
     {
      "title": "prydwen.gg — Cantarella",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/cantarella",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Cantarella",
      "url": "https://wutheringwaves.fandom.com/wiki/Cantarella",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Cantarella/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Cantarella/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -8769,17 +8787,20 @@
     {
      "title": "prydwen.gg — Carlotta",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/carlotta",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Carlotta",
      "url": "https://wutheringwaves.fandom.com/wiki/Carlotta",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Carlotta/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Carlotta/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -10261,17 +10282,20 @@
     {
      "title": "prydwen.gg — Cartethyia",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/cartethyia",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Cartethyia",
      "url": "https://wutheringwaves.fandom.com/wiki/Cartethyia",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Cartethyia/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Cartethyia/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -11392,17 +11416,20 @@
     {
      "title": "prydwen.gg — Changli",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/changli",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Changli",
      "url": "https://wutheringwaves.fandom.com/wiki/Changli",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Changli/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Changli/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -12950,17 +12977,20 @@
     {
      "title": "prydwen.gg — Chisa",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/chisa",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Chisa",
      "url": "https://wutheringwaves.fandom.com/wiki/Chisa",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Chisa/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Chisa/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -14062,17 +14092,20 @@
     {
      "title": "prydwen.gg — Ciaccona",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/ciaccona",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Ciaccona",
      "url": "https://wutheringwaves.fandom.com/wiki/Ciaccona",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Ciaccona/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Ciaccona/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -15543,17 +15576,20 @@
     {
      "title": "prydwen.gg — Denia",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/denia",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Denia",
      "url": "https://wutheringwaves.fandom.com/wiki/Denia",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Denia/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Denia/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -16725,17 +16761,20 @@
     {
      "title": "prydwen.gg — Encore",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/encore",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Encore",
      "url": "https://wutheringwaves.fandom.com/wiki/Encore",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Encore/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Encore/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -18125,17 +18164,20 @@
     {
      "title": "prydwen.gg — Galbrena",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/galbrena",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Galbrena",
      "url": "https://wutheringwaves.fandom.com/wiki/Galbrena",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Galbrena/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Galbrena/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -19691,17 +19733,20 @@
     {
      "title": "prydwen.gg — Hiyuki",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/hiyuki",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Hiyuki",
      "url": "https://wutheringwaves.fandom.com/wiki/Hiyuki",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Hiyuki/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Hiyuki/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -21634,17 +21679,20 @@
     {
      "title": "prydwen.gg — Hsin",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/hsin",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Hsin",
      "url": "https://wutheringwaves.fandom.com/wiki/Hsin",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Hsin/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Hsin/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -23102,17 +23150,20 @@
     {
      "title": "prydwen.gg — Iuno",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/iuno",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Iuno",
      "url": "https://wutheringwaves.fandom.com/wiki/Iuno",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Iuno/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Iuno/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -24343,17 +24394,20 @@
     {
      "title": "prydwen.gg — Jianxin",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/jianxin",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Jianxin",
      "url": "https://wutheringwaves.fandom.com/wiki/Jianxin",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Jianxin/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Jianxin/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -25746,17 +25800,20 @@
     {
      "title": "prydwen.gg — Jingran",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/jingran",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Jingran",
      "url": "https://wutheringwaves.fandom.com/wiki/Jingran",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Jingran/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Jingran/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -26780,17 +26837,20 @@
     {
      "title": "prydwen.gg — Jinhsi",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/jinhsi",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Jinhsi",
      "url": "https://wutheringwaves.fandom.com/wiki/Jinhsi",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Jinhsi/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Jinhsi/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -27890,17 +27950,20 @@
     {
      "title": "prydwen.gg — Jiyan",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/jiyan",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Jiyan",
      "url": "https://wutheringwaves.fandom.com/wiki/Jiyan",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Jiyan/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Jiyan/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -29007,17 +29070,20 @@
     {
      "title": "prydwen.gg — Lily",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/lily",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Lily",
      "url": "https://wutheringwaves.fandom.com/wiki/Lily",
-     "used_for": "nguyên liệu"
+     "used_for": "nguyên liệu",
+     "used_for_en": "materials"
     },
     {
      "title": "Wuthering Waves Wiki — Lily/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Lily/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -30136,17 +30202,20 @@
     {
      "title": "prydwen.gg — Lingyang",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/lingyang",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Lingyang",
      "url": "https://wutheringwaves.fandom.com/wiki/Lingyang",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Lingyang/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Lingyang/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -31337,17 +31406,20 @@
     {
      "title": "prydwen.gg — Lucilla",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/lucilla",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Lucilla",
      "url": "https://wutheringwaves.fandom.com/wiki/Lucilla",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Lucilla/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Lucilla/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -32589,17 +32661,20 @@
     {
      "title": "prydwen.gg — Lucy",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/lucy",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Lucy",
      "url": "https://wutheringwaves.fandom.com/wiki/Lucy",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Lucy/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Lucy/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -33926,17 +34001,20 @@
     {
      "title": "prydwen.gg — Lupa",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/lupa",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Lupa",
      "url": "https://wutheringwaves.fandom.com/wiki/Lupa",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Lupa/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Lupa/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -35234,17 +35312,20 @@
     {
      "title": "prydwen.gg — Luuk Herssen",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/luuk-herssen",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Luuk Herssen",
      "url": "https://wutheringwaves.fandom.com/wiki/Luuk_Herssen",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Luuk Herssen/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Luuk_Herssen/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -36711,17 +36792,20 @@
     {
      "title": "prydwen.gg — Lynae",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/lynae",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Lynae",
      "url": "https://wutheringwaves.fandom.com/wiki/Lynae",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Lynae/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Lynae/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -37960,17 +38044,20 @@
     {
      "title": "prydwen.gg — Mornye",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/mornye",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Mornye",
      "url": "https://wutheringwaves.fandom.com/wiki/Mornye",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Mornye/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Mornye/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -39125,17 +39212,20 @@
     {
      "title": "prydwen.gg — Phoebe",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/phoebe",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Phoebe",
      "url": "https://wutheringwaves.fandom.com/wiki/Phoebe",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Phoebe/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Phoebe/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -40394,17 +40484,20 @@
     {
      "title": "prydwen.gg — Phrolova",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/phrolova",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Phrolova",
      "url": "https://wutheringwaves.fandom.com/wiki/Phrolova",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Phrolova/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Phrolova/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -41797,17 +41890,20 @@
     {
      "title": "prydwen.gg — Qingxiao",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/qingxiao",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Qingxiao",
      "url": "https://wutheringwaves.fandom.com/wiki/Qingxiao",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Qingxiao/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Qingxiao/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -42864,17 +42960,20 @@
     {
      "title": "prydwen.gg — Qiuyuan",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/qiuyuan",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Qiuyuan",
      "url": "https://wutheringwaves.fandom.com/wiki/Qiuyuan",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Qiuyuan/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Qiuyuan/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -44305,17 +44404,20 @@
     {
      "title": "prydwen.gg — Rebecca",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/rebecca",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Rebecca",
      "url": "https://wutheringwaves.fandom.com/wiki/Rebecca",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Rebecca/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Rebecca/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -45386,17 +45488,20 @@
     {
      "title": "prydwen.gg — Roccia",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/roccia",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Roccia",
      "url": "https://wutheringwaves.fandom.com/wiki/Roccia",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Roccia/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Roccia/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -46552,22 +46657,26 @@
     {
      "title": "prydwen.gg — Rover (Aero)",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/rover-aero",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Rover-Aero",
      "url": "https://wutheringwaves.fandom.com/wiki/Rover-Aero",
-     "used_for": "Resonance Chain, nguyên liệu nâng kỹ năng"
+     "used_for": "Resonance Chain, nguyên liệu nâng kỹ năng",
+     "used_for_en": "Resonance Chain, skill upgrade materials"
     },
     {
      "title": "Wuthering Waves Wiki — Rover-Aero/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Rover-Aero/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     },
     {
      "title": "Wuthering Waves Wiki — Rover",
      "url": "https://wutheringwaves.fandom.com/wiki/Rover",
-     "used_for": "nguyên liệu đột phá (dùng chung cho mọi dạng Rover)"
+     "used_for": "nguyên liệu đột phá (dùng chung cho mọi dạng Rover)",
+     "used_for_en": "ascension materials (shared by every Rover form)"
     }
    ],
    "level_costs": {
@@ -48032,22 +48141,26 @@
     {
      "title": "prydwen.gg — Rover (Electro)",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/rover-electro",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Rover-Electro",
      "url": "https://wutheringwaves.fandom.com/wiki/Rover-Electro",
-     "used_for": "Resonance Chain, nguyên liệu nâng kỹ năng"
+     "used_for": "Resonance Chain, nguyên liệu nâng kỹ năng",
+     "used_for_en": "Resonance Chain, skill upgrade materials"
     },
     {
      "title": "Wuthering Waves Wiki — Rover/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Rover/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     },
     {
      "title": "Wuthering Waves Wiki — Rover",
      "url": "https://wutheringwaves.fandom.com/wiki/Rover",
-     "used_for": "nguyên liệu đột phá (dùng chung cho mọi dạng Rover)"
+     "used_for": "nguyên liệu đột phá (dùng chung cho mọi dạng Rover)",
+     "used_for_en": "ascension materials (shared by every Rover form)"
     }
    ],
    "level_costs": {
@@ -49225,22 +49338,26 @@
     {
      "title": "prydwen.gg — Rover (Havoc)",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/rover-havoc",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Rover-Havoc",
      "url": "https://wutheringwaves.fandom.com/wiki/Rover-Havoc",
-     "used_for": "Resonance Chain, nguyên liệu nâng kỹ năng"
+     "used_for": "Resonance Chain, nguyên liệu nâng kỹ năng",
+     "used_for_en": "Resonance Chain, skill upgrade materials"
     },
     {
      "title": "Wuthering Waves Wiki — Rover-Havoc/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Rover-Havoc/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     },
     {
      "title": "Wuthering Waves Wiki — Rover",
      "url": "https://wutheringwaves.fandom.com/wiki/Rover",
-     "used_for": "nguyên liệu đột phá (dùng chung cho mọi dạng Rover)"
+     "used_for": "nguyên liệu đột phá (dùng chung cho mọi dạng Rover)",
+     "used_for_en": "ascension materials (shared by every Rover form)"
     }
    ],
    "level_costs": {
@@ -50312,22 +50429,26 @@
     {
      "title": "prydwen.gg — Rover (Spectro)",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/rover-spectro",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Rover-Spectro",
      "url": "https://wutheringwaves.fandom.com/wiki/Rover-Spectro",
-     "used_for": "Resonance Chain, nguyên liệu nâng kỹ năng"
+     "used_for": "Resonance Chain, nguyên liệu nâng kỹ năng",
+     "used_for_en": "Resonance Chain, skill upgrade materials"
     },
     {
      "title": "Wuthering Waves Wiki — Rover-Spectro/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Rover-Spectro/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     },
     {
      "title": "Wuthering Waves Wiki — Rover",
      "url": "https://wutheringwaves.fandom.com/wiki/Rover",
-     "used_for": "nguyên liệu đột phá (dùng chung cho mọi dạng Rover)"
+     "used_for": "nguyên liệu đột phá (dùng chung cho mọi dạng Rover)",
+     "used_for_en": "ascension materials (shared by every Rover form)"
     }
    ],
    "level_costs": {
@@ -51607,17 +51728,20 @@
     {
      "title": "prydwen.gg — Sigrika",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/sigrika",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Sigrika",
      "url": "https://wutheringwaves.fandom.com/wiki/Sigrika",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Sigrika/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Sigrika/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -52939,17 +53063,20 @@
     {
      "title": "prydwen.gg — Suisui",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/suisui",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Suisui",
      "url": "https://wutheringwaves.fandom.com/wiki/Suisui",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Suisui/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Suisui/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -54336,17 +54463,20 @@
     {
      "title": "prydwen.gg — Suoming",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/suoming",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Suoming",
      "url": "https://wutheringwaves.fandom.com/wiki/Suoming",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Suoming/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Suoming/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -55515,17 +55645,20 @@
     {
      "title": "prydwen.gg — The Shorekeeper",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/the-shorekeeper",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Shorekeeper",
      "url": "https://wutheringwaves.fandom.com/wiki/Shorekeeper",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Shorekeeper/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Shorekeeper/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -56691,17 +56824,20 @@
     {
      "title": "prydwen.gg — Verina",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/verina",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Verina",
      "url": "https://wutheringwaves.fandom.com/wiki/Verina",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Verina/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Verina/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -57898,17 +58034,20 @@
     {
      "title": "prydwen.gg — Xiangli Yao",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/xiangli-yao",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Xiangli Yao",
      "url": "https://wutheringwaves.fandom.com/wiki/Xiangli_Yao",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Xiangli Yao/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Xiangli_Yao/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -59373,17 +59512,20 @@
     {
      "title": "prydwen.gg — Yangyang (Xuanling)",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/yangyang-xuanling",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Yangyang: Xuanling",
      "url": "https://wutheringwaves.fandom.com/wiki/Yangyang:_Xuanling",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Yangyang: Xuanling/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Yangyang:_Xuanling/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -60400,17 +60542,20 @@
     {
      "title": "prydwen.gg — Yinlin",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/yinlin",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Yinlin",
      "url": "https://wutheringwaves.fandom.com/wiki/Yinlin",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Yinlin/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Yinlin/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -61672,17 +61817,20 @@
     {
      "title": "prydwen.gg — Zani",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/zani",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Zani",
      "url": "https://wutheringwaves.fandom.com/wiki/Zani",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Zani/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Zani/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -62838,17 +62986,20 @@
     {
      "title": "prydwen.gg — Zhezhi",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/zhezhi",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Zhezhi",
      "url": "https://wutheringwaves.fandom.com/wiki/Zhezhi",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Zhezhi/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Zhezhi/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -63877,17 +64028,20 @@
     {
      "title": "prydwen.gg — Aalto",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/aalto",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Aalto",
      "url": "https://wutheringwaves.fandom.com/wiki/Aalto",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Aalto/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Aalto/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -64956,17 +65110,20 @@
     {
      "title": "prydwen.gg — Baizhi",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/baizhi",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Baizhi",
      "url": "https://wutheringwaves.fandom.com/wiki/Baizhi",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Baizhi/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Baizhi/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -66135,17 +66292,20 @@
     {
      "title": "prydwen.gg — Buling",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/buling",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Buling",
      "url": "https://wutheringwaves.fandom.com/wiki/Buling",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Buling/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Buling/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -67182,17 +67342,20 @@
     {
      "title": "prydwen.gg — Chixia",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/chixia",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Chixia",
      "url": "https://wutheringwaves.fandom.com/wiki/Chixia",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Chixia/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Chixia/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -68255,17 +68418,20 @@
     {
      "title": "prydwen.gg — Danjin",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/danjin",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Danjin",
      "url": "https://wutheringwaves.fandom.com/wiki/Danjin",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Danjin/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Danjin/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -69492,17 +69658,20 @@
     {
      "title": "prydwen.gg — Lumi",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/lumi",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Lumi",
      "url": "https://wutheringwaves.fandom.com/wiki/Lumi",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Lumi/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Lumi/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -70534,17 +70703,20 @@
     {
      "title": "prydwen.gg — Mortefi",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/mortefi",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Mortefi",
      "url": "https://wutheringwaves.fandom.com/wiki/Mortefi",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Mortefi/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Mortefi/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -71635,17 +71807,20 @@
     {
      "title": "prydwen.gg — Sanhua",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/sanhua",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Sanhua",
      "url": "https://wutheringwaves.fandom.com/wiki/Sanhua",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Sanhua/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Sanhua/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -72759,17 +72934,20 @@
     {
      "title": "prydwen.gg — Taoqi",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/taoqi",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Taoqi",
      "url": "https://wutheringwaves.fandom.com/wiki/Taoqi",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Taoqi/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Taoqi/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -73806,17 +73984,20 @@
     {
      "title": "prydwen.gg — Yangyang",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/yangyang",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Yangyang",
      "url": "https://wutheringwaves.fandom.com/wiki/Yangyang",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Yangyang/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Yangyang/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -74984,17 +75165,20 @@
     {
      "title": "prydwen.gg — Youhu",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/youhu",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Youhu",
      "url": "https://wutheringwaves.fandom.com/wiki/Youhu",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Youhu/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Youhu/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
@@ -76192,17 +76376,20 @@
     {
      "title": "prydwen.gg — Yuanwu",
      "url": "https://www.prydwen.gg/wuthering-waves/characters/yuanwu",
-     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh"
+     "used_for": "Kỹ năng, mô tả nhân vật, hình ảnh",
+     "used_for_en": "Skills, character description, images"
     },
     {
      "title": "Wuthering Waves Wiki — Yuanwu",
      "url": "https://wutheringwaves.fandom.com/wiki/Yuanwu",
-     "used_for": "Resonance Chain, nguyên liệu"
+     "used_for": "Resonance Chain, nguyên liệu",
+     "used_for_en": "Resonance Chain, materials"
     },
     {
      "title": "Wuthering Waves Wiki — Yuanwu/Combat",
      "url": "https://wutheringwaves.fandom.com/wiki/Yuanwu/Combat",
-     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp"
+     "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
+     "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
     }
    ],
    "level_costs": {
