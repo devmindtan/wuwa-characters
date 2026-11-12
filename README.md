@@ -37,6 +37,7 @@ app/main.py            FastAPI: API + phục vụ thư mục public/
 data/characters.json   Dữ liệu canonical (meta.patch = bản game hiện tại)
 data/mechanics.json    Cơ chế/thuật ngữ, sinh bởi scripts/build_mechanics.py
 public/                Giao diện tĩnh (index.html, app.js, styles.css)
+public/assets/icons/   Icon nguyên tố và vũ khí gốc của game (dùng làm favicon, thẻ, bộ lọc)
 scripts/               Pipeline trích xuất, dịch, rà soát
 legacy/                Bản dựng cũ, chỉ để tham khảo
 .githooks/             Hook kiểm tra trước khi commit
@@ -91,6 +92,12 @@ git config core.hooksPath .githooks
 
 Trước khi mở PR, kiểm tra API bằng `curl` và giao diện ở cả desktop lẫn mobile: mở chi tiết, bấm link kỹ năng, mở popup cơ chế, đổi EN/VI, back, filter. Quy trình đầy đủ ở [AGENTS.md](AGENTS.md) §5–6.
 
+## Tác giả
+
+**Nguyễn Khắc Minh Tân** · [devmind.tan@gmail.com](mailto:devmind.tan@gmail.com) · [github.com/devmindtan/wuwa-characters](https://github.com/devmindtan/wuwa-characters)
+
 ## Nguồn
 
-Dữ liệu tham chiếu từ [prydwen.gg](https://www.prydwen.gg/wuthering-waves/characters). Wuthering Waves và các tài sản liên quan thuộc về Kuro Games; đây là dự án tra cứu phi thương mại của người hâm mộ.
+- Dữ liệu nhân vật: [prydwen.gg](https://www.prydwen.gg/wuthering-waves/characters).
+- Icon nguyên tố và vũ khí: tải từ [Wuthering Waves Wiki (Fandom)](https://wutheringwaves.fandom.com/), là icon gốc trong game.
+- Wuthering Waves, hình ảnh nhân vật và icon trong game thuộc bản quyền Kuro Games; đây là dự án tra cứu phi thương mại của người hâm mộ.
