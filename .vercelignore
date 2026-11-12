@@ -1,0 +1,7 @@
+.venv/
+legacy/
+scripts/
+data/en_raw.json
+data/wiki_raw.json
+__pycache__/
+*.pyc

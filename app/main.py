@@ -1,6 +1,7 @@
 """FastAPI entrypoint for the Wuthering Waves Resonators archive."""
 
 import json
+import os
 from pathlib import Path
 
 from fastapi import FastAPI, HTTPException
@@ -79,4 +80,6 @@ def version():
     return {'patch': meta['patch'], 'updated': meta['updated']}
 
 
-app.mount('/', StaticFiles(directory=str(PUBLIC), html=True), name='public')
+# Vercel serves public/ from its CDN, so only mount it for local/Uvicorn runs.
+if not os.environ.get('VERCEL'):
+    app.mount('/', StaticFiles(directory=str(PUBLIC), html=True), name='public')
