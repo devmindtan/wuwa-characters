@@ -94,7 +94,7 @@ Trước khi mở PR, kiểm tra API bằng `curl` và giao diện ở cả desk
 
 ## Tác giả
 
-**Nguyễn Khắc Minh Tân** · [devmind.tan@gmail.com](mailto:devmind.tan@gmail.com) · [github.com/devmindtan/wuwa-characters](https://github.com/devmindtan/wuwa-characters)
+**Nguyễn Khắc Minh Tân** · [devmind.tan@gmail.com](mailto:devmind.tan@gmail.com) · [GitHub](https://github.com/devmindtan/wuwa-characters) · [Facebook](https://www.facebook.com/tan.deptrai.104/)
 
 ## Nguồn
 
