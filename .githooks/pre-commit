@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+# Pre-commit checks for the Resonators archive (see AGENTS.md §6).
+# Enable once per clone:  git config core.hooksPath .githooks
+set -euo pipefail
+cd "$(git rev-parse --show-toplevel)"
+
+PY=.venv/bin/python
+[ -x "$PY" ] || PY=python3
+staged=$(git diff --cached --name-only --diff-filter=ACM)
+[ -z "$staged" ] && exit 0
+fail=0
+
+# 1. JSON data must parse.
+for f in $(printf '%s\n' "$staged" | grep -E '^data/.*\.json$' || true); do
+  "$PY" -m json.tool "$f" >/dev/null || { echo "✗ JSON không hợp lệ: $f"; fail=1; }
+done
+
+# 2. Data changed -> review.py must pass, and meta must be bumped.
+if printf '%s\n' "$staged" | grep -qE '^data/|^scripts/'; then
+  echo "→ python scripts/review.py"
+  out=$(mktemp)
+  "$PY" scripts/review.py >"$out" 2>&1 || { tail -20 "$out"; echo "✗ review.py FAIL"; fail=1; }
+  rm -f "$out"
+fi
+if printf '%s\n' "$staged" | grep -qx 'data/characters.json' && git cat-file -e HEAD:data/characters.json 2>/dev/null; then
+  "$PY" - <<'PY' || fail=1
+import json, subprocess, sys
+new = json.loads(subprocess.check_output(['git', 'show', ':data/characters.json']))
+old = json.loads(subprocess.check_output(['git', 'show', 'HEAD:data/characters.json']))
+olds = {c['slug']: c for c in old['characters']}
+bad = []
+for c in new['characters']:
+    o = olds.get(c['slug'])
+    if o is None:
+        continue
+    strip = lambda x: {k: v for k, v in x.items() if k not in ('version', 'updated', 'changes')}
+    if strip(c) != strip(o) and len(c.get('changes', [])) <= len(o.get('changes', [])):
+        bad.append(c['slug'])
+    if o.get('changes', []) != c.get('changes', [])[:len(o.get('changes', []))]:
+        print(f"✗ {c['slug']}: lịch sử changes cũ bị sửa/xóa (chỉ được thêm entry mới)"); sys.exit(1)
+if bad:
+    print('✗ Nội dung nhân vật đổi nhưng thiếu entry mới trong changes:', ', '.join(bad)); sys.exit(1)
+if new['characters'] != old['characters'] and new['meta'].get('updated') == old['meta'].get('updated'):
+    print('✗ Dữ liệu nhân vật đổi nhưng meta.updated chưa cập nhật'); sys.exit(1)
+PY
+fi
+
+# 3. Frontend/backend syntax.
+for f in $(printf '%s\n' "$staged" | grep -E '^public/.*\.js$' || true); do
+  node --check "$f" || { echo "✗ Lỗi cú pháp JS: $f"; fail=1; }
+done
+for f in $(printf '%s\n' "$staged" | grep -E '\.py$' || true); do
+  "$PY" -m py_compile "$f" || { echo "✗ Lỗi cú pháp Python: $f"; fail=1; }
+done
+
+# 4. No generated/local files.
+if printf '%s\n' "$staged" | grep -qE '(^|/)(\.venv|__pycache__|\.playwright-cli)/|^data/en_raw\.json$'; then
+  echo "✗ Đang stage file sinh tự động/local (.venv, __pycache__, en_raw.json...)"; fail=1
+fi
+
+[ "$fail" -eq 0 ] && echo "✓ pre-commit OK" || { echo "Commit bị chặn. Sửa lỗi trên rồi commit lại."; exit 1; }
