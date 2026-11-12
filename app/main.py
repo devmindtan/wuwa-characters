@@ -5,6 +5,7 @@ import os
 from pathlib import Path
 
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.staticfiles import StaticFiles
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -12,6 +13,8 @@ DATA = ROOT / 'data'
 PUBLIC = ROOT / 'public'
 
 app = FastAPI(title='Wuthering Waves Resonators Archive')
+# /api/characters is ~2 MB of JSON; gzip cuts it to a fraction for every visitor.
+app.add_middleware(GZipMiddleware, minimum_size=1024)
 
 
 def load_json(name: str) -> dict:
