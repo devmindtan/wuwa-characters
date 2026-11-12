@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wuthering Waves — Resonators Archive</title>
+<meta name="description" content="Tổng hợp hồ sơ và bộ kỹ năng của 61 Resonators Wuthering Waves bằng tiếng Việt, có quản lý phiên bản theo patch.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23070b0e'/%3E%3Crect x='16' y='4' width='17' height='17' transform='rotate(45 16 12.5)' fill='%23d6c4a1'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="site-head">
+    <div class="brand"><span class="dot"></span><span><b>Wuthering Waves</b> · Resonators Archive</span></div>
+    <div class="head-meta"><span id="patch-label">Đang tải…</span></div>
+  </header>
+
+  <main id="listView">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="kicker">Solaris · Resonator Codex</p>
+        <h1>Resonators<br><em>Archive</em></h1>
+        <p class="lede">Tra cứu thông tin và toàn bộ bộ kỹ năng của 61 Resonators Wuthering Waves. Tên kỹ năng và thuật ngữ game được giữ nguyên tiếng Anh; phần mô tả đã được Việt hóa và rà soát ngữ cảnh.</p>
+        <div class="hero-stats">
+          <div><strong id="stat-count">—</strong>Resonators</div>
+          <div><strong id="stat-elements">—</strong>Nguyên tố</div>
+          <div><strong id="stat-weapons">—</strong>Loại vũ khí</div>
+        </div>
+      </div>
+      <div class="hero-art">
+        <img id="hero-img" alt="" hidden>
+        <div class="art-tag"><b id="hero-name"></b><span id="hero-tags"></span></div>
+      </div>
+    </section>
+
+    <section class="toolbar" aria-label="Bộ lọc nhân vật">
+      <div class="toolbar-grid">
+        <input id="q" type="search" placeholder="Tìm theo tên, kỹ năng hoặc mô tả..." aria-label="Tìm kiếm">
+        <select id="f-el" aria-label="Nguyên tố"><option value="">Mọi nguyên tố</option></select>
+        <select id="f-weap" aria-label="Vũ khí"><option value="">Mọi vũ khí</option></select>
+        <select id="f-r" aria-label="Độ hiếm">
+          <option value="">Mọi độ hiếm</option>
+          <option value="5">5★</option>
+          <option value="4">4★</option>
+        </select>
+      </div>
+      <div class="toolbar-foot">
+        <span>Đang hiển thị <strong id="shown">0</strong> / <span id="total">0</span> Resonators</span>
+        <span>Chọn một thẻ để mở hồ sơ đầy đủ.</span>
+      </div>
+    </section>
+
+    <section id="grid" class="grid" aria-live="polite"></section>
+    <div id="empty" class="empty" style="display:none">Không tìm thấy Resonators phù hợp với bộ lọc hiện tại.</div>
+    <div id="loading" class="empty">Đang tải dữ liệu từ API…</div>
+    <div id="error" class="empty" style="display:none"></div>
+
+    <footer class="page-foot">
+      Dữ liệu tham chiếu từ <a href="https://www.prydwen.gg/wuthering-waves/characters" target="_blank" rel="noopener noreferrer">prydwen.gg</a>, trích tại <strong id="foot-patch">patch 3.7</strong>. Mô tả tiếng Việt là bản dịch tham khảo đã rà soát; thuật ngữ và tên kỹ năng giữ nguyên tiếng Anh để bảo toàn cơ chế game.
+    </footer>
+  </main>
+
+  <main id="detailView" aria-live="polite">
+    <div class="detail-top">
+      <button class="btn" id="back">← Danh sách Resonators</button>
+      <div class="detail-actions">
+        <span class="version-pill" id="d-version"></span>
+        <button class="btn" id="toggle-en" aria-pressed="false">Bản gốc EN</button>
+      </div>
+    </div>
+    <article class="profile">
+      <aside class="profile-art">
+        <div class="art-frame" id="d-frame"><img id="d-img" alt=""></div>
+        <div class="art-caption"><span id="d-element"></span><span id="d-weapon"></span></div>
+      </aside>
+      <div class="profile-body">
+        <header class="profile-head">
+          <p class="kicker">Hồ sơ Resonator</p>
+          <h1 id="d-name"></h1>
+          <div class="profile-tags" id="d-tags"></div>
+          <p class="intro" id="d-intro" hidden></p>
+        </header>
+        <div class="stat-row" id="d-stats"></div>
+        <section>
+          <div class="section-head">
+            <h2>Bộ kỹ năng</h2>
+            <span class="note">Tên kỹ năng &amp; thuật ngữ: EN · Mô tả: VI · Bấm vào liên kết để xem</span>
+          </div>
+          <div id="d-skills"></div>
+        </section>
+        <details class="changes" id="d-changes" open>
+          <summary>Lịch sử cập nhật</summary>
+          <ul id="d-changes-list"></ul>
+        </details>
+        <div class="source" id="d-source"></div>
+      </div>
+    </article>
+    <footer class="page-foot">Bản dịch tiếng Việt đã được rà soát ngữ cảnh; dùng nút “Bản gốc EN” để đối chiếu nguyên văn. Liên kết kỹ năng sẽ cuộn tới đúng mục; thuật ngữ đặc biệt mở bảng giải thích.</footer>
+  </main>
+</div>
+
+<dialog id="mechDialog" aria-labelledby="mech-title">
+  <div class="mech-head">
+    <div>
+      <p class="kicker" id="mech-kind">Cơ chế</p>
+      <h2 id="mech-title"></h2>
+    </div>
+    <button class="btn mech-close" id="mech-close" aria-label="Đóng">✕</button>
+  </div>
+  <p class="mech-summary" id="mech-summary"></p>
+  <div class="mech-occ">
+    <h3>Xuất hiện trong bộ kỹ năng</h3>
+    <div id="mech-occ-list"></div>
+  </div>
+  <p class="mech-note">Tóm tắt dựa trên dữ liệu bộ kỹ năng; xem thêm bản gốc EN trong từng mục.</p>
+</dialog>
+
+<script src="app.js"></script>
+</body>
+</html>
