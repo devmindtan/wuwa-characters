@@ -3,7 +3,7 @@
   --line:rgba(214,196,161,.14); --line2:rgba(214,196,161,.28);
   --text:#e9eef2; --muted:#90a4b4; --soft:#c9d6df;
   --gold:#d6c4a1; --gold2:#f0e3c7;
-  --spectro:#f4e6a4; --havoc:#d38af0; --aero:#7de8c0; --electro:#b5a6ff; --fusion:#ff9a7c; --glacio:#9ed8ff;
+  --spectro:#F8E56C; --havoc:#E649A6; --aero:#55FFB5; --electro:#B46BFF; --fusion:#F0744E; --glacio:#41AEFB;
   --r5:#f0d79a; --r4:#b79cff;
 }
 *{box-sizing:border-box}
@@ -138,6 +138,10 @@ input:focus,select:focus{border-color:var(--line2);box-shadow:0 0 0 3px rgba(214
 .skill-body ul{margin:4px 0 10px;padding-left:20px}
 .skill-body li{margin:3px 0}
 .skill-body li::marker{color:rgba(214,196,161,.6)}
+
+/* element-coloured DMG phrases (official in-game colours, no bold) */
+.dmg-spectro{color:var(--spectro)} .dmg-havoc{color:var(--havoc)} .dmg-aero{color:var(--aero)}
+.dmg-electro{color:var(--electro)} .dmg-fusion{color:var(--fusion)} .dmg-glacio{color:var(--glacio)}
 
 /* inline links */
 .term-link{color:var(--gold2);text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px;cursor:pointer;background:none;border:0;padding:0;font:inherit;text-align:left}

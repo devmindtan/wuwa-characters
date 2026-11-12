@@ -1,12 +1,16 @@
 const EL_VI = {Spectro:'Quang Phổ',Havoc:'Hỗn Độn',Aero:'Khí',Electro:'Lôi',Fusion:'Nhiệt',Glacio:'Băng'};
 const WEAP_VI = {Sword:'Kiếm',Broadblade:'Đại Kiếm',Pistols:'Súng Lục',Gauntlets:'Găng Tay',Rectifier:'Pháp Khí'};
 const KIND_VI = {system:'Cơ chế',resource:'Tài nguyên',status:'Negative Status',mode:'Trạng thái',skill:'Kỹ năng',summon:'Triệu hồi',stat:'Chỉ số'};
-const COLOR_HEX = {Spectro:'#f4e6a4',Havoc:'#d38af0',Aero:'#7de8c0',Electro:'#b5a6ff',Fusion:'#ff9a7c',Glacio:'#9ed8ff'};
+// Official element text colors (in-game / Wuthering Waves Wiki dark theme).
+const COLOR_HEX = {Spectro:'#F8E56C',Havoc:'#E649A6',Aero:'#55FFB5',Electro:'#B46BFF',Fusion:'#F0744E',Glacio:'#41AEFB'};
+// "<Element> DMG ..." phrases are coloured by element (colour only, no bold).
+const DMG_SUFFIXES = [' DMG Bonus', ' DMG Amplification', ' DMG RES', ' DMG', ' RES'];
 
 const state = {
   meta: null,
   characters: [],
   mechanics: [],
+  noLink: [],
   bySlug: new Map(),
   current: null,
   showEn: false,
@@ -334,7 +338,18 @@ function linkifyAll() {
     if (s.name && !byText.has(s.name)) byText.set(s.name, {type: 'skill', index: i, text: s.name});
   });
   for (const m of state.mechanics) {
+    // Resonator-specific mechanics only link on their owner's page.
+    if (m.owners?.length && !m.owners.includes(c.slug)) continue;
     if (!byText.has(m.term)) byText.set(m.term, {type: 'mech', term: m.term, text: m.term});
+  }
+  for (const text of state.noLink) {
+    if (!byText.has(text)) byText.set(text, {type: 'plain', text});
+  }
+  for (const el of Object.keys(COLOR_HEX)) {
+    for (const suffix of DMG_SUFFIXES) {
+      const text = el + suffix;
+      if (!byText.has(text)) byText.set(text, {type: 'dmg', el: el.toLowerCase(), text});
+    }
   }
   const terms = [...byText.values()].sort((a, b) => b.text.length - a.text.length);
   if (!terms.length) return;
@@ -362,6 +377,12 @@ function linkifyAll() {
         const term = byText.get(matched);
         if (!term) continue;
         if (term.type === 'skill' && term.index === ownIndex) continue;
+        if (term.type === 'plain') {  // consumed as plain text: no link
+          if (match.index > last) frag.appendChild(document.createTextNode(text.slice(last, match.index)));
+          frag.appendChild(document.createTextNode(matched));
+          last = match.index + matched.length;
+          continue;
+        }
         if (match.index > last) frag.appendChild(document.createTextNode(text.slice(last, match.index)));
         frag.appendChild(makeTermNode(term, matched));
         last = match.index + matched.length;
@@ -374,6 +395,12 @@ function linkifyAll() {
 }
 
 function makeTermNode(term, text) {
+  if (term.type === 'dmg') {
+    const span = document.createElement('span');
+    span.className = `dmg dmg-${term.el}`;
+    span.textContent = text;
+    return span;
+  }
   if (term.type === 'skill') {
     const a = document.createElement('a');
     a.href = `#skill-${term.index}`;
@@ -533,6 +560,7 @@ async function boot() {
     if (mechRes.ok) {
       const mech = await mechRes.json();
       state.mechanics = mech.mechanics || [];
+      state.noLink = mech.no_link || [];
     }
     loading.style.display = 'none';
     renderMeta();
