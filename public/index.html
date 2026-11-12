@@ -87,35 +87,43 @@
           <p class="intro" id="d-intro" hidden></p>
         </header>
         <div class="stat-row" id="d-stats"></div>
-        <section class="detail-sec tree-sec" id="d-tree-sec">
-          <div class="section-head">
-            <h2>Skill Tree</h2>
-            <div class="lv-picker" role="radiogroup" aria-label="Chọn cấp kỹ năng" id="lv-picker"></div>
-          </div>
+        <nav class="tabs" role="tablist" aria-label="Nội dung hồ sơ" id="d-tabs">
+          <button type="button" role="tab" id="tab-btn-tree" aria-controls="tab-tree" data-tab="tree">Skill Tree</button>
+          <button type="button" role="tab" id="tab-btn-skills" aria-controls="tab-skills" data-tab="skills">Bộ kỹ năng</button>
+          <button type="button" role="tab" id="tab-btn-chain" aria-controls="tab-chain" data-tab="chain"><span class="hide-xs">Resonance </span>Chain</button>
+          <button type="button" role="tab" id="tab-btn-mats" aria-controls="tab-mats" data-tab="mats">Nguyên liệu</button>
+        </nav>
+
+        <section class="tab-panel" role="tabpanel" id="tab-tree" aria-labelledby="tab-btn-tree" tabindex="-1">
           <div id="d-tree" class="tree"></div>
+          <div id="d-tree-detail" class="tree-detail" aria-live="polite"></div>
           <p class="tree-note" id="d-tree-note"></p>
         </section>
-        <section>
+
+        <section class="tab-panel" role="tabpanel" id="tab-skills" aria-labelledby="tab-btn-skills" tabindex="-1" hidden>
           <div class="section-head">
             <h2>Bộ kỹ năng</h2>
-            <span class="note">Tên kỹ năng &amp; thuật ngữ: EN · Mô tả: VI · Bấm vào liên kết để xem</span>
+            <span class="note">Tên kỹ năng &amp; thuật ngữ: EN · Mô tả: VI · Kéo thanh cấp để xem hệ số</span>
           </div>
           <div id="d-skills"></div>
         </section>
-        <section class="detail-sec" id="d-chain-sec">
+
+        <section class="tab-panel" role="tabpanel" id="tab-chain" aria-labelledby="tab-btn-chain" tabindex="-1" hidden>
           <div class="section-head">
             <h2>Resonance Chain</h2>
             <span class="note">Sequence Node S1 → S6 · Tên: EN · Mô tả: VI</span>
           </div>
           <div id="d-chain" class="chain-grid"></div>
         </section>
-        <section class="detail-sec" id="d-mats-sec">
+
+        <section class="tab-panel" role="tabpanel" id="tab-mats" aria-labelledby="tab-btn-mats" tabindex="-1" hidden>
           <div class="section-head">
             <h2>Nguyên liệu</h2>
-            <span class="note">Tổng chi phí theo Wuthering Waves Wiki · tên vật phẩm: EN</span>
+            <span class="note">Theo Wuthering Waves Wiki · tên vật phẩm: EN</span>
           </div>
           <div id="d-mats"></div>
         </section>
+
         <details class="changes" id="d-changes" open>
           <summary>Lịch sử thay đổi trong game</summary>
           <ul id="d-changes-list"></ul>

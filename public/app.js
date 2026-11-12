@@ -12,6 +12,9 @@ const state = {
   mechanics: [],
   noLink: [],
   level: 10,
+  treeSel: null,
+  forteTo: 10,
+  tab: 'tree',
   pendingTarget: null,
   roleFilter: 'all',
   mechTerm: null,
@@ -258,10 +261,11 @@ function renderSkills() {
   if (!c) return;
   let out = '';
   (c.skills || []).forEach((s, i) => {
-    const body = (linesHTML((state.showEn ? s.desc : s.desc_vi) || []) || '<p>Chưa có mô tả chi tiết cho kỹ năng này.</p>') + scalingHTML(s);
+    const body = linesHTML((state.showEn ? s.desc : s.desc_vi) || []) || '<p>Chưa có mô tả chi tiết cho kỹ năng này.</p>';
     out += `<section class="skill" id="skill-${i}" data-index="${i}" tabindex="-1">
-      <div class="skill-head"><span class="skill-type">${esc(s.type)}</span><h3>${esc(s.name)}</h3></div>
+      <div class="skill-head">${skillIcon(s, 'skill-ico')}<span class="skill-type">${esc(s.type)}</span><h3>${esc(s.name)}</h3></div>
       <div class="skill-body">${body}</div>
+      ${scaleHTML(s, i)}
     </section>`;
   });
   dSkills.innerHTML = out;
@@ -270,56 +274,135 @@ function renderSkills() {
   renderChain();
   renderIntro();
   linkifyAll();
+  applyLevel();
 }
 
+/* ---------- level scaling: slider + progress bars ---------- */
 const LEVELS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const valueAt = (row, lv) => (row.values.length === 1 ? row.values[0] : row.values[lv - 1] ?? '—');
+const leveled = (s) => (s.scaling?.rows || []).filter((r) => r.values.length > 1);
+const constants = (s) => (s.scaling?.rows || []).filter((r) => r.values.length === 1);
 
-function scalingHTML(s) {
-  const rows = s.scaling?.rows || [];
-  if (!rows.length) return '';
-  return `<details class="scaling">
-    <summary>Hệ số theo cấp <span>Lv1–10</span></summary>
-    <div class="scaling-wrap"><table>
-      <thead><tr><th scope="col">Thuộc tính</th>${LEVELS.map((lv) => `<th scope="col" data-lv="${lv}">${lv}</th>`).join('')}</tr></thead>
-      <tbody>${rows.map((r) => `<tr><th scope="row">${esc(r.label)}</th>${r.values.length === 1
-        ? `<td colspan="10" class="const">${esc(r.values[0])} <small>(mọi cấp)</small></td>`
-        : LEVELS.map((lv) => `<td data-lv="${lv}">${esc(valueAt(r, lv))}</td>`).join('')}</tr>`).join('')}</tbody>
-    </table></div>
-    <p class="scaling-src">Nguồn: <a href="${esc(s.scaling.source)}" target="_blank" rel="noopener noreferrer">Wuthering Waves Wiki — ${esc(s.name)}</a></p>
-  </details>`;
+// Total multiplier of a wiki value such as "19.61%+9.81%*3" (= 49.04). NaN if not numeric.
+function totalOf(v) {
+  if (typeof v !== 'string' || !/\d/.test(v)) return NaN;
+  let sum = 0;
+  for (const term of v.replace(/%/g, '').replace(/\s/g, '').split('+')) {
+    const [a, n] = term.split('*');
+    const x = parseFloat(a) * (n === undefined ? 1 : parseFloat(n));
+    if (!Number.isFinite(x)) return NaN;
+    sum += x;
+  }
+  return sum;
 }
 
+const TYPE_MONO = {'Basic Attack': 'BA', 'Resonance Skill': 'RS', 'Forte Circuit': 'FC', 'Resonance Liberation': 'RL',
+  'Intro Skill': 'IN', 'Outro Skill': 'OU', 'Inherent Skill': 'IS'};
+const skillIcon = (s, cls) => `<span class="${cls}" aria-hidden="true">${s.icon
+  ? `<img src="${esc(s.icon)}" alt="" loading="lazy" referrerpolicy="no-referrer">`
+  : `<b>${esc(TYPE_MONO[s.type] || '?')}</b>`}</span>`;
+
+function sliderHTML(label) {
+  return `<div class="lv-slider">
+    <span class="lv-label">${label} <b class="lv-num">${state.level}</b><small>/10</small></span>
+    <input type="range" class="lv-range" min="1" max="10" step="1" value="${state.level}" aria-label="Cấp kỹ năng">
+    <span class="lv-ticks" aria-hidden="true">${LEVELS.map((n) => `<i data-n="${n}">${n}</i>`).join('')}</span>
+  </div>`;
+}
+
+function scaleHTML(s, i, compact = false) {
+  const rows = leveled(s);
+  const consts = constants(s);
+  if (!rows.length && !consts.length) {
+    return compact ? '<p class="tn-muted">Chưa có hệ số theo cấp từ nguồn tham khảo.</p>' : '';
+  }
+  return `<div class="scale${compact ? ' compact' : ''}" data-si="${i}">
+    ${rows.length ? sliderHTML('Hệ số ở cấp') : ''}
+    <ul class="scale-rows">${rows.map((r, ri) => {
+      const t1 = totalOf(r.values[0]);
+      const t10 = totalOf(r.values[r.values.length - 1]);
+      const growth = Number.isFinite(t1) && Number.isFinite(t10) && t1 > 0 ? `×${(t10 / t1).toFixed(2)} từ Lv1 → Lv${r.values.length}` : '';
+      return `<li data-ri="${ri}">
+        <div class="sr-top"><span class="sr-label">${esc(r.label)}</span><b class="sr-val"></b></div>
+        <div class="sr-bar"><i></i></div>
+        ${growth ? `<span class="sr-growth">${growth}</span>` : ''}
+      </li>`;
+    }).join('')}</ul>
+    ${consts.length ? `<ul class="scale-consts">${consts.map((r) => `<li><span>${esc(r.label)}</span><b>${esc(r.values[0])}</b></li>`).join('')}</ul>` : ''}
+    ${s.scaling?.source ? `<p class="scaling-src">Nguồn: <a href="${esc(s.scaling.source)}" target="_blank" rel="noopener noreferrer">Wuthering Waves Wiki — ${esc(s.name)}</a></p>` : ''}
+  </div>`;
+}
+
+// Push state.level into every slider, value and bar on the detail page.
+function applyLevel() {
+  const c = state.current;
+  if (!c) return;
+  const lv = state.level;
+  detailView.querySelectorAll('.lv-range').forEach((r) => { r.value = String(lv); r.style.setProperty('--p', `${((lv - 1) / 9) * 100}%`); });
+  detailView.querySelectorAll('.lv-num').forEach((n) => { n.textContent = String(lv); });
+  detailView.querySelectorAll('.lv-ticks i').forEach((t) => t.classList.toggle('on', Number(t.dataset.n) <= lv));
+  detailView.querySelectorAll('.scale[data-si]').forEach((box) => {
+    const s = c.skills[Number(box.dataset.si)];
+    const rows = leveled(s);
+    box.querySelectorAll('.scale-rows li').forEach((li) => {
+      const r = rows[Number(li.dataset.ri)];
+      li.querySelector('.sr-val').textContent = valueAt(r, lv);
+      const totals = r.values.map(totalOf);
+      const max = Math.max(...totals.filter(Number.isFinite));
+      const cur = totalOf(valueAt(r, lv));
+      li.querySelector('.sr-bar i').style.width = Number.isFinite(cur) && max > 0 ? `${(cur / max) * 100}%` : '0%';
+    });
+  });
+  detailView.querySelectorAll('.tnode-lv').forEach((b) => { b.textContent = `Lv ${lv}`; });
+}
+
+/* ---------- skill tree ---------- */
 const TREE_COLS = ['Basic Attack', 'Resonance Skill', 'Forte Circuit', 'Resonance Liberation', 'Intro Skill'];
 
 function renderTree() {
   const c = state.current;
-  const lv = state.level;
-  detailView.dataset.lv = String(lv);
-  $('lv-picker').innerHTML = LEVELS.map((n) =>
-    `<button type="button" role="radio" aria-checked="${n === lv}" data-lv="${n}">${n}</button>`).join('');
   const skills = (c.skills || []).map((s, i) => ({...s, i}));
-  const node = (s) => {
-    const rows = (s.scaling?.rows || []).filter((r) => r.values.length > 1).slice(0, 2);
-    return `<button type="button" class="tree-node" data-target="skill-${s.i}">
-      <span class="tn-type">${esc(s.type)}</span>
-      <span class="tn-name">${esc(s.name)}</span>
-      ${rows.length ? `<span class="tn-lv">Lv ${lv}</span>${rows.map((r) => `<span class="tn-row"><em>${esc(r.label)}</em>${esc(valueAt(r, lv))}</span>`).join('')}`
-        : '<span class="tn-row tn-muted">Chưa có hệ số từ nguồn</span>'}
+  if (state.treeSel == null || !c.skills[state.treeSel]) {
+    state.treeSel = skills.find((s) => s.type === 'Forte Circuit')?.i ?? 0;
+  }
+  const node = (s, small = false) => `<button type="button" class="tnode${small ? ' tnode-sm' : ''}${s.i === state.treeSel ? ' is-sel' : ''}" data-si="${s.i}" aria-pressed="${s.i === state.treeSel}">
+      ${skillIcon(s, 'tnode-ring')}
+      ${!small && leveled(s).length ? `<span class="tnode-lv">Lv ${state.level}</span>` : ''}
+      <span class="tnode-name">${esc(s.name)}</span>
+      <span class="tnode-type">${esc(s.type)}</span>
     </button>`;
-  };
   const inherent = skills.filter((s) => s.type === 'Inherent Skill');
   const outro = skills.filter((s) => s.type === 'Outro Skill');
-  $('d-tree').innerHTML = `<div class="tree-cols">${TREE_COLS.map((type) => {
-    const list = skills.filter((s) => s.type === type);
-    const top = type === 'Forte Circuit' ? inherent.map((s) => `<button type="button" class="tree-node tree-inherent" data-target="skill-${s.i}">
-        <span class="tn-type">Inherent Skill</span><span class="tn-name">${esc(s.name)}</span></button>`).join('') : '';
-    return `<div class="tree-col${type === 'Forte Circuit' ? ' tree-center' : ''}">${top}${list.map(node).join('') || `<p class="tn-muted">—</p>`}</div>`;
-  }).join('')}</div>
-  ${outro.map((s) => `<button type="button" class="tree-node tree-outro" data-target="skill-${s.i}"><span class="tn-type">Outro Skill</span><span class="tn-name">${esc(s.name)}</span><span class="tn-row tn-muted">Không nâng cấp theo cấp</span></button>`).join('')}`;
-  $('d-tree-note').textContent = 'Chọn cấp để xem hệ số tương ứng; bấm một nút để tới kỹ năng. Các nút Stat Bonus trong cây chưa có số liệu từ nguồn tham khảo nên chưa hiển thị; chi phí nâng cấp xem ở mục Nguyên liệu.';
+  $('d-tree').innerHTML = `
+    <div class="tree-top">${sliderHTML('Cấp kỹ năng')}</div>
+    <div class="tree-board">${TREE_COLS.map((type) => {
+      const list = skills.filter((s) => s.type === type);
+      const center = type === 'Forte Circuit';
+      return `<div class="tcol${center ? ' tcol-center' : ''}">
+        ${center && inherent.length ? `<div class="tcol-inherent">${inherent.map((s) => node(s, true)).join('')}</div><span class="tlink" aria-hidden="true"></span>` : ''}
+        ${list.map((s) => node(s)).join('') || '<span class="tn-muted">—</span>'}
+      </div>`;
+    }).join('')}</div>
+    ${outro.length ? `<div class="tree-outro">${outro.map((s) => node(s, true)).join('')}<span>Outro Skill kích hoạt khi đổi Resonator, không nâng cấp theo cấp.</span></div>` : ''}`;
+  renderTreeDetail();
+  $('d-tree-note').textContent = 'Bấm một nút để xem hệ số; kéo thanh cấp để theo dõi hệ số tăng theo từng cấp. Các nút Stat Bonus chưa có số liệu từ nguồn tham khảo nên chưa hiển thị; chi phí nâng cấp xem ở tab Nguyên liệu.';
 }
 
+function renderTreeDetail() {
+  const c = state.current;
+  const i = state.treeSel;
+  const s = c.skills[i];
+  if (!s) { $('d-tree-detail').innerHTML = ''; return; }
+  const lines = ((state.showEn ? s.desc : s.desc_vi) || []).filter((l) => !lineHTML(l).sub).slice(0, 2);
+  $('d-tree-detail').innerHTML = `<div class="td-head">${skillIcon(s, 'td-ico')}
+      <div><p class="td-type">${esc(s.type)}</p><h3>${esc(s.name)}</h3></div>
+      <button type="button" class="btn td-go" data-goto="skill-${i}">Xem mô tả đầy đủ <span aria-hidden="true">→</span></button>
+    </div>
+    ${lines.length ? `<p class="td-desc">${esc(lines.map((l) => l.replace(/^• /, '')).join(' '))}</p>` : ''}
+    ${scaleHTML(s, i, true)}`;
+}
+
+/* ---------- resonance chain ---------- */
 function renderChain() {
   const c = state.current;
   const chain = c.resonance_chain || [];
@@ -340,39 +423,78 @@ function renderChain() {
   }).join('');
 }
 
+/* ---------- materials & upgrade costs ---------- */
 const MAT_GROUPS = [
-  ['ascension', 'Đột phá', 'Tổng nguyên liệu đột phá nhân vật'],
-  ['forte', 'Nâng một kỹ năng chính', 'Cho một kỹ năng trong Forte, cấp 1 → 10'],
-  ['inherent', 'Toàn bộ Inherent Skill', 'Mở cả hai Inherent Skill'],
-  ['stat_bonus', 'Một nhánh Stat Bonus', 'Cho một nhánh chỉ số cộng thêm'],
+  ['ascension', 'Đột phá', 'Tổng nguyên liệu đột phá nhân vật (0✦ → 6✦)'],
+  ['forte', 'Nâng một kỹ năng chính', 'Kéo để xem tổng nguyên liệu cần cho một kỹ năng trong Forte'],
+  ['inherent', 'Inherent Skill', 'Hai bậc mở khóa Inherent Skill'],
+  ['stat_bonus', 'Một nhánh Stat Bonus', 'Hai bậc của một nhánh chỉ số cộng thêm'],
 ];
+const qtyFmt = (n) => n.toLocaleString('vi-VN');
+
+function matCards(items) {
+  return `<ul class="mat-list">${items.map((it) => `<li class="mat r${it.rarity}" title="${esc(it.name)}">
+    <span class="mat-img">${it.img ? `<img src="${esc(it.img)}" alt="" loading="lazy" referrerpolicy="no-referrer" width="48" height="48">` : ''}</span>
+    <span class="mat-qty">${qtyFmt(it.qty)}</span>
+    <span class="mat-name">${esc(it.name)}</span>
+  </li>`).join('')}</ul>`;
+}
+
+function sumSteps(rows, upto) {
+  const acc = new Map();
+  rows.slice(0, upto).forEach((r) => r.items.forEach((it) => {
+    const cur = acc.get(it.name);
+    acc.set(it.name, cur ? {...cur, qty: cur.qty + it.qty} : {...it});
+  }));
+  // Shell Credit first, then by rarity and name (same order as the wiki totals).
+  return [...acc.values()].sort((a, b) => (b.name === 'Shell Credit') - (a.name === 'Shell Credit')
+    || a.rarity - b.rarity || a.name.localeCompare(b.name));
+}
 
 function renderMaterials(c) {
   const mats = c.materials || {};
-  const groups = MAT_GROUPS.filter(([key]) => mats[key]?.items?.length);
-  $('d-mats-sec').hidden = !groups.length;
+  const costs = c.level_costs || {};
+  const groups = MAT_GROUPS.filter(([key]) => mats[key]?.items?.length || costs[key]?.length);
+  $('tab-btn-mats').hidden = !groups.length;
   $('d-mats').innerHTML = groups.map(([key, title, hint]) => {
-    const block = mats[key];
-    return `<section class="mat-group">
-      <header><h3>${esc(title)}</h3><span class="mat-range">${esc(block.label.replace(/ for .*/, ''))}</span><p>${esc(hint)}</p></header>
-      <ul class="mat-list">${block.items.map((it) => `<li class="mat r${it.rarity}" title="${esc(it.name)}">
-        <span class="mat-img">${it.img ? `<img src="${esc(it.img)}" alt="" loading="lazy" referrerpolicy="no-referrer" width="48" height="48">` : ''}</span>
-        <span class="mat-qty">${it.qty.toLocaleString('vi-VN')}</span>
-        <span class="mat-name">${esc(it.name)}</span>
-      </li>`).join('')}</ul>
-      ${levelCostsHTML((c.level_costs || {})[key])}
+    const rows = costs[key] || [];
+    let body;
+    if (key === 'forte' && rows.length) {
+      const to = Math.min(state.forteTo, rows.length + 1);
+      body = `<div class="upgrade" data-key="forte">
+        <div class="up-head"><span>Từ <b>Lv 1</b> lên <b class="up-to">Lv ${to}</b></span><small class="up-steps-count">${to - 1} bước nâng cấp</small></div>
+        <input type="range" class="up-range" min="2" max="${rows.length + 1}" step="1" value="${to}" aria-label="Nâng tới cấp">
+        <ol class="up-track">${rows.map((r, idx) => `<li class="${idx < to - 1 ? 'on' : ''}" title="${esc(r.level)}${r.ascension !== '-' ? ' · cần ' + esc(r.ascension) : ''}">
+          <span class="up-dot">${idx + 2}</span>${r.ascension !== '-' ? `<span class="up-gate">${esc(r.ascension)}</span>` : ''}</li>`).join('')}</ol>
+        <p class="up-note">Mốc ✦ là bậc đột phá nhân vật cần đạt trước khi nâng lên cấp đó.</p>
+        <div class="up-total">${matCards(sumSteps(rows, to - 1))}</div>
+      </div>`;
+    } else if (rows.length && key !== 'ascension') {
+      body = `<ol class="steps">${rows.map((r, idx) => `<li class="step">
+        <div class="step-head"><span class="step-no">Bậc ${idx + 1}</span>${r.ascension !== '-' ? `<span class="up-gate">Cần ${esc(r.ascension)}</span>` : ''}</div>
+        ${matCards(r.items)}
+      </li>`).join('')}</ol>`;
+    } else {
+      body = matCards(mats[key].items);
+    }
+    return `<section class="mat-group" data-key="${key}">
+      <header><h3>${esc(title)}</h3><p>${esc(hint)}</p></header>
+      ${body}
     </section>`;
   }).join('');
 }
 
-function levelCostsHTML(rows) {
-  if (!rows?.length) return '';
-  return `<details class="lvcost"><summary>Chi phí từng cấp <span>${rows.length} bước</span></summary>
-    <div class="lvcost-wrap"><table>
-      <thead><tr><th>Cấp</th><th>Yêu cầu đột phá</th><th>Nguyên liệu</th></tr></thead>
-      <tbody>${rows.map((r) => `<tr><th scope="row">${esc(r.level)}</th><td>${esc(r.ascension === '-' ? '—' : r.ascension)}</td>
-        <td><ul class="chips">${r.items.map((it) => `<li class="chip r${it.rarity}" title="${esc(it.name)}">${it.img ? `<img src="${esc(it.img)}" alt="" loading="lazy" referrerpolicy="no-referrer" width="22" height="22">` : ''}<b>${it.qty.toLocaleString('vi-VN')}</b> ${esc(it.name)}</li>`).join('')}</ul></td></tr>`).join('')}</tbody>
-    </table></div></details>`;
+function updateUpgrade(input) {
+  const c = state.current;
+  const rows = (c.level_costs || {}).forte || [];
+  const to = Number(input.value);
+  state.forteTo = to;
+  const box = input.closest('.upgrade');
+  box.querySelector('.up-to').textContent = `Lv ${to}`;
+  box.querySelector('.up-steps-count').textContent = `${to - 1} bước nâng cấp`;
+  box.querySelectorAll('.up-track li').forEach((li, idx) => li.classList.toggle('on', idx < to - 1));
+  input.style.setProperty('--p', `${((to - 2) / (rows.length - 1)) * 100}%`);
+  box.querySelector('.up-total').innerHTML = matCards(sumSteps(rows, to - 1));
 }
 
 function renderReferences(c) {
@@ -485,15 +607,33 @@ function scrollToSkill(index) {
   scrollToId('skill-' + index);
 }
 
-function scrollToId(id) {
+// Scroll to a skill/chain section (switching to its tab). With a term, highlight
+// only the paragraphs that mention it, and the term itself, instead of the whole section.
+function scrollToId(id, term = '') {
+  if (id.startsWith('skill-')) setTab('skills');
+  else if (id.startsWith('chain-')) setTab('chain');
   const el = $(id);
   if (!el) return;
-  el.scrollIntoView({behavior: 'smooth', block: 'start'});
-  el.classList.remove('flash');
-  void el.offsetWidth;
-  el.classList.add('flash');
+  detailView.querySelectorAll('.hit, .hit-term').forEach((x) => x.classList.remove('hit', 'hit-term'));
+  let hits = [];
+  if (term) {
+    const terms = [...el.querySelectorAll('.mech-link')].filter((b) => b.dataset.mech === term);
+    terms.forEach((b) => b.classList.add('hit-term'));
+    hits = [...new Set(terms.map((b) => b.closest('p, li')).filter(Boolean))];
+    if (!hits.length) hits = [...el.querySelectorAll('.skill-body p, .skill-body li, .chain-body p, .chain-body li')].filter((x) => x.textContent.includes(term));
+  }
+  if (hits.length) {
+    hits.forEach((h) => h.classList.add('hit'));
+    hits[0].scrollIntoView({behavior: 'smooth', block: 'center'});
+    setTimeout(() => detailView.querySelectorAll('.hit, .hit-term').forEach((x) => x.classList.remove('hit', 'hit-term')), 6000);
+  } else {
+    el.scrollIntoView({behavior: 'smooth', block: 'start'});
+    el.classList.remove('flash');
+    void el.offsetWidth;
+    el.classList.add('flash');
+    setTimeout(() => el.classList.remove('flash'), 1900);
+  }
   el.focus({preventScroll: true});
-  setTimeout(() => el.classList.remove('flash'), 1900);
 }
 
 function renderChanges(c) {
@@ -532,11 +672,13 @@ function openDetail(slug) {
     <div class="stat"><div class="k">Vũ khí</div><div class="v v-ico">${weapIcon(c.weapon, 'ico-lg')}<span>${esc(c.weapon)}<small>${esc(weapVi(c.weapon))}</small></span></div></div>
     <div class="stat"><div class="k">Độ hiếm</div><div class="v" style="color:${c.rarity===5?'var(--r5)':'var(--r4)'}">${c.rarity ? c.rarity + '★' : '—'}</div></div>
     <div class="stat"><div class="k">Kỹ năng</div><div class="v">${(c.skills || []).length}<small>mục chính</small></div></div>`;
+  state.treeSel = null;
   renderMaterials(c);
   renderReferences(c);
   renderChanges(c);
   renderSkills();
   document.title = `${c.name} — Resonators Archive · Patch ${state.meta.patch}`;
+  setTab(state.tab);
   if (!state.detailOpen) state.savedScroll = window.scrollY;
   state.detailOpen = true;
   listView.style.display = 'none';
@@ -544,9 +686,9 @@ function openDetail(slug) {
   window.scrollTo({top: 0, behavior: 'instant'});
   backBtn.focus({preventScroll: true});
   if (state.pendingTarget) {
-    const target = state.pendingTarget;
+    const {id, term} = state.pendingTarget;
     state.pendingTarget = null;
-    requestAnimationFrame(() => scrollToId(target));
+    requestAnimationFrame(() => scrollToId(id, term));
   }
 }
 
@@ -597,7 +739,7 @@ function openMechanic(termName) {
   if (occurrences.length) {
     occBox.innerHTML = occurrences.map((o) =>
       `<div class="mech-occ-item">
-        <div class="mech-occ-head"><b>${esc(o.title)}</b><button type="button" class="mech-go" data-target="${esc(o.target)}">${esc(o.go)} <span aria-hidden="true">↓</span></button></div>
+        <div class="mech-occ-head"><b>${esc(o.title)}</b><button type="button" class="mech-go" data-target="${esc(o.target)}" data-term="${esc(m.term)}">${esc(o.go)} <span aria-hidden="true">↓</span></button></div>
         <p class="mech-occ-text">${esc(o.line)}</p>
         <button type="button" class="mech-more" hidden aria-expanded="false">Xem thêm</button>
       </div>`
@@ -666,12 +808,18 @@ function renderMechUsers() {
       `<button type="button" class="role-chip" data-role="${k}" aria-pressed="${state.roleFilter === k}">${esc(label)}${k === 'all' ? '' : ` <small>${users.filter((u) => u.roles.includes(k)).length}</small>`}</button>`).join('')
     : '';
   const shown = state.roleFilter === 'all' ? users : users.filter((u) => u.roles.includes(state.roleFilter));
-  $('mech-users-list').innerHTML = shown.map(({c, roles, target, count}) => `<li>
-    <button type="button" class="mech-user${c.slug === state.current?.slug ? ' is-current' : ''}" data-slug="${esc(c.slug)}" data-target="${esc(target)}">
-      <img src="${esc(c.img_icon)}" alt="" width="40" height="40">
-      <span class="mu-main"><b>${esc(c.name)}</b>${elIcon(c.element)}<small>${count} vị trí${c.slug === state.current?.slug ? ' · đang xem' : ''}</small></span>
+  const me = users.find((u) => u.c.slug === state.current?.slug);
+  const others = shown.filter((u) => u !== me);
+  const row = ({c, roles, target, count}, mine) => `<li${mine ? ' class="mu-me"' : ''}>
+    <button type="button" class="mech-user${mine ? ' is-current' : ''}" data-slug="${esc(c.slug)}" data-target="${esc(target)}">
+      <img src="${esc(c.img_icon)}" alt="" width="${mine ? 52 : 40}" height="${mine ? 52 : 40}">
+      <span class="mu-main">${mine ? '<span class="mu-badge">Nhân vật này</span>' : ''}<b>${esc(c.name)}</b>${elIcon(c.element)}<small>${count} vị trí</small></span>
       <span class="mu-roles">${roles.map((r) => `<i class="role role-${r}">${esc(ROLE_LABEL[r])}</i>`).join('')}</span>
-    </button></li>`).join('');
+      <span class="mu-go">${mine ? 'Tới đoạn có hiệu ứng' : 'Mở hồ sơ'} <span aria-hidden="true">→</span></span>
+    </button></li>`;
+  $('mech-users-list').innerHTML = (me ? row(me, true) : '')
+    + (others.length && me ? `<li class="mu-sep">Resonators khác (${others.length})</li>` : '')
+    + others.map((u) => row(u, false)).join('');
 }
 
 async function boot() {
@@ -750,19 +898,62 @@ $('mech-users-list').addEventListener('click', (e) => {
   const btn = e.target.closest('.mech-user');
   if (!btn) return;
   mechDialog.close();
-  if (btn.dataset.slug === state.current?.slug) { scrollToId(btn.dataset.target); return; }
-  state.pendingTarget = btn.dataset.target;
+  const term = state.mechTerm?.term || '';
+  if (btn.dataset.slug === state.current?.slug) { scrollToId(btn.dataset.target, term); return; }
+  state.pendingTarget = {id: btn.dataset.target, term};
   location.hash = '#/nhan-vat/' + encodeURIComponent(btn.dataset.slug);
 });
-$('lv-picker').addEventListener('click', (e) => {
-  const b = e.target.closest('button[data-lv]');
+/* tabs, sliders, tree selection, goto buttons */
+const TAB_ORDER = ['tree', 'skills', 'chain', 'mats'];
+function setTab(name, focus = false) {
+  if (!TAB_ORDER.includes(name) || $('tab-btn-' + name).hidden) name = 'skills';
+  state.tab = name;
+  for (const t of TAB_ORDER) {
+    const on = t === name;
+    const btn = $('tab-btn-' + t);
+    btn.setAttribute('aria-selected', String(on));
+    btn.tabIndex = on ? 0 : -1;
+    $('tab-' + t).hidden = !on;
+  }
+  if (focus) $('tab-btn-' + name).focus();
+}
+$('d-tabs').addEventListener('click', (e) => {
+  const b = e.target.closest('[data-tab]');
   if (!b) return;
-  state.level = Number(b.dataset.lv);
-  renderTree();
+  setTab(b.dataset.tab);
+  const top = $('d-tabs').getBoundingClientRect().top + window.scrollY - 84;
+  if (window.scrollY > top) window.scrollTo({top, behavior: 'instant'});
 });
-$('d-tree').addEventListener('click', (e) => {
-  const n = e.target.closest('.tree-node[data-target]');
-  if (n) scrollToId(n.dataset.target);
+$('d-tabs').addEventListener('keydown', (e) => {
+  if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(e.key)) return;
+  e.preventDefault();
+  const visible = TAB_ORDER.filter((t) => !$('tab-btn-' + t).hidden);
+  let i = visible.indexOf(state.tab);
+  if (e.key === 'ArrowLeft') i = (i - 1 + visible.length) % visible.length;
+  if (e.key === 'ArrowRight') i = (i + 1) % visible.length;
+  if (e.key === 'Home') i = 0;
+  if (e.key === 'End') i = visible.length - 1;
+  setTab(visible[i], true);
+});
+detailView.addEventListener('input', (e) => {
+  if (e.target.classList.contains('lv-range')) { state.level = Number(e.target.value); applyLevel(); }
+  if (e.target.classList.contains('up-range')) updateUpgrade(e.target);
+});
+detailView.addEventListener('click', (e) => {
+  const n = e.target.closest('.tnode[data-si]');
+  if (n) {
+    state.treeSel = Number(n.dataset.si);
+    $('d-tree').querySelectorAll('.tnode').forEach((x) => {
+      const on = x === n;
+      x.classList.toggle('is-sel', on);
+      x.setAttribute('aria-pressed', String(on));
+    });
+    renderTreeDetail();
+    applyLevel();
+    return;
+  }
+  const go = e.target.closest('[data-goto]');
+  if (go) scrollToId(go.dataset.goto);
 });
 // The dialog closes only via ✕, Esc, or a click that both starts and ends on the
 // backdrop. Clicks inside the panel (padding, text, items, text selection) never close it.
@@ -790,7 +981,7 @@ mechDialog.addEventListener('click', (e) => {
   const go = e.target.closest('.mech-go[data-target]');
   if (go) {
     mechDialog.close();
-    scrollToId(go.dataset.target);
+    scrollToId(go.dataset.target, go.dataset.term);
   }
 });
 mechDialog.addEventListener('close', () => { pressedOnBackdrop = false; });
