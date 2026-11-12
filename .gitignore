@@ -3,3 +3,4 @@ __pycache__/
 *.pyc
 .playwright-cli/
 data/en_raw.json
+data/wiki_raw.json

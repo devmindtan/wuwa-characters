@@ -43,7 +43,11 @@ for c in new['characters']:
     o = olds.get(c['slug'])
     if o is None:
         continue
-    if game_info(c) != game_info(o) and len(c.get('changes', [])) <= len(o.get('changes', [])):
+    # Only fields present before and after count: adding a new field (filling in
+    # data the archive lacked, e.g. resonance_chain) is not an in-game change.
+    common = set(c) & set(o)
+    pick = lambda x: {k: x[k] for k in common}
+    if game_info(pick(c)) != game_info(pick(o)) and len(c.get('changes', [])) <= len(o.get('changes', [])):
         bad.append(c['slug'])
     if not allow_rewrite and o.get('changes', []) != c.get('changes', [])[:len(o.get('changes', []))]:
         print(f"✗ {c['slug']}: lịch sử changes cũ bị sửa/xóa (chỉ được thêm entry mới)"); sys.exit(1)

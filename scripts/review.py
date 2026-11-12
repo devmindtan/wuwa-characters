@@ -25,7 +25,7 @@ VOWELS = ''
 
 errors = []
 warnings = []
-stats = {'characters': 0, 'skills': 0, 'vi_lines': 0}
+stats = {'characters': 0, 'skills': 0, 'vi_lines': 0, 'chain_nodes': 0}
 
 
 def err(where, message):
@@ -101,27 +101,67 @@ def main():
             for field in ('desc', 'desc_vi'):
                 if not s.get(field):
                     err(label, f'empty {field}')
-            for line in s.get('desc_vi') or []:
-                stats['vi_lines'] += 1
-                sample_pool.append((label, line))
-                if re.search(r'\[\[\d+\]\]', line):
-                    err(label, 'unreplaced placeholder token')
-                if re.search(r'<[a-zA-Z/][^>]*>', line):
-                    err(label, 'raw HTML markup')
-                if '  ' in line:
-                    warn(label, 'double space')
-                if re.search(r'\s+[.,;:!?]', line):
-                    warn(label, 'space before punctuation')
-                for phrase in BANNED:
-                    if phrase in line:
-                        err(label, f'banned phrase: {phrase!r}')
-                stripped = line.lstrip('• ').strip()
-                if len(stripped) >= 60 and not has_vietnamese(stripped):
-                    ascii_ratio = sum(1 for ch in stripped if ord(ch) < 128) / max(len(stripped), 1)
-                    if ascii_ratio > 0.96 and not is_label(stripped):
-                        err(label, 'long line without Vietnamese text (possible untranslated)')
+            check_vi_lines(label, s.get('desc_vi') or [], sample_pool)
 
-    print(f"Reviewed {stats['characters']} characters, {stats['skills']} skills, {stats['vi_lines']} VI lines.")
+        chain = c.get('resonance_chain')
+        if chain is None:
+            err(where, 'missing resonance_chain[] (use [] when the source has none)')
+        for n in chain or []:
+            stats['chain_nodes'] += 1
+            label = f"{where}/S{n.get('node', '?')}/{n.get('name', '?')}"
+            if not n.get('name') or not n.get('desc'):
+                err(label, 'chain node missing name/desc')
+            if len(n.get('desc_vi') or []) != len(n.get('desc') or []):
+                err(label, 'chain node desc_vi missing or line count differs from desc')
+            for e_line, v_line in zip(n.get('desc') or [], n.get('desc_vi') or []):
+                missing = set(re.findall(r'\d+(?:\.\d+)?', e_line)) - set(re.findall(r'\d+(?:\.\d+)?', v_line))
+                if missing:
+                    err(label, f'numbers lost in translation: {sorted(missing)}')
+            check_vi_lines(label, n.get('desc_vi') or [], sample_pool)
+
+        mats = c.get('materials')
+        if not isinstance(mats, dict):
+            err(where, 'missing materials{}')
+        else:
+            for key, block in mats.items():
+                for it in block.get('items', []):
+                    if not it.get('name') or not isinstance(it.get('qty'), int) or it['qty'] <= 0:
+                        err(f'{where}/materials/{key}', f'bad item {it}')
+        if not c.get('references'):
+            err(where, 'missing references[]')
+        for ref in c.get('references') or []:
+            if not str(ref.get('url', '')).startswith('https://'):
+                err(where, f'reference without https url: {ref}')
+
+    finish(args, sample_pool)
+
+
+def check_vi_lines(label, lines, sample_pool):
+    for line in lines:
+        stats['vi_lines'] += 1
+        sample_pool.append((label, line))
+        if re.search(r'\[\[\d+\]\]', line):
+            err(label, 'unreplaced placeholder token')
+        if re.search(r'<[a-zA-Z/][^>]*>', line):
+            err(label, 'raw HTML markup')
+        if '  ' in line:
+            warn(label, 'double space')
+        if re.search(r'\s+[.,;:!?]', line):
+            warn(label, 'space before punctuation')
+        for phrase in BANNED:
+            if phrase in line:
+                err(label, f'banned phrase: {phrase!r}')
+        stripped = line.lstrip('• ').strip()
+        if len(stripped) >= 60 and not has_vietnamese(stripped):
+            ascii_ratio = sum(1 for ch in stripped if ord(ch) < 128) / max(len(stripped), 1)
+            if ascii_ratio > 0.96 and not is_label(stripped):
+                err(label, 'long line without Vietnamese text (possible untranslated)')
+
+
+
+def finish(args, sample_pool):
+    print(f"Reviewed {stats['characters']} characters, {stats['skills']} skills, "
+          f"{stats['chain_nodes']} Resonance Chain nodes, {stats['vi_lines']} VI lines.")
     if warnings:
         print(f'\nWarnings ({len(warnings)}):')
         for where, message in warnings[:20]:
