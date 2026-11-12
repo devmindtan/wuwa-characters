@@ -2,14 +2,12 @@
 
 ## 1. Phiên bản dữ liệu (bắt buộc)
 
-- Mốc gốc của dự án là **patch 3.7** (dữ liệu trích ngày 12/11/2026). Mọi hồ sơ mặc định có `version: "3.7"`.
-- Từ nay, bất kỳ lần query/cập nhật nào **thay đổi nội dung của một nhân vật** (kỹ năng, mô tả, chỉ số, ảnh, intro...) đều phải:
-  1. Tăng `version` của nhân vật đó lên patch tương ứng.
-  2. Thêm một entry vào `changes`: `{ "version", "date", "note" }` mô tả ngắn thay đổi.
-  3. Cập nhật `meta.patch` và `meta.updated` trong `data/characters.json`.
-- Không được sửa dữ liệu nhân vật mà không ghi version. API và UI phải hiển thị patch hiện tại và version của từng nhân vật.
-- Khi lên patch mới: giữ nguyên lịch sử `changes`, không ghi đè. Chỉ thêm entry mới.
-- Nếu query chỉ đọc/tìm kiếm, không thay đổi dữ liệu thì không cần tăng version.
+- `meta.patch` là **bản game mới nhất hiện tại** (đang là **3.8**, phát hành 12/11/2026). Đây là phiên bản duy nhất UI hiển thị; nhân vật không có `version` riêng.
+- Khi game ra bản mới: kiểm tra bản mới nhất từ nguồn chính thức/tin tức, cập nhật `meta.patch` và `meta.updated`.
+- `changes` của mỗi nhân vật **chỉ ghi khi thông tin của nhân vật trong game thay đổi** (kỹ năng, chỉ số, mô tả gốc EN, ảnh...). Entry: `{ "version": "<bản game>", "date", "note" }`. Không có thay đổi thì để `[]`; UI ẩn mục lịch sử khi rỗng.
+- Việc nội bộ của dự án (sửa bản dịch `desc_vi`/`intro_vi`, rà soát, đổi giao diện) **không** ghi vào `changes`.
+- Giữ nguyên lịch sử `changes` cũ, chỉ thêm entry mới. Chỉ xóa/sửa entry khi người dùng yêu cầu rõ (commit với `ALLOW_HISTORY_REWRITE=1`).
+- Mỗi lần sửa `data/characters.json`, cập nhật `meta.updated`.
 
 ## 2. Dịch thuật
 
@@ -23,7 +21,7 @@
 
 ## 3. Kiến trúc
 
-- `data/characters.json` là nguồn dữ liệu canonical (JSON, có version).
+- `data/characters.json` là nguồn dữ liệu canonical (JSON, `meta.patch` = bản game hiện tại).
 - `app/main.py` là FastAPI server, mở port và trả JSON cho frontend. Frontend không nhúng dữ liệu, chỉ gọi API.
 - `public/` chứa HTML/CSS/JS tĩnh. Không chỉnh sửa trực tiếp file sinh tự động (nếu có).
 - `scripts/` chứa pipeline extract/dịch/review. Chạy script bằng Python trong `.venv`.
@@ -53,6 +51,6 @@
   4. Không `--no-verify` để lách hook; hook fail thì sửa nguyên nhân.
 - Định dạng message (hook `commit-msg` kiểm tra): `<type>(<scope>): <tóm tắt>`, tóm tắt ≤ 72 ký tự.
   - type: `feat`, `fix`, `data`, `i18n`, `ui`, `api`, `docs`, `chore`, `refactor`, `test`.
-  - Commit đổi dữ liệu nhân vật ghi patch trong body, ví dụ: `data(jinhsi): sửa tên kỹ năng bị dịch` + body `Patch 3.7 → 3.8`.
-- Hook `pre-commit` tự kiểm tra: JSON trong `data/` hợp lệ; `scripts/review.py` pass khi `data/` hoặc `scripts/` đổi; nhân vật đổi nội dung phải có entry `changes` mới, lịch sử cũ không bị sửa, `meta.updated` được cập nhật; cú pháp JS/Python; không stage `.venv`, `__pycache__`, `data/en_raw.json`.
+  - Commit đổi thông tin game của nhân vật ghi bản game trong body, ví dụ: `data(jinhsi): cập nhật kỹ năng theo bản 3.9` + body `Game 3.9: ...`.
+- Hook `pre-commit` tự kiểm tra: JSON trong `data/` hợp lệ; `scripts/review.py` pass khi `data/` hoặc `scripts/` đổi; thông tin game của nhân vật đổi (bỏ qua phần dịch tiếng Việt) phải có entry `changes` mới, lịch sử cũ không bị sửa, `meta.updated` được cập nhật; cú pháp JS/Python; không stage `.venv`, `__pycache__`, `data/en_raw.json`.
 - Agent chỉ commit/push khi người dùng yêu cầu; làm trên `main` thì tạo branch trước nếu thay đổi lớn.
