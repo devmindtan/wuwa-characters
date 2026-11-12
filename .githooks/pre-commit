@@ -27,7 +27,7 @@ if printf '%s\n' "$staged" | grep -qx 'data/characters.json' && git cat-file -e 
 import json, os, subprocess, sys
 # In-game info = everything except Vietnamese translations and the history itself.
 # Translation fixes (desc_vi, intro_vi) are not game changes and need no entry.
-VI_KEYS = {'desc_vi', 'intro_vi', 'changes', 'version', 'updated'}
+VI_KEYS = {'desc_vi', 'intro_vi', 'changes', 'version', 'updated', 'references'}  # not in-game info
 def game_info(x):
     if isinstance(x, dict):
         return {k: game_info(v) for k, v in x.items() if k not in VI_KEYS}
@@ -35,6 +35,14 @@ def game_info(x):
         return [game_info(v) for v in x]
     return x
 allow_rewrite = os.environ.get('ALLOW_HISTORY_REWRITE') == '1'
+def differs(new, old):
+    """True when in-game info present in both versions changed. Fields that only
+    exist in one version (newly added data, at any depth) are ignored."""
+    if isinstance(new, dict) and isinstance(old, dict):
+        return any(differs(new[k], old[k]) for k in (set(new) & set(old)) - VI_KEYS)
+    if isinstance(new, list) and isinstance(old, list):
+        return len(new) != len(old) or any(differs(a, b) for a, b in zip(new, old))
+    return new != old
 new = json.loads(subprocess.check_output(['git', 'show', ':data/characters.json']))
 old = json.loads(subprocess.check_output(['git', 'show', 'HEAD:data/characters.json']))
 olds = {c['slug']: c for c in old['characters']}
@@ -45,9 +53,7 @@ for c in new['characters']:
         continue
     # Only fields present before and after count: adding a new field (filling in
     # data the archive lacked, e.g. resonance_chain) is not an in-game change.
-    common = set(c) & set(o)
-    pick = lambda x: {k: x[k] for k in common}
-    if game_info(pick(c)) != game_info(pick(o)) and len(c.get('changes', [])) <= len(o.get('changes', [])):
+    if differs(c, o) and len(c.get('changes', [])) <= len(o.get('changes', [])):
         bad.append(c['slug'])
     if not allow_rewrite and o.get('changes', []) != c.get('changes', [])[:len(o.get('changes', []))]:
         print(f"✗ {c['slug']}: lịch sử changes cũ bị sửa/xóa (chỉ được thêm entry mới)"); sys.exit(1)

@@ -100,6 +100,26 @@ def main():
                     }
         c['materials'] = materials
 
+        # Lv1-10 multipliers per skill, only from a skill page of this resonator.
+        owner = w['title'].split('-')[0]  # "Rover-Aero" -> "Rover"
+        for sk in c['skills']:
+            sc = raw.get('scaling', {}).get(sk['name'])
+            if sc and sc['rows'] and (not sc['resonator'] or sc['resonator'] in (w['title'], owner)):
+                sk['scaling'] = {'rows': sc['rows'], 'source': wiki_url(sk['name'])}
+            else:
+                sk.pop('scaling', None)
+
+        level_costs = {}
+        combat = raw.get('combat', {}).get(c['name'], {})
+        for key, rows in combat.get('level_costs', {}).items():
+            level_costs[key] = [{
+                'level': r['level'],
+                'ascension': r['ascension'],
+                'items': [{'name': it['name'], 'qty': it['qty'], 'rarity': it['rarity'],
+                           'img': thumb(images.get(it['image_key'].replace('_', ' '), ''), 80)} for it in r['items']],
+            } for r in rows]
+        c['level_costs'] = level_costs
+
         refs = [{'title': f"prydwen.gg — {c['name']}", 'url': c['source'],
                  'used_for': 'Kỹ năng, mô tả nhân vật, hình ảnh'}]
         main_page = w['pages'][0] if w['pages'] else w['title']
@@ -111,6 +131,10 @@ def main():
             uses.append('nguyên liệu nâng kỹ năng' if shared else 'nguyên liệu')
         refs.append({'title': f'Wuthering Waves Wiki — {main_page}', 'url': wiki_url(main_page),
                      'used_for': ', '.join(uses)})
+        if combat.get('page') and (level_costs or any('scaling' in sk for sk in c['skills'])):
+            refs.append({'title': f"Wuthering Waves Wiki — {combat['page']}", 'url': wiki_url(combat['page']),
+                         'used_for': 'hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), '
+                                     'chi phí nâng cấp theo từng cấp'})
         for page in shared:
             refs.append({'title': f'Wuthering Waves Wiki — {page}', 'url': wiki_url(page),
                          'used_for': 'nguyên liệu đột phá (dùng chung cho mọi dạng Rover)'})
@@ -125,6 +149,9 @@ def main():
           f"translated: {sum(1 for c in chars for n in c.get('resonance_chain', []) if n['desc_vi'])}, "
           f"missing VI: {len(missing)}")
     print('no chain:', [c['name'] for c in chars if not c.get('resonance_chain')])
+    print('skills with scaling:', sum(1 for c in chars for s in c['skills'] if 'scaling' in s), '/',
+          sum(len(c['skills']) for c in chars))
+    print('no level costs:', [c['name'] for c in chars if not c.get('level_costs')])
     print('incomplete materials:', [c['name'] for c in chars if len(c.get('materials', {})) < 4])
     if args.export_missing:
         Path(args.export_missing).write_text(json.dumps(missing, ensure_ascii=False, indent=1), encoding='utf-8')

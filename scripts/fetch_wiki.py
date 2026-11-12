@@ -98,6 +98,105 @@ def parse_costs(page):
     return blocks
 
 
+SKILL_HEAD = re.compile(
+    r'<tr><td>(?:(?!</tr>).)*?</td><td><a href="/wiki/[^"]+" title="[^"]+">([^<]+)</a></td>'
+    r'<td><a href="/wiki/[^"]+" title="[^"]+">([^<]+)</a></td></tr>', re.S)
+
+
+def cell_text(s):
+    s = re.sub(r'<br\s*/?>', ' ', s)
+    return text(s)
+
+
+def parse_scaling(page):
+    """Forte Table on <Resonator>/Combat -> [{name, type, rows[{label, values}]}]."""
+    start = page.find('id="Details"')
+    end = page.find('id="Skill_Costs"')
+    if start < 0:
+        return []
+    seg = page[start:end if end > start else None]
+    heads = list(SKILL_HEAD.finditer(seg))
+    skills = []
+    for i, h in enumerate(heads):
+        body = seg[h.end(): heads[i + 1].start() if i + 1 < len(heads) else None]
+        rows = []
+        for tr in re.findall(r'<tr><th>(.*?)</th>(.*?)</tr>', body, re.S):
+            label = text(tr[0])
+            cells = [cell_text(c) for c in re.findall(r'<td[^>]*>(.*?)</td>', tr[1], re.S)]
+            if label and cells:
+                rows.append({'label': label, 'values': cells})
+        skills.append({'name': html.unescape(h.group(1)).strip(), 'type': html.unescape(h.group(2)).strip(), 'rows': rows})
+    return skills
+
+
+COST_SECTIONS = [('forte', 'Main_Forte'), ('inherent', 'Inherent_Skills'), ('stat_bonus', 'Stat_Bonuses')]
+
+
+def parse_level_costs(page):
+    """Per-level upgrade tables under "Skill Costs" -> {forte, inherent, stat_bonus}: [{level, ascension, items}].
+
+    The tables follow each other on the page; rows restart at "1 → 2" for each
+    table. Forte is the first 9-row group, Inherent and Stat Bonus are the last
+    two 2-row groups (some pages repeat the Forte table per form).
+    """
+    i = page.find('id="Skill_Costs"')
+    if i < 0:
+        i = page.find('id="Main_Forte"')
+    j = page.find('id="Resonance_Chain"', i)
+    if i < 0:
+        return {}
+    seg = page[i:j if j > i else None]
+    groups = []
+    for tr in re.split(r'<tr', seg)[1:]:
+        tr = tr.split('</tr>', 1)[0]
+        tds = re.findall(r'<td[^>]*>(.*?)</td>', tr, re.S)
+        if len(tds) < 3 or '→' not in text(tds[0]):
+            continue
+        level = text(tds[0])
+        items = []
+        for rarity, k, qty, cap in CARD.findall(tr):
+            name = re.sub(r'\s*\[[^\]]*\]\s*$', '', text(cap))
+            items.append({'name': name, 'qty': int(qty.replace(',', '').replace('.', '')),
+                          'rarity': int(rarity), 'image_key': urllib.parse.unquote(html.unescape(k))})
+        if level.startswith('1 →') or not groups:
+            groups.append([])
+        groups[-1].append({'level': level, 'ascension': text(tds[1]), 'items': items})
+    out = {}
+    forte = next((g for g in groups if len(g) == 9), None)
+    if forte:
+        out['forte'] = forte
+    small = [g for g in groups if len(g) == 2]
+    if len(small) >= 2:
+        out['inherent'], out['stat_bonus'] = small[-2], small[-1]
+    return out
+
+
+SCALING_PARAM = re.compile(r'^\s*\|\s*([^=|\n]+?)\s*=\s*(.*?)\s*$', re.M)
+
+
+def parse_skill_scaling(src):
+    """{{Skill Scaling}} wikitext -> {resonator, rows[{label, values}]} (values: 10 levels or 1 constant)."""
+    m = re.search(r'\{\{Skill Scaling(.*?)\n\}\}', src, re.S)
+    resonator = infobox(src, 'resonator')
+    if not m:
+        return {'resonator': resonator, 'rows': []}
+    params = dict(SCALING_PARAM.findall(m.group(1)))
+    order = [x.strip() for x in params.get('order', '').split(',') if x.strip()]
+    titles = [x.strip() for x in params.get('titles', '').split(',')]
+    rows = []
+    for idx, key in enumerate(order):
+        raw = params.get(key, '').strip()
+        if raw:
+            values = [v.strip() for v in raw.split(';')]
+        else:  # per-level form: key_1 ... key_10
+            values = [params[f'{key}_{n}'].strip() for n in range(1, 11) if params.get(f'{key}_{n}', '').strip()]
+            if not values:
+                continue
+        label = titles[idx] if idx < len(titles) else key
+        rows.append({'label': label, 'values': values})
+    return {'resonator': resonator, 'rows': rows}
+
+
 def wikitext(titles):
     out = {}
     for i in range(0, len(titles), 50):
@@ -162,6 +261,29 @@ def main():
         print(f"{name:24} nodes={len(entry['nodes'])} cost blocks={len(entry['costs'])} pages={entry['pages']}", flush=True)
         CACHE.write_text(json.dumps(cache, ensure_ascii=False, indent=1), encoding='utf-8')
 
+    combat = cache.setdefault('combat', {})
+    for name in names:
+        if combat.get(name, {}).get('level_costs'):
+            continue
+        title = chars[name]['title']
+        used = title + '/Combat'
+        costs = parse_level_costs(page_html(used) or '')
+        if not costs and name in ASCENSION_FROM:  # Rover forms share one table
+            used = ASCENSION_FROM[name] + '/Combat'
+            costs = parse_level_costs(page_html(used) or '')
+        combat[name] = {'page': used, 'level_costs': costs}
+        print(f"{name:24} level costs={ {k: len(v) for k, v in combat[name]['level_costs'].items()} }", flush=True)
+        CACHE.write_text(json.dumps(cache, ensure_ascii=False, indent=1), encoding='utf-8')
+
+    # Per-skill Lv1-10 scaling from each skill page's {{Skill Scaling}}.
+    scaling = cache.setdefault('scaling', {})
+    payload = json.loads(DATA.read_text(encoding='utf-8'))
+    skill_names = sorted({s['name'] for c in payload['characters'] for s in c['skills']} - set(scaling))
+    for title, src in wikitext(skill_names).items():
+        scaling[title] = parse_skill_scaling(src)
+    print('skill pages:', len(scaling), 'not found:', len(set(skill_names) - set(scaling)))
+    CACHE.write_text(json.dumps(cache, ensure_ascii=False, indent=1), encoding='utf-8')
+
     node_src = cache.setdefault('nodes', {})
     want = sorted({n for c in chars.values() for n in c['nodes']} - set(node_src))
     for title, src in wikitext(want).items():
@@ -176,6 +298,8 @@ def main():
     images = cache.setdefault('images', {})
     files = {n['image'] for n in node_src.values() if n['image']}
     files |= {i['image_key'].replace('_', ' ') for c in chars.values() for b in c['costs'] for i in b['items']}
+    files |= {i['image_key'].replace('_', ' ') for c in combat.values() for rows in c['level_costs'].values()
+              for r in rows for i in r['items']}
     need = sorted(files - set(images))
     images.update(image_urls(need))
     print('images:', len(images), 'missing:', sorted(files - set(images))[:10])
