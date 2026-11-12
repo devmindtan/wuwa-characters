@@ -436,8 +436,9 @@ function renderTree() {
     let nodes = '';
     if (col.pos === 'center') {
       const [in1, in2] = parts.inherent;
-      nodes = (in2 ? diamond(in2, 'Inherent Skill', false) : '')
-        + (in1 ? circle('skill-' + in1.i, skillIcon(in1, 'fn-ico'), '', 'Inherent Skill: ' + in1.name) : '');
+      // Both nodes are Inherent Skills: label each with its own name.
+      nodes = (in2 ? diamond(in2, 'Inherent Skill: ' + in2.name, false) : '')
+        + (in1 ? circle('skill-' + in1.i, skillIcon(in1, 'fn-ico'), 'Inherent Skill: ' + in1.name, 'Inherent Skill: ' + in1.name) : '');
     }
     return `<div class="fcol fcol-${col.pos}">${nodes}${main ? diamond(main, col.label) : `<span class="fn-empty">${esc(col.label)}</span>`}</div>`;
   }).join('');

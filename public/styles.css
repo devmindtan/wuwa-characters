@@ -244,7 +244,8 @@ input:focus,select:focus{border-color:var(--line2);box-shadow:0 0 0 3px rgba(214
 .fn.is-sel.fn-diamond .fn-shape::before,.fn.is-sel.fn-circle .fn-shape{border-color:var(--gold2);box-shadow:0 0 0 4px rgba(240,227,199,.25),0 0 24px rgba(240,227,199,.6)}
 .fn-lv{font-family:"Cormorant Garamond",serif;font-size:17px;line-height:1;color:var(--soft);font-variant-numeric:lining-nums}
 .fn-lv b{color:var(--gold2);font-size:20px}
-.fn-label{max-width:110px;font-size:11.5px;line-height:1.25;text-align:center;color:var(--soft);background:rgba(0,0,0,.35);border-radius:4px;padding:2px 6px}
+.fcol-center .fn-label{max-width:150px}
+.fn-label{position:relative;z-index:1;max-width:110px;font-size:11.5px;line-height:1.25;text-align:center;color:var(--soft);background:#0f1b23;border:1px solid rgba(255,255,255,.08);border-radius:4px;padding:2px 6px}
 .fn.is-sel .fn-label{color:#081014;background:var(--gold2)}
 .fn-empty{font-size:11px;color:var(--muted)}
 .forte-bottom{display:flex;justify-content:center;gap:56px;margin-top:6px}
@@ -445,6 +446,7 @@ dialog#mechDialog::backdrop{background:rgba(3,6,8,.7);backdrop-filter:blur(3px)}
   .fn-circle .fn-ico img{width:20px;height:20px}
   .fn-lv{font-size:13px}.fn-lv b{font-size:15px}
   .fn-label{font-size:9.5px;max-width:68px;padding:1px 3px}
+  .fcol-center .fn-label{max-width:104px}
   .forte-bottom{gap:30px}
   .forte-bottom .fn-circle .fn-shape{width:40px;height:40px}
   .tabs{top:0;gap:2px;padding:4px}
