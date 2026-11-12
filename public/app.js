@@ -392,18 +392,14 @@ function applyLevel() {
 
 /* ---------- skill tree (in-game Forte layout) ---------- */
 const TREE_COLS = [
-  {type: 'Basic Attack', label: 'Normal Attack', stat: 'star', pos: 'outer'},
-  {type: 'Resonance Skill', label: 'Resonance Skill', stat: 'sword', pos: 'inner'},
-  {type: 'Forte Circuit', label: 'Forte Circuit', stat: null, pos: 'center'},
-  {type: 'Resonance Liberation', label: 'Resonance Liberation', stat: 'sword', pos: 'inner'},
-  {type: 'Intro Skill', label: 'Intro Skill', stat: 'star', pos: 'outer'},
+  {type: 'Basic Attack', label: 'Normal Attack', pos: 'outer'},
+  {type: 'Resonance Skill', label: 'Resonance Skill', pos: 'inner'},
+  {type: 'Forte Circuit', label: 'Forte Circuit', pos: 'center'},
+  {type: 'Resonance Liberation', label: 'Resonance Liberation', pos: 'inner'},
+  {type: 'Intro Skill', label: 'Intro Skill', pos: 'outer'},
 ];
-const STAT_ICON = {
-  star: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.2 7.3 7.3 2.2-7.3 2.2L12 21.5l-2.2-7.3L2.5 12l7.3-2.2z" fill="currentColor"/></svg>',
-  sword: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4l9 9M20 4l-9 9M7 17l-3 3M17 17l3 3M5.5 15.5l3 3M18.5 15.5l-3 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
-};
 const TUNE_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true" width="22" height="22"><path d="M3 12h3l2-5 3 10 3-12 2 7h5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-const selKey = (sel) => (sel.kind === 'skill' ? 'skill-' + sel.i : `stat-${sel.col}-${sel.n}`);
+const selKey = (sel) => 'skill-' + sel.i;
 
 function treeParts(c) {
   const skills = (c.skills || []).map((s, i) => ({...s, i}));
@@ -442,8 +438,6 @@ function renderTree() {
       const [in1, in2] = parts.inherent;
       nodes = (in2 ? diamond(in2, 'Inherent Skill', false) : '')
         + (in1 ? circle('skill-' + in1.i, skillIcon(in1, 'fn-ico'), '', 'Inherent Skill: ' + in1.name) : '');
-    } else {
-      nodes = [2, 1].map((n) => circle(`stat-${ci}-${n}`, STAT_ICON[col.stat], '', t('stat_node_title', {col: col.label, n}))).join('');
     }
     return `<div class="fcol fcol-${col.pos}">${nodes}${main ? diamond(main, col.label) : `<span class="fn-empty">${esc(col.label)}</span>`}</div>`;
   }).join('');
@@ -466,15 +460,6 @@ function renderTree() {
 function renderTreeDetail() {
   const c = state.current;
   const sel = state.treeSel;
-  if (sel.kind === 'stat') {
-    const col = TREE_COLS[sel.col];
-    const cost = (c.level_costs || {}).stat_bonus?.[sel.n - 1];
-    $('d-tree-detail').innerHTML = `<div class="td-head"><span class="td-ico td-stat">${STAT_ICON[col.stat]}</span>
-        <div><p class="td-type">${esc(t('stat_branch', {col: col.label}))}</p><h3>${esc(t('stat_tier', {n: sel.n}))}</h3></div>
-        <button type="button" class="btn td-go" data-tabgo="mats">${esc(t('view_cost'))} <span aria-hidden="true">→</span></button></div>
-      <p class="td-desc">${esc(t('stat_desc'))}${cost ? esc(cost.ascension === '-' ? t('stat_noreq', {n: sel.n}) : t('stat_req', {n: sel.n, a: cost.ascension})) : ''}</p>`;
-    return;
-  }
   const s = c.skills[sel.i];
   if (!s) { $('d-tree-detail').innerHTML = ''; return; }
   const lines = ((state.showEn ? s.desc : s.desc_vi) || []).filter((l) => !lineHTML(l).sub).slice(0, 2);
@@ -1021,8 +1006,7 @@ detailView.addEventListener('click', (e) => {
   const n = e.target.closest('.fn[data-sel]');
   if (n) {
     const key = n.dataset.sel;
-    const m = key.match(/^stat-(\d)-(\d)$/);
-    state.treeSel = m ? {kind: 'stat', col: Number(m[1]), n: Number(m[2])} : {kind: 'skill', i: Number(key.slice(6))};
+    state.treeSel = {kind: 'skill', i: Number(key.slice(6))};
     $('d-tree').querySelectorAll('.fn').forEach((x) => x.classList.toggle('is-sel', x === n));
     renderTreeDetail();
     applyLevel();

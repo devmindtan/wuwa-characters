@@ -223,6 +223,7 @@ input:focus,select:focus{border-color:var(--line2);box-shadow:0 0 0 3px rgba(214
 .fcol{position:relative;display:flex;flex-direction:column;align-items:center;gap:26px}
 .fcol::before{content:"";position:absolute;top:24px;bottom:80px;left:50%;width:2px;transform:translateX(-50%);
   background:linear-gradient(180deg,transparent,rgba(255,255,255,.55) 12%,rgba(255,255,255,.55) 88%,transparent);box-shadow:0 0 8px rgba(255,255,255,.35)}
+.fcol:not(.fcol-center)::before{display:none}
 .fcol-outer{margin-bottom:0}
 .fcol-inner{margin-bottom:56px}
 .fcol-center{margin-bottom:82px}
@@ -254,7 +255,6 @@ input:focus,select:focus{border-color:var(--line2);box-shadow:0 0 0 3px rgba(214
 .td-ico{display:grid;place-items:center;width:52px;height:52px;border-radius:50%;border:1px solid var(--gold);background:#0d171e;color:#e9eef2}
 .td-ico img{width:40px;height:40px;object-fit:contain}
 .td-ico b{color:var(--gold);font-size:13px}
-.td-stat svg{width:24px;height:24px}
 .td-type{margin:0;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
 .td-head h3{margin:2px 0 0;font-size:26px;line-height:1.05;color:var(--gold2)}
 .td-go{white-space:nowrap}

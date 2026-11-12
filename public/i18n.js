@@ -78,15 +78,8 @@ const I18N = {
     chain_empty: 'Nguồn tham khảo chưa cập nhật Resonance Chain cho {name}. Mục này sẽ được bổ sung khi wiki có dữ liệu.',
     sequence_node: 'Nút {n}',
 
-    tree_note: 'Bố cục theo màn Forte trong game. Bấm một nút để xem chi tiết; kéo thanh cấp trong bảng hệ số để đổi cấp cho cả cây. Nút Stat Bonus (✦/⚔) chưa có số liệu chỉ số từ nguồn tham khảo.',
-    stat_branch: 'Stat Bonus · nhánh {col}',
-    stat_tier: 'Bậc {n}',
-    stat_node_title: 'Stat Bonus · {col} · bậc {n}',
-    view_cost: 'Xem chi phí',
+    tree_note: 'Các mục nâng cấp Forte, bố cục theo màn Forte trong game. Bấm một nút để xem chi tiết; kéo thanh cấp trong bảng hệ số để đổi cấp cho cả cây.',
     view_full: 'Xem mô tả đầy đủ',
-    stat_desc: 'Nút chỉ số cộng thêm của cây Forte. Nguồn tham khảo (Wuthering Waves Wiki) chưa có loại và giá trị chỉ số của nút này nên chưa hiển thị số liệu.',
-    stat_req: ' Mở bậc {n} cần đột phá {a}.',
-    stat_noreq: ' Mở bậc {n} không yêu cầu đột phá.',
 
     mat_ascension: 'Đột phá',
     mat_ascension_hint: 'Tổng nguyên liệu đột phá nhân vật (0✦ → 6✦)',
@@ -212,15 +205,8 @@ const I18N = {
     chain_empty: "The sources have not published {name}'s Resonance Chain yet. It will be added once the wiki has the data.",
     sequence_node: 'Node {n}',
 
-    tree_note: "Laid out like the in-game Forte screen. Click a node for details; drag the level slider in Multipliers to change the level for the whole tree. Stat Bonus nodes (✦/⚔) have no stat values in the sources yet.",
-    stat_branch: 'Stat Bonus · {col} branch',
-    stat_tier: 'Tier {n}',
-    stat_node_title: 'Stat Bonus · {col} · tier {n}',
-    view_cost: 'View cost',
+    tree_note: 'The Forte upgrade entries, laid out like the in-game Forte screen. Click a node for details; drag the level slider in Multipliers to change the level for the whole tree.',
     view_full: 'Full description',
-    stat_desc: 'A bonus stat node of the Forte tree. The source (Wuthering Waves Wiki) does not list the stat type or value of this node, so no number is shown.',
-    stat_req: ' Unlocking tier {n} requires ascension {a}.',
-    stat_noreq: ' Unlocking tier {n} has no ascension requirement.',
 
     mat_ascension: 'Ascension',
     mat_ascension_hint: 'Total character ascension materials (0✦ → 6✦)',
