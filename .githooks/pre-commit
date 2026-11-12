@@ -27,7 +27,9 @@ if printf '%s\n' "$staged" | grep -qx 'data/characters.json' && git cat-file -e 
 import json, os, subprocess, sys
 # In-game info = everything except Vietnamese translations and the history itself.
 # Translation fixes (desc_vi, intro_vi) are not game changes and need no entry.
-VI_KEYS = {'desc_vi', 'intro_vi', 'changes', 'version', 'updated', 'references'}  # not in-game info
+VI_KEYS = {'desc_vi', 'intro_vi', 'changes', 'version', 'updated', 'references',
+           # where an image is hosted (remote URL vs public/assets copy) is not in-game info
+           'icon', 'img', 'img_icon', 'img_card', 'img_full'}  # not in-game info
 def game_info(x):
     if isinstance(x, dict):
         return {k: game_info(v) for k, v in x.items() if k not in VI_KEYS}
