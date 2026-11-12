@@ -37,6 +37,10 @@
 - Trong mô tả kỹ năng, nếu nhắc tới **tên một kỹ năng khác của cùng nhân vật**, phải tạo liên kết; bấm vào phải cuộn tới đúng section kỹ năng đó và làm nổi bật.
 - Nếu nhắc tới **cơ chế đặc biệt** (Tune Strain, Incarnation, Kaleidoscopic Parade, Off-Tune Level...), phải mở bảng/dialog giải thích, kèm các vị trí xuất hiện trong bộ kỹ năng.
 - Không link trùng lặp trong cùng một cụm từ; ưu tiên khớp tên dài trước.
+- Cơ chế riêng của một nhân vật phải khai báo chủ trong `OWNERS` (`scripts/build_mechanics.py`); UI chỉ link cơ chế đó trên trang của chủ (ví dụ "Manifest" của Cartethyia không được link trong "Heart Manifest" của Hsin).
+- Tên riêng chỉ *chứa* tên một cơ chế (Unison Boon, Unison Response, Tune Rupture Response...) phải nằm trong `NO_LINK` để không bị link nhầm; nếu đó là cơ chế quan trọng thì thêm vào `CURATED` với tóm tắt bám dữ liệu.
+- Cụm "<Nguyên tố> DMG" (kèm Bonus/Amplification/RES) được tô màu nguyên tố chính thức (Glacio #41AEFB, Fusion #F0744E, Electro #B46BFF, Aero #55FFB5, Spectro #F8E56C, Havoc #E649A6), chỉ đổi màu, không in đậm.
+- Sau khi sửa `CURATED`/`OWNERS`/`NO_LINK`, chạy `python scripts/build_mechanics.py` để sinh lại `data/mechanics.json`.
 
 ## 5. Kiểm chứng trước khi báo xong
 
