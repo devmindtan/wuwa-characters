@@ -302,104 +302,137 @@ const skillIcon = (s, cls) => `<span class="${cls}" aria-hidden="true">${s.icon
   ? `<img src="${esc(s.icon)}" alt="" loading="lazy" referrerpolicy="no-referrer">`
   : `<b>${esc(TYPE_MONO[s.type] || '?')}</b>`}</span>`;
 
-function sliderHTML(label) {
-  return `<div class="lv-slider">
-    <span class="lv-label">${label} <b class="lv-num">${state.level}</b><small>/10</small></span>
-    <input type="range" class="lv-range" min="1" max="10" step="1" value="${state.level}" aria-label="Cấp kỹ năng">
-    <span class="lv-ticks" aria-hidden="true">${LEVELS.map((n) => `<i data-n="${n}">${n}</i>`).join('')}</span>
-  </div>`;
-}
-
-function scaleHTML(s, i, compact = false) {
+/* Multipliers panel: "Lv. N" slider + striped rows (label left, value right). */
+function scaleHTML(s, i, open = false) {
   const rows = leveled(s);
   const consts = constants(s);
   if (!rows.length && !consts.length) {
-    return compact ? '<p class="tn-muted">Chưa có hệ số theo cấp từ nguồn tham khảo.</p>' : '';
+    return open ? '<p class="tn-muted">Chưa có hệ số theo cấp từ nguồn tham khảo.</p>' : '';
   }
-  return `<div class="scale${compact ? ' compact' : ''}" data-si="${i}">
-    ${rows.length ? sliderHTML('Hệ số ở cấp') : ''}
-    <ul class="scale-rows">${rows.map((r, ri) => {
-      const t1 = totalOf(r.values[0]);
-      const t10 = totalOf(r.values[r.values.length - 1]);
-      const growth = Number.isFinite(t1) && Number.isFinite(t10) && t1 > 0 ? `×${(t10 / t1).toFixed(2)} từ Lv1 → Lv${r.values.length}` : '';
-      return `<li data-ri="${ri}">
-        <div class="sr-top"><span class="sr-label">${esc(r.label)}</span><b class="sr-val"></b></div>
-        <div class="sr-bar"><i></i></div>
-        ${growth ? `<span class="sr-growth">${growth}</span>` : ''}
-      </li>`;
-    }).join('')}</ul>
-    ${consts.length ? `<ul class="scale-consts">${consts.map((r) => `<li><span>${esc(r.label)}</span><b>${esc(r.values[0])}</b></li>`).join('')}</ul>` : ''}
-    ${s.scaling?.source ? `<p class="scaling-src">Nguồn: <a href="${esc(s.scaling.source)}" target="_blank" rel="noopener noreferrer">Wuthering Waves Wiki — ${esc(s.name)}</a></p>` : ''}
-  </div>`;
+  return `<details class="mult" data-si="${i}"${open ? ' open' : ''}>
+    <summary>Multipliers <svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 6.5 6 1.5l5 5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></summary>
+    <div class="mult-body">
+      ${rows.length ? `<label class="mult-lv"><span>Lv. <b class="lv-num">${state.level}</b></span>
+        <input type="range" class="lv-range" min="1" max="10" step="1" value="${state.level}" aria-label="Cấp kỹ năng"></label>` : ''}
+      <ul class="mult-rows">
+        ${rows.map((r, ri) => `<li data-ri="${ri}"><span>${esc(r.label)}</span><b class="sr-val"></b></li>`).join('')}
+        ${consts.map((r) => `<li><span>${esc(r.label)}</span><b>${esc(r.values[0])}</b></li>`).join('')}
+      </ul>
+      ${s.scaling?.source ? `<p class="scaling-src">Nguồn: <a href="${esc(s.scaling.source)}" target="_blank" rel="noopener noreferrer">Wuthering Waves Wiki — ${esc(s.name)}</a></p>` : ''}
+    </div>
+  </details>`;
 }
 
-// Push state.level into every slider, value and bar on the detail page.
+// Push state.level into every slider, value and tree badge on the detail page.
 function applyLevel() {
   const c = state.current;
   if (!c) return;
   const lv = state.level;
   detailView.querySelectorAll('.lv-range').forEach((r) => { r.value = String(lv); r.style.setProperty('--p', `${((lv - 1) / 9) * 100}%`); });
   detailView.querySelectorAll('.lv-num').forEach((n) => { n.textContent = String(lv); });
-  detailView.querySelectorAll('.lv-ticks i').forEach((t) => t.classList.toggle('on', Number(t.dataset.n) <= lv));
-  detailView.querySelectorAll('.scale[data-si]').forEach((box) => {
-    const s = c.skills[Number(box.dataset.si)];
-    const rows = leveled(s);
-    box.querySelectorAll('.scale-rows li').forEach((li) => {
-      const r = rows[Number(li.dataset.ri)];
-      li.querySelector('.sr-val').textContent = valueAt(r, lv);
-      const totals = r.values.map(totalOf);
-      const max = Math.max(...totals.filter(Number.isFinite));
-      const cur = totalOf(valueAt(r, lv));
-      li.querySelector('.sr-bar i').style.width = Number.isFinite(cur) && max > 0 ? `${(cur / max) * 100}%` : '0%';
+  detailView.querySelectorAll('.mult[data-si]').forEach((box) => {
+    const rows = leveled(c.skills[Number(box.dataset.si)]);
+    box.querySelectorAll('.mult-rows li[data-ri]').forEach((li) => {
+      li.querySelector('.sr-val').textContent = valueAt(rows[Number(li.dataset.ri)], lv);
     });
   });
-  detailView.querySelectorAll('.tnode-lv').forEach((b) => { b.textContent = `Lv ${lv}`; });
+  detailView.querySelectorAll('.fn-lv b').forEach((b) => { b.textContent = String(lv); });
 }
 
-/* ---------- skill tree ---------- */
-const TREE_COLS = ['Basic Attack', 'Resonance Skill', 'Forte Circuit', 'Resonance Liberation', 'Intro Skill'];
+/* ---------- skill tree (in-game Forte layout) ---------- */
+const TREE_COLS = [
+  {type: 'Basic Attack', label: 'Normal Attack', stat: 'star', pos: 'outer'},
+  {type: 'Resonance Skill', label: 'Resonance Skill', stat: 'sword', pos: 'inner'},
+  {type: 'Forte Circuit', label: 'Forte Circuit', stat: null, pos: 'center'},
+  {type: 'Resonance Liberation', label: 'Resonance Liberation', stat: 'sword', pos: 'inner'},
+  {type: 'Intro Skill', label: 'Intro Skill', stat: 'star', pos: 'outer'},
+];
+const STAT_ICON = {
+  star: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.2 7.3 7.3 2.2-7.3 2.2L12 21.5l-2.2-7.3L2.5 12l7.3-2.2z" fill="currentColor"/></svg>',
+  sword: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4l9 9M20 4l-9 9M7 17l-3 3M17 17l3 3M5.5 15.5l3 3M18.5 15.5l-3 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
+};
+const TUNE_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true" width="22" height="22"><path d="M3 12h3l2-5 3 10 3-12 2 7h5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const selKey = (sel) => (sel.kind === 'skill' ? 'skill-' + sel.i : `stat-${sel.col}-${sel.n}`);
+
+function treeParts(c) {
+  const skills = (c.skills || []).map((s, i) => ({...s, i}));
+  const fortes = skills.filter((s) => s.type === 'Forte Circuit');
+  const tune = fortes.filter((s) => /^Tune Break/.test(s.name));
+  const mainForte = fortes.filter((s) => !/^Tune Break/.test(s.name));
+  return {
+    skills,
+    byType: (type) => (type === 'Forte Circuit' ? mainForte.slice(0, 1) : skills.filter((s) => s.type === type).slice(0, 1)),
+    inherent: skills.filter((s) => s.type === 'Inherent Skill'),
+    outro: skills.find((s) => s.type === 'Outro Skill'),
+    bottomExtra: [...tune, ...mainForte.slice(1)],
+  };
+}
 
 function renderTree() {
   const c = state.current;
-  const skills = (c.skills || []).map((s, i) => ({...s, i}));
-  if (state.treeSel == null || !c.skills[state.treeSel]) {
-    state.treeSel = skills.find((s) => s.type === 'Forte Circuit')?.i ?? 0;
+  const parts = treeParts(c);
+  if (!state.treeSel || (state.treeSel.kind === 'skill' && !c.skills[state.treeSel.i])) {
+    const f = parts.byType('Forte Circuit')[0] || parts.skills[0];
+    state.treeSel = {kind: 'skill', i: f ? f.i : 0};
   }
-  const node = (s, small = false) => `<button type="button" class="tnode${small ? ' tnode-sm' : ''}${s.i === state.treeSel ? ' is-sel' : ''}" data-si="${s.i}" aria-pressed="${s.i === state.treeSel}">
-      ${skillIcon(s, 'tnode-ring')}
-      ${!small && leveled(s).length ? `<span class="tnode-lv">Lv ${state.level}</span>` : ''}
-      <span class="tnode-name">${esc(s.name)}</span>
-      <span class="tnode-type">${esc(s.type)}</span>
+  const sk = selKey(state.treeSel);
+  const diamond = (s, label, withLv = true) => `<button type="button" class="fn fn-diamond${sk === 'skill-' + s.i ? ' is-sel' : ''}" data-sel="skill-${s.i}" title="${esc(s.name)}" aria-label="${esc(label)}: ${esc(s.name)}">
+      <span class="fn-shape">${skillIcon(s, 'fn-ico')}</span>
+      ${withLv ? `<span class="fn-lv">Lv.<b>${state.level}</b>/10</span>` : ''}
+      <span class="fn-label">${esc(label)}</span>
     </button>`;
-  const inherent = skills.filter((s) => s.type === 'Inherent Skill');
-  const outro = skills.filter((s) => s.type === 'Outro Skill');
-  $('d-tree').innerHTML = `
-    <div class="tree-top">${sliderHTML('Cấp kỹ năng')}</div>
-    <div class="tree-board">${TREE_COLS.map((type) => {
-      const list = skills.filter((s) => s.type === type);
-      const center = type === 'Forte Circuit';
-      return `<div class="tcol${center ? ' tcol-center' : ''}">
-        ${center && inherent.length ? `<div class="tcol-inherent">${inherent.map((s) => node(s, true)).join('')}</div><span class="tlink" aria-hidden="true"></span>` : ''}
-        ${list.map((s) => node(s)).join('') || '<span class="tn-muted">—</span>'}
-      </div>`;
-    }).join('')}</div>
-    ${outro.length ? `<div class="tree-outro">${outro.map((s) => node(s, true)).join('')}<span>Outro Skill kích hoạt khi đổi Resonator, không nâng cấp theo cấp.</span></div>` : ''}`;
+  const circle = (key, inner, label, title) => `<button type="button" class="fn fn-circle${sk === key ? ' is-sel' : ''}" data-sel="${key}" title="${esc(title)}" aria-label="${esc(title)}">
+      <span class="fn-shape">${inner}</span>${label ? `<span class="fn-label">${esc(label)}</span>` : ''}
+    </button>`;
+  const cols = TREE_COLS.map((col, ci) => {
+    const main = parts.byType(col.type)[0];
+    let nodes = '';
+    if (col.pos === 'center') {
+      const [in1, in2] = parts.inherent;
+      nodes = (in2 ? diamond(in2, 'Inherent Skill', false) : '')
+        + (in1 ? circle('skill-' + in1.i, skillIcon(in1, 'fn-ico'), '', 'Inherent Skill: ' + in1.name) : '');
+    } else {
+      nodes = [2, 1].map((n) => circle(`stat-${ci}-${n}`, STAT_ICON[col.stat], '', `Stat Bonus · ${col.label} · bậc ${n}`)).join('');
+    }
+    return `<div class="fcol fcol-${col.pos}">${nodes}${main ? diamond(main, col.label) : `<span class="fn-empty">${esc(col.label)}</span>`}</div>`;
+  }).join('');
+  const bottom = [
+    parts.outro ? circle('skill-' + parts.outro.i, skillIcon(parts.outro, 'fn-ico'), 'Outro Skill', 'Outro Skill: ' + parts.outro.name) : '',
+    ...parts.bottomExtra.map((s) => {
+      const tb = /^Tune Break/.test(s.name);
+      const inner = tb && !s.icon ? `<span class="fn-ico">${TUNE_ICON}</span>` : skillIcon(s, 'fn-ico');
+      return circle('skill-' + s.i, inner, tb ? 'Tune Break' : 'Forte Circuit', s.name);
+    }),
+  ].join('');
+  $('d-tree').innerHTML = `<div class="forte-board">
+      <div class="forte-cols">${cols}</div>
+      <div class="forte-bottom">${bottom}</div>
+    </div>`;
   renderTreeDetail();
-  $('d-tree-note').textContent = 'Bấm một nút để xem hệ số; kéo thanh cấp để theo dõi hệ số tăng theo từng cấp. Các nút Stat Bonus chưa có số liệu từ nguồn tham khảo nên chưa hiển thị; chi phí nâng cấp xem ở tab Nguyên liệu.';
+  $('d-tree-note').textContent = 'Bố cục theo màn Forte trong game. Bấm một nút để xem chi tiết; kéo thanh Lv. trong Multipliers để đổi cấp cho cả cây. Nút Stat Bonus (tròn ✦/⚔) chưa có số liệu chỉ số từ nguồn tham khảo.';
 }
 
 function renderTreeDetail() {
   const c = state.current;
-  const i = state.treeSel;
-  const s = c.skills[i];
+  const sel = state.treeSel;
+  if (sel.kind === 'stat') {
+    const col = TREE_COLS[sel.col];
+    const cost = (c.level_costs || {}).stat_bonus?.[sel.n - 1];
+    $('d-tree-detail').innerHTML = `<div class="td-head"><span class="td-ico td-stat">${STAT_ICON[col.stat]}</span>
+        <div><p class="td-type">Stat Bonus · nhánh ${esc(col.label)}</p><h3>Bậc ${sel.n}</h3></div>
+        <button type="button" class="btn td-go" data-tabgo="mats">Xem chi phí <span aria-hidden="true">→</span></button></div>
+      <p class="td-desc">Nút chỉ số cộng thêm của cây Forte. Nguồn tham khảo (Wuthering Waves Wiki) chưa có loại và giá trị chỉ số của nút này nên chưa hiển thị số liệu.${cost ? ` Mở bậc ${sel.n} cần ${cost.ascension === '-' ? 'không yêu cầu đột phá' : 'đột phá ' + esc(cost.ascension)}.` : ''}</p>`;
+    return;
+  }
+  const s = c.skills[sel.i];
   if (!s) { $('d-tree-detail').innerHTML = ''; return; }
   const lines = ((state.showEn ? s.desc : s.desc_vi) || []).filter((l) => !lineHTML(l).sub).slice(0, 2);
   $('d-tree-detail').innerHTML = `<div class="td-head">${skillIcon(s, 'td-ico')}
       <div><p class="td-type">${esc(s.type)}</p><h3>${esc(s.name)}</h3></div>
-      <button type="button" class="btn td-go" data-goto="skill-${i}">Xem mô tả đầy đủ <span aria-hidden="true">→</span></button>
+      <button type="button" class="btn td-go" data-goto="skill-${sel.i}">Xem mô tả đầy đủ <span aria-hidden="true">→</span></button>
     </div>
     ${lines.length ? `<p class="td-desc">${esc(lines.map((l) => l.replace(/^• /, '')).join(' '))}</p>` : ''}
-    ${scaleHTML(s, i, true)}`;
+    ${scaleHTML(s, sel.i, true)}`;
 }
 
 /* ---------- resonance chain ---------- */
@@ -940,18 +973,18 @@ detailView.addEventListener('input', (e) => {
   if (e.target.classList.contains('up-range')) updateUpgrade(e.target);
 });
 detailView.addEventListener('click', (e) => {
-  const n = e.target.closest('.tnode[data-si]');
+  const n = e.target.closest('.fn[data-sel]');
   if (n) {
-    state.treeSel = Number(n.dataset.si);
-    $('d-tree').querySelectorAll('.tnode').forEach((x) => {
-      const on = x === n;
-      x.classList.toggle('is-sel', on);
-      x.setAttribute('aria-pressed', String(on));
-    });
+    const key = n.dataset.sel;
+    const m = key.match(/^stat-(\d)-(\d)$/);
+    state.treeSel = m ? {kind: 'stat', col: Number(m[1]), n: Number(m[2])} : {kind: 'skill', i: Number(key.slice(6))};
+    $('d-tree').querySelectorAll('.fn').forEach((x) => x.classList.toggle('is-sel', x === n));
     renderTreeDetail();
     applyLevel();
     return;
   }
+  const tg = e.target.closest('[data-tabgo]');
+  if (tg) { setTab(tg.dataset.tabgo); return; }
   const go = e.target.closest('[data-goto]');
   if (go) scrollToId(go.dataset.goto);
 });
