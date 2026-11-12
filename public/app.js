@@ -29,6 +29,7 @@ const fR = $('f-r');
 const toggleEn = $('toggle-en');
 const backBtn = $('back');
 const dSkills = $('d-skills');
+const dChain = $('d-chain');
 const mechDialog = $('mechDialog');
 
 const esc = (s) => (s ?? '').toString().replace(/[&<>"']/g, (m) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
@@ -188,6 +189,7 @@ function apply() {
         c.intro, c.intro_vi,
         (c.changes || []).map((ch) => ch.note).join(' '),
         (c.skills || []).map((s) => [s.name, (s.desc_vi || []).join(' '), (s.desc || []).join(' ')].join(' ')).join(' '),
+        (c.resonance_chain || []).map((n) => [n.name, (n.desc_vi || []).join(' '), (n.desc || []).join(' ')].join(' ')).join(' '),
       ].join(' ').toLowerCase();
       if (!blob.includes(term)) return false;
     }
@@ -227,25 +229,28 @@ function lineHTML(line) {
   return {li: false, text: line, sub: short};
 }
 
+function linesHTML(lines) {
+  let body = '', inList = false;
+  for (const line of lines) {
+    const l = lineHTML(line);
+    if (l.li) {
+      if (!inList) { body += '<ul>'; inList = true; }
+      body += `<li>${esc(l.text)}</li>`;
+    } else {
+      if (inList) { body += '</ul>'; inList = false; }
+      body += `<p${l.sub ? ' class="sub"' : ''}>${esc(l.text)}</p>`;
+    }
+  }
+  if (inList) body += '</ul>';
+  return body;
+}
+
 function renderSkills() {
   const c = state.current;
   if (!c) return;
   let out = '';
   (c.skills || []).forEach((s, i) => {
-    const lines = (state.showEn ? s.desc : s.desc_vi) || [];
-    let body = '', inList = false;
-    for (const line of lines) {
-      const l = lineHTML(line);
-      if (l.li) {
-        if (!inList) { body += '<ul>'; inList = true; }
-        body += `<li>${esc(l.text)}</li>`;
-      } else {
-        if (inList) { body += '</ul>'; inList = false; }
-        body += `<p${l.sub ? ' class="sub"' : ''}>${esc(l.text)}</p>`;
-      }
-    }
-    if (inList) body += '</ul>';
-    if (!body) body = '<p>Chưa có mô tả chi tiết cho kỹ năng này.</p>';
+    const body = linesHTML((state.showEn ? s.desc : s.desc_vi) || []) || '<p>Chưa có mô tả chi tiết cho kỹ năng này.</p>';
     out += `<section class="skill" id="skill-${i}" data-index="${i}" tabindex="-1">
       <div class="skill-head"><span class="skill-type">${esc(s.type)}</span><h3>${esc(s.name)}</h3></div>
       <div class="skill-body">${body}</div>
@@ -253,8 +258,63 @@ function renderSkills() {
   });
   dSkills.innerHTML = out;
   dSkills.lang = state.showEn ? 'en' : 'vi';
+  renderChain();
   renderIntro();
   linkifyAll();
+}
+
+function renderChain() {
+  const c = state.current;
+  const chain = c.resonance_chain || [];
+  dChain.lang = state.showEn ? 'en' : 'vi';
+  if (!chain.length) {
+    dChain.innerHTML = `<p class="empty-note">Nguồn tham khảo chưa cập nhật Resonance Chain cho ${esc(c.name)}. Mục này sẽ được bổ sung khi wiki có dữ liệu.</p>`;
+    return;
+  }
+  dChain.innerHTML = chain.map((n) => {
+    const lines = (state.showEn || !(n.desc_vi || []).length) ? n.desc : n.desc_vi;
+    return `<article class="chain-node" id="chain-${n.node}" tabindex="-1">
+      <div class="chain-head">
+        <div class="chain-icon">${n.img ? `<img src="${esc(n.img)}" alt="" loading="lazy" referrerpolicy="no-referrer" width="56" height="56">` : ''}<span>S${n.node}</span></div>
+        <div><p class="chain-seq">Sequence Node ${n.node}</p><h3>${esc(n.name)}</h3></div>
+      </div>
+      <div class="chain-body">${linesHTML(lines || [])}</div>
+    </article>`;
+  }).join('');
+}
+
+const MAT_GROUPS = [
+  ['ascension', 'Đột phá', 'Tổng nguyên liệu đột phá nhân vật'],
+  ['forte', 'Nâng một kỹ năng chính', 'Cho một kỹ năng trong Forte, cấp 1 → 10'],
+  ['inherent', 'Toàn bộ Inherent Skill', 'Mở cả hai Inherent Skill'],
+  ['stat_bonus', 'Một nhánh Stat Bonus', 'Cho một nhánh chỉ số cộng thêm'],
+];
+
+function renderMaterials(c) {
+  const mats = c.materials || {};
+  const groups = MAT_GROUPS.filter(([key]) => mats[key]?.items?.length);
+  $('d-mats-sec').hidden = !groups.length;
+  $('d-mats').innerHTML = groups.map(([key, title, hint]) => {
+    const block = mats[key];
+    return `<section class="mat-group">
+      <header><h3>${esc(title)}</h3><span class="mat-range">${esc(block.label.replace(/ for .*/, ''))}</span><p>${esc(hint)}</p></header>
+      <ul class="mat-list">${block.items.map((it) => `<li class="mat r${it.rarity}" title="${esc(it.name)}">
+        <span class="mat-img">${it.img ? `<img src="${esc(it.img)}" alt="" loading="lazy" referrerpolicy="no-referrer" width="48" height="48">` : ''}</span>
+        <span class="mat-qty">${it.qty.toLocaleString('vi-VN')}</span>
+        <span class="mat-name">${esc(it.name)}</span>
+      </li>`).join('')}</ul>
+    </section>`;
+  }).join('');
+}
+
+function renderReferences(c) {
+  const refs = c.references || [{title: 'prydwen.gg', url: c.source, used_for: ''}];
+  $('d-refs').innerHTML = refs.map((r) => {
+    let host = '';
+    try { host = new URL(r.url).hostname.replace(/^www\./, ''); } catch { /* keep empty */ }
+    return `<li><a href="${esc(r.url)}" target="_blank" rel="noopener noreferrer">${esc(r.title)}</a>
+      <span class="ref-host">${esc(host)}</span>${r.used_for ? `<span class="ref-use">${esc(r.used_for)}</span>` : ''}</li>`;
+  }).join('');
 }
 
 function renderIntro() {
@@ -280,9 +340,9 @@ function linkifyAll() {
   if (!terms.length) return;
   const re = new RegExp('(?<![A-Za-z0-9])(' + terms.map((t) => regexEsc(t.text)).join('|') + ')(?![A-Za-z0-9])', 'g');
 
-  dSkills.querySelectorAll('.skill-body').forEach((body) => {
+  detailView.querySelectorAll('.skill-body, .chain-body').forEach((body) => {
     const section = body.closest('.skill');
-    const ownIndex = Number(section?.dataset.index);
+    const ownIndex = section ? Number(section.dataset.index) : -1;
     const walker = document.createTreeWalker(body, NodeFilter.SHOW_TEXT, {
       acceptNode(node) {
         if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
@@ -331,7 +391,11 @@ function makeTermNode(term, text) {
 }
 
 function scrollToSkill(index) {
-  const el = $('skill-' + index);
+  scrollToId('skill-' + index);
+}
+
+function scrollToId(id) {
+  const el = $(id);
   if (!el) return;
   el.scrollIntoView({behavior: 'smooth', block: 'start'});
   el.classList.remove('flash');
@@ -377,7 +441,8 @@ function openDetail(slug) {
     <div class="stat"><div class="k">Vũ khí</div><div class="v v-ico">${weapIcon(c.weapon, 'ico-lg')}<span>${esc(c.weapon)}<small>${esc(weapVi(c.weapon))}</small></span></div></div>
     <div class="stat"><div class="k">Độ hiếm</div><div class="v" style="color:${c.rarity===5?'var(--r5)':'var(--r4)'}">${c.rarity ? c.rarity + '★' : '—'}</div></div>
     <div class="stat"><div class="k">Kỹ năng</div><div class="v">${(c.skills || []).length}<small>mục chính</small></div></div>`;
-  $('d-source').innerHTML = `Nguồn tham khảo: <a href="${esc(c.source)}" target="_blank" rel="noopener noreferrer">${esc(c.source)}</a>`;
+  renderMaterials(c);
+  renderReferences(c);
   renderChanges(c);
   renderSkills();
   document.title = `${c.name} — Resonators Archive · Patch ${state.meta.patch}`;
@@ -413,21 +478,30 @@ function openMechanic(termName) {
   const c = state.current;
   const occurrences = [];
   const seen = new Set();
-  (c?.skills || []).forEach((s, i) => {
-    for (const line of ((state.showEn ? s.desc : s.desc_vi) || [])) {
+  const sources = [
+    ...(c?.skills || []).map((s, i) => ({title: s.name, target: 'skill-' + i, go: 'Tới kỹ năng', lines: (state.showEn ? s.desc : s.desc_vi) || []})),
+    ...(c?.resonance_chain || []).map((n) => ({title: `S${n.node} · ${n.name}`, target: 'chain-' + n.node, go: 'Tới Resonance Chain',
+      lines: (state.showEn || !(n.desc_vi || []).length ? n.desc : n.desc_vi) || []})),
+  ];
+  const cap = {skill: 8, chain: 6};
+  const used = {skill: 0, chain: 0};
+  for (const src of sources) {
+    const kind = src.target.startsWith('chain-') ? 'chain' : 'skill';
+    for (const line of src.lines) {
+      if (used[kind] >= cap[kind]) break;
       if (!line.includes(m.term)) continue;
-      const key = i + '|' + line;
+      const key = src.target + '|' + line;
       if (seen.has(key)) continue;
       seen.add(key);
-      occurrences.push({skill: s.name, index: i, line});
-      if (occurrences.length >= 8) break;
+      used[kind] += 1;
+      occurrences.push({...src, line});
     }
-  });
+  }
   const occBox = $('mech-occ-list');
   if (occurrences.length) {
     occBox.innerHTML = occurrences.map((o) =>
       `<div class="mech-occ-item">
-        <div class="mech-occ-head"><b>${esc(o.skill)}</b><button type="button" class="mech-go" data-skill="${o.index}">Tới kỹ năng <span aria-hidden="true">↓</span></button></div>
+        <div class="mech-occ-head"><b>${esc(o.title)}</b><button type="button" class="mech-go" data-target="${esc(o.target)}">${esc(o.go)} <span aria-hidden="true">↓</span></button></div>
         <p class="mech-occ-text">${esc(o.line)}</p>
         <button type="button" class="mech-more" hidden aria-expanded="false">Xem thêm</button>
       </div>`
@@ -500,12 +574,14 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && state.current && !mechDialog.open) location.hash = '#/';
 });
 
-dSkills.addEventListener('click', (e) => {
+const onTermClick = (e) => {
   const skill = e.target.closest('[data-skill]');
   if (skill) { e.preventDefault(); scrollToSkill(Number(skill.dataset.skill)); return; }
   const mech = e.target.closest('[data-mech]');
   if (mech) { e.preventDefault(); openMechanic(mech.dataset.mech); }
-});
+};
+dSkills.addEventListener('click', onTermClick);
+dChain.addEventListener('click', onTermClick);
 
 $('mech-close').addEventListener('click', () => mechDialog.close());
 // The dialog closes only via ✕, Esc, or a click that both starts and ends on the
@@ -531,10 +607,10 @@ mechDialog.addEventListener('click', (e) => {
     more.setAttribute('aria-expanded', String(open));
     return;
   }
-  const go = e.target.closest('.mech-go[data-skill]');
+  const go = e.target.closest('.mech-go[data-target]');
   if (go) {
     mechDialog.close();
-    scrollToSkill(Number(go.dataset.skill));
+    scrollToId(go.dataset.target);
   }
 });
 mechDialog.addEventListener('close', () => { pressedOnBackdrop = false; });
