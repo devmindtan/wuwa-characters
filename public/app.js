@@ -150,7 +150,14 @@ document.addEventListener('pointerdown', (e) => {
   if (!e.target.closest('.dd')) openDropdowns.forEach((close) => close(false));
 });
 
-const elDot = (v) => v ? `<i class="dd-dot" style="--c:${elColor(v)}"></i>` : '';
+// Official in-game element/weapon icons, served from public/assets/icons/.
+const icon = (kind, v, cls = '') => v
+  ? `<img class="ico ico-${kind} ${cls}" src="assets/icons/${kind}/${esc(v.toLowerCase())}.png" alt="" aria-hidden="true" width="18" height="18" decoding="async">`
+  : '';
+const elIcon = (v, cls) => icon('element', v, cls);
+const weapIcon = (v, cls) => icon('weapon', v, cls);
+const elDot = (v) => elIcon(v, 'dd-ico');
+const weapDot = (v) => weapIcon(v, 'dd-ico');
 const rarityMark = (v) => v ? `<i class="dd-star r${v}">★</i>` : '';
 
 function cardHTML(c) {
@@ -158,12 +165,12 @@ function cardHTML(c) {
   return `<article class="card" data-slug="${esc(c.slug)}" tabindex="0" role="button" aria-label="Mở hồ sơ ${esc(c.name)}" style="--el:${col};--tint-soft:${col}22">
     <div class="card-media">
       <img src="${esc(c.img_card || c.img_icon)}" alt="${esc(c.name)}" loading="lazy" onerror="this.onerror=null;this.src='${esc(c.img_icon)}'">
-      <span class="card-badge">${esc(c.element)}</span>
+      <span class="card-badge">${elIcon(c.element)}${esc(c.element)}</span>
       <span class="card-rarity ${c.rarity===4?'r4':''}">${stars(c.rarity)}</span>
     </div>
     <div class="card-info">
       <h3>${esc(c.name)}</h3>
-      <p><b>${esc(c.element)}</b> · ${esc(c.weapon)}</p>
+      <p><b>${esc(c.element)}</b><span class="sep">·</span>${weapIcon(c.weapon)}${esc(c.weapon)}</p>
     </div>
   </article>`;
 }
@@ -200,7 +207,7 @@ function renderHero() {
   img.hidden = false;
   img.onerror = () => { img.onerror = null; img.src = featured.img_icon; };
   $('hero-name').textContent = featured.name;
-  $('hero-tags').textContent = `${featured.element} · ${featured.weapon}`;
+  $('hero-tags').innerHTML = `${elIcon(featured.element)}${esc(featured.element)}<span class="sep">·</span>${weapIcon(featured.weapon)}${esc(featured.weapon)}`;
 }
 
 function renderMeta() {
@@ -358,16 +365,16 @@ function openDetail(slug) {
   img.alt = c.name;
   img.onerror = () => { img.onerror = null; img.src = c.img_icon; };
   $('d-name').textContent = c.name;
-  $('d-element').textContent = `${c.element} · ${elVi(c.element)}`;
-  $('d-weapon').textContent = `${c.weapon} · ${weapVi(c.weapon)}`;
+  $('d-element').innerHTML = `${elIcon(c.element)}${esc(c.element)} · ${esc(elVi(c.element))}`;
+  $('d-weapon').innerHTML = `${weapIcon(c.weapon)}${esc(c.weapon)} · ${esc(weapVi(c.weapon))}`;
   $('d-version').textContent = `Patch ${state.meta.patch}`;
   $('d-tags').innerHTML =
-    `<span class="tag el" style="background:${col}">${esc(c.element)} · ${esc(elVi(c.element))}</span>
-     <span class="tag">${esc(c.weapon)} · ${esc(weapVi(c.weapon))}</span>
+    `<span class="tag el" style="--c:${col}">${elIcon(c.element)}${esc(c.element)} · ${esc(elVi(c.element))}</span>
+     <span class="tag">${weapIcon(c.weapon)}${esc(c.weapon)} · ${esc(weapVi(c.weapon))}</span>
      <span class="tag" style="color:${c.rarity===5?'var(--r5)':'var(--r4)'}">${stars(c.rarity)}</span>`;
   $('d-stats').innerHTML = `
-    <div class="stat"><div class="k">Nguyên tố</div><div class="v" style="color:${col}">${esc(c.element)}<small>${esc(elVi(c.element))}</small></div></div>
-    <div class="stat"><div class="k">Vũ khí</div><div class="v">${esc(c.weapon)}<small>${esc(weapVi(c.weapon))}</small></div></div>
+    <div class="stat"><div class="k">Nguyên tố</div><div class="v v-ico" style="color:${col}">${elIcon(c.element, 'ico-lg')}<span>${esc(c.element)}<small>${esc(elVi(c.element))}</small></span></div></div>
+    <div class="stat"><div class="k">Vũ khí</div><div class="v v-ico">${weapIcon(c.weapon, 'ico-lg')}<span>${esc(c.weapon)}<small>${esc(weapVi(c.weapon))}</small></span></div></div>
     <div class="stat"><div class="k">Độ hiếm</div><div class="v" style="color:${c.rarity===5?'var(--r5)':'var(--r4)'}">${c.rarity ? c.rarity + '★' : '—'}</div></div>
     <div class="stat"><div class="k">Kỹ năng</div><div class="v">${(c.skills || []).length}<small>mục chính</small></div></div>`;
   $('d-source').innerHTML = `Nguồn tham khảo: <a href="${esc(c.source)}" target="_blank" rel="noopener noreferrer">${esc(c.source)}</a>`;
@@ -419,12 +426,23 @@ function openMechanic(termName) {
   const occBox = $('mech-occ-list');
   if (occurrences.length) {
     occBox.innerHTML = occurrences.map((o) =>
-      `<button type="button" class="mech-occ-item" data-skill="${o.index}"><b>${esc(o.skill)}</b><br>${esc(o.line.slice(0, 210))}${o.line.length > 210 ? '…' : ''}</button>`
+      `<div class="mech-occ-item">
+        <div class="mech-occ-head"><b>${esc(o.skill)}</b><button type="button" class="mech-go" data-skill="${o.index}">Tới kỹ năng <span aria-hidden="true">↓</span></button></div>
+        <p class="mech-occ-text">${esc(o.line)}</p>
+        <button type="button" class="mech-more" hidden aria-expanded="false">Xem thêm</button>
+      </div>`
     ).join('');
   } else {
     occBox.innerHTML = `<p class="mech-occ-item" style="cursor:default">${esc(m.sample_vi || 'Không có trong bộ kỹ năng hiện tại.')}</p>`;
   }
   mechDialog.showModal();
+  mechDialog.scrollTop = 0;
+  // Offer "Xem thêm" only where the clamped text is actually cut off.
+  occBox.querySelectorAll('.mech-occ-item').forEach((item) => {
+    const text = item.querySelector('.mech-occ-text');
+    const more = item.querySelector('.mech-more');
+    if (text && more) more.hidden = text.scrollHeight <= text.clientHeight + 1;
+  });
 }
 
 async function boot() {
@@ -448,7 +466,7 @@ async function boot() {
     fillSelect(fEl, [...new Set(state.characters.map((c) => c.element).filter(Boolean))].sort(), (v) => `${v} · ${EL_VI[v] || ''}`);
     fillSelect(fWeap, [...new Set(state.characters.map((c) => c.weapon).filter(Boolean))].sort(), (v) => `${v} · ${WEAP_VI[v] || ''}`);
     enhanceSelect(fEl, elDot);
-    enhanceSelect(fWeap);
+    enhanceSelect(fWeap, weapDot);
     enhanceSelect(fR, rarityMark);
     apply();
     route();
@@ -490,17 +508,35 @@ dSkills.addEventListener('click', (e) => {
 });
 
 $('mech-close').addEventListener('click', () => mechDialog.close());
+// The dialog closes only via ✕, Esc, or a click that both starts and ends on the
+// backdrop. Clicks inside the panel (padding, text, items, text selection) never close it.
+const outsideDialog = (e) => {
+  const r = mechDialog.getBoundingClientRect();
+  return e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom;
+};
+let pressedOnBackdrop = false;
+mechDialog.addEventListener('pointerdown', (e) => {
+  pressedOnBackdrop = e.target === mechDialog && outsideDialog(e);
+});
 mechDialog.addEventListener('click', (e) => {
-  if (e.target === mechDialog) {
-    const r = mechDialog.getBoundingClientRect();
-    const inside = e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
-    if (!inside) { mechDialog.close(); return; }
-  }
-  const occ = e.target.closest('.mech-occ-item[data-skill]');
-  if (occ) {
+  if (e.target === mechDialog && pressedOnBackdrop && outsideDialog(e)) {
     mechDialog.close();
-    scrollToSkill(Number(occ.dataset.skill));
+    return;
+  }
+  const more = e.target.closest('.mech-more');
+  if (more) {
+    const item = more.closest('.mech-occ-item');
+    const open = item.classList.toggle('expanded');
+    more.textContent = open ? 'Thu gọn' : 'Xem thêm';
+    more.setAttribute('aria-expanded', String(open));
+    return;
+  }
+  const go = e.target.closest('.mech-go[data-skill]');
+  if (go) {
+    mechDialog.close();
+    scrollToSkill(Number(go.dataset.skill));
   }
 });
+mechDialog.addEventListener('close', () => { pressedOnBackdrop = false; });
 
 boot();
