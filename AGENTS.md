@@ -42,3 +42,17 @@
 - Test API bằng `curl` và test UI bằng Playwright ở desktop + mobile.
 - Kiểm tra thực tế: mở chi tiết, bấm link kỹ năng, mở popup cơ chế, đổi EN/VI, back, filter.
 - Không tuyên bố "đã kiểm tra" nếu chưa chạy lệnh thật.
+
+## 6. Quy trình Git commit
+
+- Hook nằm trong repo tại `.githooks/`. Mỗi clone mới bật một lần: `git config core.hooksPath .githooks`.
+- Trình tự cho mỗi thay đổi:
+  1. `git status` + `git diff` — đọc lại toàn bộ diff, chỉ stage file liên quan (`git add <file>`, không `git add -A` mù).
+  2. Chạy kiểm chứng ở §5 (review.py, curl API, Playwright desktop + mobile nếu đụng UI).
+  3. Commit nhỏ, một mục đích mỗi commit. Thay đổi dữ liệu (`data/`) tách riêng khỏi thay đổi UI/code.
+  4. Không `--no-verify` để lách hook; hook fail thì sửa nguyên nhân.
+- Định dạng message (hook `commit-msg` kiểm tra): `<type>(<scope>): <tóm tắt>`, tóm tắt ≤ 72 ký tự.
+  - type: `feat`, `fix`, `data`, `i18n`, `ui`, `api`, `docs`, `chore`, `refactor`, `test`.
+  - Commit đổi dữ liệu nhân vật ghi patch trong body, ví dụ: `data(jinhsi): sửa tên kỹ năng bị dịch` + body `Patch 3.7 → 3.8`.
+- Hook `pre-commit` tự kiểm tra: JSON trong `data/` hợp lệ; `scripts/review.py` pass khi `data/` hoặc `scripts/` đổi; nhân vật đổi nội dung phải có entry `changes` mới, lịch sử cũ không bị sửa, `meta.updated` được cập nhật; cú pháp JS/Python; không stage `.venv`, `__pycache__`, `data/en_raw.json`.
+- Agent chỉ commit/push khi người dùng yêu cầu; làm trên `main` thì tạo branch trước nếu thay đổi lớn.

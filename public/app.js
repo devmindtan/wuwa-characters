@@ -1,14 +1,5 @@
 const EL_VI = {Spectro:'Quang Phổ',Havoc:'Hỗn Độn',Aero:'Khí',Electro:'Lôi',Fusion:'Nhiệt',Glacio:'Băng'};
 const WEAP_VI = {Sword:'Kiếm',Broadblade:'Đại Kiếm',Pistols:'Súng Lục',Gauntlets:'Găng Tay',Rectifier:'Pháp Khí'};
-const SKILL_VI = {
-  'Basic Attack':'Tấn công thường',
-  'Resonance Skill':'Kỹ năng cộng hưởng',
-  'Resonance Liberation':'Giải phóng cộng hưởng',
-  'Forte Circuit':'Mạch Forte',
-  'Inherent Skill':'Kỹ năng nội tại',
-  'Intro Skill':'Kỹ năng nhập trận',
-  'Outro Skill':'Kỹ năng kết trận',
-};
 const KIND_VI = {system:'Cơ chế',resource:'Tài nguyên',status:'Negative Status',mode:'Trạng thái',skill:'Kỹ năng',summon:'Triệu hồi',stat:'Chỉ số'};
 const COLOR_HEX = {Spectro:'#f4e6a4',Havoc:'#d38af0',Aero:'#7de8c0',Electro:'#b5a6ff',Fusion:'#ff9a7c',Glacio:'#9ed8ff'};
 
@@ -20,6 +11,7 @@ const state = {
   current: null,
   showEn: false,
   savedScroll: 0,
+  detailOpen: false,
 };
 
 const $ = (id) => document.getElementById(id);
@@ -143,12 +135,23 @@ function renderSkills() {
     if (inList) body += '</ul>';
     if (!body) body = '<p>Chưa có mô tả chi tiết cho kỹ năng này.</p>';
     out += `<section class="skill" id="skill-${i}" data-index="${i}" tabindex="-1">
-      <div class="skill-head"><span class="skill-type">${esc(SKILL_VI[s.type] || s.type)}</span><h3>${esc(s.name)}</h3></div>
+      <div class="skill-head"><span class="skill-type">${esc(s.type)}</span><h3>${esc(s.name)}</h3></div>
       <div class="skill-body">${body}</div>
     </section>`;
   });
   dSkills.innerHTML = out;
+  dSkills.lang = state.showEn ? 'en' : 'vi';
+  renderIntro();
   linkifyAll();
+}
+
+function renderIntro() {
+  const c = state.current;
+  const introEl = $('d-intro');
+  const text = state.showEn ? c.intro : c.intro_vi;
+  introEl.textContent = text || '';
+  introEl.hidden = !text;
+  introEl.lang = state.showEn ? 'en' : 'vi';
 }
 
 function linkifyAll() {
@@ -257,9 +260,6 @@ function openDetail(slug) {
     `<span class="tag el" style="background:${col}">${esc(c.element)} · ${esc(elVi(c.element))}</span>
      <span class="tag">${esc(c.weapon)} · ${esc(weapVi(c.weapon))}</span>
      <span class="tag" style="color:${c.rarity===5?'var(--r5)':'var(--r4)'}">${stars(c.rarity)}</span>`;
-  const introEl = $('d-intro');
-  if (c.intro_vi) { introEl.textContent = c.intro_vi; introEl.hidden = false; }
-  else { introEl.textContent = ''; introEl.hidden = true; }
   $('d-stats').innerHTML = `
     <div class="stat"><div class="k">Nguyên tố</div><div class="v" style="color:${col}">${esc(c.element)}<small>${esc(elVi(c.element))}</small></div></div>
     <div class="stat"><div class="k">Vũ khí</div><div class="v">${esc(c.weapon)}<small>${esc(weapVi(c.weapon))}</small></div></div>
@@ -268,18 +268,22 @@ function openDetail(slug) {
   $('d-source').innerHTML = `Nguồn tham khảo: <a href="${esc(c.source)}" target="_blank" rel="noopener noreferrer">${esc(c.source)}</a>`;
   renderChanges(c);
   renderSkills();
-  state.savedScroll = window.scrollY;
+  document.title = `${c.name} · Patch ${c.version || state.meta.patch} — Resonators Archive`;
+  if (!state.detailOpen) state.savedScroll = window.scrollY;
+  state.detailOpen = true;
   listView.style.display = 'none';
   detailView.classList.add('open');
-  window.scrollTo(0, 0);
+  window.scrollTo({top: 0, behavior: 'instant'});
   backBtn.focus({preventScroll: true});
 }
 
 function closeDetail() {
   state.current = null;
+  state.detailOpen = false;
+  if (state.meta) document.title = `Wuthering Waves — Resonators Archive · Patch ${state.meta.patch}`;
   listView.style.display = '';
   detailView.classList.remove('open');
-  window.scrollTo(0, state.savedScroll || 0);
+  window.scrollTo({top: state.savedScroll || 0, behavior: 'instant'});
 }
 
 function route() {
@@ -298,7 +302,7 @@ function openMechanic(termName) {
   const occurrences = [];
   const seen = new Set();
   (c?.skills || []).forEach((s, i) => {
-    for (const line of (s.desc_vi || [])) {
+    for (const line of ((state.showEn ? s.desc : s.desc_vi) || [])) {
       if (!line.includes(m.term)) continue;
       const key = i + '|' + line;
       if (seen.has(key)) continue;
@@ -379,7 +383,11 @@ dSkills.addEventListener('click', (e) => {
 
 $('mech-close').addEventListener('click', () => mechDialog.close());
 mechDialog.addEventListener('click', (e) => {
-  if (e.target === mechDialog) mechDialog.close();
+  if (e.target === mechDialog) {
+    const r = mechDialog.getBoundingClientRect();
+    const inside = e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
+    if (!inside) { mechDialog.close(); return; }
+  }
   const occ = e.target.closest('.mech-occ-item[data-skill]');
   if (occ) {
     mechDialog.close();

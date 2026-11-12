@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Enforce commit subject "<type>(<scope>)?: <summary>" (see AGENTS.md §6).
+msg=$(head -1 "$1")
+case "$msg" in Merge*|Revert*|fixup!*|squash!*) exit 0;; esac
+if ! printf '%s' "$msg" | grep -qE '^(feat|fix|data|i18n|ui|api|docs|chore|refactor|test)(\([a-z0-9._-]+\))?: .{3,72}$'; then
+  echo "✗ Commit message không đúng định dạng: \"$msg\""
+  echo "  Dạng đúng: <type>(<scope>): <tóm tắt>   vd: ui(detail): sửa dialog đóng khi bấm vào padding"
+  echo "  type: feat fix data i18n ui api docs chore refactor test"
+  exit 1
+fi
