@@ -623,6 +623,9 @@ function linkifyAll() {
     });
     const nodes = [];
     while (walker.nextNode()) nodes.push(walker.currentNode);
+    // Only the first mention of a term in each section gets the full link style;
+    // later mentions stay clickable but quiet, so long descriptions aren't noisy.
+    const seen = new Set();
     for (const node of nodes) {
       const text = node.nodeValue;
       re.lastIndex = 0;
@@ -640,7 +643,12 @@ function linkifyAll() {
           continue;
         }
         if (match.index > last) frag.appendChild(document.createTextNode(text.slice(last, match.index)));
-        frag.appendChild(makeTermNode(term, matched));
+        const tn = makeTermNode(term, matched);
+        if (term.type !== 'dmg') {
+          const key = term.type + ':' + (term.term ?? term.index);
+          if (seen.has(key)) tn.classList.add('repeat'); else seen.add(key);
+        }
+        frag.appendChild(tn);
         last = match.index + matched.length;
       }
       if (!last) continue;
