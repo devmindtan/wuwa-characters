@@ -1,9 +1,9 @@
 # Wuthering Waves — Resonators Archive
 
-Tra cứu hồ sơ, bộ kỹ năng, Resonance Chain (S1–S6) và nguyên liệu của **61 Resonators** Wuthering Waves bằng tiếng Việt, theo bản game hiện tại.
+Tra cứu hồ sơ, bộ kỹ năng (kèm hệ số Lv1–10 và Skill Tree), Resonance Chain (S1–S6), nguyên liệu và chi phí nâng cấp từng cấp của **61 Resonators** Wuthering Waves bằng tiếng Việt, theo bản game hiện tại.
 
 - Tên nhân vật, tên kỹ năng và thuật ngữ game giữ nguyên tiếng Anh; phần mô tả được Việt hóa và rà soát ngữ cảnh. Có nút **Bản gốc EN** để đối chiếu.
-- Trong mô tả kỹ năng, tên kỹ năng khác của cùng nhân vật là liên kết cuộn tới đúng mục; thuật ngữ cơ chế (Incarnation, Tune Strain…) mở bảng giải thích kèm các vị trí xuất hiện.
+- Trong mô tả kỹ năng, tên kỹ năng khác của cùng nhân vật là liên kết cuộn tới đúng mục; thuật ngữ cơ chế (Incarnation, Tune Strain…) mở bảng giải thích kèm các vị trí xuất hiện và danh sách các Resonators khác có cùng cơ chế (lọc theo vai trò: gây, tăng tầng, tăng sát thương, tận dụng…).
 - Dữ liệu theo **bản game 3.8** (phát hành 12/11/2026). Kỹ năng tham chiếu từ [prydwen.gg](https://www.prydwen.gg/wuthering-waves/characters); Resonance Chain và nguyên liệu từ [Wuthering Waves Wiki](https://wutheringwaves.fandom.com/). Mỗi nhân vật có mục **Tham khảo** ghi rõ nguồn của từng phần.
 
 ## Chạy dự án
@@ -75,7 +75,7 @@ Chạy bằng Python trong `.venv`:
 | `scripts/extract.py` | Tải trang nhân vật từ prydwen.gg, ghi `data/en_raw.json` (file local, không commit). Cần thêm `beautifulsoup4`. |
 | `scripts/fix_context.py` | Khôi phục tên riêng/thuật ngữ bị dịch máy về tiếng Anh, dựa trên dòng EN tương ứng. Dùng `--dry-run` để xem trước. |
 | `scripts/build_mechanics.py` | Sinh `data/mechanics.json` từ dữ liệu nhân vật. |
-| `scripts/fetch_wiki.py` | Lấy Resonance Chain và tổng nguyên liệu từ [Wuthering Waves Wiki](https://wutheringwaves.fandom.com/) qua MediaWiki API công khai; cache ở `data/wiki_raw.json` (không commit). `--refresh` để lấy lại toàn bộ. |
+| `scripts/fetch_wiki.py` | Lấy Resonance Chain, tổng nguyên liệu, chi phí từng cấp (trang `/Combat`) và hệ số kỹ năng Lv1–10 (trang từng kỹ năng) từ [Wuthering Waves Wiki](https://wutheringwaves.fandom.com/) qua MediaWiki API công khai; cache ở `data/wiki_raw.json` (không commit). `--refresh` để lấy lại toàn bộ. |
 | `scripts/merge_wiki.py` | Ghi `resonance_chain`, `materials`, `references` vào `data/characters.json`, ghép bản dịch từ `data/translations/`. `--export-missing FILE` xuất các node chưa có bản dịch. |
 | `scripts/review.py` | Kiểm tra chất lượng bản dịch (kỹ năng + Resonance Chain: số dòng, con số khớp EN), glossary, schema, nguyên liệu và references. `--sample N` in N dòng ngẫu nhiên để đọc tay. |
 | `scripts/glossary.py` | Glossary và quy tắc hậu xử lý dùng chung. |

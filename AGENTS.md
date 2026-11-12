@@ -29,6 +29,8 @@
 - Bản dịch Resonance Chain nằm ở `data/translations/resonance_chain_vi.json` (khóa theo tên node, kèm bản EN gốc). Khi EN trên wiki đổi, bản dịch cũ tự bị bỏ và `merge_wiki.py --export-missing FILE` liệt kê node cần dịch lại; dịch xong chạy `review.py` (kiểm tra số dòng và các con số khớp EN).
 - Không vượt rào chặn bot (Cloudflare/403) của bất kỳ nguồn nào; nguồn chặn thì dùng nguồn khác hoặc nhờ người dùng.
 - Mỗi nhân vật phải có `references` liệt kê nguồn đã dùng cho từng phần dữ liệu.
+- Hệ số kỹ năng Lv1–10 (`skills[].scaling`) lấy từ template `Skill Scaling` trên trang từng kỹ năng của wiki, chỉ nhận khi `resonator` của trang khớp nhân vật; giữ nguyên chuỗi giá trị của wiki (ví dụ `31.74%+47.60`), không tự quy đổi. Chi phí từng cấp (`level_costs`) lấy từ trang `<Resonator>/Combat`.
+- Chưa có nguồn cho giá trị các nút Stat Bonus trong skill tree: không tự điền số.
 - Chạy dự án: `./run.sh` → `http://127.0.0.1:8000`.
 - API tối thiểu: `/api/meta`, `/api/characters`, `/api/characters/{slug}`, `/api/mechanics`, `/api/changes`.
 
@@ -41,6 +43,7 @@
 - Tên riêng chỉ *chứa* tên một cơ chế (Unison Boon, Unison Response, Tune Rupture Response...) phải nằm trong `NO_LINK` để không bị link nhầm; nếu đó là cơ chế quan trọng thì thêm vào `CURATED` với tóm tắt bám dữ liệu.
 - Cụm "<Nguyên tố> DMG" (kèm Bonus/Amplification/RES) được tô màu nguyên tố chính thức (Glacio #41AEFB, Fusion #F0744E, Electro #B46BFF, Aero #55FFB5, Spectro #F8E56C, Havoc #E649A6), chỉ đổi màu, không in đậm.
 - Sau khi sửa `CURATED`/`OWNERS`/`NO_LINK`, chạy `python scripts/build_mechanics.py` để sinh lại `data/mechanics.json`.
+- Popup cơ chế liệt kê các Resonators có cơ chế đó (tính trên trình duyệt từ mô tả EN của kỹ năng + Resonance Chain). Vai trò (Gây/kích hoạt, Tăng tầng/giới hạn, Tăng sát thương, Tận dụng/tiêu hao, Hồi) là phân loại tự động theo từ khóa; UI phải ghi rõ điều này.
 
 ## 5. Kiểm chứng trước khi báo xong
 
