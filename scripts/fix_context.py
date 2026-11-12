@@ -14,16 +14,61 @@ Usage:
 """
 
 import argparse
+import datetime
 import json
 import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / 'data' / 'characters.json'
-DATE = '2026-11-12'
+DATE = datetime.date.today().isoformat()
 
 # (vi pattern, en must match, replacement)
 TERM_RULES = [
+    # --- in-game stat terms that must stay English (over-translated by MT) ---
+    (r'(?:Tiền|Phần) thưởng ((?:Spectro|Havoc|Aero|Electro|Fusion|Glacio) DMG)', r'\bDMG Bonus\b', r'\1 Bonus'),
+    (r'DMG (?:Phần|Tiền) thưởng', r'\bDMG Bonus\b', 'DMG Bonus'),
+    (r'ATK (?:Phần|Tiền) thưởng', r'\bATK Bonus\b', 'ATK Bonus'),
+    (r'Nhận thêm (\d+%) (Spectro|Havoc|Aero|Electro|Fusion|Glacio) DMG(?! Bonus)', r'\bGain \d+% \w+ DMG Bonus', r'Nhận \1 \2 DMG Bonus'),
+    (r'đều được Khuếch đại DMG thêm (\d+%)', r'DMG Amplified', r'đều có DMG được Amplified thêm \1'),
+    (r'được khuếch đại thêm (\d+(?:[.,]\d+)?%)', r'\bAmplified\b', r'được Amplified thêm \1'),
+    (r'được khuếch đại (\d+(?:[.,]\d+)?%)', r'\bAmplified\b', r'được Amplified thêm \1'),
+    (r'khuếch đại (\d+%) ([\w .-]+? DMG)', r'\bDMG Amplification\b', r'\1 \2 Amplification'),
+    (r'DMG Khuếch đại', r'\bDMG Amplification\b', 'DMG Amplification'),
+    (r'Tất cả DMG', r'\bAll DMG\b', 'All DMG'),
+    (r'Trạng thái Tiêu cực', r'\bNegative Status', 'Negative Status'),
+    (r'Tắt-Tune', r'\bOff-Tune\b', 'Off-Tune'),
+    (r'Mid-air Tấn công', r'\bMid-air Attack', 'Mid-air Attack'),
+    (r'Tấn công trên không(?! trung)', r'\bMid-air Attacks?\b', 'Mid-air Attack'),
+    (r'\blá chắn\b', r'\bShield', 'Shield'),
+    (r'Huyền Linh', r'\bXuanling\b', 'Xuanling'),
+    (r'Ngôi sao của Chamuel', r"Chamuel.s Star", "Chamuel's Star"),
+    (r'Phân tán', r'\bDispersion\b', 'Dispersion'),
+    (r'\bNé\b(?! tránh)', r'\bDodge\b', 'Dodge'),
+    # --- "stack" as a noun is "tầng" (the verb "cộng dồn" stays) ---
+    (r'điểm cộng dồn', r'\bstacks?\b', 'tầng'),
+    (r'ngăn xếp', r'\bstacks?\b', 'tầng'),
+    (r'(\d+) cộng dồn\b', r'\bstacks?\b', r'\1 tầng'),
+    (r'\b(mỗi|tất cả|các) cộng dồn\b', r'\bstacks?\b', r'\1 tầng'),
+    (r'Phần thưởng DMG Multiplier', r'\bbonus DMG Multiplier\b', 'DMG Multiplier cộng thêm'),
+    (r'mang lại phần thưởng DMG Multiplier', r'\bbonus DMG Multiplier\b', 'mang lại DMG Multiplier cộng thêm'),
+    (r'các phần thưởng sau', r'\bbonuses\b', 'các hiệu ứng cộng thêm sau'),
+    (r'Khuếch đại', r'\bAmp\w*fy|\bAmplifies\b', 'Amplify'),
+    (r'Xuân Linh', r'\bXuanling\b', 'Xuanling'),
+    (r'được xử lý trực tiếp bởi', r'\bdirectly dealt by\b', 'gây ra trực tiếp bởi'),
+    (r'Outro Skill của Outro Skill', r"Galbrena's Normal Attack", 'Outro Skill của Galbrena'),
+    (r"Amplify Resonator's (\w+) DMG đến", r"Amplify the incoming Resonator's \w+ DMG", r'Amplify \1 DMG của Resonator đến'),
+    (r'Trước Yangyang: Basic Attack', r"Xuanling's Basic Attack", 'Trước khi Yangyang: Xuanling dùng Basic Attack'),
+    (r'(?:là )?không thể xếp chồng(?: lên nhau)?', r'stack', lambda m: ('K' if m.group(0)[0] == 'K' else 'k') + 'hông cộng dồn'),
+    (r'xếp chồng', r'\bstack', 'cộng dồn'),
+    # --- "deal"/"switched out" mistranslations (AGENTS.md §2) ---
+    (r'được xử lý bởi', r'\bdealt by\b', 'gây ra bởi'),
+    (r'do (\S+) xử lý', r'\bdealt by\b', r'do \1 gây ra'),
+    (r'DMG lấy từ', r'\bDMG taken from\b', 'DMG phải nhận từ'),
+    (r'tắt sân đấu', r'\bswitched off\b', 'rời sân'),
+    (r'\bbị tắt\b', r'\bswitched (?:out|off)\b', 'rời sân'),
+    (r'\b(Resonator) tắt\b', r'\bswitched (?:out|off)\b', r'\1 rời sân'),
+
     # --- Resonator / Resonance naming ---
     (r'Người cộng hưởng', r'Res\w*ators?\b', 'Resonators'),
     (r'Cộng hưởng Apex', r'\bApex Resonance\b', 'Apex Resonance'),
