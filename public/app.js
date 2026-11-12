@@ -11,6 +11,10 @@ const state = {
   characters: [],
   mechanics: [],
   noLink: [],
+  level: 10,
+  pendingTarget: null,
+  roleFilter: 'all',
+  mechTerm: null,
   bySlug: new Map(),
   current: null,
   showEn: false,
@@ -254,7 +258,7 @@ function renderSkills() {
   if (!c) return;
   let out = '';
   (c.skills || []).forEach((s, i) => {
-    const body = linesHTML((state.showEn ? s.desc : s.desc_vi) || []) || '<p>Chưa có mô tả chi tiết cho kỹ năng này.</p>';
+    const body = (linesHTML((state.showEn ? s.desc : s.desc_vi) || []) || '<p>Chưa có mô tả chi tiết cho kỹ năng này.</p>') + scalingHTML(s);
     out += `<section class="skill" id="skill-${i}" data-index="${i}" tabindex="-1">
       <div class="skill-head"><span class="skill-type">${esc(s.type)}</span><h3>${esc(s.name)}</h3></div>
       <div class="skill-body">${body}</div>
@@ -262,9 +266,58 @@ function renderSkills() {
   });
   dSkills.innerHTML = out;
   dSkills.lang = state.showEn ? 'en' : 'vi';
+  renderTree();
   renderChain();
   renderIntro();
   linkifyAll();
+}
+
+const LEVELS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const valueAt = (row, lv) => (row.values.length === 1 ? row.values[0] : row.values[lv - 1] ?? '—');
+
+function scalingHTML(s) {
+  const rows = s.scaling?.rows || [];
+  if (!rows.length) return '';
+  return `<details class="scaling">
+    <summary>Hệ số theo cấp <span>Lv1–10</span></summary>
+    <div class="scaling-wrap"><table>
+      <thead><tr><th scope="col">Thuộc tính</th>${LEVELS.map((lv) => `<th scope="col" data-lv="${lv}">${lv}</th>`).join('')}</tr></thead>
+      <tbody>${rows.map((r) => `<tr><th scope="row">${esc(r.label)}</th>${r.values.length === 1
+        ? `<td colspan="10" class="const">${esc(r.values[0])} <small>(mọi cấp)</small></td>`
+        : LEVELS.map((lv) => `<td data-lv="${lv}">${esc(valueAt(r, lv))}</td>`).join('')}</tr>`).join('')}</tbody>
+    </table></div>
+    <p class="scaling-src">Nguồn: <a href="${esc(s.scaling.source)}" target="_blank" rel="noopener noreferrer">Wuthering Waves Wiki — ${esc(s.name)}</a></p>
+  </details>`;
+}
+
+const TREE_COLS = ['Basic Attack', 'Resonance Skill', 'Forte Circuit', 'Resonance Liberation', 'Intro Skill'];
+
+function renderTree() {
+  const c = state.current;
+  const lv = state.level;
+  detailView.dataset.lv = String(lv);
+  $('lv-picker').innerHTML = LEVELS.map((n) =>
+    `<button type="button" role="radio" aria-checked="${n === lv}" data-lv="${n}">${n}</button>`).join('');
+  const skills = (c.skills || []).map((s, i) => ({...s, i}));
+  const node = (s) => {
+    const rows = (s.scaling?.rows || []).filter((r) => r.values.length > 1).slice(0, 2);
+    return `<button type="button" class="tree-node" data-target="skill-${s.i}">
+      <span class="tn-type">${esc(s.type)}</span>
+      <span class="tn-name">${esc(s.name)}</span>
+      ${rows.length ? `<span class="tn-lv">Lv ${lv}</span>${rows.map((r) => `<span class="tn-row"><em>${esc(r.label)}</em>${esc(valueAt(r, lv))}</span>`).join('')}`
+        : '<span class="tn-row tn-muted">Chưa có hệ số từ nguồn</span>'}
+    </button>`;
+  };
+  const inherent = skills.filter((s) => s.type === 'Inherent Skill');
+  const outro = skills.filter((s) => s.type === 'Outro Skill');
+  $('d-tree').innerHTML = `<div class="tree-cols">${TREE_COLS.map((type) => {
+    const list = skills.filter((s) => s.type === type);
+    const top = type === 'Forte Circuit' ? inherent.map((s) => `<button type="button" class="tree-node tree-inherent" data-target="skill-${s.i}">
+        <span class="tn-type">Inherent Skill</span><span class="tn-name">${esc(s.name)}</span></button>`).join('') : '';
+    return `<div class="tree-col${type === 'Forte Circuit' ? ' tree-center' : ''}">${top}${list.map(node).join('') || `<p class="tn-muted">—</p>`}</div>`;
+  }).join('')}</div>
+  ${outro.map((s) => `<button type="button" class="tree-node tree-outro" data-target="skill-${s.i}"><span class="tn-type">Outro Skill</span><span class="tn-name">${esc(s.name)}</span><span class="tn-row tn-muted">Không nâng cấp theo cấp</span></button>`).join('')}`;
+  $('d-tree-note').textContent = 'Chọn cấp để xem hệ số tương ứng; bấm một nút để tới kỹ năng. Các nút Stat Bonus trong cây chưa có số liệu từ nguồn tham khảo nên chưa hiển thị; chi phí nâng cấp xem ở mục Nguyên liệu.';
 }
 
 function renderChain() {
@@ -307,8 +360,19 @@ function renderMaterials(c) {
         <span class="mat-qty">${it.qty.toLocaleString('vi-VN')}</span>
         <span class="mat-name">${esc(it.name)}</span>
       </li>`).join('')}</ul>
+      ${levelCostsHTML((c.level_costs || {})[key])}
     </section>`;
   }).join('');
+}
+
+function levelCostsHTML(rows) {
+  if (!rows?.length) return '';
+  return `<details class="lvcost"><summary>Chi phí từng cấp <span>${rows.length} bước</span></summary>
+    <div class="lvcost-wrap"><table>
+      <thead><tr><th>Cấp</th><th>Yêu cầu đột phá</th><th>Nguyên liệu</th></tr></thead>
+      <tbody>${rows.map((r) => `<tr><th scope="row">${esc(r.level)}</th><td>${esc(r.ascension === '-' ? '—' : r.ascension)}</td>
+        <td><ul class="chips">${r.items.map((it) => `<li class="chip r${it.rarity}" title="${esc(it.name)}">${it.img ? `<img src="${esc(it.img)}" alt="" loading="lazy" referrerpolicy="no-referrer" width="22" height="22">` : ''}<b>${it.qty.toLocaleString('vi-VN')}</b> ${esc(it.name)}</li>`).join('')}</ul></td></tr>`).join('')}</tbody>
+    </table></div></details>`;
 }
 
 function renderReferences(c) {
@@ -361,7 +425,7 @@ function linkifyAll() {
     const walker = document.createTreeWalker(body, NodeFilter.SHOW_TEXT, {
       acceptNode(node) {
         if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
-        if (node.parentElement?.closest('a,button')) return NodeFilter.FILTER_REJECT;
+        if (node.parentElement?.closest('a,button,.scaling')) return NodeFilter.FILTER_REJECT;
         return NodeFilter.FILTER_ACCEPT;
       },
     });
@@ -479,6 +543,11 @@ function openDetail(slug) {
   detailView.classList.add('open');
   window.scrollTo({top: 0, behavior: 'instant'});
   backBtn.focus({preventScroll: true});
+  if (state.pendingTarget) {
+    const target = state.pendingTarget;
+    state.pendingTarget = null;
+    requestAnimationFrame(() => scrollToId(target));
+  }
 }
 
 function closeDetail() {
@@ -536,6 +605,9 @@ function openMechanic(termName) {
   } else {
     occBox.innerHTML = `<p class="mech-occ-item" style="cursor:default">${esc(m.sample_vi || 'Không có trong bộ kỹ năng hiện tại.')}</p>`;
   }
+  state.mechTerm = m;
+  state.roleFilter = 'all';
+  renderMechUsers();
   mechDialog.showModal();
   mechDialog.scrollTop = 0;
   // Offer "Xem thêm" only where the clamped text is actually cut off.
@@ -544,6 +616,62 @@ function openMechanic(termName) {
     const more = item.querySelector('.mech-more');
     if (text && more) more.hidden = text.scrollHeight <= text.clientHeight + 1;
   });
+}
+
+// Heuristic roles from the English line that mentions a mechanic.
+const ROLE_RULES = [
+  ['apply', 'Gây / kích hoạt', /\b(inflicts?|inflicted|appl(y|ies)|triggers?|triggered|grants?|gains?|enters?|causes?|summons?)\b/i],
+  ['stack', 'Tăng tầng / giới hạn', /(stack limit|max(imum)?( stack| number of stacks)|additional(ly)?[^.]*\bstacks?\b|\bstacks?\b[^.]*\b(increased|doubled)\b)/i],
+  ['amplify', 'Tăng sát thương', /(amplif|dmg bonus|dmg multiplier|more dmg|increased dmg|take[s]? \d+(\.\d+)?% (more|increased))/i],
+  ['use', 'Tận dụng / tiêu hao', /(consum|\bremov|affected by|inflicted with|targets? with|has \d+ stacks)/i],
+  ['restore', 'Hồi / tích lũy', /(restor|recover|regen)/i],
+];
+const ROLE_LABEL = Object.fromEntries(ROLE_RULES.map(([k, label]) => [k, label]));
+
+function mechUsers(m) {
+  const re = new RegExp('(?<![A-Za-z0-9])' + regexEsc(m.term) + '(?![A-Za-z0-9])');
+  const noLink = state.noLink.filter((t) => t.includes(m.term));
+  const users = [];
+  for (const c of state.characters) {
+    if (m.owners?.length && !m.owners.includes(c.slug)) continue;
+    const roles = new Set();
+    let target = null;
+    let count = 0;
+    const scan = (lines, tgt) => {
+      for (const line of lines || []) {
+        let probe = line;
+        for (const t of noLink) probe = probe.split(t).join('');  // "Unison Boon" is not "Unison"
+        if (!re.test(probe)) continue;
+        count += 1;
+        target = target || tgt;
+        for (const [key, , rx] of ROLE_RULES) if (rx.test(line)) roles.add(key);
+      }
+    };
+    (c.skills || []).forEach((s, i) => scan(s.desc, 'skill-' + i));
+    (c.resonance_chain || []).forEach((n) => scan(n.desc, 'chain-' + n.node));
+    if (count) users.push({c, roles: [...roles], target, count});
+  }
+  return users.sort((a, b) => b.count - a.count || a.c.name.localeCompare(b.c.name));
+}
+
+function renderMechUsers() {
+  const m = state.mechTerm;
+  const users = mechUsers(m);
+  const box = $('mech-users');
+  box.hidden = !users.length;
+  $('mech-users-count').textContent = `(${users.length})`;
+  const present = ROLE_RULES.map(([k]) => k).filter((k) => users.some((u) => u.roles.includes(k)));
+  $('mech-roles').innerHTML = users.length > 1 && present.length > 1
+    ? [['all', 'Tất cả'], ...present.map((k) => [k, ROLE_LABEL[k]])].map(([k, label]) =>
+      `<button type="button" class="role-chip" data-role="${k}" aria-pressed="${state.roleFilter === k}">${esc(label)}${k === 'all' ? '' : ` <small>${users.filter((u) => u.roles.includes(k)).length}</small>`}</button>`).join('')
+    : '';
+  const shown = state.roleFilter === 'all' ? users : users.filter((u) => u.roles.includes(state.roleFilter));
+  $('mech-users-list').innerHTML = shown.map(({c, roles, target, count}) => `<li>
+    <button type="button" class="mech-user${c.slug === state.current?.slug ? ' is-current' : ''}" data-slug="${esc(c.slug)}" data-target="${esc(target)}">
+      <img src="${esc(c.img_icon)}" alt="" width="40" height="40">
+      <span class="mu-main"><b>${esc(c.name)}</b>${elIcon(c.element)}<small>${count} vị trí${c.slug === state.current?.slug ? ' · đang xem' : ''}</small></span>
+      <span class="mu-roles">${roles.map((r) => `<i class="role role-${r}">${esc(ROLE_LABEL[r])}</i>`).join('')}</span>
+    </button></li>`).join('');
 }
 
 async function boot() {
@@ -612,6 +740,30 @@ dSkills.addEventListener('click', onTermClick);
 dChain.addEventListener('click', onTermClick);
 
 $('mech-close').addEventListener('click', () => mechDialog.close());
+$('mech-roles').addEventListener('click', (e) => {
+  const chip = e.target.closest('.role-chip');
+  if (!chip) return;
+  state.roleFilter = chip.dataset.role;
+  renderMechUsers();
+});
+$('mech-users-list').addEventListener('click', (e) => {
+  const btn = e.target.closest('.mech-user');
+  if (!btn) return;
+  mechDialog.close();
+  if (btn.dataset.slug === state.current?.slug) { scrollToId(btn.dataset.target); return; }
+  state.pendingTarget = btn.dataset.target;
+  location.hash = '#/nhan-vat/' + encodeURIComponent(btn.dataset.slug);
+});
+$('lv-picker').addEventListener('click', (e) => {
+  const b = e.target.closest('button[data-lv]');
+  if (!b) return;
+  state.level = Number(b.dataset.lv);
+  renderTree();
+});
+$('d-tree').addEventListener('click', (e) => {
+  const n = e.target.closest('.tree-node[data-target]');
+  if (n) scrollToId(n.dataset.target);
+});
 // The dialog closes only via ✕, Esc, or a click that both starts and ends on the
 // backdrop. Clicks inside the panel (padding, text, items, text selection) never close it.
 const outsideDialog = (e) => {
