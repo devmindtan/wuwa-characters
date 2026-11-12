@@ -25,6 +25,10 @@
 - `app/main.py` là FastAPI server, mở port và trả JSON cho frontend. Frontend không nhúng dữ liệu, chỉ gọi API.
 - `public/` chứa HTML/CSS/JS tĩnh. Không chỉnh sửa trực tiếp file sinh tự động (nếu có).
 - `scripts/` chứa pipeline extract/dịch/review. Chạy script bằng Python trong `.venv`.
+- Dữ liệu bổ sung từ Wuthering Waves Wiki (Fandom, qua MediaWiki API công khai): `scripts/fetch_wiki.py` (cache vào `data/wiki_raw.json`, không commit) → `scripts/merge_wiki.py` ghi `resonance_chain`, `materials`, `references` vào `data/characters.json`.
+- Bản dịch Resonance Chain nằm ở `data/translations/resonance_chain_vi.json` (khóa theo tên node, kèm bản EN gốc). Khi EN trên wiki đổi, bản dịch cũ tự bị bỏ và `merge_wiki.py --export-missing FILE` liệt kê node cần dịch lại; dịch xong chạy `review.py` (kiểm tra số dòng và các con số khớp EN).
+- Không vượt rào chặn bot (Cloudflare/403) của bất kỳ nguồn nào; nguồn chặn thì dùng nguồn khác hoặc nhờ người dùng.
+- Mỗi nhân vật phải có `references` liệt kê nguồn đã dùng cho từng phần dữ liệu.
 - Chạy dự án: `./run.sh` → `http://127.0.0.1:8000`.
 - API tối thiểu: `/api/meta`, `/api/characters`, `/api/characters/{slug}`, `/api/mechanics`, `/api/changes`.
 
