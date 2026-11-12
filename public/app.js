@@ -595,6 +595,9 @@ function linkifyAll() {
     if (m.owners?.length && !m.owners.includes(c.slug)) continue;
     if (!byText.has(m.term)) byText.set(m.term, {type: 'mech', term: m.term, text: m.term});
   }
+  for (const name of movesOf(c).keys()) {
+    if (!byText.has(name)) byText.set(name, {type: 'move', term: name, text: name});
+  }
   for (const text of state.noLink) {
     if (!byText.has(text)) byText.set(text, {type: 'plain', text});
   }
@@ -647,7 +650,69 @@ function linkifyAll() {
   });
 }
 
+/* ---------- sub-moves ("Basic Attack Hounds Roar", "Heavy Attack - Thunderoar: Backstep") ---------- */
+const MOVE_TYPES = '(?:Basic Attack|Heavy Attack|Mid-air Attack|Dodge Counter|Plunging Attack|Resonance Skill|Resonance Liberation|Intro Skill|Outro Skill|Forte Circuit|Inherent Skill|Echo Skill|Enhanced Heavy Attack|Enhanced Basic Attack)';
+const MOVE_CAP = "(?:[A-Z][\\w'’!?-]*:?)(?:(?:\\s(?:of|the|in|a|to|for|is|on|by|from)){0,2}\\s[A-Z\"][\\w'’!?\"-]*:?)*";
+const MOVE_QUOTED = new RegExp(MOVE_TYPES + '\\s+"([^"]+)"', 'g');
+const MOVE_DASHED = new RegExp('(' + MOVE_TYPES + '\\s+-\\s+' + MOVE_CAP + ')', 'g');
+const MOVE_PLAIN = new RegExp(MOVE_TYPES + '\\s+(' + MOVE_CAP + ')', 'g');
+const MOVE_SKIP = new Set(['Stage', 'DMG', 'Damage', 'Bonus', 'Multiplier', 'Cooldown', 'Concerto', 'Resonance', 'Skill', 'Attack', 'Liberation',
+  'Intro', 'Outro', 'Forte', 'Circuit', 'Heavy', 'Basic', 'Dodge', 'Counter', 'Mid-air', 'Plunging', 'Echo', 'Inherent', 'I', 'II', 'III', 'IV', 'V']);
+const DEFINES = /(replaced (?:with|by)|becomes? available|is available|to cast|to perform|can be cast|enters?|summons?)/i;
+const moveCache = new Map();
+
+// Named sub-moves of one Resonator, mined from the English kit text. Each gets the
+// line that best defines it (a "replaced with"/"to cast" line, else its first mention).
+function movesOf(c) {
+  if (moveCache.has(c.slug)) return moveCache.get(c.slug);
+  const skillNames = new Set((c.skills || []).map((s) => s.name));
+  const mech = new Set(state.mechanics.map((m) => m.term));
+  const found = new Map();
+  const add = (name, ref, line) => {
+    // Source lines sometimes run two sentences together ("…: Huntress Casting Comin' in Hot").
+    name = name.replace(/\s(?:Casting|Performing|Pressing|Holding|Using|Press|Hold|Use|When|While|After)\b.*$/, '');
+    name = name.replace(/\s+Stage\s*$/, '').replace(/[\s:!]+$/, '').trim();
+    const tail = name.includes(' - ') ? name.split(' - ').slice(1).join(' - ') : name;
+    if (name.length < 3 || skillNames.has(name) || skillNames.has(tail) || mech.has(name) || mech.has(tail)) return;
+    // "Heavy Attack - X" names legitimately start with a skill-type word; only plain names are filtered.
+    if (!name.includes(' - ') && MOVE_SKIP.has(name.split(' ')[0])) return;
+    const cur = found.get(name);
+    const defines = DEFINES.test(line);
+    if (!cur || (defines && !cur.defines)) found.set(name, {...ref, defines});
+  };
+  const scan = (lines, ref) => (lines || []).forEach((line, li) => {
+    for (const re of [MOVE_QUOTED, MOVE_DASHED, MOVE_PLAIN]) {
+      re.lastIndex = 0;
+      let m;
+      while ((m = re.exec(line))) add(m[1], {...ref, line: li}, line);
+    }
+  });
+  (c.skills || []).forEach((s, i) => scan(s.desc, {kind: 'skill', index: i, title: s.name}));
+  (c.resonance_chain || []).forEach((n) => scan(n.desc, {kind: 'chain', index: n.node, title: `S${n.node} · ${n.name}`}));
+  moveCache.set(c.slug, found);
+  return found;
+}
+
+function openMove(name) {
+  const c = state.current;
+  const ref = movesOf(c).get(name);
+  if (!ref) return;
+  const src = ref.kind === 'skill' ? c.skills[ref.index] : (c.resonance_chain || []).find((n) => n.node === ref.index);
+  const lines = (state.showEn || !(src.desc_vi || []).length ? src.desc : src.desc_vi) || [];
+  const def = (lines[ref.line] || '').replace(/^• /, '');
+  openMechanic({term: name, kind: 'move', owners: [c.slug], summary_vi: def, summary_en: def,
+    source: t('move_from', {skill: ref.title}), target: (ref.kind === 'skill' ? 'skill-' : 'chain-') + ref.index});
+}
+
 function makeTermNode(term, text) {
+  if (term.type === 'move') {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'term-link move-link';
+    b.dataset.move = term.term;
+    b.textContent = text;
+    return b;
+  }
   if (term.type === 'dmg') {
     const span = document.createElement('span');
     span.className = `dmg dmg-${term.el}`;
@@ -684,7 +749,7 @@ function scrollToId(id, term = '') {
   detailView.querySelectorAll('.hit, .hit-term').forEach((x) => x.classList.remove('hit', 'hit-term'));
   let hits = [];
   if (term) {
-    const terms = [...el.querySelectorAll('.mech-link')].filter((b) => b.dataset.mech === term);
+    const terms = [...el.querySelectorAll('.mech-link, .move-link')].filter((b) => (b.dataset.mech || b.dataset.move) === term);
     terms.forEach((b) => b.classList.add('hit-term'));
     hits = [...new Set(terms.map((b) => b.closest('p, li')).filter(Boolean))];
     if (!hits.length) hits = [...el.querySelectorAll('.skill-body p, .skill-body li, .chain-body p, .chain-body li')].filter((x) => x.textContent.includes(term));
@@ -777,12 +842,14 @@ function route() {
   else closeDetail();
 }
 
-function openMechanic(termName) {
-  const m = state.mechanics.find((x) => x.term === termName);
+function openMechanic(termOrObj) {
+  const m = typeof termOrObj === 'string' ? state.mechanics.find((x) => x.term === termOrObj) : termOrObj;
   if (!m) return;
   $('mech-kind').textContent = t('kind_' + m.kind) || t('mech_kind');
   $('mech-title').textContent = m.term;
   $('mech-summary').textContent = (state.showEn ? m.summary_en : m.summary_vi) || m.summary_vi;
+  $('mech-source').hidden = !m.source;
+  $('mech-source').textContent = m.source || '';
   const c = state.current;
   const occurrences = [];
   const seen = new Set();
@@ -870,7 +937,7 @@ function renderMechUsers() {
   const m = state.mechTerm;
   const users = mechUsers(m);
   const box = $('mech-users');
-  box.hidden = !users.length;
+  box.hidden = !users.length || m.kind === 'move';  // moves belong to one Resonator
   $('mech-users-count').textContent = `(${users.length})`;
   const present = ROLE_RULES.map(([k]) => k).filter((k) => users.some((u) => u.roles.includes(k)));
   $('mech-roles').innerHTML = users.length > 1 && present.length > 1
@@ -946,7 +1013,9 @@ const onTermClick = (e) => {
   const skill = e.target.closest('[data-skill]');
   if (skill) { e.preventDefault(); scrollToSkill(Number(skill.dataset.skill)); return; }
   const mech = e.target.closest('[data-mech]');
-  if (mech) { e.preventDefault(); openMechanic(mech.dataset.mech); }
+  if (mech) { e.preventDefault(); openMechanic(mech.dataset.mech); return; }
+  const move = e.target.closest('[data-move]');
+  if (move) { e.preventDefault(); openMove(move.dataset.move); }
 };
 dSkills.addEventListener('click', onTermClick);
 dChain.addEventListener('click', onTermClick);

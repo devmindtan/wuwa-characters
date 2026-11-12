@@ -49,6 +49,7 @@
 - Tên riêng chỉ *chứa* tên một cơ chế (Unison Boon, Unison Response, Tune Rupture Response...) phải nằm trong `NO_LINK` để không bị link nhầm; nếu đó là cơ chế quan trọng thì thêm vào `CURATED` với tóm tắt bám dữ liệu.
 - Cụm "<Nguyên tố> DMG" (kèm Bonus/Amplification/RES) được tô màu nguyên tố chính thức (Glacio #41AEFB, Fusion #F0744E, Electro #B46BFF, Aero #55FFB5, Spectro #F8E56C, Havoc #E649A6), chỉ đổi màu, không in đậm.
 - Sau khi sửa `CURATED`/`OWNERS`/`NO_LINK`, chạy `python scripts/build_mechanics.py` để sinh lại `data/mechanics.json`.
+- Đòn con / kỹ năng con không có mục riêng (ví dụ "Basic Attack Hounds Roar", Heavy Attack "Mercy", "Heavy Attack - Thunderoar: Backstep") được nhận diện tự động trong `public/app.js` (`movesOf`) theo mẫu `<loại kỹ năng> <Tên>` và tạo link (gạch nét đứt). Popup giải thích chỉ trích nguyên văn câu định nghĩa trong dữ liệu (dòng "replaced with / to cast…", nếu không có thì lần nhắc đầu tiên), ghi rõ trích từ kỹ năng nào; không tự viết giải thích.
 - Popup cơ chế liệt kê các Resonators có cơ chế đó (tính trên trình duyệt từ mô tả EN của kỹ năng + Resonance Chain). Vai trò (Gây/kích hoạt, Tăng tầng/giới hạn, Tăng sát thương, Tận dụng/tiêu hao, Hồi) là phân loại tự động theo từ khóa; UI phải ghi rõ điều này.
 
 ## 5. Kiểm chứng trước khi báo xong
