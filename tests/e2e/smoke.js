@@ -11,7 +11,7 @@ const issues = [];
 const check = (ok, msg) => { if (!ok) issues.push(msg); };
 
 async function open(page, slug) {
-  await page.goto(`${BASE}/#/nhan-vat/${slug}`);
+  await page.goto(`${BASE}/#/character/${slug}`);
   await page.waitForSelector('#d-crumb span', {state: 'attached'});
   await page.waitForTimeout(250);
 }
@@ -170,7 +170,11 @@ async function run(tag, viewport) {
   check(/^ATK is increased by 24%/.test(await page.locator('.wp-eff-text').innerText()), `${tag}: weapon effect in EN`);
   await page.click('.detail-actions [data-lang="vi"]');
 
-  await open(page, 'chisa');
+  // old Vietnamese route still opens and is rewritten to the English one
+  await page.goto(`${BASE}/#/nhan-vat/chisa`);
+  await page.waitForSelector('#d-crumb span', {state: 'attached'});
+  check(await page.evaluate(() => location.hash) === '#/character/chisa', `${tag}: old #/nhan-vat/ link not redirected`);
+  await page.waitForTimeout(250);
   await page.click('.trait-havoc_bane');
   await page.waitForTimeout(200);
   check(await page.locator('.ms-list li').count() >= 3, `${tag}: Havoc Bane summary bullets`);

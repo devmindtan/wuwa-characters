@@ -1,5 +1,5 @@
 // Entry point: loads the API data and wires page-level events.
-import {$, backBtn, dChain, detailView, dSkills, errorBox, esc, fEl, fR, fWeap, grid, loading, mechDialog, q, state} from './core.js';
+import {$, charHash, backBtn, dChain, detailView, dSkills, errorBox, esc, fEl, fR, fWeap, grid, loading, mechDialog, q, state} from './core.js';
 import {route, setTab, TAB_ORDER} from './detail.js';
 import {t} from './i18n.js';
 import {applyLevel, renderTreeDetail, updateUpgrade} from './kit.js';
@@ -50,12 +50,12 @@ async function boot() {
 
 grid.addEventListener('click', (e) => {
   const card = e.target.closest('.card');
-  if (card) location.hash = '#/nhan-vat/' + encodeURIComponent(card.dataset.slug);
+  if (card) location.hash = charHash(card.dataset.slug);
 });
 grid.addEventListener('keydown', (e) => {
   if (e.key === 'Enter' || e.key === ' ') {
     const card = e.target.closest('.card');
-    if (card) { e.preventDefault(); location.hash = '#/nhan-vat/' + encodeURIComponent(card.dataset.slug); }
+    if (card) { e.preventDefault(); location.hash = charHash(card.dataset.slug); }
   }
 });
 backBtn.addEventListener('click', () => { location.hash = '#/'; });

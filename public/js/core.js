@@ -32,6 +32,13 @@ export const state = {
 };
 
 export const $ = (id) => document.getElementById(id);
+
+// Profile route: #/character/<slug>. Old shared links (#/nhan-vat/<slug>) still open.
+export const charHash = (slug) => '#/character/' + encodeURIComponent(slug);
+export const routeSlug = () => {
+  const m = location.hash.match(/^#\/(?:character|nhan-vat)\/(.+)$/);
+  return m ? decodeURIComponent(m[1]) : null;
+};
 export const grid = $('grid');
 export const empty = $('empty');
 export const loading = $('loading');

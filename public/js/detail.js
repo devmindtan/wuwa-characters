@@ -1,5 +1,5 @@
 // Routing and the Resonator detail page (render, open/close, tabs).
-import {$, backBtn, detailView, elColor, elIcon, elVi, esc, listView, stars, state, weapIcon, weapVi} from './core.js';
+import {$, backBtn, charHash, routeSlug, detailView, elColor, elIcon, elVi, esc, listView, stars, state, weapIcon, weapVi} from './core.js';
 import {t} from './i18n.js';
 import {renderMaterials, renderReferences, renderSkills} from './kit.js';
 import {scrollToId} from './links.js';
@@ -18,10 +18,6 @@ export function renderChanges(c) {
 
 // Full Resonator data is fetched when a profile opens (the list only has summaries) and kept.
 const fullCache = new Map();
-const routeSlug = () => {
-  const m = location.hash.match(/^#\/nhan-vat\/(.+)$/);
-  return m ? decodeURIComponent(m[1]) : null;
-};
 
 export async function openDetail(slug) {
   if (!state.bySlug.has(slug)) { location.hash = '#/'; return; }
@@ -99,8 +95,9 @@ export function closeDetail() {
 }
 
 export function route() {
-  const m = location.hash.match(/^#\/nhan-vat\/(.+)$/);
-  if (m) openDetail(decodeURIComponent(m[1]));
+  const slug = routeSlug();
+  if (slug && !location.hash.startsWith('#/character/')) history.replaceState(null, '', charHash(slug));
+  if (slug) openDetail(slug);
   else closeDetail();
 }
 

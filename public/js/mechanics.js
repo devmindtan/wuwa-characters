@@ -1,5 +1,5 @@
 // Mechanic dialog: explanations, quotes, kit traits, Resonators using it.
-import {$, elIcon, esc, mechDialog, state} from './core.js';
+import {$, charHash, elIcon, esc, mechDialog, state} from './core.js';
 import {I18N, t} from './i18n.js';
 import {scrollToId} from './links.js';
 
@@ -197,7 +197,7 @@ $('mech-users-list').addEventListener('click', (e) => {
   const line = btn.dataset.line;
   if (btn.dataset.slug === state.current?.slug) { scrollToId(btn.dataset.target, term, line); return; }
   state.pendingTarget = {id: btn.dataset.target, term, line};
-  location.hash = '#/nhan-vat/' + encodeURIComponent(btn.dataset.slug);
+  location.hash = charHash(btn.dataset.slug);
 });
 $('d-traits-list').addEventListener('click', (e) => {
   const b = e.target.closest('.trait');
