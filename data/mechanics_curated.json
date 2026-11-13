@@ -1,0 +1,469 @@
+{
+ "_doc": "Nội dung do người viết cho data/mechanics.json. Mỗi mục: term, kind, vi, en (tóm tắt bám nguồn; dòng bắt đầu bằng \"• \" hiện thành danh sách), source (\"wiki\" = mục Terminology/Negative Status của Wuthering Waves Wiki), owner (slug: chỉ link trên trang nhân vật đó), aliases (dạng biến thể cũng link). no_link: tên riêng chỉ chứa tên cơ chế, hiển thị như chữ thường. Sửa xong chạy python scripts/build_mechanics.py.",
+ "no_link": [
+  "Unison Boon",
+  "Unison Response",
+  "Unison Reponse",
+  "Manifold Unison",
+  "Tune Rupture Response",
+  "Hack Response"
+ ],
+ "terms": [
+  {
+   "term": "Concerto Energy",
+   "kind": "resource",
+   "vi": "Thanh năng lượng thể hiện mức sẵn sàng của Outro Skill (Resonator rời sân) và Intro Skill (Resonator vào sân).",
+   "en": "Gauge showing how ready the outgoing Resonator's Outro Skill and the incoming Resonator's Intro Skill are.",
+   "source": "wiki"
+  },
+  {
+   "term": "Resonance Energy",
+   "kind": "resource",
+   "vi": "Tài nguyên khi đầy cho phép thi triển Resonance Liberation.",
+   "en": "Resource that, when maxed out, allows Resonance Liberation to be cast.",
+   "source": "wiki"
+  },
+  {
+   "term": "Resonance Mode",
+   "kind": "system",
+   "vi": "Cơ chế cho phép Resonator chuyển giữa các chế độ gây hiệu ứng/loại sát thương khác nhau.",
+   "en": "Mechanic that lets Resonators switch between applying different statuses / dealing different damage types.",
+   "source": "wiki"
+  },
+  {
+   "term": "Off-Tune Level",
+   "kind": "system",
+   "vi": "Thanh tích lũy trên mục tiêu bị Tune Strain; khi đầy có thể kích hoạt Tune Break.",
+   "en": "Gauge built up on a target affected by Tune Strain; when full, Tune Break can be triggered."
+  },
+  {
+   "term": "Tune Strain",
+   "kind": "system",
+   "vi": "Một nhánh của cơ chế Tune Break: Tune Strain - Shifting đánh dấu mục tiêu; khi mục tiêu bị Tune Break, dấu chuyển thành Tune Strain - Interfered và Resonator có Tune Strain Response gây thêm sát thương lên mục tiêu đó.",
+   "en": "A subset of Tune Break: Tune Strain - Shifting marks the target; once it is Tune Broken the mark becomes Tune Strain - Interfered and Resonators with Tune Strain Response deal more damage to it.",
+   "source": "wiki"
+  },
+  {
+   "term": "Tune Break",
+   "kind": "system",
+   "vi": "Loại Forte có thể kích hoạt thủ công khi kẻ địch vào trạng thái Mistune. Có ba nhánh: Tune Strain, Tune Rupture và Hack.",
+   "en": "A Forte type that can be triggered manually once an enemy enters the Mistune state. Three branches: Tune Strain, Tune Rupture and Hack.",
+   "source": "wiki"
+  },
+  {
+   "term": "Tune Rupture",
+   "kind": "system",
+   "vi": "Một nhánh của cơ chế Tune Break: Tune Rupture - Shifting đánh dấu mục tiêu; khi mục tiêu bị Tune Break, dấu phát nổ gây một đòn sát thương lớn và mục tiêu chuyển sang Tune Rupture - Interfered.",
+   "en": "A subset of Tune Break: Tune Rupture - Shifting marks the target; once it is Tune Broken the mark detonates for one massive hit and the target enters Tune Rupture - Interfered.",
+   "source": "wiki"
+  },
+  {
+   "term": "Tune Break Boost",
+   "kind": "stat",
+   "vi": "Chỉ số tăng hiệu quả Tune Break; Resonator có Tune Strain Response nhận thêm tổng sát thương từ Tune Break Boost.",
+   "en": "Stat that strengthens Tune Break; Resonators with Tune Strain Response gain total DMG increase from Tune Break Boost.",
+   "source": "wiki"
+  },
+  {
+   "term": "Negative Status",
+   "kind": "status",
+   "vi": "Hiệu ứng sát thương theo thời gian / bất lợi có thể cộng dồn, gây lên cả kẻ địch lẫn Resonator.\n• Gồm 6 loại: Spectro Frazzle, Aero Erosion, Havoc Bane, Fusion Burst, Glacio Chafe, Electro Flare.\n• Sát thương kích hoạt mỗi 3 giây kể từ tầng đầu tiên, tính theo chỉ số của Resonator gây tầng gần nhất.\n• Chỉ các hiệu ứng Amplify dành riêng cho Negative Status đó mới tăng sát thương của nó; Amplify theo nguyên tố chung không có tác dụng.",
+   "en": "Stackable damage-over-time effects and debuffs that can hit both enemies and Resonators.\n• Six types: Spectro Frazzle, Aero Erosion, Havoc Bane, Fusion Burst, Glacio Chafe, Electro Flare.\n• Their damage triggers every 3s after the first stack, based on the stats of the Resonator who applied the latest stack.\n• Only Amplify effects aimed at that specific Negative Status increase its damage; generic Attribute DMG Amplify does not.",
+   "source": "wiki"
+  },
+  {
+   "term": "Spectro Frazzle",
+   "kind": "status",
+   "vi": "Negative Status hệ Spectro: gây Spectro DMG định kỳ lên mục tiêu.\n• Mỗi lần gây sát thương (khoảng mỗi 3 giây), mục tiêu mất 1 tầng.\n• Sát thương tăng theo số tầng (bảng hệ số trên wiki tính tới 10 tầng: 10 tầng ≈ gấp 8 lần 1 tầng).",
+   "en": "Spectro Negative Status: deals periodic Spectro DMG to the target.\n• Each time it deals damage (about every 3s), the target loses 1 stack.\n• Damage scales with stacks (the wiki's multiplier table goes up to 10 stacks: 10 stacks ≈ 8× one stack).",
+   "source": "wiki"
+  },
+  {
+   "term": "Aero Erosion",
+   "kind": "status",
+   "vi": "Negative Status hệ Aero: gây Aero DMG định kỳ lên mục tiêu khi còn hiệu lực.\n• Giới hạn mặc định 3 tầng; chỉ một số hiệu ứng (ví dụ Outro Skill của Rover Aero, các kỹ năng bên dưới) mới nâng được giới hạn này.\n• Sát thương tăng theo số tầng (theo bảng hệ số trên wiki: 3 tầng ≈ gấp 5 lần 1 tầng).\n• Số tầng giảm dần mỗi 15 giây.",
+   "en": "Aero Negative Status: deals periodic Aero DMG to the target while it lasts.\n• Default cap is 3 stacks; only certain effects (e.g. Aero Rover's Outro Skill, the skills below) can raise it.\n• Damage scales with stacks (per the wiki's multiplier table, 3 stacks ≈ 5× one stack).\n• Stacks are reduced every 15s.",
+   "source": "wiki"
+  },
+  {
+   "term": "Havoc Bane",
+   "kind": "status",
+   "vi": "Negative Status hệ Havoc: trong thời gian tồn tại, DEF của mục tiêu bị giảm.\n• Cộng dồn tối đa 3 tầng (mặc định).\n• Mỗi tầng giảm 2% DEF của mục tiêu (đủ 3 tầng: giảm 6% DEF).\n• Một số Resonator tăng giới hạn tầng hoặc tận dụng Havoc Bane: xem các đoạn bên dưới.",
+   "en": "Havoc Negative Status: while it lasts, the target's DEF is reduced.\n• Stacks up to 3 times by default.\n• Each stack reduces the target's DEF by 2% (6% at 3 stacks).\n• Some Resonators raise the stack limit or make use of Havoc Bane: see the lines below.",
+   "source": "wiki"
+  },
+  {
+   "term": "Fusion Burst",
+   "kind": "status",
+   "vi": "Negative Status hệ Fusion: tích tầng trên mục tiêu, đủ tầng thì phát nổ.\n• Cộng dồn tối đa 10 tầng (mặc định).\n• Khi đạt tối đa, toàn bộ tầng bị xóa để gây một vụ nổ Fusion DMG quanh mục tiêu.\n• Càng nhiều tầng, sát thương vụ nổ càng cao.",
+   "en": "Fusion Negative Status: builds up on the target and explodes when full.\n• Stacks up to 10 times by default.\n• At max stacks, all stacks are removed to trigger an explosion dealing Fusion DMG around the target.\n• The more stacks, the more damage.",
+   "source": "wiki"
+  },
+  {
+   "term": "Glacio Chafe",
+   "kind": "status",
+   "vi": "Negative Status hệ Glacio: khi bị gây Glacio Chafe, mục tiêu nhận Glacio DMG.\n• Cộng dồn tối đa 10 tầng (mặc định).\n• Mỗi tầng giảm tốc độ di chuyển của mục tiêu.\n• Khi đạt tối đa, mục tiêu bị đóng băng (frozen) và toàn bộ tầng bị xóa.",
+   "en": "Glacio Negative Status: when inflicted, the target takes Glacio DMG.\n• Stacks up to 10 times by default.\n• Each stack reduces the target's Movement Speed.\n• At max stacks the target is frozen and all stacks are removed.",
+   "source": "wiki"
+  },
+  {
+   "term": "Electro Flare",
+   "kind": "status",
+   "vi": "Negative Status hệ Electro: gây Electro DMG định kỳ lên mục tiêu.\n• Cộng dồn tối đa 10 tầng (mặc định); càng nhiều tầng sát thương càng cao.\n• Mỗi lần gây sát thương, mục tiêu mất một nửa số tầng.\n• Khi đã tối đa, tầng mới chuyển thành Electro Rage (tối đa 10 tầng): tăng sát thương lần kích hoạt Electro Flare kế tiếp, kích hoạt xong thì bị xóa.",
+   "en": "Electro Negative Status: deals periodic Electro DMG to the target.\n• Stacks up to 10 times by default; more stacks deal more damage.\n• The target loses half of the stacks with each instance of damage.\n• At max stacks, new stacks become Electro Rage (up to 10 stacks), which increases the damage of the next Electro Flare trigger and is removed once triggered.",
+   "source": "wiki"
+  },
+  {
+   "term": "Coordinated Attack",
+   "kind": "system",
+   "vi": "Đòn đánh bổ trợ do Resonator không trực tiếp điều khiển (ngoài sân) tự động thực hiện cùng Resonator đang trên sân.",
+   "en": "Supplemental attack automatically executed by off-field Resonators alongside the on-field Resonator.",
+   "source": "wiki"
+  },
+  {
+   "term": "Echo Skill",
+   "kind": "system",
+   "vi": "Kỹ năng chủ động đến từ Echo đặt ở ô chính; một số Resonator (như Phrolova, Qiuyuan) có đòn được tính là Echo Skill DMG.",
+   "en": "Active skill from the Echo in the main slot; some Resonators (e.g. Phrolova, Qiuyuan) have attacks counted as Echo Skill DMG.",
+   "source": "wiki"
+  },
+  {
+   "term": "Vibration Strength",
+   "kind": "system",
+   "vi": "Cơ chế trên kẻ địch: giảm Vibration Strength để buộc kẻ địch vào trạng thái bất động một thời gian và chịu thêm sát thương.",
+   "en": "Enemy mechanic: reducing Vibration Strength forces the enemy into an immobilized state for a while, taking increased damage.",
+   "source": "wiki"
+  },
+  {
+   "term": "All-DMG Amplification",
+   "kind": "stat",
+   "vi": "Tăng sát thương của mọi loại đòn đánh.",
+   "en": "Increases the damage of every type of attack."
+  },
+  {
+   "term": "DMG Amplification",
+   "kind": "stat",
+   "vi": "Hệ số khuếch đại sát thương cuối, khác với DMG Bonus.",
+   "en": "Final damage amplification multiplier, separate from DMG Bonus."
+  },
+  {
+   "term": "Electro Rage",
+   "kind": "status",
+   "vi": "Tầng phụ của Electro Flare: khi Electro Flare trên mục tiêu đã tối đa, tầng mới chuyển thành Electro Rage.\n• Cộng dồn tối đa 10 tầng (mặc định).\n• Tăng sát thương của lần kích hoạt Electro Flare kế tiếp; càng nhiều tầng càng mạnh.\n• Bị xóa sau khi kích hoạt.",
+   "en": "Extra stacks of Electro Flare: once Electro Flare on the target is at max, new stacks become Electro Rage.\n• Stacks up to 10 times by default.\n• Increases the damage of the next Electro Flare trigger; more stacks, more damage.\n• Removed once triggered.",
+   "source": "wiki"
+  },
+  {
+   "term": "Stagnate",
+   "kind": "status",
+   "vi": "Làm chậm các mục tiêu trong một phạm vi nhất định (vai trò chiến đấu Stagnation).",
+   "en": "Slows down targets within a certain range (Stagnation combat role).",
+   "source": "wiki",
+   "aliases": [
+    "Stagnates",
+    "Stagnated",
+    "Stagnating",
+    "Stagnation"
+   ]
+  },
+  {
+   "term": "Interfered",
+   "kind": "status",
+   "vi": "Trạng thái của kẻ địch sau khi bị Tune Break khi đang mang dấu Shifting (Tune Strain - Interfered / Tune Rupture - Interfered); các Resonator có Response tương ứng sẽ phản ứng lên mục tiêu này.",
+   "en": "Enemy state after a target marked with Shifting is Tune Broken (Tune Strain - Interfered / Tune Rupture - Interfered); Resonators with the matching Response react to it.",
+   "source": "wiki"
+  },
+  {
+   "term": "Shifting",
+   "kind": "status",
+   "vi": "Dấu Tune Strain - Shifting / Tune Rupture - Shifting một số Resonator gây lên kẻ địch; tự nó không có tác dụng, khi mục tiêu bị Tune Break thì chuyển thành Interfered. Kéo dài 25 giây.",
+   "en": "Tune Strain - Shifting / Tune Rupture - Shifting mark applied by some Resonators; it does nothing on its own and turns into Interfered when the target is Tune Broken. Lasts 25s.",
+   "source": "wiki"
+  },
+  {
+   "term": "Mistune",
+   "kind": "status",
+   "vi": "Trạng thái của kẻ địch cho phép kích hoạt Tune Break thủ công.",
+   "en": "Enemy state in which Tune Break can be triggered manually.",
+   "source": "wiki"
+  },
+  {
+   "term": "Interruption Resistance",
+   "kind": "stat",
+   "vi": "Chỉ số ẩn: khả năng của Resonator hoặc kẻ địch không bị đòn của đối phương làm gián đoạn.",
+   "en": "Hidden attribute: a Resonator's or enemy's ability not to be interrupted by the opponent's attacks.",
+   "source": "wiki"
+  },
+  {
+   "term": "Incarnation",
+   "kind": "mode",
+   "vi": "Trạng thái biến đổi của Jinhsi; thay Basic/Heavy/Resonance Skill và Dodge bằng phiên bản Incarnation, kết thúc sau Incarnation - Basic Attack Stage 4.",
+   "en": "Jinhsi's transformed state; replaces Basic/Heavy/Resonance Skill and Dodge with Incarnation versions, ending after Incarnation - Basic Attack Stage 4.",
+   "owner": "jinhsi"
+  },
+  {
+   "term": "Ordination Glow",
+   "kind": "mode",
+   "vi": "Hiệu ứng Jinhsi nhận sau khi kết thúc Incarnation, tăng sát thương cho bộ chiêu.",
+   "en": "Effect Jinhsi gains after Incarnation ends, boosting her moveset.",
+   "owner": "jinhsi"
+  },
+  {
+   "term": "Eras in Unity",
+   "kind": "mode",
+   "vi": "Hiệu ứng cộng hưởng Jinhsi cấp cho các Resonator gần đó khi có mặt trong đội.",
+   "en": "Resonance effect Jinhsi grants nearby Resonators while she is in the team.",
+   "owner": "jinhsi"
+  },
+  {
+   "term": "Form Switch",
+   "kind": "mode",
+   "vi": "Chuyển đổi giữa Aemeath và Mech; mỗi dạng có bộ chiêu và cơ chế riêng.",
+   "en": "Switching between Aemeath and Mech; each form has its own moveset and mechanics.",
+   "owner": "aemeath"
+  },
+  {
+   "term": "Stardust Resonance",
+   "kind": "mode",
+   "vi": "Trạng thái buff Aemeath nhận sau Resonance Liberation.",
+   "en": "Buff state Aemeath gains after Resonance Liberation.",
+   "owner": "aemeath"
+  },
+  {
+   "term": "Heavenfall Edict",
+   "kind": "mode",
+   "vi": "Trạng thái nâng cấp Heavy Attack của Aemeath sau Resonance Liberation.",
+   "en": "Aemeath's enhanced Heavy Attack state after Resonance Liberation.",
+   "owner": "aemeath"
+  },
+  {
+   "term": "Kaleidoscopic Parade",
+   "kind": "mode",
+   "vi": "Trạng thái thay thế bộ chiêu của Lynae, gồm Basic/Heavy/Dodge Counter riêng.",
+   "en": "Lynae's alternate moveset state with its own Basic/Heavy/Dodge Counter.",
+   "owner": "lynae"
+  },
+  {
+   "term": "Blossom Mode",
+   "kind": "mode",
+   "vi": "Trạng thái chiến đấu đặc biệt của Camellya.",
+   "en": "Camellya's special combat state.",
+   "owner": "camellya"
+  },
+  {
+   "term": "Crimson Blossom",
+   "kind": "mode",
+   "vi": "Cộng dồn/hiệu ứng đặc biệt trong Blossom Mode của Camellya.",
+   "en": "Stacks/special effect in Camellya's Blossom Mode.",
+   "owner": "camellya"
+  },
+  {
+   "term": "Inferno Mode",
+   "kind": "mode",
+   "vi": "Trạng thái đặc biệt của Zani, thay đổi Resonance Skill và bộ chiêu.",
+   "en": "Zani's special state that changes her Resonance Skill and moveset.",
+   "owner": "zani"
+  },
+  {
+   "term": "Chainsaw Mode",
+   "kind": "mode",
+   "vi": "Trạng thái đặc biệt của Chisa; một số kỹ năng bị khóa khi ở trạng thái này.",
+   "en": "Chisa's special state; some skills are locked while in it.",
+   "owner": "chisa"
+  },
+  {
+   "term": "True Sight",
+   "kind": "mode",
+   "vi": "Trạng thái Changli nhận sau Basic Attack Stage 4, kéo dài 12 giây.",
+   "en": "State Changli gains after Basic Attack Stage 4, lasting 12s.",
+   "owner": "changli"
+  },
+  {
+   "term": "Unison",
+   "kind": "mode",
+   "vi": "Hiệu ứng/Resonance Mode dùng chung của một số Resonators (Hsin, Jinhsi, Suoming, Lily…); khi có Unison có thể kích hoạt Unison Response. Tóm tắt từ bộ kỹ năng.",
+   "en": "Effect/Resonance Mode shared by some Resonators (Hsin, Jinhsi, Suoming, Lily…); with Unison, Unison Response can be triggered. Summary from the kits."
+  },
+  {
+   "term": "Heart Manifest",
+   "kind": "mode",
+   "vi": "Trạng thái của Hsin: thi triển Formshift để mở Manifold Sanctum, Hsin chuyển sang Illumining Form và vào Heart Manifest; trở lại Answering Form thì rời trạng thái này. Tóm tắt từ bộ kỹ năng.",
+   "en": "Hsin's state: casting Formshift unfurls the Manifold Sanctum, Hsin turns into Illumining Form and enters Heart Manifest; returning to Answering Form exits it. Summary from the kit.",
+   "owner": "hsin"
+  },
+  {
+   "term": "Deathblade Gear",
+   "kind": "mode",
+   "vi": "Trạng thái sau Resonance Liberation của Calcharo, thay đổi bộ chiêu.",
+   "en": "Calcharo's state after Resonance Liberation that changes his moveset.",
+   "owner": "calcharo"
+  },
+  {
+   "term": "Fleurdelys",
+   "kind": "mode",
+   "vi": "Dạng biến đổi của Cartethyia khi HP dưới 50%, mở khóa chiêu mới.",
+   "en": "Cartethyia's transformed form when HP drops below 50%, unlocking new moves.",
+   "owner": "cartethyia"
+  },
+  {
+   "term": "Manifest",
+   "kind": "mode",
+   "vi": "Trạng thái Cartethyia nhận sau khi biến thành Fleurdelys.",
+   "en": "State Cartethyia gains after turning into Fleurdelys.",
+   "owner": "cartethyia"
+  },
+  {
+   "term": "Reminiscence",
+   "kind": "mode",
+   "vi": "Trạng thái đặc biệt của Lucilla, thay đổi Intro/Resonance Skill.",
+   "en": "Lucilla's special state that changes her Intro/Resonance Skill.",
+   "owner": "lucilla"
+  },
+  {
+   "term": "Trace",
+   "kind": "resource",
+   "vi": "Tài nguyên tích lũy của Lucilla.",
+   "en": "Lucilla's accumulated resource.",
+   "owner": "lucilla"
+  },
+  {
+   "term": "Photos",
+   "kind": "resource",
+   "vi": "Ba biểu tượng Lucilla cần thu thập để mở Resonance Liberation.",
+   "en": "Three icons Lucilla collects to unlock her Resonance Liberation.",
+   "owner": "lucilla"
+  },
+  {
+   "term": "Payload",
+   "kind": "skill",
+   "vi": "Resonance Skill dạng lao tới của Lucy.",
+   "en": "Lucy's dash-type Resonance Skill.",
+   "owner": "lucy"
+  },
+  {
+   "term": "Hack",
+   "kind": "system",
+   "vi": "Hiệu ứng lên mục tiêu, dùng bởi Lucy và Rebecca (Hack - Shifting, Hack - Interfered). Tóm tắt từ bộ kỹ năng.",
+   "en": "Effect on targets used by Lucy and Rebecca (Hack - Shifting, Hack - Interfered). Summary from the kits."
+  },
+  {
+   "term": "Spoofing Program",
+   "kind": "system",
+   "vi": "Các hiệu ứng Lucy chọn trong Protocol Interface, tiêu tốn RAM.",
+   "en": "Effects Lucy selects in the Protocol Interface, costing RAM.",
+   "owner": "lucy"
+  },
+  {
+   "term": "Protocol Interface",
+   "kind": "system",
+   "vi": "Giao diện kỹ năng của Lucy trong Resonance Liberation.",
+   "en": "Lucy's skill interface during Resonance Liberation.",
+   "owner": "lucy"
+  },
+  {
+   "term": "Algorithm Compaction",
+   "kind": "mode",
+   "vi": "Trạng thái thay đổi Basic Attack của Lucy.",
+   "en": "State that changes Lucy's Basic Attack.",
+   "owner": "lucy"
+  },
+  {
+   "term": "Ichor Blade",
+   "kind": "summon",
+   "vi": "Lưỡi kiếm Luuk Herssen triệu hồi.",
+   "en": "Blade summoned by Luuk Herssen.",
+   "owner": "luuk-herssen"
+  },
+  {
+   "term": "Afflatus",
+   "kind": "resource",
+   "vi": "Tài nguyên tích lũy của Zhezhi.",
+   "en": "Zhezhi's accumulated resource.",
+   "owner": "zhezhi"
+  },
+  {
+   "term": "Lumiflow",
+   "kind": "resource",
+   "vi": "Tài nguyên tích lũy của Lynae, dùng cho Spark Collision.",
+   "en": "Lynae's accumulated resource, used for Spark Collision.",
+   "owner": "lynae"
+  },
+  {
+   "term": "Overflow",
+   "kind": "resource",
+   "vi": "Thanh tài nguyên đầy trong Optical Sampling Stage của Lynae.",
+   "en": "Resource gauge filled during Lynae's Optical Sampling Stage.",
+   "owner": "lynae"
+  },
+  {
+   "term": "Optical Sampling Stage",
+   "kind": "system",
+   "vi": "Pha tích lũy Overflow của Lynae.",
+   "en": "Lynae's phase for building up Overflow.",
+   "owner": "lynae"
+  },
+  {
+   "term": "Spark Collision",
+   "kind": "skill",
+   "vi": "Đòn đánh đặc biệt của Lynae, mạnh dần theo Lumiflow.",
+   "en": "Lynae's special attack, stronger with more Lumiflow.",
+   "owner": "lynae"
+  },
+  {
+   "term": "Golden Reflux",
+   "kind": "system",
+   "vi": "Cơ chế cộng dồn/lượt sạc của Luuk Herssen.",
+   "en": "Luuk Herssen's stacking/charge mechanic.",
+   "owner": "luuk-herssen"
+  },
+  {
+   "term": "Solo Concert",
+   "kind": "mode",
+   "vi": "Trạng thái biểu diễn của Ciaccona sau Basic Attack Stage 4.",
+   "en": "Ciaccona's performance state after Basic Attack Stage 4.",
+   "owner": "ciaccona"
+  },
+  {
+   "term": "Ensemble Sylph",
+   "kind": "summon",
+   "vi": "Cơ chế triệu hồi/cộng hưởng của Ciaccona.",
+   "en": "Ciaccona's summon/resonance mechanic.",
+   "owner": "ciaccona"
+  },
+  {
+   "term": "Ephemeral Transcendence",
+   "kind": "mode",
+   "vi": "Trạng thái đặc biệt của Qingxiao sau khi tiêu hao Qin Heart và Sword Cadence.",
+   "en": "Qingxiao's special state after consuming Qin Heart and Sword Cadence.",
+   "owner": "qingxiao"
+  },
+  {
+   "term": "Qin Heart",
+   "kind": "resource",
+   "vi": "Tài nguyên tích lũy của Qingxiao.",
+   "en": "Qingxiao's accumulated resource.",
+   "owner": "qingxiao"
+  },
+  {
+   "term": "Sword Cadence",
+   "kind": "resource",
+   "vi": "Tài nguyên tích lũy của Qingxiao.",
+   "en": "Qingxiao's accumulated resource.",
+   "owner": "qingxiao"
+  },
+  {
+   "term": "Stringblade",
+   "kind": "skill",
+   "vi": "Dạng vũ khí/chiêu thức của Qingxiao.",
+   "en": "Qingxiao's weapon form / moveset.",
+   "owner": "qingxiao"
+  },
+  {
+   "term": "Involuntary Sharing",
+   "kind": "system",
+   "vi": "Hiệu ứng Lucy cấp cho Resonator trong đội, cho phép thấy mục tiêu sau vật cản.",
+   "en": "Effect Lucy grants team Resonators, letting them see targets behind obstacles.",
+   "owner": "lucy"
+  }
+ ]
+}

@@ -69,3 +69,17 @@ def test_negative_status_summaries_are_complete(mechanics):
     for term in ['Fusion Burst', 'Glacio Chafe', 'Electro Flare', 'Aero Erosion', 'Spectro Frazzle']:
         assert '\n• ' in by_term[term]['summary_vi'] and '\n• ' in by_term[term]['summary_en'], term
         assert by_term[term]['source'] == 'wiki'
+
+
+def test_curated_file_schema(characters):
+    import json
+    data = json.loads(build_mechanics.CURATED_FILE.read_text(encoding='utf-8'))
+    slugs = {c['slug'] for c in characters}
+    kinds = {'resource', 'system', 'status', 'mode', 'skill', 'summon', 'stat'}
+    seen = set()
+    for t in data['terms']:
+        assert t['term'] not in seen, f"duplicate term {t['term']}"
+        seen.add(t['term'])
+        assert t['kind'] in kinds, t
+        assert t.get('owner') is None or t['owner'] in slugs, t
+        assert t.get('source') in (None, 'wiki'), t

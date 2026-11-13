@@ -12,184 +12,31 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / 'data' / 'characters.json'
 OUT = ROOT / 'data' / 'mechanics.json'
 
-CURATED = {
-    # ---- global systems ----
-    'Concerto Energy': ('Thanh năng lượng thể hiện mức sẵn sàng của Outro Skill (Resonator rời sân) và Intro Skill (Resonator vào sân).', 'resource'),
-    'Resonance Energy': ('Tài nguyên khi đầy cho phép thi triển Resonance Liberation.', 'resource'),
-    'Resonance Mode': ('Cơ chế cho phép Resonator chuyển giữa các chế độ gây hiệu ứng/loại sát thương khác nhau.', 'system'),
-    'Off-Tune Level': ('Thanh tích lũy trên mục tiêu bị Tune Strain; khi đầy có thể kích hoạt Tune Break.', 'system'),
-    'Tune Strain': ('Một nhánh của cơ chế Tune Break: Tune Strain - Shifting đánh dấu mục tiêu; khi mục tiêu bị Tune Break, dấu chuyển thành Tune Strain - Interfered và Resonator có Tune Strain Response gây thêm sát thương lên mục tiêu đó.', 'system'),
-    'Tune Break': ('Loại Forte có thể kích hoạt thủ công khi kẻ địch vào trạng thái Mistune. Có ba nhánh: Tune Strain, Tune Rupture và Hack.', 'system'),
-    'Tune Rupture': ('Một nhánh của cơ chế Tune Break: Tune Rupture - Shifting đánh dấu mục tiêu; khi mục tiêu bị Tune Break, dấu phát nổ gây một đòn sát thương lớn và mục tiêu chuyển sang Tune Rupture - Interfered.', 'system'),
-    'Tune Break Boost': ('Chỉ số tăng hiệu quả Tune Break; Resonator có Tune Strain Response nhận thêm tổng sát thương từ Tune Break Boost.', 'stat'),
-    'Negative Status': ('Hiệu ứng sát thương theo thời gian / bất lợi có thể cộng dồn, gây lên cả kẻ địch lẫn Resonator.\n• Gồm 6 loại: Spectro Frazzle, Aero Erosion, Havoc Bane, Fusion Burst, Glacio Chafe, Electro Flare.\n• Sát thương kích hoạt mỗi 3 giây kể từ tầng đầu tiên, tính theo chỉ số của Resonator gây tầng gần nhất.\n• Chỉ các hiệu ứng Amplify dành riêng cho Negative Status đó mới tăng sát thương của nó; Amplify theo nguyên tố chung không có tác dụng.', 'status'),
-    'Spectro Frazzle': ('Negative Status hệ Spectro: gây Spectro DMG định kỳ lên mục tiêu.\n• Mỗi lần gây sát thương (khoảng mỗi 3 giây), mục tiêu mất 1 tầng.\n• Sát thương tăng theo số tầng (bảng hệ số trên wiki tính tới 10 tầng: 10 tầng ≈ gấp 8 lần 1 tầng).', 'status'),
-    'Aero Erosion': ('Negative Status hệ Aero: gây Aero DMG định kỳ lên mục tiêu khi còn hiệu lực.\n• Giới hạn mặc định 3 tầng; chỉ một số hiệu ứng (ví dụ Outro Skill của Rover Aero, các kỹ năng bên dưới) mới nâng được giới hạn này.\n• Sát thương tăng theo số tầng (theo bảng hệ số trên wiki: 3 tầng ≈ gấp 5 lần 1 tầng).\n• Số tầng giảm dần mỗi 15 giây.', 'status'),
-    'Havoc Bane': ('Negative Status hệ Havoc: trong thời gian tồn tại, DEF của mục tiêu bị giảm.\n• Cộng dồn tối đa 3 tầng (mặc định).\n• Mỗi tầng giảm 2% DEF của mục tiêu (đủ 3 tầng: giảm 6% DEF).\n• Một số Resonator tăng giới hạn tầng hoặc tận dụng Havoc Bane: xem các đoạn bên dưới.', 'status'),
-    'Fusion Burst': ('Negative Status hệ Fusion: tích tầng trên mục tiêu, đủ tầng thì phát nổ.\n• Cộng dồn tối đa 10 tầng (mặc định).\n• Khi đạt tối đa, toàn bộ tầng bị xóa để gây một vụ nổ Fusion DMG quanh mục tiêu.\n• Càng nhiều tầng, sát thương vụ nổ càng cao.', 'status'),
-    'Glacio Chafe': ('Negative Status hệ Glacio: khi bị gây Glacio Chafe, mục tiêu nhận Glacio DMG.\n• Cộng dồn tối đa 10 tầng (mặc định).\n• Mỗi tầng giảm tốc độ di chuyển của mục tiêu.\n• Khi đạt tối đa, mục tiêu bị đóng băng (frozen) và toàn bộ tầng bị xóa.', 'status'),
-    'Electro Flare': ('Negative Status hệ Electro: gây Electro DMG định kỳ lên mục tiêu.\n• Cộng dồn tối đa 10 tầng (mặc định); càng nhiều tầng sát thương càng cao.\n• Mỗi lần gây sát thương, mục tiêu mất một nửa số tầng.\n• Khi đã tối đa, tầng mới chuyển thành Electro Rage (tối đa 10 tầng): tăng sát thương lần kích hoạt Electro Flare kế tiếp, kích hoạt xong thì bị xóa.', 'status'),
-    'Coordinated Attack': ('Đòn đánh bổ trợ do Resonator không trực tiếp điều khiển (ngoài sân) tự động thực hiện cùng Resonator đang trên sân.', 'system'),
-    'Echo Skill': ('Kỹ năng chủ động đến từ Echo đặt ở ô chính; một số Resonator (như Phrolova, Qiuyuan) có đòn được tính là Echo Skill DMG.', 'system'),
-    'Vibration Strength': ('Cơ chế trên kẻ địch: giảm Vibration Strength để buộc kẻ địch vào trạng thái bất động một thời gian và chịu thêm sát thương.', 'system'),
-    'All-DMG Amplification': ('Tăng sát thương của mọi loại đòn đánh.', 'stat'),
-    'DMG Amplification': ('Hệ số khuếch đại sát thương cuối, khác với DMG Bonus.', 'stat'),
-    'Electro Rage': ('Tầng phụ của Electro Flare: khi Electro Flare trên mục tiêu đã tối đa, tầng mới chuyển thành Electro Rage.\n• Cộng dồn tối đa 10 tầng (mặc định).\n• Tăng sát thương của lần kích hoạt Electro Flare kế tiếp; càng nhiều tầng càng mạnh.\n• Bị xóa sau khi kích hoạt.', 'status'),
-    'Stagnate': ('Làm chậm các mục tiêu trong một phạm vi nhất định (vai trò chiến đấu Stagnation).', 'status'),
-    'Interfered': ('Trạng thái của kẻ địch sau khi bị Tune Break khi đang mang dấu Shifting (Tune Strain - Interfered / Tune Rupture - Interfered); các Resonator có Response tương ứng sẽ phản ứng lên mục tiêu này.', 'status'),
-    'Shifting': ('Dấu Tune Strain - Shifting / Tune Rupture - Shifting một số Resonator gây lên kẻ địch; tự nó không có tác dụng, khi mục tiêu bị Tune Break thì chuyển thành Interfered. Kéo dài 25 giây.', 'status'),
-    'Mistune': ('Trạng thái của kẻ địch cho phép kích hoạt Tune Break thủ công.', 'status'),
-    'Interruption Resistance': ('Chỉ số ẩn: khả năng của Resonator hoặc kẻ địch không bị đòn của đối phương làm gián đoạn.', 'stat'),
-
-    # ---- resonator-specific modes ----
-    'Incarnation': ('Trạng thái biến đổi của Jinhsi; thay Basic/Heavy/Resonance Skill và Dodge bằng phiên bản Incarnation, kết thúc sau Incarnation - Basic Attack Stage 4.', 'mode'),
-    'Ordination Glow': ('Hiệu ứng Jinhsi nhận sau khi kết thúc Incarnation, tăng sát thương cho bộ chiêu.', 'mode'),
-    'Eras in Unity': ('Hiệu ứng cộng hưởng Jinhsi cấp cho các Resonator gần đó khi có mặt trong đội.', 'mode'),
-    'Form Switch': ('Chuyển đổi giữa Aemeath và Mech; mỗi dạng có bộ chiêu và cơ chế riêng.', 'mode'),
-    'Stardust Resonance': ('Trạng thái buff Aemeath nhận sau Resonance Liberation.', 'mode'),
-    'Heavenfall Edict': ('Trạng thái nâng cấp Heavy Attack của Aemeath sau Resonance Liberation.', 'mode'),
-    'Kaleidoscopic Parade': ('Trạng thái thay thế bộ chiêu của Lynae, gồm Basic/Heavy/Dodge Counter riêng.', 'mode'),
-    'Blossom Mode': ('Trạng thái chiến đấu đặc biệt của Camellya.', 'mode'),
-    'Crimson Blossom': ('Cộng dồn/hiệu ứng đặc biệt trong Blossom Mode của Camellya.', 'mode'),
-    'Inferno Mode': ('Trạng thái đặc biệt của Zani, thay đổi Resonance Skill và bộ chiêu.', 'mode'),
-    'Chainsaw Mode': ('Trạng thái đặc biệt của Chisa; một số kỹ năng bị khóa khi ở trạng thái này.', 'mode'),
-    'True Sight': ('Trạng thái Changli nhận sau Basic Attack Stage 4, kéo dài 12 giây.', 'mode'),
-    'Unison': ('Hiệu ứng/Resonance Mode dùng chung của một số Resonators (Hsin, Jinhsi, Suoming, Lily…); khi có Unison có thể kích hoạt Unison Response. Tóm tắt từ bộ kỹ năng.', 'mode'),
-    'Heart Manifest': ('Trạng thái của Hsin: thi triển Formshift để mở Manifold Sanctum, Hsin chuyển sang Illumining Form và vào Heart Manifest; trở lại Answering Form thì rời trạng thái này. Tóm tắt từ bộ kỹ năng.', 'mode'),
-    'Deathblade Gear': ('Trạng thái sau Resonance Liberation của Calcharo, thay đổi bộ chiêu.', 'mode'),
-    'Fleurdelys': ('Dạng biến đổi của Cartethyia khi HP dưới 50%, mở khóa chiêu mới.', 'mode'),
-    'Manifest': ('Trạng thái Cartethyia nhận sau khi biến thành Fleurdelys.', 'mode'),
-    'Reminiscence': ('Trạng thái đặc biệt của Lucilla, thay đổi Intro/Resonance Skill.', 'mode'),
-    'Trace': ('Tài nguyên tích lũy của Lucilla.', 'resource'),
-    'Photos': ('Ba biểu tượng Lucilla cần thu thập để mở Resonance Liberation.', 'resource'),
-    'Payload': ('Resonance Skill dạng lao tới của Lucy.', 'skill'),
-    'Hack': ('Hiệu ứng lên mục tiêu, dùng bởi Lucy và Rebecca (Hack - Shifting, Hack - Interfered). Tóm tắt từ bộ kỹ năng.', 'system'),
-    'Spoofing Program': ('Các hiệu ứng Lucy chọn trong Protocol Interface, tiêu tốn RAM.', 'system'),
-    'Protocol Interface': ('Giao diện kỹ năng của Lucy trong Resonance Liberation.', 'system'),
-    'Algorithm Compaction': ('Trạng thái thay đổi Basic Attack của Lucy.', 'mode'),
-    'Ichor Blade': ('Lưỡi kiếm Luuk Herssen triệu hồi.', 'summon'),
-    'Afflatus': ('Tài nguyên tích lũy của Zhezhi.', 'resource'),
-    'Lumiflow': ('Tài nguyên tích lũy của Lynae, dùng cho Spark Collision.', 'resource'),
-    'Overflow': ('Thanh tài nguyên đầy trong Optical Sampling Stage của Lynae.', 'resource'),
-    'Optical Sampling Stage': ('Pha tích lũy Overflow của Lynae.', 'system'),
-    'Spark Collision': ('Đòn đánh đặc biệt của Lynae, mạnh dần theo Lumiflow.', 'skill'),
-    'Golden Reflux': ('Cơ chế cộng dồn/lượt sạc của Luuk Herssen.', 'system'),
-    'Solo Concert': ('Trạng thái biểu diễn của Ciaccona sau Basic Attack Stage 4.', 'mode'),
-    'Ensemble Sylph': ('Cơ chế triệu hồi/cộng hưởng của Ciaccona.', 'summon'),
-    'Ephemeral Transcendence': ('Trạng thái đặc biệt của Qingxiao sau khi tiêu hao Qin Heart và Sword Cadence.', 'mode'),
-    'Qin Heart': ('Tài nguyên tích lũy của Qingxiao.', 'resource'),
-    'Sword Cadence': ('Tài nguyên tích lũy của Qingxiao.', 'resource'),
-    'Stringblade': ('Dạng vũ khí/chiêu thức của Qingxiao.', 'skill'),
-    'Involuntary Sharing': ('Hiệu ứng Lucy cấp cho Resonator trong đội, cho phép thấy mục tiêu sau vật cản.', 'system'),
-}
+CURATED_FILE = ROOT / 'data' / 'mechanics_curated.json'
 
 
-# Resonator-specific mechanics: only linked on their owners' pages, so a common
-# word (e.g. "Manifest" inside Hsin's "Heart Manifest") never opens another
-# character's explanation. Terms not listed here are shared/global.
-OWNERS = {
-    'jinhsi': ['Incarnation', 'Ordination Glow', 'Eras in Unity'],
-    'aemeath': ['Form Switch', 'Stardust Resonance', 'Heavenfall Edict'],
-    'lynae': ['Kaleidoscopic Parade', 'Lumiflow', 'Overflow', 'Optical Sampling Stage', 'Spark Collision'],
-    'camellya': ['Blossom Mode', 'Crimson Blossom'],
-    'zani': ['Inferno Mode'],
-    'chisa': ['Chainsaw Mode'],
-    'changli': ['True Sight'],
-    'hsin': ['Heart Manifest'],
-    'calcharo': ['Deathblade Gear'],
-    'cartethyia': ['Fleurdelys', 'Manifest'],
-    'lucilla': ['Reminiscence', 'Trace', 'Photos'],
-    'lucy': ['Payload', 'Spoofing Program', 'Protocol Interface', 'Algorithm Compaction', 'Involuntary Sharing'],
-    'luuk-herssen': ['Ichor Blade', 'Golden Reflux'],
-    'zhezhi': ['Afflatus'],
-    'ciaccona': ['Solo Concert', 'Ensemble Sylph'],
-    'qingxiao': ['Ephemeral Transcendence', 'Qin Heart', 'Sword Cadence', 'Stringblade'],
-}
-# English summaries (same meaning as the Vietnamese ones above) for the EN UI.
-SUMMARY_EN = {
-    'Concerto Energy': "Gauge showing how ready the outgoing Resonator's Outro Skill and the incoming Resonator's Intro Skill are.",
-    'Resonance Energy': 'Resource that, when maxed out, allows Resonance Liberation to be cast.',
-    'Resonance Mode': 'Mechanic that lets Resonators switch between applying different statuses / dealing different damage types.',
-    'Off-Tune Level': 'Gauge built up on a target affected by Tune Strain; when full, Tune Break can be triggered.',
-    'Tune Strain': 'A subset of Tune Break: Tune Strain - Shifting marks the target; once it is Tune Broken the mark becomes Tune Strain - Interfered and Resonators with Tune Strain Response deal more damage to it.',
-    'Tune Break': 'A Forte type that can be triggered manually once an enemy enters the Mistune state. Three branches: Tune Strain, Tune Rupture and Hack.',
-    'Tune Rupture': 'A subset of Tune Break: Tune Rupture - Shifting marks the target; once it is Tune Broken the mark detonates for one massive hit and the target enters Tune Rupture - Interfered.',
-    'Tune Break Boost': 'Stat that strengthens Tune Break; Resonators with Tune Strain Response gain total DMG increase from Tune Break Boost.',
-    'Negative Status': 'Stackable damage-over-time effects and debuffs that can hit both enemies and Resonators.\n• Six types: Spectro Frazzle, Aero Erosion, Havoc Bane, Fusion Burst, Glacio Chafe, Electro Flare.\n• Their damage triggers every 3s after the first stack, based on the stats of the Resonator who applied the latest stack.\n• Only Amplify effects aimed at that specific Negative Status increase its damage; generic Attribute DMG Amplify does not.',
-    'Spectro Frazzle': "Spectro Negative Status: deals periodic Spectro DMG to the target.\n• Each time it deals damage (about every 3s), the target loses 1 stack.\n• Damage scales with stacks (the wiki's multiplier table goes up to 10 stacks: 10 stacks ≈ 8× one stack).",
-    'Aero Erosion': "Aero Negative Status: deals periodic Aero DMG to the target while it lasts.\n• Default cap is 3 stacks; only certain effects (e.g. Aero Rover's Outro Skill, the skills below) can raise it.\n• Damage scales with stacks (per the wiki's multiplier table, 3 stacks ≈ 5× one stack).\n• Stacks are reduced every 15s.",
-    'Havoc Bane': "Havoc Negative Status: while it lasts, the target's DEF is reduced.\n• Stacks up to 3 times by default.\n• Each stack reduces the target's DEF by 2% (6% at 3 stacks).\n• Some Resonators raise the stack limit or make use of Havoc Bane: see the lines below.",
-    'Fusion Burst': 'Fusion Negative Status: builds up on the target and explodes when full.\n• Stacks up to 10 times by default.\n• At max stacks, all stacks are removed to trigger an explosion dealing Fusion DMG around the target.\n• The more stacks, the more damage.',
-    'Glacio Chafe': "Glacio Negative Status: when inflicted, the target takes Glacio DMG.\n• Stacks up to 10 times by default.\n• Each stack reduces the target's Movement Speed.\n• At max stacks the target is frozen and all stacks are removed.",
-    'Electro Flare': 'Electro Negative Status: deals periodic Electro DMG to the target.\n• Stacks up to 10 times by default; more stacks deal more damage.\n• The target loses half of the stacks with each instance of damage.\n• At max stacks, new stacks become Electro Rage (up to 10 stacks), which increases the damage of the next Electro Flare trigger and is removed once triggered.',
-    'Coordinated Attack': 'Supplemental attack automatically executed by off-field Resonators alongside the on-field Resonator.',
-    'Echo Skill': 'Active skill from the Echo in the main slot; some Resonators (e.g. Phrolova, Qiuyuan) have attacks counted as Echo Skill DMG.',
-    'Vibration Strength': 'Enemy mechanic: reducing Vibration Strength forces the enemy into an immobilized state for a while, taking increased damage.',
-    'All-DMG Amplification': 'Increases the damage of every type of attack.',
-    'DMG Amplification': 'Final damage amplification multiplier, separate from DMG Bonus.',
-    'Electro Rage': 'Extra stacks of Electro Flare: once Electro Flare on the target is at max, new stacks become Electro Rage.\n• Stacks up to 10 times by default.\n• Increases the damage of the next Electro Flare trigger; more stacks, more damage.\n• Removed once triggered.',
-    'Stagnate': 'Slows down targets within a certain range (Stagnation combat role).',
-    'Interfered': 'Enemy state after a target marked with Shifting is Tune Broken (Tune Strain - Interfered / Tune Rupture - Interfered); Resonators with the matching Response react to it.',
-    'Shifting': 'Tune Strain - Shifting / Tune Rupture - Shifting mark applied by some Resonators; it does nothing on its own and turns into Interfered when the target is Tune Broken. Lasts 25s.',
-    'Mistune': 'Enemy state in which Tune Break can be triggered manually.',
-    'Interruption Resistance': "Hidden attribute: a Resonator's or enemy's ability not to be interrupted by the opponent's attacks.",
-    'Incarnation': "Jinhsi's transformed state; replaces Basic/Heavy/Resonance Skill and Dodge with Incarnation versions, ending after Incarnation - Basic Attack Stage 4.",
-    'Ordination Glow': "Effect Jinhsi gains after Incarnation ends, boosting her moveset.",
-    'Eras in Unity': 'Resonance effect Jinhsi grants nearby Resonators while she is in the team.',
-    'Form Switch': 'Switching between Aemeath and Mech; each form has its own moveset and mechanics.',
-    'Stardust Resonance': 'Buff state Aemeath gains after Resonance Liberation.',
-    'Heavenfall Edict': "Aemeath's enhanced Heavy Attack state after Resonance Liberation.",
-    'Kaleidoscopic Parade': "Lynae's alternate moveset state with its own Basic/Heavy/Dodge Counter.",
-    'Blossom Mode': "Camellya's special combat state.",
-    'Crimson Blossom': "Stacks/special effect in Camellya's Blossom Mode.",
-    'Inferno Mode': "Zani's special state that changes her Resonance Skill and moveset.",
-    'Chainsaw Mode': "Chisa's special state; some skills are locked while in it.",
-    'True Sight': 'State Changli gains after Basic Attack Stage 4, lasting 12s.',
-    'Unison': 'Effect/Resonance Mode shared by some Resonators (Hsin, Jinhsi, Suoming, Lily…); with Unison, Unison Response can be triggered. Summary from the kits.',
-    'Heart Manifest': "Hsin's state: casting Formshift unfurls the Manifold Sanctum, Hsin turns into Illumining Form and enters Heart Manifest; returning to Answering Form exits it. Summary from the kit.",
-    'Deathblade Gear': "Calcharo's state after Resonance Liberation that changes his moveset.",
-    'Fleurdelys': "Cartethyia's transformed form when HP drops below 50%, unlocking new moves.",
-    'Manifest': 'State Cartethyia gains after turning into Fleurdelys.',
-    'Reminiscence': "Lucilla's special state that changes her Intro/Resonance Skill.",
-    'Trace': "Lucilla's accumulated resource.",
-    'Photos': 'Three icons Lucilla collects to unlock her Resonance Liberation.',
-    'Payload': "Lucy's dash-type Resonance Skill.",
-    'Hack': 'Effect on targets used by Lucy and Rebecca (Hack - Shifting, Hack - Interfered). Summary from the kits.',
-    'Spoofing Program': "Effects Lucy selects in the Protocol Interface, costing RAM.",
-    'Protocol Interface': "Lucy's skill interface during Resonance Liberation.",
-    'Algorithm Compaction': "State that changes Lucy's Basic Attack.",
-    'Ichor Blade': 'Blade summoned by Luuk Herssen.',
-    'Afflatus': "Zhezhi's accumulated resource.",
-    'Lumiflow': "Lynae's accumulated resource, used for Spark Collision.",
-    'Overflow': "Resource gauge filled during Lynae's Optical Sampling Stage.",
-    'Optical Sampling Stage': "Lynae's phase for building up Overflow.",
-    'Spark Collision': "Lynae's special attack, stronger with more Lumiflow.",
-    'Golden Reflux': "Luuk Herssen's stacking/charge mechanic.",
-    'Solo Concert': "Ciaccona's performance state after Basic Attack Stage 4.",
-    'Ensemble Sylph': "Ciaccona's summon/resonance mechanic.",
-    'Ephemeral Transcendence': "Qingxiao's special state after consuming Qin Heart and Sword Cadence.",
-    'Qin Heart': "Qingxiao's accumulated resource.",
-    'Sword Cadence': "Qingxiao's accumulated resource.",
-    'Stringblade': "Qingxiao's weapon form / moveset.",
-    'Involuntary Sharing': 'Effect Lucy grants team Resonators, letting them see targets behind obstacles.',
-}
-# Summaries taken from the Wuthering Waves Wiki "Terminology" pages.
-WIKI_TERMS = {'Concerto Energy', 'Resonance Energy', 'Resonance Mode', 'Tune Strain', 'Tune Break', 'Tune Rupture',
-              'Tune Break Boost', 'Negative Status', 'Spectro Frazzle', 'Aero Erosion', 'Havoc Bane', 'Fusion Burst',
-              'Glacio Chafe', 'Electro Flare', 'Coordinated Attack', 'Echo Skill', 'Vibration Strength', 'Stagnate',
-              'Interfered', 'Shifting', 'Mistune', 'Interruption Resistance', 'Electro Rage'}
-missing_en = [t for t in CURATED if t not in SUMMARY_EN]
-assert not missing_en, f'SUMMARY_EN missing: {missing_en}'
+def load_curated(path=CURATED_FILE):
+    """Hand-written content lives in data/mechanics_curated.json (VI/EN side by side)."""
+    data = json.loads(path.read_text(encoding='utf-8'))
+    terms = data['terms']
+    missing = [t['term'] for t in terms if not t.get('vi') or not t.get('en')]
+    assert not missing, f'mechanics_curated.json: missing vi/en for {missing}'
+    curated = {t['term']: (t['vi'], t['kind']) for t in terms}
+    summary_en = {t['term']: t['en'] for t in terms}
+    owners = {}
+    for t in terms:
+        if t.get('owner'):
+            owners.setdefault(t['owner'], []).append(t['term'])
+    wiki = {t['term'] for t in terms if t.get('source') == 'wiki'}
+    aliases = {t['term']: list(t['aliases']) for t in terms if t.get('aliases')}
+    return curated, summary_en, owners, wiki, data['no_link'], aliases
 
-# Distinct named things that merely contain a mechanic's name. They are matched
-# first (longest match wins) and rendered as plain text, so e.g. "Unison" inside
-# "Unison Boon" does not open the Unison explanation.
-NO_LINK = [
-    'Unison Boon', 'Unison Response', 'Unison Reponse', 'Manifold Unison',
-    'Tune Rupture Response', 'Hack Response',
-]
-# Inflected forms that should link to the same mechanic.
-ALIASES = {'Stagnate': ['Stagnates', 'Stagnated', 'Stagnating', 'Stagnation']}
+
+# CURATED: term -> (summary_vi, kind). OWNERS: Resonator-specific mechanics only link on their
+# owners' pages, so a common word (e.g. "Manifest" inside Hsin's "Heart Manifest") never opens
+# another character's explanation. NO_LINK: names that merely contain a mechanic's name
+# ("Unison Boon") are matched first and rendered as plain text. ALIASES: inflected forms.
+CURATED, SUMMARY_EN, OWNERS, WIKI_TERMS, NO_LINK, ALIASES = load_curated()
 OWNER_OF = {term: slug for slug, terms in OWNERS.items() for term in terms}
 
 
