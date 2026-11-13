@@ -4,6 +4,7 @@ import {t} from './i18n.js';
 import {renderMaterials, renderReferences, renderSkills} from './kit.js';
 import {scrollToId} from './links.js';
 import {renderTraits} from './mechanics.js';
+import {renderWeapon, renderWeaponCard} from './weapon.js';
 
 export function renderChanges(c) {
   const box = $('d-changes');
@@ -38,6 +39,7 @@ export async function openDetail(slug) {
     }
     if (routeSlug() !== slug) return;  // the visitor moved on while it was loading
   }
+  if (state.current?.slug !== c.slug) Object.assign(state, {wRank: 1, wLv: null, wAsc: null});
   state.current = c;
   renderDetail(c);
   state.treeSel = null;
@@ -54,27 +56,6 @@ export async function openDetail(slug) {
     state.pendingTarget = null;
     requestAnimationFrame(() => scrollToId(id, term, line ?? null));
   }
-}
-
-function renderSignatureWeapon(c) {
-  const box = $('d-sig-weapon');
-  const sw = c.signature_weapon;
-  if (!sw) { box.hidden = true; box.innerHTML = ''; return; }
-  const meta = [sw.type, sw.stat_type].filter(Boolean).map(esc).join(' · ');
-  const passive = sw.rank_name ? `<div class="sw-passive">${esc(sw.rank_name)}</div>` : '';
-  const tip = sw.effect ? esc(sw.effect) : '';
-  box.hidden = false;
-  box.outerHTML; // keep element
-  box.innerHTML = `<a href="${esc(sw.source || '#')}" target="_blank" rel="noopener noreferrer" class="sig-weapon-link" style="display:flex;align-items:center;gap:12px;color:inherit;text-decoration:none;width:100%"${tip ? ` data-tip="${tip.replace(/"/g, '&quot;')}"` : ''}>
-    <span class="sw-icon">${sw.img ? `<img src="${esc(sw.img)}" alt="" loading="lazy">` : ''}</span>
-    <span class="sw-body">
-      <div class="sw-k">${esc(t('k_sig_weapon'))}</div>
-      <div class="sw-name">${esc(sw.name)} <span class="r5">${'★'.repeat(sw.rarity || 5)}</span></div>
-      <div class="sw-meta">${meta}</div>
-      ${passive}
-    </span>
-  </a>`;
-  box.className = 'sig-weapon';
 }
 
 // Everything on the profile that depends on the language, except the skill/tree/chain bodies.
@@ -100,7 +81,8 @@ export function renderDetail(c) {
     <div class="stat"><div class="k">${esc(t('k_weapon'))}</div><div class="v v-ico">${weapIcon(c.weapon, 'ico-lg')}<span>${esc(c.weapon)}${vi ? `<small>${esc(weapVi(c.weapon))}</small>` : ''}</span></div></div>
     <div class="stat"><div class="k">${esc(t('k_rarity'))}</div><div class="v" style="color:${c.rarity===5?'var(--r5)':'var(--r4)'}">${c.rarity ? c.rarity + '★' : '—'}</div></div>
     <div class="stat"><div class="k">${esc(t('k_skills'))}</div><div class="v">${(c.skills || []).length}<small>${esc(t('skills_unit'))}</small></div></div>`;
-  renderSignatureWeapon(c);
+  renderWeaponCard(c);
+  renderWeapon();
   renderTraits(c);
   renderMaterials(c);
   renderReferences(c);
@@ -124,7 +106,7 @@ export function route() {
 }
 
 /* tabs, sliders, tree selection, goto buttons */
-export const TAB_ORDER = ['tree', 'skills', 'chain', 'mats'];
+export const TAB_ORDER = ['tree', 'skills', 'chain', 'weapon', 'mats'];
 export function setTab(name, focus = false) {
   if (!TAB_ORDER.includes(name) || $('tab-btn-' + name).hidden) name = 'skills';
   state.tab = name;

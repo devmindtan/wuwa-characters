@@ -6,6 +6,7 @@ import {applyLevel, renderTreeDetail, updateUpgrade} from './kit.js';
 import {openMove, scrollToId, scrollToSkill} from './links.js';
 import {apply, applyStaticI18n, buildFilters, renderHero, renderMeta, setLang} from './list.js';
 import {openMechanic} from './mechanics.js';
+import {onWeaponClick, onWeaponInput} from './weapon.js';
 import './tooltip.js';  // side effects only: installs the page-wide tooltip
 
 async function boot() {
@@ -100,6 +101,7 @@ $('d-tabs').addEventListener('keydown', (e) => {
 detailView.addEventListener('input', (e) => {
   if (e.target.classList.contains('lv-range')) { state.level = Number(e.target.value); applyLevel(); }
   if (e.target.classList.contains('up-range')) updateUpgrade(e.target);
+  onWeaponInput(e.target);
 });
 detailView.addEventListener('click', (e) => {
   const n = e.target.closest('.fn[data-sel]');
@@ -111,8 +113,14 @@ detailView.addEventListener('click', (e) => {
     applyLevel();
     return;
   }
+  if (onWeaponClick(e.target)) return;
   const tg = e.target.closest('[data-tabgo]');
-  if (tg) { setTab(tg.dataset.tabgo); return; }
+  if (tg) {
+    setTab(tg.dataset.tabgo);
+    const top = $('d-tabs').getBoundingClientRect().top + window.scrollY - 84;
+    if (tg.closest('#d-sig-weapon')) window.scrollTo({top, behavior: 'smooth'});
+    return;
+  }
   const go = e.target.closest('[data-goto]');
   if (go) scrollToId(go.dataset.goto);
 });

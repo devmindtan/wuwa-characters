@@ -16,6 +16,9 @@ export const state = {
   level: 10,
   treeSel: null,
   forteTo: 10,
+  wRank: 1,      // signature weapon: rank shown in the effect (R1-R5)
+  wLv: null,     // stats row index (null = max level)
+  wAsc: null,    // ascension steps summed (null = all)
   tab: 'tree',
   pendingTarget: null,
   roleFilter: 'all',

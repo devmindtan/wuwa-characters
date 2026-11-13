@@ -155,6 +155,21 @@ async function run(tag, viewport) {
   await page.waitForTimeout(450);
   check(await page.locator('[data-line].hit').count() === 1, `${tag}: trait evidence did not highlight exactly one line`);
 
+  // signature weapon: card -> tab, R1-R5 values, level slider (data shown in-page, not a wiki link)
+  await page.click('.sw-card');
+  await page.waitForTimeout(200);
+  check(await page.evaluate(() => !document.querySelector('#tab-weapon').hidden), `${tag}: weapon card did not open the weapon tab`);
+  const r1 = await page.locator('.wv').first().textContent();
+  await page.click('[data-wrank="5"]');
+  check(r1 === '12%' && (await page.locator('.wv').first().textContent()) === '24%', `${tag}: weapon rank values (${r1})`);
+  const wlv = page.locator('.wp-lv');
+  await wlv.scrollIntoViewIfNeeded();
+  await wlv.fill('0');
+  check((await page.locator('.wp-atk').textContent()) === '47', `${tag}: weapon level slider`);
+  await page.click('.detail-actions [data-lang="en"]');
+  check(/^ATK is increased by 24%/.test(await page.locator('.wp-eff-text').innerText()), `${tag}: weapon effect in EN`);
+  await page.click('.detail-actions [data-lang="vi"]');
+
   await open(page, 'chisa');
   await page.click('.trait-havoc_bane');
   await page.waitForTimeout(200);
