@@ -60,6 +60,7 @@ Mục tiêu của dự án không phải dịch lại wiki, mà là **giữ nguy
 - Tab **Combat Skills** với mô tả đầy đủ, icon từng kỹ năng và bảng hệ số mở rộng.
 - Thanh kéo **Lv.1–10** cập nhật đồng thời hệ số kỹ năng, node cây và bảng chỉ số.
 - **Resonance Chain** S1–S6, kèm bản EN gốc để đối chiếu.
+- **Combo**: chuỗi thao tác từng bước (theo prydwen.gg) kèm mọi hiệu ứng mà mỗi bước kích hoạt trong bộ kỹ năng, Resonance Chain và vũ khí; đổi giả định S0–S6 / có vũ khí để xem từng tình huống, và danh sách hiệu ứng combo chưa tận dụng.
 - **Vũ khí trấn phái**: hiệu ứng R1–R5 (VI/EN), Base ATK và chỉ số phụ theo cấp, mô tả, nguyên liệu đột phá.
 - **Nguyên liệu**: tổng nguyên liệu và chi phí theo từng cấp, icon vật phẩm lưu nội bộ.
 - Mục **Tham khảo** ghi rõ nguồn cho từng phần dữ liệu.
@@ -131,11 +132,12 @@ data/
   mechanics_curated.json     Nội dung cơ chế do người viết (VI/EN, owner, nguồn)
   mechanics.json             Cơ chế sinh bởi scripts/build_mechanics.py
   kit_index.json             Đòn con, đặc điểm, Resonators theo cơ chế (build_index.py)
+  combos.json                Combo từng bước + dòng hiệu ứng được kích hoạt (build_combos.py)
   translations/              Bản dịch Resonance Chain, vũ khí trấn phái và override kỹ năng
 public/
   index.html                 Shell của ứng dụng
   styles.css                 Design system và giao diện
-  js/                        ES module: core, i18n, list, detail, kit, links, mechanics, weapon, tooltip
+  js/                        ES module: core, i18n, list, detail, kit, links, mechanics, weapon, combo, tooltip
   assets/                    Icon, ảnh nhân vật, vật phẩm, OG image
 scripts/                     Pipeline dữ liệu, kiểm tra và build index
 tests/                       pytest + E2E smoke test
@@ -165,6 +167,7 @@ Tất cả endpoint trả JSON, không yêu cầu xác thực.
 | `GET /api/search` | Blob tìm kiếm toàn văn theo slug, gồm EN + VI |
 | `GET /api/characters` | Toàn bộ dữ liệu nhân vật (dùng cho tra cứu/tích hợp) |
 | `GET /api/characters/{slug}` | Một hồ sơ đầy đủ; `404` nếu không tồn tại |
+| `GET /api/combos/{slug}` | Combo từng bước + tham chiếu dòng hiệu ứng được kích hoạt (tải khi mở tab Combo) |
 | `GET /api/mechanics` | Cơ chế/thuật ngữ, định nghĩa và các vị trí xuất hiện |
 | `GET /api/index` | Chỉ mục đòn con, đặc điểm, Resonators và vai trò theo cơ chế |
 | `GET /api/changes` | Các hồ sơ có thay đổi thông tin trong game, kèm lịch sử |
@@ -216,6 +219,8 @@ Chạy bằng Python trong `.venv`:
 | `scripts/review.py` | Kiểm tra glossary, schema, số dòng, con số khớp EN và in mẫu để đọc tay. |
 | `scripts/build_mechanics.py` | Sinh `data/mechanics.json` từ nội dung curated + thuật ngữ kit. |
 | `scripts/build_index.py` | Sinh `data/kit_index.json`: đòn con, tag đặc điểm, Resonators/vai trò theo cơ chế. |
+| `scripts/fetch_rotations.py` | Lấy mục Rotation (danh sách bước) của từng Resonator trên prydwen.gg; cache `data/rotations_raw.json` (local). |
+| `scripts/build_combos.py` | Sinh `data/combos.json`: nối mỗi bước combo với các dòng kỹ năng/chuỗi/vũ khí nó kích hoạt. |
 | `scripts/stamp_assets.py` | Ghi `?v=<hash>` cho CSS/JS trong `index.html`; `--check` dùng cho hook. |
 | `scripts/og/render.js` | Render lại ảnh Open Graph 1200×630. |
 
@@ -223,7 +228,7 @@ Thứ tự khuyến nghị:
 
 ```text
 fetch_wiki → merge_wiki → fetch_assets → apply_overrides → check_names
-→ review → build_mechanics → build_index → stamp_assets
+→ review → build_mechanics → build_index → fetch_rotations → build_combos → stamp_assets
 ```
 
 Không publish bản dịch máy thô. Sau khi dịch phải chạy `review.py`, đọc hết dòng bị đánh dấu và rà thêm mẫu ngẫu nhiên.
