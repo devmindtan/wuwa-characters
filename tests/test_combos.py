@@ -107,3 +107,21 @@ def test_most_resonators_have_combos(combos):
         for rot in d['rotations']:
             if rot['title_vi']:
                 assert not re.search(r'\bRotation\b', rot['title_vi'])
+
+
+def test_cancel_notes_read_as_button_presses():
+    from build_combos import HINT_VI, sub_vi
+    assert sub_vi('Interrupt on first hit via Dash', HINT_VI) == 'Khi đòn trúng lần đầu thì bấm Dash để cắt phần còn lại'
+    assert sub_vi('Cancel animation endlag via Ultimate', HINT_VI).startswith('Đòn vừa đánh xong thì bấm ngay R (Resonance Liberation)')
+    assert sub_vi('Cancel animation on cast via Skill', HINT_VI) == 'Vừa ra đòn là bấm ngay E (Resonance Skill)'
+    assert sub_vi('Instant Cancel', HINT_VI) == 'Bấm ngay thao tác tiếp theo, không chờ hết động tác'
+
+
+def test_results_carry_what_the_summary_adds_up(combos):
+    flow = flow_of_rot(combos, 'phrolova', 'Loop Rotation')
+    strings = sum(o['qty'] for a in flow for o in a['out'] if o['name'] == 'Volatile Note - Strings')
+    assert strings == 5  # Basic 3 twice + Movement of Fate and Finality three times
+    states = [o['name'] for a in flow for o in a['out'] if o['cat'] == 'state']
+    assert states.index('Reincarnate') < states.index('Maestro')
+    outro = next(a for a in flow if a['kind'] == 'outro')
+    assert all(o['cat'] == 'stat' for o in outro['out'])  # buffs handed to the next Resonator

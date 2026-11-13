@@ -311,8 +311,48 @@ OUTCOME_RULES = [
 ]
 
 
+def _category(vi, groups):
+    """What kind of result a rule produced, plus (quantity, name) for things that add up."""
+    if vi.startswith('Vào trạng thái'):
+        return 'state', None, groups[0]
+    if vi.startswith('Kết thúc'):
+        return 'end', None, groups[0]
+    if vi.startswith('Hồi máu'):
+        return 'heal', None, ''
+    if vi.startswith('Hồi '):
+        return 'resource', float(groups[0]), groups[1]
+    if vi.startswith('Gây') and 'tầng' in vi:
+        return 'status', float(groups[0]), groups[1]
+    if vi in ('Gây Stagnate', 'Kéo gom mục tiêu'):
+        return 'control', None, ''
+    if vi.startswith('Giảm'):
+        return 'defense', None, ''
+    if vi.startswith('Tiêu hao'):
+        return 'consume', None, groups[0]
+    if 'đổi thành' in vi or vi.startswith('Mở'):
+        return 'unlock', None, ''
+    if vi.startswith('+'):
+        pct = next((g for g in groups if g.endswith('%')), None)
+        if pct:
+            return 'stat', float(pct[:-1]), next(g for g in groups if g != pct)
+        return 'resource', float(groups[0]), groups[1]
+    return 'other', None, ''
+
+
+def outcome_details(line):
+    """[{vi, en, cat, qty, name}] for the results a kit line states (see OUTCOME_RULES)."""
+    out = []
+    for vi, en, cat, qty, name in _outcomes(line):
+        out.append({'vi': vi, 'en': en, 'cat': cat, 'qty': qty, 'name': name})
+    return out
+
+
 def outcomes_of(line):
     """Short (vi, en) outcomes a kit line states, in rule order, without repeats."""
+    return [(vi, en) for vi, en, *_ in _outcomes(line)]
+
+
+def _outcomes(line):
     out = []
     for rx, vi, en in OUTCOME_RULES:
         for m in rx.finditer(line):
@@ -326,7 +366,7 @@ def outcomes_of(line):
             if vi.startswith('Vào trạng thái') and re.search(r'\bevery \d+(?:\.\d+)?s\b', line):
                 continue  # "enters the Compose state every 25s": a timer, not this action
             fill = lambda tpl: re.sub(r'\{(\d)\}', lambda k: groups[int(k.group(1)) - 1], tpl)
-            pair = (fill(vi), fill(en))
-            if pair not in out:
-                out.append(pair)
+            item = (fill(vi), fill(en), *_category(vi, groups))
+            if all(o[0] != item[0] for o in out):
+                out.append(item)
     return out

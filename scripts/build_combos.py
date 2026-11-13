@@ -22,7 +22,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from kit_rules import (EFFECT_RX, INPUT_LINE, KIND_REF, KIND_TYPE, is_heading, kind_trigger,  # noqa: E402
-                       name_trigger, negated, outcomes_of, step_kind)
+                       name_trigger, negated, outcome_details, step_kind)
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / 'data' / 'characters.json'
@@ -50,53 +50,66 @@ TITLE_KEEP = re.compile(r"^(?:[SR]\d\+?|S\d-S\d|S\dR\d\+?|\d+|Forte|Intro|Outro|
                         r"Electro|Flare|Aero|Erosion|Havoc|Bane|Spectro|Frazzle|Fusion|Glacio|Chafe|Hybrid|Nightfall|"
                         r"Conversion|Outburst|Skip|Unison|Tune|Strain|Rupture|Low|High)$")
 # Step hints ("Cancel animation endlag via Echo"): common patterns in Vietnamese, X = the action named.
+# The button names used in the cancel instructions, as the player knows them (PC defaults).
+KEY_VI = {'skill': 'E (Resonance Skill)', 'echo': 'Q (Echo)', 'ultimate': 'R (Resonance Liberation)',
+          'liberation': 'R (Resonance Liberation)', 'heavy': 'Heavy Attack (giữ đánh thường)', 'dash': 'Dash',
+          'jump': 'nhảy', 'swap': 'đổi nhân vật', 'intro': 'đổi nhân vật (Intro)', 'basic': 'đánh thường',
+          'dodge': 'né', 'outro': 'đổi nhân vật (Outro)'}
+
+
+def key_vi(word):
+    w = word.strip().lower()
+    return KEY_VI.get(w.split()[-1] if w.startswith('hold') else w, word)
+
+
+# Cancel notes ("Cancel animation endlag via Echo") as plain instructions; X = the button to press.
 HINT_VI = [
-    (r'^Cancel animation endlag (?:via|by) (.+)$', r'Hủy hồi chiêu animation bằng \1'),
-    (r'^Cancel animation on cast via (.+)$', r'Hủy animation ngay khi ra đòn bằng \1'),
-    (r'^Animation cancel on cast via (.+)$', r'Hủy animation ngay khi ra đòn bằng \1'),
-    (r'^Cancel animation (?:instantly|as soon as possible|near-instantly) via (.+)$', r'Hủy animation ngay lập tức bằng \1'),
+    (r'^(?:Cancel animation endlag|Cancel animation endlag on hit|Cancel 2nd animation endlag|Use to Cancel Endlag)'
+     r'(?: (?:via|by) (.+?))?(?: then .+)?$',
+     'Đòn vừa đánh xong thì bấm ngay {X}, bỏ qua động tác thu chiêu'),
+    (r'^(?:Cancel animation|Animation cancel) on cast via (.+)$', 'Vừa ra đòn là bấm ngay {X}'),
+    (r'^Cancel animation (?:instantly|as soon as possible|near-instantly) via (.+)$', 'Bấm ngay {X} để bỏ phần động tác còn lại'),
     (r'^(?:Instantly interrupt|Interrupt instantly|Interrupt animation instantly|Instantly interrupt animation) via (.+)$',
-     r'Ngắt ngay lập tức bằng \1'),
-    (r'^Cancel animation on (?:first )?hit via (.+)$', r'Hủy animation khi đòn trúng bằng \1'),
-    (r'^Interrupt on (?:first|1st) hit via (.+)$', r'Ngắt ở đòn trúng đầu tiên bằng \1'),
-    (r'^Interrupt (?:after|at) (?:first|1st) hit via (.+)$', r'Ngắt sau đòn trúng đầu tiên bằng \1'),
-    (r'^Interrupt on cast via (.+)$', r'Ngắt ngay khi ra đòn bằng \1'),
-    (r'^(?:Optionally )?(\w+) Cancel$', r'Hủy bằng \1'),
-    (r'^Optionally (\w+) Cancel$', r'Có thể hủy bằng \1'),
-    (r'^Instant Cancel$', 'Hủy ngay lập tức'),
-    (r'^instant cancel$', 'Hủy ngay lập tức'),
-    (r'^swap$', 'Đổi nhân vật'),
-    (r'^Swap$', 'Đổi nhân vật'),
-    (r'^(\d+)\s*(?:times|Times|x)$', r'\1 lần'),
-    (r'^(\d+)x$', r'\1 lần'),
-    (r'^Full Channel$', 'Giữ hết thời gian vận'),
-    (r'^Full Charge$', 'Tụ lực tối đa'),
-    (r'^happens automatically off-field$', 'Tự động diễn ra khi ở ngoài sân'),
+     'Bấm ngay {X} để cắt đòn'),
+    (r'^(?:Cancel animation|Animation cancel) (?:on|when) (?:first )?(?:hit|shot|kick|slash|first slash)\b.* via (.+)$',
+     'Khi đòn vừa trúng thì bấm {X} để cắt phần còn lại'),
+    (r'^Interrupt (?:on|after|at) (?:first|1st) hit via (.+)$', 'Khi đòn trúng lần đầu thì bấm {X} để cắt phần còn lại'),
+    (r'^Interrupt (?:animation )?via (.+) on (?:1st|first) hit$', 'Khi đòn trúng lần đầu thì bấm {X} để cắt phần còn lại'),
+    (r'^Interrupt on cast via (.+)$', 'Vừa ra đòn là bấm {X} để cắt'),
+    (r'^Animation cancel after projectiles were fired by (.+)$', 'Khi đạn đã bắn ra thì bấm {X} để cắt'),
+    (r'^[Ii]nstant [Cc]ancel$', 'Bấm ngay thao tác tiếp theo, không chờ hết động tác'),
+    (r'^(?:Optionally )?(\w+)[- ]Cancel(?: .*)?$', 'Có thể bấm {X} để cắt động tác'),
+    (r'^[Ss]wap$', 'Đổi nhân vật ngay sau đòn này'),
+    (r'^(\d+)\s*(?:times|Times|x)$', 'Lặp {1} lần'),
+    (r'^(\d+)x$', 'Lặp {1} lần'),
+    (r'^Full Channel$', 'Giữ đến hết thời gian vận chiêu'),
+    (r'^Full Charge$', 'Giữ tụ lực tối đa'),
+    (r'^happens automatically off-field$', 'Tự diễn ra khi nhân vật ở ngoài sân'),
     (r'^Cast automatically$', 'Tự động thi triển'),
-    (r'^pre-rotation$', 'Trước khi vào combo'),
-    (r'^If Available$', 'Nếu có sẵn'),
-    (r'^Enter (.+)$', r'Vào \1'),
-    (r'^Switch to (.+) form$', r'Chuyển sang dạng \1'),
-    (r'^Transform to (.+)$', r'Biến thành \1'),
+    (r'^pre-rotation$', 'Làm trước khi bắt đầu combo'),
+    (r'^If Available$', 'Nếu đang có sẵn'),
+    (r'^Enter (.+)$', 'Vào {1}'),
+    (r'^Switch to (.+) form$', 'Chuyển sang dạng {1}'),
+    (r'^Transform to (.+)$', 'Biến thành {1}'),
     (r'^Either form$', 'Dạng nào cũng được'),
     (r'^Full Power$', 'Toàn lực'),
     (r'^Half Power$', 'Nửa lực'),
-    (r'^Use to Cancel Endlag$', 'Dùng để hủy hồi chiêu animation'),
-    (r'^Optionally Swap Cancel and immediately back$', 'Có thể đổi nhân vật để hủy rồi đổi lại ngay'),
-    # anything else naming how to cancel: the general idea in Vietnamese, the exact timing in the EN tooltip
-    (r'^(?:Animation cancel|Cancel(?: 2nd)? animation)\b.*\b(?:via|by) (?:Hold )?(\w+)(?: then \w+)?$', r'Hủy animation bằng \1'),
-    (r'^(?:Interrupt|Instantly interrupt)\b.*\b(?:via|by) (\w+)\b.*$', r'Ngắt animation bằng \1'),
-    (r'^Swap[- ]Cancel\b.*$', 'Hủy bằng đổi nhân vật'),
+    (r'^Optionally Swap Cancel and immediately back$', 'Có thể đổi nhân vật để cắt rồi đổi lại ngay'),
+    (r'^(?:Animation cancel|Cancel(?: 2nd)? animation)\b.*\b(?:via|by) (?:Hold )?(\w+)(?: then \w+)?$',
+     'Bấm {X} để cắt động tác'),
+    (r'^(?:Interrupt|Instantly interrupt)\b.*\b(?:via|by) (\w+)\b.*$', 'Bấm {X} để cắt đòn'),
 ]
 KIND_WORD = {'Skill': 'Resonance Skill', 'Ultimate': 'Resonance Liberation', 'Heavy': 'Heavy Attack', 'Echo': 'Echo',
              'Dash': 'Dash', 'Jump': 'Jump', 'Swap': 'Swap', 'Intro': 'Intro Skill', 'Outro': 'Outro Skill'}
 
 
 def sub_vi(text, table):
-    for rx, rep in table:
-        out, n = re.subn(rx, rep, text)
-        if n:
-            return out
+    """First matching pattern -> Vietnamese; {X} is the button of group 1, {1} the raw group."""
+    for rx, tpl in table:
+        m = re.match(rx, text)
+        if m:
+            g = (m.group(1) or '') if m.groups() else ''
+            return tpl.replace('{X}', key_vi(g) if g else 'thao tác tiếp theo').replace('{1}', g)
     return ''
 
 
@@ -258,20 +271,21 @@ def flow_of(parsed, steps, step_outcomes):
             prev['say_en'] = f'Basic Attack {z - a + 1} times (stage {a} → {z})'
             prev['token'] = f'B{a}–{z}'
             prev['hint'], prev['hint_vi'] = hint, hint_vi
+            prev['times'] = z - a + 1
             prev['steps'].append(i)
             known = {o['vi'] for o in prev['out']}
             prev['out'] += [o for o in item['out'] if o['vi'] not in known]
             continue
         item['stage_to'] = item['stage']
+        item['times'] = st['n'] or 1
         flow.append(item)
     seen = {}
     for k, item in enumerate(flow):
         item.pop('stage', None)
         item.pop('stage_to', None)
         key = '|'.join(o['vi'] for o in item['out'])
-        if key and key in seen:  # same results as an earlier step: say so instead of repeating them
+        if key and key in seen:  # same results as an earlier step: the UI says so instead of repeating them
             item['same'] = seen[key]
-            item['out'] = []
         elif key:
             seen[key] = k
     return flow
@@ -346,17 +360,20 @@ def build_char(c, raw):
         out, seen = [], set()
         for t, li in refs:
             if t == 'weapon':
-                pairs, cond = [(f'Kích hoạt hiệu ứng {sw_name}', f'Triggers {sw_name}')], 'weapon'
+                found = [{'vi': f'Kích hoạt hiệu ứng {sw_name}', 'en': f'Triggers {sw_name}', 'cat': 'trigger',
+                          'qty': None, 'name': sw_name}]
+                cond = 'weapon'
             else:
-                pairs = outcomes_of(text_of[(t, li)])
+                found = outcome_details(text_of[(t, li)])
                 cond = int(t.split('-')[1]) if t.startswith('chain') else None
-                if cond and not pairs:
-                    pairs = [(f'Kích hoạt S{cond}', f'Triggers S{cond}')]
-            for vi, en in pairs:
-                if vi in seen:
+                if cond and not found:
+                    found = [{'vi': f'Kích hoạt S{cond}', 'en': f'Triggers S{cond}', 'cat': 'trigger', 'qty': None,
+                              'name': f'S{cond}'}]
+            for o in found:
+                if o['vi'] in seen:
                     continue
-                seen.add(vi)
-                out.append({'vi': vi, 'en': en, 'ref': [t, li], 'cond': cond})
+                seen.add(o['vi'])
+                out.append({**o, 'ref': [t, li], 'cond': cond})
         base = [o for o in out if o['cond'] is None][:4]
         return base + [o for o in out if o['cond'] is not None]
 
