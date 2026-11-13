@@ -28735,7 +28735,8 @@
        }
       ],
       "source": "https://wutheringwaves.fandom.com/wiki/Mend_and_Cleanse"
-     }
+     },
+     "icon": "assets/skills/skill_mend_and_cleanse.webp"
     },
     {
      "type": "Resonance Skill",
@@ -28798,7 +28799,8 @@
        }
       ],
       "source": "https://wutheringwaves.fandom.com/wiki/Dream_Blend"
-     }
+     },
+     "icon": "assets/skills/skill_dream_blend.webp"
     },
     {
      "type": "Resonance Liberation",
@@ -28873,7 +28875,8 @@
        }
       ],
       "source": "https://wutheringwaves.fandom.com/wiki/Into_the_Dream_Cradle"
-     }
+     },
+     "icon": "assets/skills/skill_into_the_dream_cradle.webp"
     },
     {
      "type": "Forte Circuit",
@@ -29042,7 +29045,8 @@
        }
       ],
       "source": "https://wutheringwaves.fandom.com/wiki/Dreamland_of_Flowers"
-     }
+     },
+     "icon": "assets/skills/skill_dreamland_of_flowers.webp"
     },
     {
      "type": "Forte Circuit",
@@ -29064,7 +29068,8 @@
      "desc_vi": [
       "Thi triển Intro Skill - Eternal Bloom cũng khôi phục thêm 10 điểm Concerto Energy, được kích hoạt cứ sau 20 giây.",
       "Thi triển Heavy Attack - Fairytale's Finale hoặc Heavy Attack - Phantasm's End cũng khôi phục thêm 15 điểm Concerto Energy, được kích hoạt cứ sau 20 giây."
-     ]
+     ],
+     "icon": "assets/skills/skill_woven_scent.webp"
     },
     {
      "type": "Inherent Skill",
@@ -29080,7 +29085,8 @@
       "Khi một Resonator trong đội trúng đòn chí mạng, họ sẽ không gục ngã và thay vào đó sẽ nhận được Shield bằng 10% Lily của Max HP trong 10 giây. Hiệu ứng này có thể được kích hoạt cứ sau 5 phút.",
       "Thi triển Enhanced Heavy Attack - Fairytale's Finale hoặc Enhanced Heavy Attack - Phantasm's End cấp Floral Blessing cho Resonators trong đội.",
       "• Kéo dài 60 giây. Khi HP của một Resonator trong đội dưới 50% Max HP, hồi 50% Max HP cho Resonator đó và loại bỏ Floral Blessing. Hiệu ứng này kích hoạt được 1 lần mỗi 120 giây."
-     ]
+     ],
+     "icon": "assets/skills/skill_flowers_for_you.webp"
     },
     {
      "type": "Intro Skill",
@@ -29141,7 +29147,8 @@
        }
       ],
       "source": "https://wutheringwaves.fandom.com/wiki/Blooming_Dream"
-     }
+     },
+     "icon": "assets/skills/skill_blooming_dream.webp"
     },
     {
      "type": "Outro Skill",
@@ -29151,7 +29158,8 @@
      ],
      "desc_vi": [
       "Resonators trong đội tăng 25% All DMG Amplification trong 30 giây."
-     ]
+     ],
+     "icon": "assets/skills/skill_blooming_fragrance.webp"
     }
    ],
    "img_full": "https://cdn.prydwen.gg/images/wuthering-waves/characters/lily_full.webp",
