@@ -6797,7 +6797,7 @@
       "Thi triển Intro Skill Everblooming tăng 28% Crit. DMG cho Camellya trong 18 giây. Hiệu ứng này kích hoạt được 1 lần mỗi 25 giây.",
       "Miễn nhiễm gián đoạn khi thi triển Ephemeral."
      ],
-     "img": ""
+     "img": "assets/chain/sequence_node_somewhere_no_one_travelled.webp"
     },
     {
      "node": 2,
@@ -6808,7 +6808,7 @@
      "desc_vi": [
       "DMG Multiplier của Resonance Skill Ephemeral tăng 120%."
      ],
-     "img": ""
+     "img": "assets/chain/sequence_node_calling_upon_the_silent_rose.webp"
     },
     {
      "node": 3,
@@ -6819,7 +6819,7 @@
      "desc_vi": [
       "DMG Multiplier của Resonance Liberation Fervor Efflorescent tăng 50%. Khi ở Budding Mode, ATK của Camellya tăng 58%."
      ],
-     "img": ""
+     "img": "assets/chain/sequence_node_a_bud_adorned_by_thorns.webp"
     },
     {
      "node": 4,
@@ -6830,7 +6830,7 @@
      "desc_vi": [
       "Thi triển Everblooming giúp mọi thành viên trong đội nhận 25% Basic Attack DMG Bonus trong 30 giây."
      ],
-     "img": ""
+     "img": "assets/chain/sequence_node_roots_set_deep_in_eternity.webp"
     },
     {
      "node": 5,
@@ -6841,7 +6841,7 @@
      "desc_vi": [
       "DMG Multiplier của Intro Skill Everblooming tăng 303% và của Outro Skill Twining tăng 68%."
      ],
-     "img": ""
+     "img": "assets/chain/sequence_node_infinity_held_in_your_palm.webp"
     },
     {
      "node": 6,
@@ -6860,7 +6860,7 @@
       "Camellya vào Budding Mode sau khi thi triển Perennial và loại bỏ mọi Crimson Buds. DMG Multiplier cộng thêm từ Sweet Dream của Forte Circuit tăng lên 250%.",
       "Miễn nhiễm gián đoạn khi thi triển Perennial."
      ],
-     "img": ""
+     "img": "assets/chain/sequence_node_bloom_for_you_thousand_times_over.webp"
     }
    ],
    "materials": {
@@ -9881,7 +9881,7 @@
      "desc_vi": [
       "Khi Carlotta gây sát thương lên mục tiêu đang chịu Deconstruction, Crit. Rate của đòn đó tăng 12.5%. Khi Resonance Skill Chromatic Splendor trúng mục tiêu đang chịu Dispersion, Carlotta hồi thêm 30 điểm Substance."
      ],
-     "img": ""
+     "img": "assets/chain/sequence_node_beauty_blazes_brightest_before_it_fades.webp"
     },
     {
      "node": 2,
@@ -9892,7 +9892,7 @@
      "desc_vi": [
       "DMG Multiplier của Resonance Liberation Fatal Finale tăng 126%."
      ],
-     "img": ""
+     "img": "assets/chain/sequence_node_fallen_petals_give_life_to_new_blooms.webp"
     },
     {
      "node": 3,
@@ -9903,7 +9903,7 @@
      "desc_vi": [
       "Mở khóa Outro Skill Kaleidoscope Sparks: tung thêm 1 đòn ở cuối Outro Skill Closing Remark, gây Glacio DMG bằng 1032.18% ATK của Carlotta. DMG Multiplier của Resonance Skill Art of Violence và Resonance Skill Chromatic Splendor tăng 93%."
      ],
-     "img": ""
+     "img": "assets/chain/sequence_node_adelante_cortado_spinning_in_grace.webp"
     },
     {
      "node": 4,
@@ -9914,7 +9914,7 @@
      "desc_vi": [
       "Thi triển Heavy Attack, Heavy Attack Containment Tactics và Heavy Attack Imminent Oblivion giúp mọi Resonators trong đội nhận 25% Resonance Skill DMG Bonus trong 30 giây."
      ],
-     "img": ""
+     "img": "assets/chain/sequence_node_yesterday_s_raindrops_make_finest_wine.webp"
     },
     {
      "node": 5,
@@ -9925,7 +9925,7 @@
      "desc_vi": [
       "DMG Multiplier của Heavy Attack Imminent Oblivion tăng 47%."
      ],
-     "img": ""
+     "img": "assets/chain/sequence_node_toast_to_past_today_and_every_day_to_come.webp"
     },
     {
      "node": 6,
@@ -9938,7 +9938,7 @@
       "Các phát bắn của Resonance Liberation Death Knell gây sát thương cao hơn và bắn ra gấp đôi số mảnh tinh thể, tương đương tổng cộng tăng 186.6% DMG Multiplier của Resonance Liberation Death Knell.",
       "Các phát bắn của Resonance Liberation Death Knell gây Scattering lên mục tiêu khi trúng, khiến mục tiêu bị bất động. Hiệu ứng bị loại bỏ sau 1.5 giây hoặc khi mục tiêu nhận sát thương."
      ],
-     "img": ""
+     "img": "assets/chain/sequence_node_as_the_curtain_falls_i_remain_what_i_am.webp"
     }
    ],
    "materials": {
@@ -71945,7 +71945,7 @@
       "Thi triển Targeted Action hoặc Forcible Riposte cấp 50% Spectro DMG Bonus trong 14 giây.",
       "Resonance Skill Heavy Slash - Nightfall không thể bị gián đoạn."
      ],
-     "img": ""
+     "img": "assets/chain/sequence_node_when_the_alarm_clock_rings.webp"
     },
     {
      "node": 2,
@@ -80332,7 +80332,7 @@
      "desc_vi": [
       "Sau khi thi triển Energized Rebound, hồi thêm 60 STA trong 3 giây."
      ],
-     "img": ""
+     "img": "assets/chain/sequence_node_parcel_to_be_delivered.webp"
     },
     {
      "node": 2,
@@ -80343,7 +80343,7 @@
      "desc_vi": [
       "Energized Pounce và Energized Rebound bỏ qua 20% DEF của mục tiêu."
      ],
-     "img": ""
+     "img": "assets/chain/sequence_node_lollo_logistics_ready_to_help.webp"
     },
     {
      "node": 3,
@@ -80354,7 +80354,7 @@
      "desc_vi": [
       "Sát thương của Resonance Liberation Squeakie Express tăng 30%."
      ],
-     "img": ""
+     "img": "assets/chain/sequence_node_priority_parcel_in_transit.webp"
     },
     {
      "node": 4,
@@ -80365,7 +80365,7 @@
      "desc_vi": [
       "Nhận 30% Basic Attack DMG Bonus."
      ],
-     "img": ""
+     "img": "assets/chain/sequence_node_captain_lumi_at_your_service.webp"
     },
     {
      "node": 5,
@@ -80376,7 +80376,7 @@
      "desc_vi": [
       "Khi Spark được hồi đầy, Laser DMG Multiplier tăng 100%."
      ],
-     "img": ""
+     "img": "assets/chain/sequence_node_parcel_collected_on_time.webp"
     },
     {
      "node": 6,
@@ -80387,7 +80387,7 @@
      "desc_vi": [
       "Thi triển Resonance Liberation Squeakie Express tăng 20% ATK cho mọi thành viên trong đội trong 20 giây."
      ],
-     "img": ""
+     "img": "assets/chain/sequence_node_give_me_a_five_star_rating.webp"
     }
    ],
    "materials": {
@@ -85844,7 +85844,7 @@
      "desc_vi": [
       "Sau khi thi triển Lucky Draw, Youhu có 10% xác suất miễn nhiễm sát thương và gián đoạn. Hiệu ứng kéo dài 5 giây hoặc cho đến khi cô rời sân."
      ],
-     "img": ""
+     "img": "assets/chain/sequence_node_waterside_respite.webp"
     },
     {
      "node": 2,
@@ -85855,7 +85855,7 @@
      "desc_vi": [
       "DMG bonus của Antithesis, Triplet và Perfect Rhyme lên Poetic Essence được nhân đôi."
      ],
-     "img": ""
+     "img": "assets/chain/sequence_node_sunroom_siesta.webp"
     },
     {
      "node": 3,
@@ -85866,7 +85866,7 @@
      "desc_vi": [
       "ATK của Youhu tăng 20%."
      ],
-     "img": ""
+     "img": "assets/chain/sequence_node_restless_sleep.webp"
     },
     {
      "node": 4,
@@ -85877,7 +85877,7 @@
      "desc_vi": [
       "Mỗi lần thi triển Resonance Skill Scroll Divination, có 20% xác suất kỹ năng không vào thời gian hồi."
      ],
-     "img": ""
+     "img": "assets/chain/sequence_node_frosted_lullaby.webp"
     },
     {
      "node": 5,
@@ -85888,7 +85888,7 @@
      "desc_vi": [
       "Khi thi triển Intro Skill Scroll of Wonders, Crit. Rate của Youhu tăng 15% trong 14 giây."
      ],
-     "img": ""
+     "img": "assets/chain/sequence_node_dreamland_meander.webp"
     },
     {
      "node": 6,
@@ -85899,7 +85899,7 @@
      "desc_vi": [
       "Khi thi triển Resonance Skill Antique Appraisal, nhận 1 tầng Sky Blue, cộng dồn tối đa 4 lần, kéo dài 7 giây. Mỗi tầng tăng 15% Crit. DMG cho Youhu."
      ],
-     "img": ""
+     "img": "assets/chain/sequence_node_slumber_evermore.webp"
     }
    ],
    "materials": {
