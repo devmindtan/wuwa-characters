@@ -1,0 +1,656 @@
+{
+ "Ages of Harvest": {
+  "effect_en": [
+   "Grants {1}% Attribute DMG Bonus.",
+   "Casting Intro Skill gives the equipper Ageless Marking, which grants {2}% Resonance Skill DMG Bonus for 12s.",
+   "Casting Resonance Skill gives the equipper Ethereal Endowment, which grants {2}% Resonance Skill DMG Bonus for 12s."
+  ],
+  "effect": [
+   "Tăng {1}% Attribute DMG Bonus.",
+   "Thi triển Intro Skill cấp cho người trang bị Ageless Marking, giúp tăng {2}% Resonance Skill DMG Bonus trong 12 giây.",
+   "Thi triển Resonance Skill cấp cho người trang bị Ethereal Endowment, giúp tăng {2}% Resonance Skill DMG Bonus trong 12 giây."
+  ],
+  "description_en": [
+   "Each swing of the blade reveals the flow of time and the change of the stars The sword embodies all things, uniting them into one. Its gentle aura seems capable of dissolving the indestructible. whether it's millennia-old ice or the stagnation of time."
+  ],
+  "description": [
+   "Mỗi đường kiếm hé lộ dòng chảy thời gian và sự đổi dời của tinh tú. Thanh kiếm dung chứa vạn vật, hợp nhất tất cả làm một. Khí chất ôn hòa của nó dường như có thể hòa tan cả những thứ không thể phá hủy, dù là băng giá nghìn năm hay sự ngưng đọng của thời gian."
+  ]
+ },
+ "Azure Oath": {
+  "effect_en": [
+   "Grants {1}% All-Attribute DMG Bonus. After inflicting Havoc Bane, the wielder gains {2}% Heavy Attack DMG Amplification and their Heavy Attack DMG ignores {1}% of the target's DEF, lasting for 8s."
+  ],
+  "effect": [
+   "Tăng {1}% All-Attribute DMG Bonus. Sau khi gây Havoc Bane, người trang bị nhận {2}% Heavy Attack DMG Amplification và Heavy Attack DMG bỏ qua {1}% DEF của mục tiêu, kéo dài 8 giây."
+  ],
+  "description_en": [
+   "Forged of flowing wind, sheathed in the azure sky. Once the blade is drawn, all sound falls still.",
+   "That never-fading azure is her resolve, her vow, and her ideal."
+  ],
+  "description": [
+   "Rèn từ làn gió trôi, cất trong vỏ là trời xanh thẳm. Khi lưỡi kiếm rời vỏ, mọi âm thanh đều lặng im.",
+   "Sắc xanh không bao giờ phai ấy là quyết tâm, lời thề và lý tưởng của nàng."
+  ]
+ },
+ "Blazing Brilliance": {
+  "effect_en": [
+   "ATK increased by {1}%. The wielder gains 1 stack of Searing Feather upon dealing damage, which can be triggered once every 0.5s, and gains 5 stacks of the same effect upon casting Resonance Skill. Each stack of Searing Feather gives {2}% additional Resonance Skill DMG Bonus for up to 14 stacks. After reaching the max stacks, all stacks will be removed in 12s."
+  ],
+  "effect": [
+   "Tăng {1}% ATK. Người trang bị nhận 1 tầng Searing Feather khi gây sát thương, kích hoạt tối đa 1 lần mỗi 0.5 giây, và nhận 5 tầng hiệu ứng này khi thi triển Resonance Skill. Mỗi tầng Searing Feather cho thêm {2}% Resonance Skill DMG Bonus, tối đa 14 tầng. Sau khi đạt tầng tối đa, toàn bộ tầng sẽ bị xóa sau 12 giây."
+  ],
+  "description_en": [
+   "Forged from the very essence and feathers of a legendary bird, this weapon blazes with an intensity that bathes the world in its luminous glow. With each fiery surge, it consumes all in its path, leaving nothing but ashes in its wake."
+  ],
+  "description": [
+   "Được rèn từ chính tinh túy và lông vũ của một loài chim huyền thoại, vũ khí này cháy rực mãnh liệt, phủ khắp thế gian trong ánh sáng chói lòa. Mỗi đợt lửa bùng lên thiêu rụi mọi thứ trên đường đi, chỉ để lại tro tàn."
+  ]
+ },
+ "Blazing Justice": {
+  "effect_en": [
+   "Increases ATK by {1}%. Casting Basic Attack grants the following effects: Dealing damage ignores {2}% of the target's DEF and Amplifies Spectro Frazzle DMG dealt by {3}% for 6s. Retriggering the effect resets its duration."
+  ],
+  "effect": [
+   "Tăng {1}% ATK. Thi triển Basic Attack nhận các hiệu ứng sau trong 6 giây: gây sát thương bỏ qua {2}% DEF của mục tiêu và Spectro Frazzle DMG gây ra được Amplified thêm {3}%. Kích hoạt lại sẽ làm mới thời gian hiệu ứng."
+  ],
+  "description_en": [
+   "It heralds justice, precise and inexorable as a clock's toll. All sins are cleansed in flame, dissipating like night beneath the dawn's gaze."
+  ],
+  "description": [
+   "Nó báo hiệu công lý, chính xác và không thể lay chuyển như tiếng chuông đồng hồ. Mọi tội lỗi được thanh tẩy trong lửa, tan biến như màn đêm dưới ánh nhìn của bình minh."
+  ]
+ },
+ "Bloodpact's Pledge": {
+  "effect_en": [
+   "Providing Healing increases Resonance Skill DMG by {1}% for 6s. When Rover: Aero casts Resonance Skill Unbound Flow, Aero DMG dealt by nearby Resonators on the field is Amplified by {1}% for 30s."
+  ],
+  "effect": [
+   "Hồi máu tăng {1}% Resonance Skill DMG trong 6 giây. Khi Rover: Aero thi triển Resonance Skill Unbound Flow, Aero DMG do các Resonators ở gần trên sân gây ra được Amplified thêm {1}% trong 30 giây."
+  ],
+  "description_en": [
+   "This weapon is a testament to the unbreakable blood pact: One shall never betray, never surrender, and fight until the last drop of blood is shed."
+  ],
+  "description": [
+   "Vũ khí này là minh chứng cho khế ước máu không thể phá vỡ: không bao giờ phản bội, không bao giờ đầu hàng, và chiến đấu tới giọt máu cuối cùng."
+  ]
+ },
+ "Blooming Jadehaven": {
+  "effect_en": [
+   "Grants {1}% All-Attribute DMG Bonus. After the wielder inflicts Electro Flare or triggers Unison Response, Resonance Skill DMG is Amplified by {2}% and ignores {3}% of the target's Electro RES. While the wielder is the active Resonator, Electro Flare DMG taken by targets within a certain range is Amplified by {4}% for 30s, triggered 1 time every 0.1s. Only the strongest effect of the same name applies."
+  ],
+  "effect": [
+   "Tăng {1}% All-Attribute DMG Bonus. Sau khi người trang bị gây Electro Flare hoặc kích hoạt Unison Response, Resonance Skill DMG được Amplified thêm {2}% và bỏ qua {3}% Electro RES của mục tiêu. Khi người trang bị là Resonator đang trên sân, Electro Flare DMG mà các mục tiêu trong phạm vi nhất định phải nhận được Amplified thêm {4}% trong 30 giây, kích hoạt tối đa 1 lần mỗi 0.1 giây. Chỉ hiệu ứng cùng tên mạnh nhất có tác dụng."
+  ],
+  "description_en": [
+   "Jade to pillars, gold to nexus, a hundred mechanisms meshed into one working. Infinite forms divide and proliferate among the blooms, and it still fits in the palm of Her hand. Walls and mechanisms know no feeling. What makes a life's work worth the life is not the making, but that something in it was loved."
+  ],
+  "description": [
+   "Ngọc làm cột, vàng làm khớp, trăm cơ quan khớp lại thành một cỗ máy. Vô số hình dạng phân chia và sinh sôi giữa muôn hoa, mà vẫn vừa trong lòng bàn tay Người. Tường thành và cơ quan không biết cảm xúc. Điều khiến tâm huyết cả đời đáng giá không phải là việc tạo ra nó, mà là có điều gì đó trong nó từng được yêu thương."
+  ]
+ },
+ "Daybreaker's Spine": {
+  "effect_en": [
+   "Increases ATK by {1}%. After dealing Basic Attack DMG, the wielder gains {2}% Spectro DMG Bonus for 4s. Each time after the wielder inflicts Tune Strain - Shifting on the target, they gain {2}% Basic Attack DMG Amplification and their Basic Attack DMG ignores {3}% of the target's DEF for 6s."
+  ],
+  "effect": [
+   "Tăng {1}% ATK. Sau khi gây Basic Attack DMG, người trang bị nhận {2}% Spectro DMG Bonus trong 4 giây. Mỗi lần người trang bị gây Tune Strain - Shifting lên mục tiêu, nhận {2}% Basic Attack DMG Amplification và Basic Attack DMG bỏ qua {3}% DEF của mục tiêu trong 6 giây."
+  ],
+  "description_en": [
+   "Those are not ridges of the mountains, but the spine of the earth, carrying the night. They protrude from the abdomen of darkness. From the incision spills the light of new life.",
+   "Your shadow was nailed to the dying night. With the breaking dawn, your flesh shall rise.",
+   "Let it knock open every door of denial."
+  ],
+  "description": [
+   "Đó không phải sống núi, mà là xương sống của mặt đất, gánh trên mình màn đêm. Chúng nhô lên từ bụng bóng tối. Từ vết rạch tràn ra ánh sáng của sự sống mới.",
+   "Bóng của ngươi đã bị đóng đinh vào màn đêm hấp hối. Khi bình minh ló rạng, thân xác ngươi sẽ trỗi dậy.",
+   "Hãy để nó gõ mở mọi cánh cửa của sự chối bỏ."
+  ]
+ },
+ "Defier's Thorn": {
+  "effect_en": [
+   "Max HP is increased by {1}%. 15s after casting Intro Skill or Basic Attacks, ignores {2}% of the target's DEF when dealing damage. If the target has at least 1 stack of Aero Erosion, the DMG taken by the target is Amplified by {3}%."
+  ],
+  "effect": [
+   "Tăng {1}% Max HP. Trong 15 giây sau khi thi triển Intro Skill hoặc Basic Attack, khi gây sát thương sẽ bỏ qua {2}% DEF của mục tiêu. Nếu mục tiêu có ít nhất 1 tầng Aero Erosion, sát thương mục tiêu nhận được Amplified thêm {3}%."
+  ],
+  "description_en": [
+   "The surging tides force the crown of thorns upon the knight, out of which the knight forges this sword.",
+   "Unburdened by the crown, the knight waded through the roaring waves unwaveringly."
+  ],
+  "description": [
+   "Thủy triều cuộn trào ép chiếc vương miện gai lên đầu hiệp sĩ, và từ nó, hiệp sĩ rèn nên thanh kiếm này.",
+   "Thoát khỏi gánh nặng vương miện, hiệp sĩ vững bước băng qua những con sóng gầm thét."
+  ]
+ },
+ "Emerald Sentence": {
+  "effect_en": [
+   "ATK is increased by {1}%. Casting Echo Skill within 10s after casting Intro Skill or Basic Attack grants 1 stack of Bamboo Cleaver, which grants {2}% Heavy Attack DMG Bonus to the wielder. This effect can be triggered by Echoes of the same name once only, stacking up to 2 times, lasting for 12s. Casting Echo Skill at max stacks does not reset the duration. This effect can be triggered once every 10s and ends early if the wielder is switched off the field.",
+   "Casting Intro Skill grants {3}% Echo Skill DMG Bonus to all Resonators in the team for 30s. Effects of the same name cannot be stacked."
+  ],
+  "effect": [
+   "Tăng {1}% ATK. Thi triển Echo Skill trong vòng 10 giây sau khi thi triển Intro Skill hoặc Basic Attack nhận 1 tầng Bamboo Cleaver, giúp người trang bị nhận {2}% Heavy Attack DMG Bonus. Mỗi Echo cùng tên chỉ kích hoạt hiệu ứng này một lần, cộng dồn tối đa 2 tầng, kéo dài 12 giây. Thi triển Echo Skill khi đã đạt tầng tối đa không làm mới thời gian. Hiệu ứng kích hoạt tối đa 1 lần mỗi 10 giây và kết thúc sớm nếu người trang bị rời sân.",
+   "Thi triển Intro Skill cấp {3}% Echo Skill DMG Bonus cho mọi Resonators trong đội trong 30 giây. Các hiệu ứng cùng tên không cộng dồn."
+  ],
+  "description_en": [
+   "Bamboo, hollow yet full; People, whole yet seldom true.",
+   "Bamboo speaks without deceit, acts without conceit, seeks no vanity. Few ever measure up thus."
+  ],
+  "description": [
+   "Trúc, rỗng mà vẫn đầy; người, trọn vẹn mà hiếm khi thật.",
+   "Trúc nói không dối, làm không kiêu, chẳng cầu hư danh. Mấy ai sánh được như thế."
+  ]
+ },
+ "Everbright Polestar": {
+  "effect_en": [
+   "Increases All-Attribute DMG Bonus by {1}%. When inflicting Tune Rupture - Shifting or Fusion Burst, the wielder's Resonance Liberation DMG ignores {2}% DEF and {3}% Fusion RES on targets for 8s."
+  ],
+  "effect": [
+   "Tăng {1}% All-Attribute DMG Bonus. Khi gây Tune Rupture - Shifting hoặc Fusion Burst, Resonance Liberation DMG của người trang bị bỏ qua {2}% DEF và {3}% Fusion RES của mục tiêu trong 8 giây."
+  ],
+  "description_en": [
+   "As you drift across the hushed sea of stars, stardust scatters beside you as time crumbles in your wake. All that remains is the unyielding loneliness, warped, diluted, and remade into the plumes of your wings.",
+   "The universe sends you on a tribulation of silence, yet you travel on, repaying in radiance."
+  ],
+  "description": [
+   "Khi bạn trôi qua biển sao tĩnh lặng, bụi sao rơi rải bên cạnh, thời gian vỡ vụn sau lưng. Chỉ còn lại nỗi cô đơn không chịu khuất phục, bị bẻ cong, pha loãng rồi tái tạo thành những chiếc lông vũ trên đôi cánh của bạn.",
+   "Vũ trụ đẩy bạn vào một thử thách của sự im lặng, nhưng bạn vẫn bước tiếp, đáp lại bằng ánh sáng rực rỡ."
+  ]
+ },
+ "Firstlight's Herald": {
+  "effect_en": [
+   "Increases Max HP by {1}%. Casting Resonance Liberation restores {2} points of Concerto Energy, triggered once every 20s. Inflicting Glacio Chafe grants Snow Taint for 6s. Applying healing grants Ripples for 6s. If the wielder has done both while on the field, the next Outro Skill grants both effects for 6s. When the wielder has both Snow Taint and Ripples, the ATK of all nearby Resonators in the team is increased by {3}%. Effects of the same name do not stack."
+  ],
+  "effect": [
+   "Tăng {1}% Max HP. Thi triển Resonance Liberation hồi {2} điểm Concerto Energy, kích hoạt tối đa 1 lần mỗi 20 giây. Gây Glacio Chafe nhận Snow Taint trong 6 giây. Hồi máu nhận Ripples trong 6 giây. Nếu người trang bị đã làm cả hai khi ở trên sân, Outro Skill kế tiếp cấp cả hai hiệu ứng trong 6 giây. Khi người trang bị có cả Snow Taint và Ripples, ATK của mọi Resonators trong đội ở gần tăng {3}%. Các hiệu ứng cùng tên không cộng dồn."
+  ],
+  "description_en": [
+   "Dawn's glow my paper, morning dew my ink, with brush in hand, a scroll of ceaseless landscapes I paint.",
+   "So the legend goes: when the divine bird lowers its gaze, the mountains hush and the rivers still.",
+   "Yet, when it raises its head again to loose a piercing cry, the slumbering sun shall rise from beyond the sea of clouds."
+  ],
+  "description": [
+   "Lấy ráng bình minh làm giấy, sương mai làm mực, tay cầm bút, ta vẽ nên cuộn tranh sơn thủy không dứt.",
+   "Tương truyền: khi thần điểu cúi nhìn, núi non lặng tiếng và sông ngòi ngừng chảy.",
+   "Nhưng khi nó lại ngẩng đầu cất tiếng kêu xuyên thấu, vầng thái dương đang ngủ sẽ mọc lên từ bên kia biển mây."
+  ]
+ },
+ "Forged Dwarf Star": {
+  "effect_en": [
+   "Increases ATK by {1}%. After the wielder inflicts Fusion Burst or Tune Strain - Shifting on the target, their Resonance Liberation DMG Bonus is increased by {2}% for 5s. While this effect lasts, after Resonators in the team inflict Fusion Burst or Tune Strain - Shifting, their ATK is increased by {3}% for 15s. Effects of the same name cannot be stacked."
+  ],
+  "effect": [
+   "Tăng {1}% ATK. Sau khi người trang bị gây Fusion Burst hoặc Tune Strain - Shifting lên mục tiêu, Resonance Liberation DMG Bonus tăng {2}% trong 5 giây. Trong thời gian hiệu ứng này, sau khi Resonators trong đội gây Fusion Burst hoặc Tune Strain - Shifting, ATK của họ tăng {3}% trong 15 giây. Các hiệu ứng cùng tên không cộng dồn."
+  ],
+  "description_en": [
+   "Dream dissolves like foam, leaving only a silent white dwarf.",
+   "Yet the light that once swept the cosmos remains.",
+   "She waits in quiescence until her borrowed light finds its way back to the main sequence star."
+  ],
+  "description": [
+   "Giấc mơ tan như bọt biển, chỉ để lại một sao lùn trắng lặng câm.",
+   "Nhưng ánh sáng từng quét qua vũ trụ vẫn còn đó.",
+   "Nàng lặng lẽ chờ đợi, cho tới khi thứ ánh sáng vay mượn tìm được đường trở về ngôi sao thuộc dãy chính."
+  ]
+ },
+ "Freeze Frame": {
+  "effect_en": [
+   "Increases ATK by {1}%. After inflicting Glacio Chafe on the target, the wielder gains {2}% Glacio DMG Bonus for 12s, and all Resonators in the team gain {3}% ATK increase for 30s. Effects of the same name cannot be stacked."
+  ],
+  "effect": [
+   "Tăng {1}% ATK. Sau khi gây Glacio Chafe lên mục tiêu, người trang bị nhận {2}% Glacio DMG Bonus trong 12 giây, và mọi Resonators trong đội được tăng {3}% ATK trong 30 giây. Các hiệu ứng cùng tên không cộng dồn."
+  ],
+  "description_en": [
+   "I remember the sunset spilling down, birds and insects threading their small songs through the greenhouse.",
+   "I remember the quiet nights, my lone steps echoing the crescent moon's curve.",
+   "I am my own freeze frame. I am my own afterimage."
+  ],
+  "description": [
+   "Tôi nhớ ánh hoàng hôn đổ tràn, chim chóc và côn trùng đan những khúc ca nhỏ bé khắp nhà kính.",
+   "Tôi nhớ những đêm yên tĩnh, bước chân cô độc của tôi in theo đường cong vầng trăng khuyết.",
+   "Tôi là khung hình đóng băng của chính mình. Tôi là dư ảnh của chính mình."
+  ]
+ },
+ "Frostburn": {
+  "effect_en": [
+   "ATK is increased by {1}%. When the wielder applies Glacio Chafe, Glacio DMG is Amplified by {2}%, and Resonance Liberation DMG ignores {3}% of the target's DEF. If the wielder is the active Resonator in the team, Glacio Chafe DMG dealt to all targets within a certain range is Amplified by {4}% for 6s. This effect can be triggered up to 1 time every 0.1s. Only the strongest effect of the same name applies."
+  ],
+  "effect": [
+   "Tăng {1}% ATK. Khi người trang bị gây Glacio Chafe, Glacio DMG được Amplified thêm {2}% và Resonance Liberation DMG bỏ qua {3}% DEF của mục tiêu. Nếu người trang bị là Resonator đang trên sân, Glacio Chafe DMG gây lên mọi mục tiêu trong phạm vi nhất định được Amplified thêm {4}% trong 6 giây. Hiệu ứng này kích hoạt tối đa 1 lần mỗi 0.1 giây. Chỉ hiệu ứng cùng tên mạnh nhất có tác dụng."
+  ],
+  "description_en": [
+   "How keen a blade it takes to impale this unrelenting night?",
+   "She presses ever forward for the answer, those unbound wishes roaring in her veins."
+  ],
+  "description": [
+   "Cần một lưỡi kiếm sắc tới nhường nào mới xuyên thủng được màn đêm không dứt này?",
+   "Nàng không ngừng tiến bước để tìm câu trả lời, những ước nguyện không xiềng xích gầm vang trong huyết quản."
+  ]
+ },
+ "Glint of Clouds": {
+  "effect_en": [
+   "ATK is increased by {1}%. Inflicting Tune Strain - Shifting, grants {2}% Aero DMG Bonus for 2s, stacking up to 5 times. This effect can be triggered once every 0.5s. Upon reaching the max stack limit, gain the following effects:",
+   "• This Aero DMG Bonus effect's duration is extended to 30s.",
+   "• Aero DMG ignores {3}% of the target's DEF during this effect."
+  ],
+  "effect": [
+   "Tăng {1}% ATK. Gây Tune Strain - Shifting cấp {2}% Aero DMG Bonus trong 2 giây, cộng dồn tối đa 5 tầng. Hiệu ứng này kích hoạt tối đa 1 lần mỗi 0.5 giây. Khi đạt số tầng tối đa, nhận các hiệu ứng sau:",
+   "• Thời gian của hiệu ứng Aero DMG Bonus này được kéo dài thành 30 giây.",
+   "• Trong thời gian hiệu ứng, Aero DMG bỏ qua {3}% DEF của mục tiêu."
+  ],
+  "description_en": [
+   "Wreathed in mist and cloud, still waters blend with the sky in seamless blue. Sparse shadows slant across as a rain of petals falls.May I bear this jade blade into the mortal realm, cleanse a tarnished age, and put the wicked to the sword."
+  ],
+  "description": [
+   "Mây mù bao phủ, mặt nước lặng hòa cùng bầu trời một màu xanh liền mạch. Bóng thưa nghiêng nghiêng khi cơn mưa cánh hoa rơi xuống. Nguyện mang thanh kiếm ngọc này vào cõi trần, gột rửa thời thế nhơ nhuốc và trừng trị kẻ gian tà."
+  ]
+ },
+ "Kumokiri": {
+  "effect_en": [
+   "ATK is increased by {1}%. When the wielder casts Intro Skill or inflicts Negative Status, they gain {2}% Resonance Liberation DMG Bonus, stacking up to 3 times for 15s.",
+   "At max stacks, when Resonators in the team inflict Negative Status, grants {3}% All-Attribute DMG Bonus for 15s. Effects of the same name cannot be stacked."
+  ],
+  "effect": [
+   "Tăng {1}% ATK. Khi người trang bị thi triển Intro Skill hoặc gây Negative Status, nhận {2}% Resonance Liberation DMG Bonus, cộng dồn tối đa 3 tầng, kéo dài 15 giây.",
+   "Khi đạt tầng tối đa, mỗi khi Resonators trong đội gây Negative Status sẽ nhận {3}% All-Attribute DMG Bonus trong 15 giây. Các hiệu ứng cùng tên không cộng dồn."
+  ],
+  "description_en": [
+   "A crimson thread emerges in the void, as if binding the structures of all things onto a single thread.",
+   "At her fingertips, the endless season is drawn taut, snipped, and rewoven, until the scattered path at last converges once more upon this timeline."
+  ],
+  "description": [
+   "Một sợi chỉ đỏ thắm hiện ra giữa hư không, như thể buộc mọi cấu trúc của vạn vật vào một sợi duy nhất.",
+   "Dưới đầu ngón tay nàng, mùa vô tận được kéo căng, cắt đứt rồi dệt lại, cho tới khi con đường rời rạc cuối cùng lại hội tụ về dòng thời gian này."
+  ]
+ },
+ "Lethean Elegy": {
+  "effect_en": [
+   "ATK is increased by {1}%. Within 12s after dealing Echo Skill DMG, gain {2}% Resonance Skill DMG Bonus and {2}% Echo Skill DMG Amplification, and ignore {3}% of the target's DEF when dealing damage."
+  ],
+  "effect": [
+   "Tăng {1}% ATK. Trong 12 giây sau khi gây Echo Skill DMG, nhận {2}% Resonance Skill DMG Bonus và {2}% Echo Skill DMG Amplification, đồng thời khi gây sát thương bỏ qua {3}% DEF của mục tiêu."
+  ],
+  "description_en": [
+   "I am not there. I do not die. I shall be death's companion—with euphoric delights I drown my fear, with the coming days I trade for the past."
+  ],
+  "description": [
+   "Ta không ở đó. Ta không chết. Ta sẽ làm bạn đồng hành của cái chết, dùng niềm hoan lạc nhấn chìm nỗi sợ, dùng những ngày sắp tới đổi lấy quá khứ."
+  ]
+ },
+ "Lullaby": {
+  "effect_en": [
+   "Increases Max HP by {1}%. Casting Resonance Liberation restores {2} points of Concerto Energy, triggered once every 20s. All Resonators in the team gain Soothed Soul for 30s when the wielder performs healing with Heavy Attack. When Soothed Soul is active, if a Resonator in the team gains Unison or triggers Unison Response, that Resonator gains {3}% ATK increase for 30s. This effect is removed when Soothed Soul ends. When the wielder provides healing with Heavy Attack, the active Resonator also gains {4}% Echo Skill DMG Bonus for 30s. Effects of the same name do not stack."
+  ],
+  "effect": [
+   "Tăng {1}% Max HP. Thi triển Resonance Liberation hồi {2} điểm Concerto Energy, kích hoạt tối đa 1 lần mỗi 20 giây. Khi người trang bị hồi máu bằng Heavy Attack, mọi Resonators trong đội nhận Soothed Soul trong 30 giây. Khi Soothed Soul đang có hiệu lực, nếu một Resonator trong đội nhận Unison hoặc kích hoạt Unison Response, Resonator đó được tăng {3}% ATK trong 30 giây. Hiệu ứng này bị xóa khi Soothed Soul kết thúc. Khi người trang bị hồi máu bằng Heavy Attack, Resonator đang trên sân còn nhận thêm {4}% Echo Skill DMG Bonus trong 30 giây. Các hiệu ứng cùng tên không cộng dồn."
+  ],
+  "description_en": [
+   "So close to crumbling, the flower gave itself to the softness of dreams. There, its thoughts froze and its hopes set, until it withered in the lovely dream cradle. It waits, and waits... It waits on for a prayer, an accident, a chance to bloom again and find its peace."
+  ],
+  "description": [
+   "Khi sắp tàn úa, đóa hoa phó mặc mình cho sự êm dịu của giấc mơ. Ở đó, suy nghĩ của nó đông cứng, hy vọng của nó lắng lại, cho tới khi nó héo tàn trong chiếc nôi mộng đẹp đẽ. Nó chờ, và chờ... Nó vẫn chờ một lời cầu nguyện, một sự tình cờ, một cơ hội để nở hoa lần nữa và tìm thấy bình yên."
+  ]
+ },
+ "Luminous Hymn": {
+  "effect_en": [
+   "Increase ATK by {1}%. Dealing DMG to enemies with Spectro Frazzle gives {2}% Basic Attack and {3}% Heavy Attack DMG Bonus respectively, stacking up to 3 times for 6s. Casting Outro Skill Amplifies the DMG from Spectro Frazzle on enemies around the active Resonator by {4}% for 30s. Effects of the same name cannot be stacked."
+  ],
+  "effect": [
+   "Tăng {1}% ATK. Gây sát thương lên kẻ địch có Spectro Frazzle nhận lần lượt {2}% Basic Attack DMG Bonus và {3}% Heavy Attack DMG Bonus, cộng dồn tối đa 3 tầng, kéo dài 6 giây. Thi triển Outro Skill khiến sát thương từ Spectro Frazzle lên kẻ địch quanh Resonator đang trên sân được Amplified thêm {4}% trong 30 giây. Các hiệu ứng cùng tên không cộng dồn."
+  ],
+  "description_en": [
+   "\"The Sentinel's grace, how sweet thou art.",
+   "Our home was lost, but found at last.",
+   "With twigs between my beaks, I brave the waves.Bound by love, we're crowned with holy light.\""
+  ],
+  "description": [
+   "\"Ân điển của Sentinel, ngọt ngào biết bao.",
+   "Mái nhà ta từng mất, nay cuối cùng đã tìm lại.",
+   "Ngậm cành trong mỏ, ta vượt qua sóng dữ. Gắn kết bởi tình yêu, ta được đội vương miện ánh sáng thánh thiêng.\""
+  ]
+ },
+ "Lux & Umbra": {
+  "effect_en": [
+   "Increases ATK by {1}%. Upon dealing Echo Skill DMG, gain {2}% Heavy Attack DMG Amplification for 6s. Upon dealing Heavy Attack DMG, gain {2}% Echo Skill DMG Amplification for 6s. DMG Amplification on each attack is capped at {2}%. While both effects are active, dealing damage ignores {3}% of the target's DEF."
+  ],
+  "effect": [
+   "Tăng {1}% ATK. Khi gây Echo Skill DMG, nhận {2}% Heavy Attack DMG Amplification trong 6 giây. Khi gây Heavy Attack DMG, nhận {2}% Echo Skill DMG Amplification trong 6 giây. DMG Amplification trên mỗi đòn tối đa {2}%. Khi cả hai hiệu ứng cùng tồn tại, gây sát thương bỏ qua {3}% DEF của mục tiêu."
+  ],
+  "description_en": [
+   "From darkness she seizes power, layering sins upon herself.",
+   "To hunt. To kill. To deliver a relentless and fatal blow to all evil.",
+   "From the light she falls, with her vows etched in her mind.",
+   "For the deceased. For the living. For her pistols’ true targets."
+  ],
+  "description": [
+   "Từ bóng tối nàng giành lấy sức mạnh, chồng chất tội lỗi lên chính mình.",
+   "Để săn. Để giết. Để giáng đòn chí mạng không khoan nhượng lên mọi cái ác.",
+   "Từ ánh sáng nàng sa xuống, lời thề khắc sâu trong tâm trí.",
+   "Vì người đã khuất. Vì người còn sống. Vì những mục tiêu thật sự của đôi súng nàng."
+  ]
+ },
+ "Moongazer's Sigil": {
+  "effect_en": [
+   "Increases ATK by {1}%. Casting Intro Skill or Resonance Liberation increases Resonance Liberation DMG by {2}% for 15s. Obtaining Shield allows Resonance Liberation DMG to ignore {3}% of the target's DEF for 7s, stacking up to 5 times. This effect is triggered once every 0.5s. Upon casting Intro Skill, this effect reaches max stacks immediately, lasting for 3s."
+  ],
+  "effect": [
+   "Tăng {1}% ATK. Thi triển Intro Skill hoặc Resonance Liberation tăng {2}% Resonance Liberation DMG trong 15 giây. Khi nhận Shield, Resonance Liberation DMG bỏ qua {3}% DEF của mục tiêu trong 7 giây, cộng dồn tối đa 5 tầng. Hiệu ứng này kích hoạt tối đa 1 lần mỗi 0.5 giây. Khi thi triển Intro Skill, hiệu ứng này lập tức đạt tầng tối đa, kéo dài 3 giây."
+  ],
+  "description_en": [],
+  "description": []
+ },
+ "Red Spring": {
+  "effect_en": [
+   "Increase ATK by {1}%. When dealing Basic Attack DMG, the wielder gains {2}% Basic Attack DMG Bonus for 14s. This effect can be triggered once per second, stacking up to 3 times.",
+   "When the wielder's Concerto Energy is consumed, gain {3}% Basic DMG Bonus for 10s. This effect can be triggered once per second and ends when the wielder is switched off the field."
+  ],
+  "effect": [
+   "Tăng {1}% ATK. Khi gây Basic Attack DMG, người trang bị nhận {2}% Basic Attack DMG Bonus trong 14 giây. Hiệu ứng này kích hoạt tối đa 1 lần mỗi giây, cộng dồn tối đa 3 tầng.",
+   "Khi Concerto Energy của người trang bị bị tiêu hao, nhận {3}% Basic DMG Bonus trong 10 giây. Hiệu ứng này kích hoạt tối đa 1 lần mỗi giây và kết thúc khi người trang bị rời sân."
+  ],
+  "description_en": [
+   "A camellia bud silently unfurls. As promised, she holds this infinite world in bloom in her palms, where fine crimson vines twine around her fingertips.",
+   "The dull ache, like sand scratching against the heart, is proof of your fateful encounter."
+  ],
+  "description": [
+   "Một nụ trà mi lặng lẽ hé nở. Như đã hứa, nàng nâng cả thế giới vô tận đang nở hoa này trong lòng bàn tay, nơi những dây leo đỏ thắm mảnh mai quấn quanh đầu ngón tay.",
+   "Cơn đau âm ỉ, như cát cứa vào tim, là bằng chứng cho cuộc gặp gỡ định mệnh của hai người."
+  ]
+ },
+ "Rime-Draped Sprouts": {
+  "effect_en": [
+   "Increase ATK by {1}%. While the wielder is on the field, using Resonance Skill grants {1}% Basic Attack DMG Bonus, stacking up to 3 times for 6s. At 3 stacks or above, casting Outro Skill consumes all stacks of this effect and grants the wielder {2}% Basic Attack DMG Bonus for 27s, effective when the wielder is off the field."
+  ],
+  "effect": [
+   "Tăng {1}% ATK. Khi người trang bị ở trên sân, dùng Resonance Skill nhận {1}% Basic Attack DMG Bonus, cộng dồn tối đa 3 tầng, kéo dài 6 giây. Khi có từ 3 tầng trở lên, thi triển Outro Skill tiêu hao toàn bộ tầng của hiệu ứng này và cấp cho người trang bị {2}% Basic Attack DMG Bonus trong 27 giây, có hiệu lực khi người trang bị ở ngoài sân."
+  ],
+  "description_en": [
+   "An artist's seal adorned with rimed sprouts. It is stamped on numerous paintings that capture mountains and ravines in expressive, mesmerizing strokes. The tender sprouts symbolize the perpetual blossoming of artistic marvels."
+  ],
+  "description": [
+   "Một con dấu họa sĩ điểm xuyết mầm non phủ sương giá. Nó được đóng trên vô số bức tranh vẽ núi non khe suối bằng những nét bút phóng khoáng, mê hoặc. Những mầm non mềm mại tượng trưng cho sự nở rộ không ngừng của những kỳ quan nghệ thuật."
+  ]
+ },
+ "Skull Thrasher": {
+  "effect_en": [
+   "Increases ATK by {1}%. Casting Intro Skill grants {2}% Basic Attack DMG Bonus to the wielder for 14s. Inflicting Hack - Shifting grants {3}% Basic Attack DMG Bonus to the wielder for 14s, and increases the ATK of Resonators in the team by {4}% for 30s. Effects of the same name do not stack"
+  ],
+  "effect": [
+   "Tăng {1}% ATK. Thi triển Intro Skill cấp cho người trang bị {2}% Basic Attack DMG Bonus trong 14 giây. Gây Hack - Shifting cấp cho người trang bị {3}% Basic Attack DMG Bonus trong 14 giây, đồng thời tăng {4}% ATK của Resonators trong đội trong 30 giây. Các hiệu ứng cùng tên không cộng dồn."
+  ],
+  "description_en": [
+   "Because death is a reality that cannot be undone, there's no reason to hesitate.",
+   "She pulls the trigger, shattering this haunting reverie."
+  ],
+  "description": [
+   "Bởi cái chết là sự thật không thể đảo ngược, chẳng có lý do gì để do dự.",
+   "Nàng bóp cò, phá tan cơn mộng mị ám ảnh này."
+  ]
+ },
+ "Solsworn Ciphers": {
+  "effect_en": [
+   "Increases ATK by {1}%. Casting Intro Skill or Echo Skill grants {2}% Echo Skill DMG Amplification for 15s. When dealing Echo Skill DMG, Aero DMG ignores {3}% of the target's DEF for 6s."
+  ],
+  "effect": [
+   "Tăng {1}% ATK. Thi triển Intro Skill hoặc Echo Skill cấp {2}% Echo Skill DMG Amplification trong 15 giây. Khi gây Echo Skill DMG, Aero DMG bỏ qua {3}% DEF của mục tiêu trong 6 giây."
+  ],
+  "description_en": [
+   "Sunlight gathers. The answer is made plain.",
+   "What must be done awaits. The Rein is in your hand.",
+   "Step forward, toward the sunlit end."
+  ],
+  "description": [
+   "Ánh dương hội tụ. Câu trả lời đã sáng tỏ.",
+   "Việc phải làm đang chờ. Dây cương nằm trong tay ngươi.",
+   "Hãy bước tới, hướng về cuối con đường ngập nắng."
+  ]
+ },
+ "Spectral Trigger": {
+  "effect_en": [
+   "Increases ATK by {1}%. Casting Resonance Skill grants {2}% Spectro DMG Bonus to the wielder for 14s, stacking up to 2 times. Inflicting Hack - Shifting grants {3}% Heavy Attack DMG Amplification to the wielder for 14s, during which Heavy Attack DMG ignores {4}% of the target's DEF."
+  ],
+  "effect": [
+   "Tăng {1}% ATK. Thi triển Resonance Skill cấp cho người trang bị {2}% Spectro DMG Bonus trong 14 giây, cộng dồn tối đa 2 tầng. Gây Hack - Shifting cấp cho người trang bị {3}% Heavy Attack DMG Amplification trong 14 giây, trong thời gian đó Heavy Attack DMG bỏ qua {4}% DEF của mục tiêu."
+  ],
+  "description_en": [
+   "A neon glow gilds this cage of memory, same as always.",
+   "I wander along old city streets, spilling unspoken words to shadows long gone.",
+   "I wanna stay lost here, but the dream is fraying. I must wake up."
+  ],
+  "description": [
+   "Ánh neon mạ vàng chiếc lồng ký ức này, vẫn như mọi khi.",
+   "Tôi lang thang trên những con phố cũ, trút những lời chưa nói vào những bóng hình đã khuất từ lâu.",
+   "Tôi muốn mãi lạc lối ở đây, nhưng giấc mơ đang rạn vỡ. Tôi phải tỉnh dậy."
+  ]
+ },
+ "Spectrum Blaster": {
+  "effect_en": [
+   "Increases ATK by {1}%.",
+   "Casting Intro Skill or dealing Basic Attack to targets increases the wielder's Basic Attack DMG Bonus by {2}% for 4s. Each time the wielder inflicts Tune Rupture - Shifting or Tune Strain - Shifting during Basic Attacks, all DMG dealt by Resonators in the team is increased by {3}% for 30s, up to 3 stacks. Effects of the same name cannot be stacked."
+  ],
+  "effect": [
+   "Tăng {1}% ATK.",
+   "Thi triển Intro Skill hoặc gây Basic Attack lên mục tiêu tăng {2}% Basic Attack DMG Bonus của người trang bị trong 4 giây. Mỗi lần người trang bị gây Tune Rupture - Shifting hoặc Tune Strain - Shifting trong lúc Basic Attack, toàn bộ sát thương của Resonators trong đội tăng {3}% trong 30 giây, tối đa 3 tầng. Các hiệu ứng cùng tên không cộng dồn."
+  ],
+  "description_en": [
+   "Prismatic light dances at her fingertips, arcs of color carving radiant trails.",
+   "Every rushing hue converges upon her aim, and at last, she reaches a sky where nothing lies beyond her sight."
+  ],
+  "description": [
+   "Ánh sáng lăng kính nhảy múa trên đầu ngón tay nàng, những vòng cung màu sắc vạch nên vệt sáng rực rỡ.",
+   "Mọi sắc màu cuộn trào đều hội tụ về điểm ngắm của nàng, và cuối cùng, nàng chạm tới bầu trời nơi không gì nằm ngoài tầm mắt."
+  ]
+ },
+ "Starfield Calibrator": {
+  "effect_en": [
+   "Increases DEF by {1}%. Casting Resonance Liberation restores {2} points of Concerto Energy. This effect can be triggered once every 20s. When the wielder heals Resonators, increases Crit. DMG of all nearby Resonators in the team by {3}% for 4s. Effects of the same name cannot be stacked."
+  ],
+  "effect": [
+   "Tăng {1}% DEF. Thi triển Resonance Liberation hồi {2} điểm Concerto Energy. Hiệu ứng này kích hoạt tối đa 1 lần mỗi 20 giây. Khi người trang bị hồi máu cho Resonators, Crit. DMG của mọi Resonators trong đội ở gần tăng {3}% trong 4 giây. Các hiệu ứng cùng tên không cộng dồn."
+  ],
+  "description_en": [
+   "Every pattern can be observed. Every phenomenon can be understood. The ideal may lie light-years away, yet the path towards it rests within her own hands."
+  ],
+  "description": [
+   "Mọi quy luật đều có thể quan sát. Mọi hiện tượng đều có thể thấu hiểu. Lý tưởng có thể cách xa hàng năm ánh sáng, nhưng con đường tới đó nằm trong chính tay nàng."
+  ]
+ },
+ "Stellar Symphony": {
+  "effect_en": [
+   "Increase HP by {1}%. Restore {2} Concerto Energy when casting Resonance Liberation. This effect can be triggered 1 time(s) every 20s. When casting Resonance Skill that heals, increase nearby party member's ATK by {3}% for 30s. Effects of the same name cannot be stacked."
+  ],
+  "effect": [
+   "Tăng {1}% HP. Thi triển Resonance Liberation hồi {2} Concerto Energy. Hiệu ứng này kích hoạt tối đa 1 lần mỗi 20 giây. Khi thi triển Resonance Skill có hồi máu, tăng {3}% ATK cho các thành viên đội ở gần trong 30 giây. Các hiệu ứng cùng tên không cộng dồn."
+  ],
+  "description_en": [
+   "A rectifier bearing an energy core that simulates the lifecycle of stars—an infinite loop that originates from a singularity and ends in explosive demise. The celestial debris collides in thunderous rumbles, heralding the birth of a new star."
+  ],
+  "description": [
+   "Một Rectifier mang lõi năng lượng mô phỏng vòng đời của các vì sao, một vòng lặp vô tận khởi đầu từ điểm kỳ dị và kết thúc bằng sự hủy diệt bùng nổ. Những mảnh vỡ thiên thể va chạm trong tiếng ầm vang, báo hiệu sự ra đời của một ngôi sao mới."
+  ]
+ },
+ "Stringmaster": {
+  "effect_en": [
+   "Grants {1}% Attribute DMG Bonus. When dealing Resonance Skill DMG, increases ATK by {1}%, stacking up to 2 times. This effect lasts for 5s. When the wielder is not on the field, increases their ATK by an additional {1}%."
+  ],
+  "effect": [
+   "Tăng {1}% Attribute DMG Bonus. Khi gây Resonance Skill DMG, tăng {1}% ATK, cộng dồn tối đa 2 tầng. Hiệu ứng này kéo dài 5 giây. Khi người trang bị không ở trên sân, ATK tăng thêm {1}%."
+  ],
+  "description_en": [
+   "As the puppet palm unfurls, deadly strings are unleashed with a menacing hum. The air crackles with power, immobilizing any foes caught in its grasp. The rapid bolts of electricity leave unhealable scars on their victims."
+  ],
+  "description": [
+   "Khi bàn tay con rối mở ra, những sợi dây chết chóc phóng đi kèm tiếng vo ve đầy đe dọa. Không khí nổ lách tách sức mạnh, trói chặt mọi kẻ địch lọt vào tầm với. Những tia điện dồn dập để lại trên nạn nhân những vết sẹo không thể lành."
+  ]
+ },
+ "The Last Dance": {
+  "effect_en": [
+   "Increases ATK by {1}%. Every time Intro Skill or Resonance Liberation is cast, Resonance Skill DMG Bonus increases by {2}% for 5s."
+  ],
+  "effect": [
+   "Tăng {1}% ATK. Mỗi lần thi triển Intro Skill hoặc Resonance Liberation, Resonance Skill DMG Bonus tăng {2}% trong 5 giây."
+  ],
+  "description_en": [
+   "The radiant crystals, ever shattering and reshaping, beckon you into a treacherous dance, a gamble where life is the wager. Cortado, cortado... relentlessly draw each other in until all we can hear are our quivers. When the crimson finale arrives, remember, death comes for all."
+  ],
+  "description": [
+   "Những tinh thể rực rỡ, không ngừng vỡ tan rồi tái tạo, mời gọi bạn vào một điệu nhảy hiểm nguy, một ván cược lấy mạng sống làm tiền đặt. Cortado, cortado... không ngừng cuốn lấy nhau cho tới khi chỉ còn nghe thấy tiếng run rẩy của chính mình. Khi màn kết đỏ thẫm tới, hãy nhớ rằng cái chết đến với tất cả."
+  ]
+ },
+ "Thousandfold Deliverance": {
+  "effect_en": [
+   "Grants {1}% All-Attribute DMG Bonus. Casting Intro Skill or gaining a Shield as the active Resonator grants 1 stack of Nature's Order and 1 stack of Cradle of Life. This effect can be triggered via gaining a Shield once every 0.5s, stacking up to 6 times, lasting for 7s. Switching to another Resonator ends both Nature's Order and Cradle of Life immediately.",
+   "Nature's Order: Crit. DMG is increased by {2}%, up to {3}%. When Nature's Order reaches 6 stacks, the Crit. Rate of Heavy Attack DMG is increased by {4}%. Cradle of Life: Casting Heavy Attack consumes up to 2 stacks of Cradle of Life. For every 1 stack of Cradle of Life consumed, Heavy Attack DMG ignores {5}% of the target's DEF, up to {6}%. The effect lasts for 2s."
+  ],
+  "effect": [
+   "Tăng {1}% All-Attribute DMG Bonus. Thi triển Intro Skill hoặc nhận Shield khi đang là Resonator trên sân cấp 1 tầng Nature's Order và 1 tầng Cradle of Life. Việc nhận Shield kích hoạt hiệu ứng này tối đa 1 lần mỗi 0.5 giây, cộng dồn tối đa 6 tầng, kéo dài 7 giây. Đổi sang Resonator khác sẽ lập tức kết thúc cả Nature's Order và Cradle of Life.",
+   "Nature's Order: Crit. DMG tăng {2}%, tối đa {3}%. Khi Nature's Order đạt 6 tầng, Crit. Rate của Heavy Attack DMG tăng {4}%. Cradle of Life: thi triển Heavy Attack tiêu hao tối đa 2 tầng Cradle of Life. Cứ mỗi 1 tầng Cradle of Life bị tiêu hao giúp Heavy Attack DMG bỏ qua {5}% DEF của mục tiêu, tối đa {6}%. Hiệu ứng kéo dài 2 giây."
+  ],
+  "description_en": [
+   "Endless stretches the Netherworld; the long night knows no end. Ten thousand souls lie hushed, and all sound fades to silence.",
+   "When cold, golden rays illuminate the Nether Gate, the sunken dreams of ages past shall at last be brought to light."
+  ],
+  "description": [
+   "Cõi U Minh trải dài vô tận; đêm dài không có hồi kết. Vạn linh hồn lặng im, mọi âm thanh tan vào tĩnh lặng.",
+   "Khi những tia sáng vàng lạnh lẽo soi rọi Cổng U Minh, những giấc mộng chìm sâu của bao thời đại cuối cùng sẽ được đưa ra ánh sáng."
+  ]
+ },
+ "Thunderflare Dominion": {
+  "effect_en": [
+   "Increases ATK by {1}%. Casting Intro Skill or Resonance Skill increases Heavy Attack DMG by {2}% for 15s. Obtaining Shield allows Heavy Attack DMG to ignore {3}% of the target's DEF for 7s, stacking up to 5 times. This effect triggers once every 0.5s."
+  ],
+  "effect": [
+   "Tăng {1}% ATK. Thi triển Intro Skill hoặc Resonance Skill tăng {2}% Heavy Attack DMG trong 15 giây. Khi nhận Shield, Heavy Attack DMG bỏ qua {3}% DEF của mục tiêu trong 7 giây, cộng dồn tối đa 5 tầng. Hiệu ứng này kích hoạt tối đa 1 lần mỗi 0.5 giây."
+  ],
+  "description_en": [
+   "Thunder shall purge her pain and weakness. From the crucible of blood and sand, the Sun rises. Not dimmed by dust, but ablaze in her full radiance."
+  ],
+  "description": [
+   "Sấm sét sẽ thanh tẩy nỗi đau và sự yếu đuối của nàng. Từ lò luyện của máu và cát, Mặt Trời mọc lên. Không bị bụi trần che mờ, mà rực cháy trong toàn bộ ánh huy hoàng."
+  ]
+ },
+ "Tragicomedy": {
+  "effect_en": [
+   "Increases ATK by {1}%. Every time Basic Attack or Intro Skill is cast, Heavy Attack DMG Bonus increases by {2}% for 3s."
+  ],
+  "effect": [
+   "Tăng {1}% ATK. Mỗi lần thi triển Basic Attack hoặc Intro Skill, Heavy Attack DMG Bonus tăng {2}% trong 3 giây."
+  ],
+  "description_en": [
+   "The joys and sorrows of life dance in an endless circle;",
+   "Pain and tears shift in an instant into a carnival."
+  ],
+  "description": [
+   "Buồn vui của đời người nhảy múa trong một vòng tròn bất tận;",
+   "Nỗi đau và nước mắt chỉ trong khoảnh khắc đã hóa thành lễ hội."
+  ]
+ },
+ "Unflickering Valor": {
+  "effect_en": [
+   "Increase Crit. Rate by {1}%. Casting Resonance Liberation gives {2}% Basic Attack DMG Bonus for 10s. Dealing Basic Attack DMG gives {3}% Basic Attack DMG Bonus for 4s."
+  ],
+  "effect": [
+   "Tăng {1}% Crit. Rate. Thi triển Resonance Liberation nhận {2}% Basic Attack DMG Bonus trong 10 giây. Gây Basic Attack DMG nhận {3}% Basic Attack DMG Bonus trong 4 giây."
+  ],
+  "description_en": [
+   "Blistering winds and crashing waves, the sea devours all.",
+   "Only a lonely boat lamp stands alight!",
+   "Onwards! Towards the edge of the world you shall sail!"
+  ],
+  "description": [
+   "Gió gào sóng dữ, biển cả nuốt chửng tất cả.",
+   "Chỉ còn một ngọn đèn thuyền cô độc vẫn sáng!",
+   "Tiến lên! Hãy giương buồm tới tận cùng thế giới!"
+  ]
+ },
+ "Unspoken Rue": {
+  "effect_en": [
+   "ATK is increased by {1}%. Upon gaining Unison, the wielder gains {2}% Electro DMG Bonus for 30s. Upon gaining Unison, the wielder removes Yearning Mind and grants all Resonators in the team the Binding Mind effect: gain {3}% Electro DMG Bonus for 30s. Effects of the same name cannot stack. When the wielder consumes Concerto Energy, they remove Binding Mind from all Resonators in the team and gain the Yearning Mind effect: the wielder additionally gains {4}% Electro DMG Bonus for 14s. Switching to another Resonator ends this effect early."
+  ],
+  "effect": [
+   "Tăng {1}% ATK. Khi nhận Unison, người trang bị nhận {2}% Electro DMG Bonus trong 30 giây. Khi nhận Unison, người trang bị xóa Yearning Mind và cấp hiệu ứng Binding Mind cho mọi Resonators trong đội: nhận {3}% Electro DMG Bonus trong 30 giây. Các hiệu ứng cùng tên không cộng dồn. Khi người trang bị tiêu hao Concerto Energy, xóa Binding Mind khỏi mọi Resonators trong đội và nhận hiệu ứng Yearning Mind: người trang bị nhận thêm {4}% Electro DMG Bonus trong 14 giây. Đổi sang Resonator khác sẽ kết thúc hiệu ứng này sớm."
+  ],
+  "description_en": [
+   "With this canopy, she sheltered all life and sealed the Evil Miasma. The Blight Rain ceased, the Miasmic Thunder fell silent, and a deep darkness lies trapped upon the canopy's surface. Beneath it linger the shadows of no return, always walking by her side."
+  ],
+  "description": [
+   "Với tán ô này, nàng che chở muôn loài và phong ấn Evil Miasma. Blight Rain ngừng rơi, Miasmic Thunder im bặt, và một bóng tối sâu thẳm bị giam trên mặt tán ô. Bên dưới nó, những bóng hình không thể trở về vẫn quanh quẩn, luôn bước bên cạnh nàng."
+  ]
+ },
+ "Verdant Summit": {
+  "effect_en": [
+   "Increases Attribute DMG Bonus by {1}%. Every time Intro Skill or Resonance Liberation is cast, increases Heavy Attack DMG Bonus by {2}%, stacking up to 2 time(s). This effect lasts for 14s."
+  ],
+  "effect": [
+   "Tăng {1}% Attribute DMG Bonus. Mỗi lần thi triển Intro Skill hoặc Resonance Liberation, tăng {2}% Heavy Attack DMG Bonus, cộng dồn tối đa 2 tầng. Hiệu ứng này kéo dài 14 giây."
+  ],
+  "description_en": [
+   "The ancient mountain stands tall, its peak reaching towards the sky. A river flows for thousands of years, forming the blade of a powerful weapon. As it is unsheathed, a powerful dragon's roar echoes through the heavens and earth, causing the sea to churn. This awe-inspiring weapon strikes fear in all who witness its might."
+  ],
+  "description": [
+   "Ngọn núi cổ sừng sững, đỉnh vươn tới trời xanh. Dòng sông chảy suốt nghìn năm, mài nên lưỡi của một thứ vũ khí hùng mạnh. Khi rút khỏi vỏ, tiếng rồng gầm vang dội khắp đất trời, khiến biển cả cuộn sóng. Thứ vũ khí uy nghi này khiến bất kỳ ai chứng kiến sức mạnh của nó đều phải khiếp sợ."
+  ]
+ },
+ "Verity's Handle": {
+  "effect_en": [
+   "Gain {1}% Attribute DMG Bonus. When using Resonance Liberation, the wielder gains {2}% Resonance Liberation DMG Bonus for 8s. This effect can be extended by 5s each time Resonance Skills are cast, up to 3 times."
+  ],
+  "effect": [
+   "Tăng {1}% Attribute DMG Bonus. Khi thi triển Resonance Liberation, người trang bị nhận {2}% Resonance Liberation DMG Bonus trong 8 giây. Mỗi lần thi triển Resonance Skill, hiệu ứng này được kéo dài thêm 5 giây, tối đa 3 lần."
+  ],
+  "description_en": [
+   "Crafted with the lost art from the Court of Savantae, these gauntlets are solid and unbreakable, despite their lightweight materials. They are no tools of violence or aggression, but instruments for unraveling puzzles and pursuing the truth."
+  ],
+  "description": [
+   "Được chế tác bằng kỹ nghệ thất truyền của Court of Savantae, đôi găng này rắn chắc và không thể phá hủy dù làm từ vật liệu nhẹ. Chúng không phải công cụ của bạo lực hay xâm lược, mà là dụng cụ để giải đố và theo đuổi chân lý."
+  ]
+ },
+ "Whispers of Sirens": {
+  "effect_en": [
+   "Increases ATK by {1}%. Casting Echo Skill within 10s after casting Intro Skill or Basic Attacks grants 1 stacks of Gentle Dream. Echoes with the same name can only trigger this effect once, stacking up to 2 times, lasting for 10s. When reaching 2 stacks, casting Echo Skill no longer resets the duration of this effect. This effect activates up to once per 10s. Switching to another Resonator ends this effect early. With 1 stack: Grants {2}% Basic Attack DMG Bonus. With 2 stack: Ignores {1}% of the target's Havoc RES."
+  ],
+  "effect": [
+   "Tăng {1}% ATK. Thi triển Echo Skill trong vòng 10 giây sau khi thi triển Intro Skill hoặc Basic Attack nhận 1 tầng Gentle Dream. Mỗi Echo cùng tên chỉ kích hoạt hiệu ứng này một lần, cộng dồn tối đa 2 tầng, kéo dài 10 giây. Khi đạt 2 tầng, thi triển Echo Skill không còn làm mới thời gian của hiệu ứng này. Hiệu ứng kích hoạt tối đa 1 lần mỗi 10 giây. Đổi sang Resonator khác sẽ kết thúc hiệu ứng sớm. Ở 1 tầng: nhận {2}% Basic Attack DMG Bonus. Ở 2 tầng: bỏ qua {1}% Havoc RES của mục tiêu."
+  ],
+  "description_en": [
+   "From the sea, some see stars, some catch the moon, and some hear countless whispers and murmurs. Those murmurs seep into her venom, flowing through every winding river. In the end, the murmurs envelope, like the bell of a jellyfish, like the sea."
+  ],
+  "description": [
+   "Từ biển cả, có người thấy sao trời, có người bắt được trăng, và có người nghe vô vàn lời thì thầm khe khẽ. Những lời ấy thấm vào nọc độc của nàng, chảy theo mọi dòng sông quanh co. Cuối cùng, những lời thì thầm bao trùm tất cả, như chiếc chuông của loài sứa, như chính biển cả."
+  ]
+ },
+ "Wildfire Mark": {
+  "effect_en": [
+   "Increases ATK by {1}%. Performing Intro Skill or Resonance Liberation increases Resonance Liberation DMG by {2}% for 6s. Dealing Heavy Attack DMG extends this effect by 4s, up to 1 time. Each successful extension gives {3}% Fusion DMG Bonus to all Resonators in the team for 30s. Effects of the same name cannot be stacked."
+  ],
+  "effect": [
+   "Tăng {1}% ATK. Thi triển Intro Skill hoặc Resonance Liberation tăng {2}% Resonance Liberation DMG trong 6 giây. Gây Heavy Attack DMG kéo dài hiệu ứng này thêm 4 giây, tối đa 1 lần. Mỗi lần kéo dài thành công cấp {3}% Fusion DMG Bonus cho mọi Resonators trong đội trong 30 giây. Các hiệu ứng cùng tên không cộng dồn."
+  ],
+  "description_en": [
+   "The young wolf races through the wilds, shedding every shadow that once held her back.",
+   "The lone wolf strides into the arena, cutting down each obstacle in her path.",
+   "She seizes victory. She claims glory. She raises everything she has high above. She belongs to the arena, but even more, she belongs to herself."
+  ],
+  "description": [
+   "Con sói non lao qua hoang dã, rũ bỏ mọi bóng tối từng níu chân nó.",
+   "Con sói đơn độc sải bước vào đấu trường, hạ gục mọi chướng ngại trên đường.",
+   "Nàng giành lấy chiến thắng. Nàng đoạt lấy vinh quang. Nàng nâng cao tất cả những gì mình có. Nàng thuộc về đấu trường, nhưng hơn thế, nàng thuộc về chính mình."
+  ]
+ },
+ "Woodland Aria": {
+  "effect_en": [
+   "ATK is increased by {1}%. Inflicting Aero Erosion on the target gives {2}% Aero DMG Bonus for 10s. Hitting targets with Aero Erosion reduces their Aero RES by {3}% for 20s. Effects of the same name cannot be stacked."
+  ],
+  "effect": [
+   "Tăng {1}% ATK. Gây Aero Erosion lên mục tiêu nhận {2}% Aero DMG Bonus trong 10 giây. Đánh trúng mục tiêu có Aero Erosion làm giảm {3}% Aero RES của mục tiêu trong 20 giây. Các hiệu ứng cùng tên không cộng dồn."
+  ],
+  "description_en": [
+   "All things exist within the lines of poetry. Every sound has its meters and rhymes.",
+   "The forest's melodies ascend in spirals toward the moon's silvered grace, harmonized by the nightingales' chorus. When the final note falls and vanishes into the silent earth, a flawless chord echoes endlessly in the depths of this boundless realm."
+  ],
+  "description": [
+   "Vạn vật tồn tại giữa những dòng thơ. Mỗi âm thanh đều có vận luật và vần điệu.",
+   "Những khúc nhạc của rừng xoắn ốc bay lên về phía vẻ đẹp bàng bạc của vầng trăng, hòa cùng khúc đồng ca của bầy họa mi. Khi nốt nhạc cuối cùng rơi xuống và tan vào mặt đất lặng im, một hợp âm hoàn mỹ vang vọng mãi trong chiều sâu của cõi vô biên này."
+  ]
+ }
+}
