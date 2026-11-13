@@ -170,28 +170,25 @@ async function run(tag, viewport) {
   check(/^ATK is increased by 24%/.test(await page.locator('.wp-eff-text').innerText()), `${tag}: weapon effect in EN`);
   await page.click('.detail-actions [data-lang="vi"]');
 
-  // combo tab: chip strip -> one step in detail -> totals; assumptions (S0-S6, weapon) change what is listed
+  // combo tab: player actions in order, each with short results; assumptions (S0-S6, weapon) filter them
   await page.click('#tab-btn-combo');
-  await page.waitForSelector('.cb-chip');
-  check(await page.locator('[data-cb-rot]').count() >= 2, `${tag}: combo rotation picker`);
-  const echoChip = page.locator('.cb-chip.k-echo').first();
-  await echoChip.click();
-  await page.waitForTimeout(150);
-  check(await page.locator('.cb-detail.k-echo .cb-card.g-weapon').count() === 1, `${tag}: echo step does not show the weapon effect`);
-  const activatedCount = async () => page.locator('.cb-fold[open] .cb-lines > li').count();
-  const s0 = await activatedCount();
+  await page.waitForSelector('.cb-act');
+  check(await page.locator('[data-cb-rot]').count() >= 2 && await page.locator('.cb-formula .cb-tok').count() > 5,
+    `${tag}: combo picker / formula`);
+  await page.click('[data-cb-rot="1"]');
+  await page.waitForSelector('.cb-act');
+  check((await page.locator('.cb-say').allInnerTexts()).some((x) => x.includes('Đánh thường 3 đòn liên tiếp')), `${tag}: Basic 1-3 not merged`);
+  const results = async (sel) => page.locator(sel).count();
+  check(await results('.cb-res.is-weapon') > 0, `${tag}: weapon result missing`);
+  const s0 = await results('.cb-res.is-chain');
   await page.click('[data-cb-s="6"]');
-  const s6 = await activatedCount();
-  check(s0 > 0 && s6 > s0, `${tag}: chain assumption did not add effects (${s0} -> ${s6})`);
+  check(await results('.cb-res.is-chain') > s0, `${tag}: chain assumption did not add results`);
   await page.click('[data-cb-weapon]');
-  check((await page.locator('.cb-fold[open] .cb-card.g-weapon').count()) === 0, `${tag}: weapon assumption`);
-  await page.locator('.cb-fold[open] .cb-at-step').first().click();
-  await page.waitForTimeout(200);
-  check(await page.locator('.cb-chip.is-sel').count() === 1, `${tag}: step number in totals did not select the step`);
-  await page.locator('.cb-detail .cb-src[data-cb-target^="skill-"]').first().click();
+  check(await results('.cb-res.is-weapon') === 0, `${tag}: weapon assumption`);
+  await page.locator('.cb-res[data-cb-target^="skill-"]').first().click();
   await page.waitForTimeout(450);
   check(await page.evaluate(() => !document.querySelector('#tab-skills').hidden) && (await page.locator('[data-line].hit').count()) === 1,
-    `${tag}: combo effect did not jump to its kit line`);
+    `${tag}: combo result did not jump to its kit line`);
 
   // old Vietnamese route still opens and is rewritten to the English one
   await page.goto(`${BASE}/#/nhan-vat/chisa`);

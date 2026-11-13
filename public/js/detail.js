@@ -36,7 +36,7 @@ export async function openDetail(slug) {
     }
     if (routeSlug() !== slug) return;  // the visitor moved on while it was loading
   }
-  if (state.current?.slug !== c.slug) Object.assign(state, {wRank: 1, wLv: null, wAsc: null, comboRot: 0, comboStep: null, comboS: 0, comboWeapon: true});
+  if (state.current?.slug !== c.slug) Object.assign(state, {wRank: 1, wLv: null, wAsc: null, comboRot: 0, comboS: 0, comboWeapon: true});
   state.current = c;
   renderDetail(c);
   state.treeSel = null;

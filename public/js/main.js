@@ -7,7 +7,7 @@ import {openMove, scrollToId, scrollToSkill} from './links.js';
 import {apply, applyStaticI18n, buildFilters, renderHero, renderMeta, setLang} from './list.js';
 import {openMechanic} from './mechanics.js';
 import {onWeaponClick, onWeaponInput} from './weapon.js';
-import {onComboClick, onComboInput, onComboKey} from './combo.js';
+import {onComboClick, onComboInput} from './combo.js';
 import './tooltip.js';  // side effects only: installs the page-wide tooltip
 
 async function boot() {
@@ -67,7 +67,6 @@ document.addEventListener('click', (e) => {
 [q, fEl, fWeap, fR].forEach((el) => el.addEventListener('input', apply));
 window.addEventListener('hashchange', route);
 document.addEventListener('keydown', (e) => {
-  if (onComboKey(e)) return;
   if (e.key === 'Escape' && state.current && !mechDialog.open) location.hash = '#/';
 });
 
@@ -118,7 +117,7 @@ detailView.addEventListener('click', (e) => {
   }
   if (onWeaponClick(e.target)) return;
   if (onComboClick(e.target)) return;
-  const src = e.target.closest('.cb-src[data-cb-target]');
+  const src = e.target.closest('.cb-res[data-cb-target]');
   if (src) {
     if (src.dataset.cbTarget === 'weapon') { setTab('weapon'); $('tab-weapon').scrollIntoView({behavior: 'smooth', block: 'start'}); }
     else scrollToId(src.dataset.cbTarget, '', src.dataset.cbLine);
