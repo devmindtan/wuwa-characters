@@ -20,6 +20,7 @@ export const state = {
   wLv: null,     // stats row index (null = max level)
   wAsc: null,    // ascension steps summed (null = all)
   comboRot: 0,   // Combo tab: rotation shown
+  comboStep: null,  // selected step (null = first step that activates something)
   comboS: 0,     // assumed Resonance Chain (S0-S6)
   comboWeapon: true,  // assume the signature weapon is equipped
   tab: 'tree',

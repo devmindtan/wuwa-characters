@@ -170,19 +170,25 @@ async function run(tag, viewport) {
   check(/^ATK is increased by 24%/.test(await page.locator('.wp-eff-text').innerText()), `${tag}: weapon effect in EN`);
   await page.click('.detail-actions [data-lang="vi"]');
 
-  // combo tab: steps with activated effects, assumptions (S0-S6, weapon) change what is listed
+  // combo tab: chip strip -> one step in detail -> totals; assumptions (S0-S6, weapon) change what is listed
   await page.click('#tab-btn-combo');
-  await page.waitForSelector('.cb-step');
+  await page.waitForSelector('.cb-chip');
   check(await page.locator('[data-cb-rot]').count() >= 2, `${tag}: combo rotation picker`);
-  const sumAt = async () => page.locator('.cb-sum .cb-eff').count();
-  const s0 = await sumAt();
+  const echoChip = page.locator('.cb-chip.k-echo').first();
+  await echoChip.click();
+  await page.waitForTimeout(150);
+  check(await page.locator('.cb-detail.k-echo .cb-card.g-weapon').count() === 1, `${tag}: echo step does not show the weapon effect`);
+  const activatedCount = async () => page.locator('.cb-fold[open] .cb-lines > li').count();
+  const s0 = await activatedCount();
   await page.click('[data-cb-s="6"]');
-  const s6 = await sumAt();
+  const s6 = await activatedCount();
   check(s0 > 0 && s6 > s0, `${tag}: chain assumption did not add effects (${s0} -> ${s6})`);
-  const withW = await page.locator('.cb-sum .cb-eff.is-weapon').count();
   await page.click('[data-cb-weapon]');
-  check(withW > 0 && (await page.locator('.cb-sum .cb-eff.is-weapon').count()) === 0, `${tag}: weapon assumption`);
-  await page.locator('.cb-step .cb-src[data-cb-target^="skill-"]').first().click();
+  check((await page.locator('.cb-fold[open] .cb-card.g-weapon').count()) === 0, `${tag}: weapon assumption`);
+  await page.locator('.cb-fold[open] .cb-at-step').first().click();
+  await page.waitForTimeout(200);
+  check(await page.locator('.cb-chip.is-sel').count() === 1, `${tag}: step number in totals did not select the step`);
+  await page.locator('.cb-detail .cb-src[data-cb-target^="skill-"]').first().click();
   await page.waitForTimeout(450);
   check(await page.evaluate(() => !document.querySelector('#tab-skills').hidden) && (await page.locator('[data-line].hit').count()) === 1,
     `${tag}: combo effect did not jump to its kit line`);
