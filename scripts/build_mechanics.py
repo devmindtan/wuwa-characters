@@ -234,6 +234,20 @@ def main():
                           + re.escape(term) + r"\s(?:state|status|stacks?)\b")
         e['refs'] = sorted(c['slug'] for c in chars if c['slug'] not in e['defs'] and any(
             word.search(l) for s in c['skills'] + c.get('resonance_chain', []) for l in s['desc']))
+    # The quoted definition is stored with the term, so a page can quote another Resonator's
+    # kit (Phrolova quoting Cantarella's Hazy Dream) without loading that Resonator.
+    by_slug = {c['slug']: c for c in chars}
+    for term, e in autos.items():
+        for slug, ref in e['defs'].items():
+            c = by_slug[slug]
+            src = c['skills'][ref['index']] if ref['kind'] == 'skill' else next(
+                n for n in c['resonance_chain'] if n['node'] == ref['index'])
+            vi_lines = src.get('desc_vi') or src['desc']
+            pick = lambda lines: ' '.join(l[2:] if l.startswith('• ') else l
+                                          for l in lines[ref['line']:ref['line'] + ref.get('n', 1)])
+            ref['title'] = src['name'] if ref['kind'] == 'skill' else f"S{src['node']} · {src['name']}"
+            ref['text_en'] = pick(src['desc'])
+            ref['text_vi'] = pick(vi_lines)
     for term, e in sorted(autos.items()):
         users = sorted(set(e['defs']) | set(e.get('refs', [])))
         mechanics.append({
