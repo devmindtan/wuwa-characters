@@ -5,3 +5,6 @@ data/en_raw.json
 data/wiki_raw.json
 __pycache__/
 *.pyc
+tests/
+requirements-dev.txt
+.pytest_cache/
