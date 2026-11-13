@@ -18,7 +18,12 @@ export function linkifyAll() {
       if (!byText.has(text)) byText.set(text, {type: 'mech', term: m.term, text});
     }
   }
-  for (const name of movesOf(c).keys()) {
+  const moveNames = [...movesOf(c).keys()];
+  const moveSet = new Set(moveNames);
+  const typePref = /^(?:Basic Attack|Heavy Attack|Mid-air Attack|Dodge Counter|Plunging Attack|Resonance Skill|Resonance Liberation|Intro Skill|Outro Skill|Forte Circuit|Inherent Skill|Echo Skill|Enhanced Heavy Attack|Enhanced Basic Attack)\s+-\s+(.+)$/;
+  for (const name of moveNames) {
+    const m = name.match(typePref);
+    if (m && moveSet.has(m[1])) continue; // prefer linking the bare move name inside "Type - Name"
     if (!byText.has(name)) byText.set(name, {type: 'move', term: name, text: name});
   }
   for (const text of state.noLink) {

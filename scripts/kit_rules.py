@@ -26,11 +26,11 @@ def kit_lines(c):
 MOVE_TYPES = ('(?:Basic Attack|Heavy Attack|Mid-air Attack|Dodge Counter|Plunging Attack|Resonance Skill|'
               'Resonance Liberation|Intro Skill|Outro Skill|Forte Circuit|Inherent Skill|Echo Skill|'
               'Enhanced Heavy Attack|Enhanced Basic Attack)')
-MOVE_CAP = r"""(?:[A-Z][\w'’!?-]*:?)(?:(?:\s(?:of|the|in|a|to|for|is|on|by|from)){0,2}\s[A-Z"][\w'’!?"-]*:?)*"""
+MOVE_CAP = r"""(?:[A-Z][\w'’!?-]*:?)(?:(?:\s(?:of|the|in|a|to|for|is|on|by|from|and|with)){0,2}\s[A-Z"][\w'’!?"-]*:?)*"""
 MOVE_QUOTED = re.compile(MOVE_TYPES + r'\s+"([^"]+)"', A)
 MOVE_DASHED = re.compile('(' + MOVE_TYPES + r'\s+-\s+' + MOVE_CAP + ')', A)
 MOVE_PLAIN = re.compile(MOVE_TYPES + r'\s+(' + MOVE_CAP + ')', A)
-MOVE_CAST_CAP = r"[A-Z][\w'’!?-]*(?:(?:\s(?:of|the|in|a|to|for|is|on|by|from|and)){0,2}\s[A-Z][\w'’!?-]*)*"
+MOVE_CAST_CAP = r"[A-Z][\w'’!?-]*(?:(?:\s(?:of|the|in|a|to|for|is|on|by|from|and|with)){0,2}\s[A-Z][\w'’!?-]*)*"
 MOVE_CAST = re.compile(r'\b(?:[Cc]ast|[Cc]asts|[Cc]asting|[Pp]erform|[Pp]erforms|[Pp]erforming)\s+(?:the\s)?('
                        + MOVE_CAST_CAP + ')', A)
 MOVE_CAST_SKIP = re.compile(r"^(?:Basic|Heavy|Mid-air|Mid-Air|Dodge|Plunging|Resonance|Intro|Outro|Forte|Inherent|Echo|"
