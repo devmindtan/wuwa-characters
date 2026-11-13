@@ -16,7 +16,7 @@
       ]
     },
     {
-      "source": "/(app|i18n)\\.js",
+      "source": "/js/(.*)",
       "headers": [
         {
           "key": "Cache-Control",

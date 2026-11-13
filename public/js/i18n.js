@@ -1,3 +1,5 @@
+import {state} from './core.js';
+
 /* UI strings for the two site languages.
  *
  * Rule (AGENTS.md §2): in the Vietnamese UI every label/title is Vietnamese;
@@ -5,7 +7,7 @@
  * stay in English in both languages. Values are plain text unless the key
  * ends in "_html" (trusted markup written here, never user data).
  */
-const I18N = {
+export const I18N = {
   vi: {
     html_lang: 'vi',
     meta_desc: 'Tổng hợp hồ sơ, bộ kỹ năng, Resonance Chain và nguyên liệu của Resonators Wuthering Waves bằng tiếng Việt, cập nhật theo bản game hiện tại.',
@@ -362,7 +364,7 @@ const I18N = {
   },
 };
 
-function t(key, vars = {}) {
+export function t(key, vars = {}) {
   const lang = (typeof state !== 'undefined' && state.lang) || 'vi';
   const s = I18N[lang][key] ?? I18N.vi[key] ?? key;
   return s.replace(/\{(\w+)\}/g, (_, k) => (vars[k] ?? ''));
