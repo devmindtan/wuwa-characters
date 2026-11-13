@@ -229,6 +229,77 @@ def infobox(src, field):
     return m.group(1).strip() if m else ''
 
 
+# Wiki resonator name in weapon infobox -> our character name.
+WIKI_TO_OUR = {
+    'Rover-Aero': 'Rover (Aero)',
+    'Rover-Electro': 'Rover (Electro)',
+    'Rover-Havoc': 'Rover (Havoc)',
+    'Rover-Spectro': 'Rover (Spectro)',
+    'Shorekeeper': 'The Shorekeeper',
+    'Yangyang: Xuanling': 'Yangyang (Xuanling)',
+}
+
+
+def fetch_signature_weapons(cache, our_names):
+    """5★ signature weapons (weapon infobox |resonator=...) -> cache['signature_weapons']."""
+    sig = cache.setdefault('signature_weapons', {})
+    if sig:
+        return sig
+    titles = []
+    cont = {}
+    while True:
+        d = api(action='query', list='categorymembers', cmtitle='Category:Weapons', cmlimit=500, **cont)
+        for m in d['query']['categorymembers']:
+            if m['ns'] == 0:
+                titles.append(m['title'])
+        if 'continue' in d:
+            cont = {'cmcontinue': d['continue']['cmcontinue']}
+        else:
+            break
+    for i in range(0, len(titles), 50):
+        batch = titles[i:i + 50]
+        d = api(action='query', prop='revisions', rvprop='content', rvslots='main',
+                titles='|'.join(batch), formatversion=2)
+        for page in d['query']['pages']:
+            revs = page.get('revisions')
+            if not revs:
+                continue
+            wt = revs[0]['slots']['main']['content']
+            if not re.search(r'^\|rarity\s*=\s*5', wt, re.M):
+                continue
+            m = re.search(r'^\|resonator\s*=\s*(.+)$', wt, re.M)
+            if not m:
+                continue
+            res = re.sub(r'\[\[|\]\]', '', m.group(1)).strip()
+            res = WIKI_TO_OUR.get(res, res)
+            if not res or res.startswith('{{') or res.lower() in ('none', 'n/a', '') or res not in our_names:
+                continue
+
+            def field(name):
+                return infobox(wt, name)
+            effect = field('effect')
+            for k in range(1, 9):
+                v = field(f'eff_rank1_var{k}')
+                if v:
+                    effect = effect.replace(f'(var{k})%', v).replace(f'(var{k})', v)
+            effect = re.sub(r'<br\s*/?>', '\n', effect)
+            effect = re.sub(r'\[\[([^\]|]+)\|([^\]]+)\]\]', r'\2', effect)
+            effect = re.sub(r'\[\[([^\]]+)\]\]', r'\1', effect)
+            effect = re.sub(r'\{\{[^}]+\}\}', '', effect).strip()
+            sig[res] = {
+                'name': field('name') or page['title'],
+                'type': field('type'),
+                'rarity': 5,
+                'stat_type': field('2nd_stat_type'),
+                'rank_name': field('rank_name'),
+                'effect': effect,
+                'image_key': field('image').split('\n')[0].strip(),
+                'source': f"https://wutheringwaves.fandom.com/wiki/{page['title'].replace(' ', '_')}",
+            }
+    return sig
+
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--refresh', action='store_true')
@@ -296,12 +367,17 @@ def main():
         }
     print('node pages:', len(node_src), 'missing:', sorted(set(want) - set(node_src)))
 
+    sig = fetch_signature_weapons(cache, set(names))
+    print('signature weapons:', len(sig))
+    CACHE.write_text(json.dumps(cache, ensure_ascii=False, indent=1), encoding='utf-8')
+
     images = cache.setdefault('images', {})
     files = {n['image'] for n in node_src.values() if n['image']}
     files |= {s['image'] for s in scaling.values() if s.get('image')}
     files |= {i['image_key'].replace('_', ' ') for c in chars.values() for b in c['costs'] for i in b['items']}
     files |= {i['image_key'].replace('_', ' ') for c in combat.values() for rows in c['level_costs'].values()
               for r in rows for i in r['items']}
+    files |= {w['image_key'].replace('_', ' ') for w in sig.values() if w.get('image_key')}
     need = sorted(files - set(images))
     images.update(image_urls(need))
     print('images:', len(images), 'missing:', sorted(files - set(images))[:10])

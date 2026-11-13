@@ -81,6 +81,9 @@ def main() -> None:
     for c in payload['characters']:
         for kind in ('icon', 'card'):
             targets.append((c, f'img_{kind}', 'chars', f"assets/chars/{c['slug']}_{kind}"))
+        sw = c.get('signature_weapon')
+        if sw and sw.get('img'):
+            targets.append((sw, 'img', 'weapons', f"assets/weapons/{c['slug']}_sig"))
         for s in c['skills']:
             if s.get('icon'):
                 targets.append((s, 'icon', 'skills', None))

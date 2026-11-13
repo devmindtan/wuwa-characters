@@ -126,6 +126,21 @@ def main():
             } for r in rows]
         c['level_costs'] = level_costs
 
+        sw = raw.get('signature_weapons', {}).get(c['name'])
+        if sw:
+            c['signature_weapon'] = {
+                'name': sw['name'],
+                'type': sw.get('type', ''),
+                'rarity': sw.get('rarity', 5),
+                'stat_type': sw.get('stat_type', ''),
+                'rank_name': sw.get('rank_name', ''),
+                'effect': sw.get('effect', ''),
+                'img': thumb(images.get(sw.get('image_key', '').replace('_', ' '), ''), 128),
+                'source': sw.get('source', ''),
+            }
+        else:
+            c['signature_weapon'] = None
+
         refs = [{'title': f"prydwen.gg — {c['name']}", 'url': c['source'],
                  'used_for': 'Kỹ năng, mô tả nhân vật, hình ảnh',
                  'used_for_en': 'Skills, character description, images'}]
@@ -149,6 +164,10 @@ def main():
             refs.append({'title': f'Wuthering Waves Wiki — {page}', 'url': wiki_url(page),
                          'used_for': 'nguyên liệu đột phá (dùng chung cho mọi dạng Rover)',
                          'used_for_en': 'ascension materials (shared by every Rover form)'})
+        if sw:
+            refs.append({'title': f"Wuthering Waves Wiki — {sw['name']}", 'url': sw['source'],
+                         'used_for': 'vũ khí trấn phái',
+                         'used_for_en': 'signature weapon'})
         c['references'] = refs
 
     payload['meta']['updated'] = datetime.date.today().isoformat()

@@ -1132,6 +1132,12 @@
      "url": "https://wutheringwaves.fandom.com/wiki/Aemeath/Combat",
      "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
      "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
+    },
+    {
+     "title": "Wuthering Waves Wiki — Everbright Polestar",
+     "url": "https://wutheringwaves.fandom.com/wiki/Everbright_Polestar",
+     "used_for": "vũ khí trấn phái",
+     "used_for_en": "signature weapon"
     }
    ],
    "level_costs": {
@@ -1489,6 +1495,16 @@
       ]
      }
     ]
+   },
+   "signature_weapon": {
+    "name": "Everbright Polestar",
+    "type": "Sword",
+    "rarity": 5,
+    "stat_type": "Crit. Rate",
+    "rank_name": "Starchaser",
+    "effect": "Increases All-Attribute DMG Bonus by 12. When inflicting Tune Rupture - Shifting or Fusion Burst, the wielder's Resonance Liberation DMG ignores 32 DEF and 10 Fusion RES on targets for 8s.",
+    "img": "assets/weapons/aemeath_sig.webp",
+    "source": "https://wutheringwaves.fandom.com/wiki/Everbright_Polestar"
    }
   },
   {
@@ -2508,6 +2524,12 @@
      "url": "https://wutheringwaves.fandom.com/wiki/Augusta/Combat",
      "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
      "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
+    },
+    {
+     "title": "Wuthering Waves Wiki — Thunderflare Dominion",
+     "url": "https://wutheringwaves.fandom.com/wiki/Thunderflare_Dominion",
+     "used_for": "vũ khí trấn phái",
+     "used_for_en": "signature weapon"
     }
    ],
    "level_costs": {
@@ -2865,6 +2887,16 @@
       ]
      }
     ]
+   },
+   "signature_weapon": {
+    "name": "Thunderflare Dominion",
+    "type": "Broadblade",
+    "rarity": 5,
+    "stat_type": "Crit. Rate",
+    "rank_name": "Thunderblaze Eminence",
+    "effect": "Increases ATK by 12%. Casting Intro Skill or Resonance Skill increases Heavy Attack DMG by 20% for 15s. Obtaining Shield allows Heavy Attack DMG to ignore 7.2% of the target's DEF for 7s, stacking up to 5 times. This effect triggers once every 0.5s.",
+    "img": "assets/weapons/augusta_sig.webp",
+    "source": "https://wutheringwaves.fandom.com/wiki/Thunderflare_Dominion"
    }
   },
   {
@@ -3810,6 +3842,12 @@
      "url": "https://wutheringwaves.fandom.com/wiki/Brant/Combat",
      "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
      "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
+    },
+    {
+     "title": "Wuthering Waves Wiki — Unflickering Valor",
+     "url": "https://wutheringwaves.fandom.com/wiki/Unflickering_Valor",
+     "used_for": "vũ khí trấn phái",
+     "used_for_en": "signature weapon"
     }
    ],
    "level_costs": {
@@ -4167,6 +4205,16 @@
       ]
      }
     ]
+   },
+   "signature_weapon": {
+    "name": "Unflickering Valor",
+    "type": "Sword",
+    "rarity": 5,
+    "stat_type": "Energy Regen",
+    "rank_name": "Laughter Prevails",
+    "effect": "Increase Crit. Rate by 8%. Casting Resonance Liberation gives 24% Basic Attack DMG Bonus for 10s. Dealing Basic Attack DMG gives 24% Basic Attack DMG Bonus for 4s.",
+    "img": "assets/weapons/brant_sig.webp",
+    "source": "https://wutheringwaves.fandom.com/wiki/Unflickering_Valor"
    }
   },
   {
@@ -5344,7 +5392,8 @@
       ]
      }
     ]
-   }
+   },
+   "signature_weapon": null
   },
   {
    "slug": "camellya",
@@ -6260,6 +6309,12 @@
      "url": "https://wutheringwaves.fandom.com/wiki/Camellya/Combat",
      "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
      "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
+    },
+    {
+     "title": "Wuthering Waves Wiki — Red Spring",
+     "url": "https://wutheringwaves.fandom.com/wiki/Red_Spring",
+     "used_for": "vũ khí trấn phái",
+     "used_for_en": "signature weapon"
     }
    ],
    "level_costs": {
@@ -6617,6 +6672,16 @@
       ]
      }
     ]
+   },
+   "signature_weapon": {
+    "name": "Red Spring",
+    "type": "Sword",
+    "rarity": 5,
+    "stat_type": "Crit. Rate",
+    "rank_name": "Beyond the Cycle",
+    "effect": "Increase ATK by 12%. When dealing Basic Attack DMG, the wielder gains 10% Basic Attack DMG Bonus for 14s. This effect can be triggered once per second, stacking up to 3 times.\nWhen the wielder's Concerto Energy is consumed, gain 40% Basic DMG Bonus for 10s. This effect can be triggered once per second and ends when the wielder is switched off the field.",
+    "img": "assets/weapons/camellya_sig.webp",
+    "source": "https://wutheringwaves.fandom.com/wiki/Red_Spring"
    }
   },
   {
@@ -7561,6 +7626,12 @@
      "url": "https://wutheringwaves.fandom.com/wiki/Cantarella/Combat",
      "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
      "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
+    },
+    {
+     "title": "Wuthering Waves Wiki — Whispers of Sirens",
+     "url": "https://wutheringwaves.fandom.com/wiki/Whispers_of_Sirens",
+     "used_for": "vũ khí trấn phái",
+     "used_for_en": "signature weapon"
     }
    ],
    "level_costs": {
@@ -7918,6 +7989,16 @@
       ]
      }
     ]
+   },
+   "signature_weapon": {
+    "name": "Whispers of Sirens",
+    "type": "Rectifier",
+    "rarity": 5,
+    "stat_type": "Crit. DMG",
+    "rank_name": "From the Deep",
+    "effect": "Increases ATK by 12%. Casting Echo Skill within 10s after casting Intro Skill or Basic Attacks grants 1 stacks of Gentle Dream. Echoes with the same name can only trigger this effect once, stacking up to 2 times, lasting for 10s. When reaching 2 stacks, casting Echo Skill no longer resets the duration of this effect. This effect activates up to once per 10s. Switching to another Resonator ends this effect early. With 1 stack: Grants 40% Basic Attack DMG Bonus. With 2 stack: Ignores 12% of the target's .",
+    "img": "assets/weapons/cantarella_sig.webp",
+    "source": "https://wutheringwaves.fandom.com/wiki/Whispers_of_Sirens"
    }
   },
   {
@@ -8801,6 +8882,12 @@
      "url": "https://wutheringwaves.fandom.com/wiki/Carlotta/Combat",
      "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
      "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
+    },
+    {
+     "title": "Wuthering Waves Wiki — The Last Dance",
+     "url": "https://wutheringwaves.fandom.com/wiki/The_Last_Dance",
+     "used_for": "vũ khí trấn phái",
+     "used_for_en": "signature weapon"
     }
    ],
    "level_costs": {
@@ -9158,6 +9245,16 @@
       ]
      }
     ]
+   },
+   "signature_weapon": {
+    "name": "The Last Dance",
+    "type": "Pistols",
+    "rarity": 5,
+    "stat_type": "Crit. DMG",
+    "rank_name": "Silent Eulogy",
+    "effect": "Increases ATK by 12%. Every time Intro Skill or Resonance Liberation is cast, Resonance Skill DMG Bonus increases by 48% for 5s.",
+    "img": "assets/weapons/carlotta_sig.webp",
+    "source": "https://wutheringwaves.fandom.com/wiki/The_Last_Dance"
    }
   },
   {
@@ -10296,6 +10393,12 @@
      "url": "https://wutheringwaves.fandom.com/wiki/Cartethyia/Combat",
      "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
      "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
+    },
+    {
+     "title": "Wuthering Waves Wiki — Defier's Thorn",
+     "url": "https://wutheringwaves.fandom.com/wiki/Defier's_Thorn",
+     "used_for": "vũ khí trấn phái",
+     "used_for_en": "signature weapon"
     }
    ],
    "level_costs": {
@@ -10653,6 +10756,16 @@
       ]
      }
     ]
+   },
+   "signature_weapon": {
+    "name": "Defier's Thorn",
+    "type": "Sword",
+    "rarity": 5,
+    "stat_type": "HP",
+    "rank_name": "A Free Knight's Tarantella",
+    "effect": "Max HP is increased by 12%. 15s after casting Intro Skill or Basic Attacks, ignores 8% of the target's DEF when dealing damage. If the target has at least 1 stack of Aero Erosion, the DMG taken by the target is Amplified by 20%.",
+    "img": "assets/weapons/cartethyia_sig.webp",
+    "source": "https://wutheringwaves.fandom.com/wiki/Defier's_Thorn"
    }
   },
   {
@@ -11430,6 +11543,12 @@
      "url": "https://wutheringwaves.fandom.com/wiki/Changli/Combat",
      "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
      "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
+    },
+    {
+     "title": "Wuthering Waves Wiki — Blazing Brilliance",
+     "url": "https://wutheringwaves.fandom.com/wiki/Blazing_Brilliance",
+     "used_for": "vũ khí trấn phái",
+     "used_for_en": "signature weapon"
     }
    ],
    "level_costs": {
@@ -11787,6 +11906,16 @@
       ]
      }
     ]
+   },
+   "signature_weapon": {
+    "name": "Blazing Brilliance",
+    "type": "Sword",
+    "rarity": 5,
+    "stat_type": "Crit. DMG",
+    "rank_name": "Crimson Phoenix",
+    "effect": "ATK increased by 12%. The wielder gains 1 stack of Searing Feather upon dealing damage, which can be triggered once every 0.5s, and gains 5 stacks of the same effect upon casting Resonance Skill. Each stack of Searing Feather gives 4% additional Resonance Skill DMG Bonus for up to 14 stacks. After reaching the max stacks, all stacks will be removed in 12s.",
+    "img": "assets/weapons/changli_sig.webp",
+    "source": "https://wutheringwaves.fandom.com/wiki/Blazing_Brilliance"
    }
   },
   {
@@ -12991,6 +13120,12 @@
      "url": "https://wutheringwaves.fandom.com/wiki/Chisa/Combat",
      "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
      "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
+    },
+    {
+     "title": "Wuthering Waves Wiki — Kumokiri",
+     "url": "https://wutheringwaves.fandom.com/wiki/Kumokiri",
+     "used_for": "vũ khí trấn phái",
+     "used_for_en": "signature weapon"
     }
    ],
    "level_costs": {
@@ -13348,6 +13483,16 @@
       ]
      }
     ]
+   },
+   "signature_weapon": {
+    "name": "Kumokiri",
+    "type": "Broadblade",
+    "rarity": 5,
+    "stat_type": "Crit. Rate",
+    "rank_name": "Thread of Fate",
+    "effect": "ATK is increased by 12%. When the wielder casts Intro Skill or inflicts Negative Status, they gain 8% Resonance Liberation DMG Bonus, stacking up to 3 times for 15s.\nAt max stacks, when Resonators in the team inflict Negative Status, grants 24% All-Attribute DMG Bonus for 15s. Effects of the same name cannot be stacked.",
+    "img": "assets/weapons/chisa_sig.webp",
+    "source": "https://wutheringwaves.fandom.com/wiki/Kumokiri"
    }
   },
   {
@@ -14106,6 +14251,12 @@
      "url": "https://wutheringwaves.fandom.com/wiki/Ciaccona/Combat",
      "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
      "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
+    },
+    {
+     "title": "Wuthering Waves Wiki — Woodland Aria",
+     "url": "https://wutheringwaves.fandom.com/wiki/Woodland_Aria",
+     "used_for": "vũ khí trấn phái",
+     "used_for_en": "signature weapon"
     }
    ],
    "level_costs": {
@@ -14463,6 +14614,16 @@
       ]
      }
     ]
+   },
+   "signature_weapon": {
+    "name": "Woodland Aria",
+    "type": "Pistols",
+    "rarity": 5,
+    "stat_type": "Crit. Rate",
+    "rank_name": "Lingering Summer Tune",
+    "effect": "ATK is increased by 12%. Inflicting Aero Erosion on the target gives 24% Aero DMG Bonus for 10s. Hitting targets with Aero Erosion reduces their Aero RES by 10% for 20s. Effects of the same name cannot be stacked.",
+    "img": "assets/weapons/ciaccona_sig.webp",
+    "source": "https://wutheringwaves.fandom.com/wiki/Woodland_Aria"
    }
   },
   {
@@ -15590,6 +15751,12 @@
      "url": "https://wutheringwaves.fandom.com/wiki/Denia/Combat",
      "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
      "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
+    },
+    {
+     "title": "Wuthering Waves Wiki — Forged Dwarf Star",
+     "url": "https://wutheringwaves.fandom.com/wiki/Forged_Dwarf_Star",
+     "used_for": "vũ khí trấn phái",
+     "used_for_en": "signature weapon"
     }
    ],
    "level_costs": {
@@ -15947,6 +16114,16 @@
       ]
      }
     ]
+   },
+   "signature_weapon": {
+    "name": "Forged Dwarf Star",
+    "type": "Rectifier",
+    "rarity": 5,
+    "stat_type": "Crit. Rate",
+    "rank_name": "Dissolution",
+    "effect": "Increases ATK by 12. After the wielder inflicts Fusion Burst or Tune Strain - Shifting on the target, their Resonance Liberation DMG Bonus is increased by 36 for 5s. While this effect lasts, after Resonators in the team inflict Fusion Burst or Tune Strain - Shifting, their ATK is increased by 24 for 15s. Effects of the same name cannot be stacked.",
+    "img": "assets/weapons/denia_sig.webp",
+    "source": "https://wutheringwaves.fandom.com/wiki/Forged_Dwarf_Star"
    }
   },
   {
@@ -17132,7 +17309,8 @@
       ]
      }
     ]
-   }
+   },
+   "signature_weapon": null
   },
   {
    "slug": "galbrena",
@@ -18178,6 +18356,12 @@
      "url": "https://wutheringwaves.fandom.com/wiki/Galbrena/Combat",
      "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
      "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
+    },
+    {
+     "title": "Wuthering Waves Wiki — Lux & Umbra",
+     "url": "https://wutheringwaves.fandom.com/wiki/Lux_&_Umbra",
+     "used_for": "vũ khí trấn phái",
+     "used_for_en": "signature weapon"
     }
    ],
    "level_costs": {
@@ -18535,6 +18719,16 @@
       ]
      }
     ]
+   },
+   "signature_weapon": {
+    "name": "Lux & Umbra",
+    "type": "Pistols",
+    "rarity": 5,
+    "stat_type": "Crit. DMG",
+    "rank_name": "To Fire She Returns",
+    "effect": "Increases ATK by 12%. Upon dealing Echo Skill DMG, gain 24% Heavy Attack DMG Amplification for 6s. Upon dealing Heavy Attack DMG, gain 24% Echo Skill DMG Amplification for 6s. DMG Amplification on each attack is capped at 24%. While both effects are active, dealing damage ignores 8% of the target's DEF.",
+    "img": "assets/weapons/galbrena_sig.webp",
+    "source": "https://wutheringwaves.fandom.com/wiki/Lux_&_Umbra"
    }
   },
   {
@@ -19747,6 +19941,12 @@
      "url": "https://wutheringwaves.fandom.com/wiki/Hiyuki/Combat",
      "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
      "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
+    },
+    {
+     "title": "Wuthering Waves Wiki — Frostburn",
+     "url": "https://wutheringwaves.fandom.com/wiki/Frostburn",
+     "used_for": "vũ khí trấn phái",
+     "used_for_en": "signature weapon"
     }
    ],
    "level_costs": {
@@ -20104,6 +20304,16 @@
       ]
      }
     ]
+   },
+   "signature_weapon": {
+    "name": "Frostburn",
+    "type": "Sword",
+    "rarity": 5,
+    "stat_type": "Crit. Rate",
+    "rank_name": "Self No More",
+    "effect": "ATK is increased by 12. When the wielder applies ,  is Amplified by 28, and Resonance Liberation DMG ignores 10 of the target's DEF. If the wielder is the active Resonator in the team,  dealt to all targets within a certain range is Amplified by 20 for 6s. This effect can be triggered up to 1 time every 0.1s. Only the strongest effect of the same name applies.",
+    "img": "assets/weapons/hiyuki_sig.webp",
+    "source": "https://wutheringwaves.fandom.com/wiki/Frostburn"
    }
   },
   {
@@ -21693,6 +21903,12 @@
      "url": "https://wutheringwaves.fandom.com/wiki/Hsin/Combat",
      "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
      "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
+    },
+    {
+     "title": "Wuthering Waves Wiki — Blooming Jadehaven",
+     "url": "https://wutheringwaves.fandom.com/wiki/Blooming_Jadehaven",
+     "used_for": "vũ khí trấn phái",
+     "used_for_en": "signature weapon"
     }
    ],
    "level_costs": {
@@ -22050,6 +22266,16 @@
       ]
      }
     ]
+   },
+   "signature_weapon": {
+    "name": "Blooming Jadehaven",
+    "type": "Rectifier",
+    "rarity": 5,
+    "stat_type": "Crit. Rate",
+    "rank_name": "Hundredfold Artifice",
+    "effect": "Grants 12 All-Attribute DMG Bonus. After the wielder inflicts  or triggers Unison Response, Resonance Skill DMG is Amplified by 36 and ignores 10 of the target's . While the wielder is the active Resonator,  taken by targets within a certain range is Amplified by 30 for 30s, triggered 1 time every 0.1s. Only the strongest effect of the same name applies.",
+    "img": "assets/weapons/hsin_sig.webp",
+    "source": "https://wutheringwaves.fandom.com/wiki/Blooming_Jadehaven"
    }
   },
   {
@@ -23164,6 +23390,12 @@
      "url": "https://wutheringwaves.fandom.com/wiki/Iuno/Combat",
      "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
      "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
+    },
+    {
+     "title": "Wuthering Waves Wiki — Moongazer's Sigil",
+     "url": "https://wutheringwaves.fandom.com/wiki/Moongazer's_Sigil",
+     "used_for": "vũ khí trấn phái",
+     "used_for_en": "signature weapon"
     }
    ],
    "level_costs": {
@@ -23521,6 +23753,16 @@
       ]
      }
     ]
+   },
+   "signature_weapon": {
+    "name": "Moongazer's Sigil",
+    "type": "Gauntlets",
+    "rarity": 5,
+    "stat_type": "Crit. Rate",
+    "rank_name": "Plenilune Radiance",
+    "effect": "Increases ATK by 12%. Casting Intro Skill or Resonance Liberation increases Resonance Liberation DMG by 20% for 15s. Obtaining Shield allows Resonance Liberation DMG to ignore 7.2% of the target's DEF for 7s, stacking up to 5 times. This effect is triggered once every 0.5s. Upon casting Intro Skill, this effect reaches max stacks immediately, lasting for 3s.",
+    "img": "assets/weapons/iuno_sig.webp",
+    "source": "https://wutheringwaves.fandom.com/wiki/Moongazer's_Sigil"
    }
   },
   {
@@ -24765,7 +25007,8 @@
       ]
      }
     ]
-   }
+   },
+   "signature_weapon": null
   },
   {
    "slug": "jingran",
@@ -25814,6 +26057,12 @@
      "url": "https://wutheringwaves.fandom.com/wiki/Jingran/Combat",
      "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
      "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
+    },
+    {
+     "title": "Wuthering Waves Wiki — Thousandfold Deliverance",
+     "url": "https://wutheringwaves.fandom.com/wiki/Thousandfold_Deliverance",
+     "used_for": "vũ khí trấn phái",
+     "used_for_en": "signature weapon"
     }
    ],
    "level_costs": {
@@ -26171,6 +26420,16 @@
       ]
      }
     ]
+   },
+   "signature_weapon": {
+    "name": "Thousandfold Deliverance",
+    "type": "Broadblade",
+    "rarity": 5,
+    "stat_type": "HP",
+    "rank_name": "Hark, Spirits and Stars",
+    "effect": "Grants 12 All-Attribute DMG Bonus. Casting Intro Skill or gaining a Shield as the active Resonator grants 1 stack of Nature's Order and 1 stack of Cradle of Life. This effect can be triggered via gaining a Shield once every 0.5s, stacking up to 6 times, lasting for 7s. Switching to another Resonator ends both Nature's Order and Cradle of Life immediately.\nNature's Order: Crit. DMG is increased by 4, up to 24. When Nature's Order reaches 6 stacks, the Crit. Rate of Heavy Attack DMG is increased by 12. Cradle of Life: Casting Heavy Attack consumes up to 2 stacks of Cradle of Life. For every 1 stack of Cradle of Life consumed, Heavy Attack DMG ignores 15 of the target's DEF, up to 30. The effect lasts for 2s.",
+    "img": "assets/weapons/jingran_sig.webp",
+    "source": "https://wutheringwaves.fandom.com/wiki/Thousandfold_Deliverance"
    }
   },
   {
@@ -26851,6 +27110,12 @@
      "url": "https://wutheringwaves.fandom.com/wiki/Jinhsi/Combat",
      "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
      "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
+    },
+    {
+     "title": "Wuthering Waves Wiki — Ages of Harvest",
+     "url": "https://wutheringwaves.fandom.com/wiki/Ages_of_Harvest",
+     "used_for": "vũ khí trấn phái",
+     "used_for_en": "signature weapon"
     }
    ],
    "level_costs": {
@@ -27208,6 +27473,16 @@
       ]
      }
     ]
+   },
+   "signature_weapon": {
+    "name": "Ages of Harvest",
+    "type": "Broadblade",
+    "rarity": 5,
+    "stat_type": "Crit. Rate",
+    "rank_name": "Divine Blessing",
+    "effect": "Grants 12% Attribute DMG Bonus.\nCasting Intro Skill gives the equipper Ageless Marking, which grants 24% Resonance Skill DMG Bonus for 12s.\nCasting Resonance Skill gives the equipper Ethereal Endowment, which grants 24% Resonance Skill DMG Bonus for 12s.",
+    "img": "assets/weapons/jinhsi_sig.webp",
+    "source": "https://wutheringwaves.fandom.com/wiki/Ages_of_Harvest"
    }
   },
   {
@@ -27964,6 +28239,12 @@
      "url": "https://wutheringwaves.fandom.com/wiki/Jiyan/Combat",
      "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
      "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
+    },
+    {
+     "title": "Wuthering Waves Wiki — Verdant Summit",
+     "url": "https://wutheringwaves.fandom.com/wiki/Verdant_Summit",
+     "used_for": "vũ khí trấn phái",
+     "used_for_en": "signature weapon"
     }
    ],
    "level_costs": {
@@ -28321,6 +28602,16 @@
       ]
      }
     ]
+   },
+   "signature_weapon": {
+    "name": "Verdant Summit",
+    "type": "Broadblade",
+    "rarity": 5,
+    "stat_type": "Crit. DMG",
+    "rank_name": "Swordsworn",
+    "effect": "Increases Attribute DMG Bonus by 12%. Every time Intro Skill or Resonance Liberation is cast, increases Heavy Attack DMG Bonus by 24%, stacking up to 2 time(s). This effect lasts for 14s.",
+    "img": "assets/weapons/jiyan_sig.webp",
+    "source": "https://wutheringwaves.fandom.com/wiki/Verdant_Summit"
    }
   },
   {
@@ -29084,6 +29375,12 @@
      "url": "https://wutheringwaves.fandom.com/wiki/Lily/Combat",
      "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
      "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
+    },
+    {
+     "title": "Wuthering Waves Wiki — Lullaby",
+     "url": "https://wutheringwaves.fandom.com/wiki/Lullaby",
+     "used_for": "vũ khí trấn phái",
+     "used_for_en": "signature weapon"
     }
    ],
    "level_costs": {
@@ -29441,6 +29738,16 @@
       ]
      }
     ]
+   },
+   "signature_weapon": {
+    "name": "Lullaby",
+    "type": "Pistols",
+    "rarity": 5,
+    "stat_type": "Energy Regen",
+    "rank_name": "",
+    "effect": "Increases Max HP by 12. Casting Resonance Liberation restores 8 points of Concerto Energy, triggered once every 20s. All Resonators in the team gain Soothed Soul for 30s when the wielder performs healing with Heavy Attack. When Soothed Soul is active, if a Resonator in the team gains Unison or triggers Unison Response, that Resonator gains 16 ATK increase for 30s. This effect is removed when Soothed Soul ends. When the wielder provides healing with Heavy Attack, the active Resonator also gains 24 Echo Skill DMG Bonus for 30s. Effects of the same name do not stack.",
+    "img": "assets/weapons/lily_sig.webp",
+    "source": "https://wutheringwaves.fandom.com/wiki/Lullaby"
    }
   },
   {
@@ -30573,7 +30880,8 @@
       ]
      }
     ]
-   }
+   },
+   "signature_weapon": null
   },
   {
    "slug": "lucilla",
@@ -31420,6 +31728,12 @@
      "url": "https://wutheringwaves.fandom.com/wiki/Lucilla/Combat",
      "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
      "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
+    },
+    {
+     "title": "Wuthering Waves Wiki — Freeze Frame",
+     "url": "https://wutheringwaves.fandom.com/wiki/Freeze_Frame",
+     "used_for": "vũ khí trấn phái",
+     "used_for_en": "signature weapon"
     }
    ],
    "level_costs": {
@@ -31777,6 +32091,16 @@
       ]
      }
     ]
+   },
+   "signature_weapon": {
+    "name": "Freeze Frame",
+    "type": "Rectifier",
+    "rarity": 5,
+    "stat_type": "Crit. Rate",
+    "rank_name": "Light's Offering",
+    "effect": "Increases ATK by 12. After inflicting Glacio Chafe on the target, the wielder gains 30 Glacio DMG Bonus for 12s, and all Resonators in the team gain 24 ATK increase for 30s. Effects of the same name cannot be stacked.",
+    "img": "assets/weapons/lucilla_sig.webp",
+    "source": "https://wutheringwaves.fandom.com/wiki/Freeze_Frame"
    }
   },
   {
@@ -32675,6 +32999,12 @@
      "url": "https://wutheringwaves.fandom.com/wiki/Lucy/Combat",
      "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
      "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
+    },
+    {
+     "title": "Wuthering Waves Wiki — Spectral Trigger",
+     "url": "https://wutheringwaves.fandom.com/wiki/Spectral_Trigger",
+     "used_for": "vũ khí trấn phái",
+     "used_for_en": "signature weapon"
     }
    ],
    "level_costs": {
@@ -33032,6 +33362,16 @@
       ]
      }
     ]
+   },
+   "signature_weapon": {
+    "name": "Spectral Trigger",
+    "type": "Pistols",
+    "rarity": 5,
+    "stat_type": "Crit. DMG",
+    "rank_name": "Sunken Dream",
+    "effect": "Increases ATK by 12. Casting Resonance Skill grants 20 Spectro DMG Bonus to the wielder for 14s, stacking up to 2 times. Inflicting Hack - Shifting grants 30 Heavy Attack DMG Amplification to the wielder for 14s, during which Heavy Attack DMG ignores 10 of the target's DEF.",
+    "img": "assets/weapons/lucy_sig.webp",
+    "source": "https://wutheringwaves.fandom.com/wiki/Spectral_Trigger"
    }
   },
   {
@@ -34015,6 +34355,12 @@
      "url": "https://wutheringwaves.fandom.com/wiki/Lupa/Combat",
      "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
      "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
+    },
+    {
+     "title": "Wuthering Waves Wiki — Wildfire Mark",
+     "url": "https://wutheringwaves.fandom.com/wiki/Wildfire_Mark",
+     "used_for": "vũ khí trấn phái",
+     "used_for_en": "signature weapon"
     }
    ],
    "level_costs": {
@@ -34372,6 +34718,16 @@
       ]
      }
     ]
+   },
+   "signature_weapon": {
+    "name": "Wildfire Mark",
+    "type": "Broadblade",
+    "rarity": 5,
+    "stat_type": "Crit. DMG",
+    "rank_name": "Blazing Starfire",
+    "effect": "Increases ATK by 12%. Performing Intro Skill or Resonance Liberation increases Resonance Liberation DMG by 24% for 6s. Dealing Heavy Attack DMG extends this effect by 4s, up to 1 time. Each successful extension gives 24% Fusion DMG Bonus to all Resonators in the team for 30s. Effects of the same name cannot be stacked.",
+    "img": "assets/weapons/lupa_sig.webp",
+    "source": "https://wutheringwaves.fandom.com/wiki/Wildfire_Mark"
    }
   },
   {
@@ -35326,6 +35682,12 @@
      "url": "https://wutheringwaves.fandom.com/wiki/Luuk_Herssen/Combat",
      "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
      "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
+    },
+    {
+     "title": "Wuthering Waves Wiki — Daybreaker's Spine",
+     "url": "https://wutheringwaves.fandom.com/wiki/Daybreaker's_Spine",
+     "used_for": "vũ khí trấn phái",
+     "used_for_en": "signature weapon"
     }
    ],
    "level_costs": {
@@ -35683,6 +36045,16 @@
       ]
      }
     ]
+   },
+   "signature_weapon": {
+    "name": "Daybreaker's Spine",
+    "type": "Gauntlets",
+    "rarity": 5,
+    "stat_type": "Crit. Rate",
+    "rank_name": "Suturing Dayline",
+    "effect": "Increases ATK by 12. After dealing Basic Attack DMG, the wielder gains 20  Bonus for 4s. Each time after the wielder inflicts Tune Strain - Shifting on the target, they gain 20 Basic Attack DMG Amplification and their Basic Attack DMG ignores 10 of the target's DEF for 6s.",
+    "img": "assets/weapons/luuk-herssen_sig.webp",
+    "source": "https://wutheringwaves.fandom.com/wiki/Daybreaker's_Spine"
    }
   },
   {
@@ -36806,6 +37178,12 @@
      "url": "https://wutheringwaves.fandom.com/wiki/Lynae/Combat",
      "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
      "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
+    },
+    {
+     "title": "Wuthering Waves Wiki — Spectrum Blaster",
+     "url": "https://wutheringwaves.fandom.com/wiki/Spectrum_Blaster",
+     "used_for": "vũ khí trấn phái",
+     "used_for_en": "signature weapon"
     }
    ],
    "level_costs": {
@@ -37163,6 +37541,16 @@
       ]
      }
     ]
+   },
+   "signature_weapon": {
+    "name": "Spectrum Blaster",
+    "type": "Pistols",
+    "rarity": 5,
+    "stat_type": "Crit. Rate",
+    "rank_name": "Attendance Exemption Protocol",
+    "effect": "Increases ATK by 12%.\nCasting Intro Skill or dealing Basic Attack to targets increases the wielder's Basic Attack DMG Bonus by 36% for 4s. Each time the wielder inflicts Tune Rupture - Shifting or Tune Strain - Shifting during Basic Attacks, all DMG dealt by Resonators in the team is increased by 8% for 30s, up to 3 stacks. Effects of the same name cannot be stacked.",
+    "img": "assets/weapons/lynae_sig.webp",
+    "source": "https://wutheringwaves.fandom.com/wiki/Spectrum_Blaster"
    }
   },
   {
@@ -38058,6 +38446,12 @@
      "url": "https://wutheringwaves.fandom.com/wiki/Mornye/Combat",
      "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
      "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
+    },
+    {
+     "title": "Wuthering Waves Wiki — Starfield Calibrator",
+     "url": "https://wutheringwaves.fandom.com/wiki/Starfield_Calibrator",
+     "used_for": "vũ khí trấn phái",
+     "used_for_en": "signature weapon"
     }
    ],
    "level_costs": {
@@ -38415,6 +38809,16 @@
       ]
      }
     ]
+   },
+   "signature_weapon": {
+    "name": "Starfield Calibrator",
+    "type": "Broadblade",
+    "rarity": 5,
+    "stat_type": "Energy Regen",
+    "rank_name": "Definite Solution",
+    "effect": "Increases DEF by 16. Casting Resonance Liberation restores 8 points of Concerto Energy. This effect can be triggered once every 20s. When the wielder heals Resonators, increases Crit. DMG of all nearby Resonators in the team by 20 for 4s. Effects of the same name cannot be stacked.",
+    "img": "assets/weapons/mornye_sig.webp",
+    "source": "https://wutheringwaves.fandom.com/wiki/Starfield_Calibrator"
    }
   },
   {
@@ -39226,6 +39630,12 @@
      "url": "https://wutheringwaves.fandom.com/wiki/Phoebe/Combat",
      "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
      "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
+    },
+    {
+     "title": "Wuthering Waves Wiki — Luminous Hymn",
+     "url": "https://wutheringwaves.fandom.com/wiki/Luminous_Hymn",
+     "used_for": "vũ khí trấn phái",
+     "used_for_en": "signature weapon"
     }
    ],
    "level_costs": {
@@ -39583,6 +39993,16 @@
       ]
      }
     ]
+   },
+   "signature_weapon": {
+    "name": "Luminous Hymn",
+    "type": "Rectifier",
+    "rarity": 5,
+    "stat_type": "Crit. Rate",
+    "rank_name": "Homebuilder's Anthem",
+    "effect": "Increase ATK by 12%. Dealing DMG to enemies with  gives 14% Basic Attack and 14% Heavy Attack DMG Bonus respectively, stacking up to 3 times for 6s. Casting Outro Skill Amplifies the DMG from  on enemies around the active Resonator by 30% for 30s. Effects of the same name cannot be stacked.",
+    "img": "assets/weapons/phoebe_sig.webp",
+    "source": "https://wutheringwaves.fandom.com/wiki/Luminous_Hymn"
    }
   },
   {
@@ -40498,6 +40918,12 @@
      "url": "https://wutheringwaves.fandom.com/wiki/Phrolova/Combat",
      "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
      "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
+    },
+    {
+     "title": "Wuthering Waves Wiki — Lethean Elegy",
+     "url": "https://wutheringwaves.fandom.com/wiki/Lethean_Elegy",
+     "used_for": "vũ khí trấn phái",
+     "used_for_en": "signature weapon"
     }
    ],
    "level_costs": {
@@ -40855,6 +41281,16 @@
       ]
      }
     ]
+   },
+   "signature_weapon": {
+    "name": "Lethean Elegy",
+    "type": "Rectifier",
+    "rarity": 5,
+    "stat_type": "Crit. Rate",
+    "rank_name": "Underworld Requiem",
+    "effect": "ATK is increased by 12%. Within 12s after dealing Echo Skill DMG, gain 32% Resonance Skill DMG Bonus and 32% Echo Skill DMG Amplification, and ignore 8% of the target's DEF when dealing damage.",
+    "img": "assets/weapons/phrolova_sig.webp",
+    "source": "https://wutheringwaves.fandom.com/wiki/Lethean_Elegy"
    }
   },
   {
@@ -41904,6 +42340,12 @@
      "url": "https://wutheringwaves.fandom.com/wiki/Qingxiao/Combat",
      "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
      "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
+    },
+    {
+     "title": "Wuthering Waves Wiki — Glint of Clouds",
+     "url": "https://wutheringwaves.fandom.com/wiki/Glint_of_Clouds",
+     "used_for": "vũ khí trấn phái",
+     "used_for_en": "signature weapon"
     }
    ],
    "level_costs": {
@@ -42261,6 +42703,16 @@
       ]
      }
     ]
+   },
+   "signature_weapon": {
+    "name": "Glint of Clouds",
+    "type": "Sword",
+    "rarity": 5,
+    "stat_type": "Crit. Rate",
+    "rank_name": "Evil's Scourge",
+    "effect": "ATK is increased by 12. Inflicting Tune Strain - Shifting, grants 11.2 Aero DMG Bonus for 2s, stacking up to 5 times. This effect can be triggered once every 0.5s. Upon reaching the max stack limit, gain the following effects:\n - This Aero DMG Bonus effect's duration is extended to 30s.\n- Aero DMG ignores 10 of the target's DEF during this effect.",
+    "img": "assets/weapons/qingxiao_sig.webp",
+    "source": "https://wutheringwaves.fandom.com/wiki/Glint_of_Clouds"
    }
   },
   {
@@ -42974,6 +43426,12 @@
      "url": "https://wutheringwaves.fandom.com/wiki/Qiuyuan/Combat",
      "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
      "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
+    },
+    {
+     "title": "Wuthering Waves Wiki — Emerald Sentence",
+     "url": "https://wutheringwaves.fandom.com/wiki/Emerald_Sentence",
+     "used_for": "vũ khí trấn phái",
+     "used_for_en": "signature weapon"
     }
    ],
    "level_costs": {
@@ -43331,6 +43789,16 @@
       ]
      }
     ]
+   },
+   "signature_weapon": {
+    "name": "Emerald Sentence",
+    "type": "Sword",
+    "rarity": 5,
+    "stat_type": "Crit. Rate",
+    "rank_name": "When A Heart Settles",
+    "effect": "ATK is increased by 12%. Casting Echo Skill within 10s after casting Intro Skill or Basic Attack grants 1 stack of Bamboo Cleaver, which grants 30% Heavy Attack DMG Bonus to the wielder. This effect can be triggered by Echoes of the same name once only, stacking up to 2 times, lasting for 12s. Casting Echo Skill at max stacks does not reset the duration. This effect can be triggered once every 10s and ends early if the wielder is switched off the field.\nCasting Intro Skill grants 20% Echo Skill DMG Bonus to all Resonators in the team for 30s. Effects of the same name cannot be stacked.",
+    "img": "assets/weapons/qiuyuan_sig.webp",
+    "source": "https://wutheringwaves.fandom.com/wiki/Emerald_Sentence"
    }
   },
   {
@@ -44418,6 +44886,12 @@
      "url": "https://wutheringwaves.fandom.com/wiki/Rebecca/Combat",
      "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
      "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
+    },
+    {
+     "title": "Wuthering Waves Wiki — Skull Thrasher",
+     "url": "https://wutheringwaves.fandom.com/wiki/Skull_Thrasher",
+     "used_for": "vũ khí trấn phái",
+     "used_for_en": "signature weapon"
     }
    ],
    "level_costs": {
@@ -44775,6 +45249,16 @@
       ]
      }
     ]
+   },
+   "signature_weapon": {
+    "name": "Skull Thrasher",
+    "type": "Pistols",
+    "rarity": 5,
+    "stat_type": "Crit. DMG",
+    "rank_name": "Sunken Dream",
+    "effect": "Increases ATK by 12. Casting Intro Skill grants 24 Basic Attack DMG Bonus to the wielder for 14s. Inflicting Hack - Shifting grants 12 Basic Attack DMG Bonus to the wielder for 14s, and increases the ATK of Resonators in the team by 24 for 30s. Effects of the same name do not stack",
+    "img": "assets/weapons/rebecca_sig.webp",
+    "source": "https://wutheringwaves.fandom.com/wiki/Skull_Thrasher"
    }
   },
   {
@@ -45502,6 +45986,12 @@
      "url": "https://wutheringwaves.fandom.com/wiki/Roccia/Combat",
      "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
      "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
+    },
+    {
+     "title": "Wuthering Waves Wiki — Tragicomedy",
+     "url": "https://wutheringwaves.fandom.com/wiki/Tragicomedy",
+     "used_for": "vũ khí trấn phái",
+     "used_for_en": "signature weapon"
     }
    ],
    "level_costs": {
@@ -45859,6 +46349,16 @@
       ]
      }
     ]
+   },
+   "signature_weapon": {
+    "name": "Tragicomedy",
+    "type": "Gauntlets",
+    "rarity": 5,
+    "stat_type": "Crit. Rate",
+    "rank_name": "Fool's Warble",
+    "effect": "Increases ATK by 12%. Every time Basic Attack or Intro Skill is cast, Heavy Attack DMG Bonus increases by 48% for 3s.",
+    "img": "assets/weapons/roccia_sig.webp",
+    "source": "https://wutheringwaves.fandom.com/wiki/Tragicomedy"
    }
   },
   {
@@ -46677,6 +47177,12 @@
      "url": "https://wutheringwaves.fandom.com/wiki/Rover",
      "used_for": "nguyên liệu đột phá (dùng chung cho mọi dạng Rover)",
      "used_for_en": "ascension materials (shared by every Rover form)"
+    },
+    {
+     "title": "Wuthering Waves Wiki — Bloodpact's Pledge",
+     "url": "https://wutheringwaves.fandom.com/wiki/Bloodpact's_Pledge",
+     "used_for": "vũ khí trấn phái",
+     "used_for_en": "signature weapon"
     }
    ],
    "level_costs": {
@@ -47034,6 +47540,16 @@
       ]
      }
     ]
+   },
+   "signature_weapon": {
+    "name": "Bloodpact's Pledge",
+    "type": "Sword",
+    "rarity": 5,
+    "stat_type": "Energy Regen",
+    "rank_name": "Harmonious Vibrancy",
+    "effect": "Providing Healing increases Resonance Skill DMG by 10% for 6s. When Rover: Aero casts Resonance Skill Unbound Flow, Aero DMG dealt by nearby Resonators on the field is Amplified by 10% for 30s.",
+    "img": "assets/weapons/rover-aero_sig.webp",
+    "source": "https://wutheringwaves.fandom.com/wiki/Bloodpact's_Pledge"
    }
   },
   {
@@ -48518,7 +49034,8 @@
       ]
      }
     ]
-   }
+   },
+   "signature_weapon": null
   },
   {
    "slug": "rover-havoc",
@@ -49715,7 +50232,8 @@
       ]
      }
     ]
-   }
+   },
+   "signature_weapon": null
   },
   {
    "slug": "rover-spectro",
@@ -50806,7 +51324,8 @@
       ]
      }
     ]
-   }
+   },
+   "signature_weapon": null
   },
   {
    "slug": "sigrika",
@@ -51742,6 +52261,12 @@
      "url": "https://wutheringwaves.fandom.com/wiki/Sigrika/Combat",
      "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
      "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
+    },
+    {
+     "title": "Wuthering Waves Wiki — Solsworn Ciphers",
+     "url": "https://wutheringwaves.fandom.com/wiki/Solsworn_Ciphers",
+     "used_for": "vũ khí trấn phái",
+     "used_for_en": "signature weapon"
     }
    ],
    "level_costs": {
@@ -52099,6 +52624,16 @@
       ]
      }
     ]
+   },
+   "signature_weapon": {
+    "name": "Solsworn Ciphers",
+    "type": "Gauntlets",
+    "rarity": 5,
+    "stat_type": "Crit. DMG",
+    "rank_name": "Sunward",
+    "effect": "Increases ATK by 12. Casting Intro Skill or Echo Skill grants 32 Echo Skill DMG Amplification for 15s. When dealing Echo Skill DMG, Aero DMG ignores 10 of the target's DEF for 6s.",
+    "img": "assets/weapons/sigrika_sig.webp",
+    "source": "https://wutheringwaves.fandom.com/wiki/Solsworn_Ciphers"
    }
   },
   {
@@ -53077,6 +53612,12 @@
      "url": "https://wutheringwaves.fandom.com/wiki/Suisui/Combat",
      "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
      "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
+    },
+    {
+     "title": "Wuthering Waves Wiki — Firstlight's Herald",
+     "url": "https://wutheringwaves.fandom.com/wiki/Firstlight's_Herald",
+     "used_for": "vũ khí trấn phái",
+     "used_for_en": "signature weapon"
     }
    ],
    "level_costs": {
@@ -53434,6 +53975,16 @@
       ]
      }
     ]
+   },
+   "signature_weapon": {
+    "name": "Firstlight's Herald",
+    "type": "Rectifier",
+    "rarity": 5,
+    "stat_type": "Energy Regen",
+    "rank_name": "Spring Wreath",
+    "effect": "Increases Max HP by 12. Casting Resonance Liberation restores 8 points of Concerto Energy, triggered once every 20s. Inflicting  grants Snow Taint for 6s. Applying healing grants Ripples for 6s. If the wielder has done both while on the field, the next Outro Skill grants both effects for 6s. When the wielder has both Snow Taint and Ripples, the ATK of all nearby Resonators in the team is increased by 20. Effects of the same name do not stack.",
+    "img": "assets/weapons/suisui_sig.webp",
+    "source": "https://wutheringwaves.fandom.com/wiki/Firstlight's_Herald"
    }
   },
   {
@@ -54477,6 +55028,12 @@
      "url": "https://wutheringwaves.fandom.com/wiki/Suoming/Combat",
      "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
      "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
+    },
+    {
+     "title": "Wuthering Waves Wiki — Unspoken Rue",
+     "url": "https://wutheringwaves.fandom.com/wiki/Unspoken_Rue",
+     "used_for": "vũ khí trấn phái",
+     "used_for_en": "signature weapon"
     }
    ],
    "level_costs": {
@@ -54834,6 +55391,16 @@
       ]
      }
     ]
+   },
+   "signature_weapon": {
+    "name": "Unspoken Rue",
+    "type": "Sword",
+    "rarity": 5,
+    "stat_type": "Crit. Rate",
+    "rank_name": "",
+    "effect": "ATK is increased by 12. Upon gaining Unison, the wielder gains 30 Electro DMG Bonus for 30s. Upon gaining Unison, the wielder removes Yearning Mind and grants all Resonators in the team the Binding Mind effect: gain 24 Electro DMG Bonus for 30s. Effects of the same name cannot stack. When the wielder consumes Concerto Energy, they remove Binding Mind from all Resonators in the team and gain the Yearning Mind effect: the wielder additionally gains 40 Electro DMG Bonus for 14s. Switching to another Resonator ends this effect early.",
+    "img": "assets/weapons/suoming_sig.webp",
+    "source": "https://wutheringwaves.fandom.com/wiki/Unspoken_Rue"
    }
   },
   {
@@ -55659,6 +56226,12 @@
      "url": "https://wutheringwaves.fandom.com/wiki/Shorekeeper/Combat",
      "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
      "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
+    },
+    {
+     "title": "Wuthering Waves Wiki — Stellar Symphony",
+     "url": "https://wutheringwaves.fandom.com/wiki/Stellar_Symphony",
+     "used_for": "vũ khí trấn phái",
+     "used_for_en": "signature weapon"
     }
    ],
    "level_costs": {
@@ -56016,6 +56589,16 @@
       ]
      }
     ]
+   },
+   "signature_weapon": {
+    "name": "Stellar Symphony",
+    "type": "Rectifier",
+    "rarity": 5,
+    "stat_type": "Energy Regen",
+    "rank_name": "Astral Evolvement",
+    "effect": "Increase HP by 12. Restore 8 Concerto Energy when casting Resonance Liberation. This effect can be triggered 1 time(s) every 20s. When casting Resonance Skill that heals, increase nearby party member's ATK by 14 for 30s. Effects of the same name cannot be stacked.",
+    "img": "assets/weapons/the-shorekeeper_sig.webp",
+    "source": "https://wutheringwaves.fandom.com/wiki/Stellar_Symphony"
    }
   },
   {
@@ -57201,7 +57784,8 @@
       ]
      }
     ]
-   }
+   },
+   "signature_weapon": null
   },
   {
    "slug": "xiangli-yao",
@@ -58048,6 +58632,12 @@
      "url": "https://wutheringwaves.fandom.com/wiki/Xiangli_Yao/Combat",
      "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
      "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
+    },
+    {
+     "title": "Wuthering Waves Wiki — Verity's Handle",
+     "url": "https://wutheringwaves.fandom.com/wiki/Verity's_Handle",
+     "used_for": "vũ khí trấn phái",
+     "used_for_en": "signature weapon"
     }
    ],
    "level_costs": {
@@ -58405,6 +58995,16 @@
       ]
      }
     ]
+   },
+   "signature_weapon": {
+    "name": "Verity's Handle",
+    "type": "Gauntlets",
+    "rarity": 5,
+    "stat_type": "Crit. Rate",
+    "rank_name": "Ad Veritatem",
+    "effect": "Gain 12% Attribute DMG Bonus. When using Resonance Liberation, the wielder gains 48% Resonance Liberation DMG Bonus for 8s. This effect can be extended by 5s each time Resonance Skills are cast, up to 3 times.",
+    "img": "assets/weapons/xiangli-yao_sig.webp",
+    "source": "https://wutheringwaves.fandom.com/wiki/Verity's_Handle"
    }
   },
   {
@@ -59526,6 +60126,12 @@
      "url": "https://wutheringwaves.fandom.com/wiki/Yangyang:_Xuanling/Combat",
      "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
      "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
+    },
+    {
+     "title": "Wuthering Waves Wiki — Azure Oath",
+     "url": "https://wutheringwaves.fandom.com/wiki/Azure_Oath",
+     "used_for": "vũ khí trấn phái",
+     "used_for_en": "signature weapon"
     }
    ],
    "level_costs": {
@@ -59883,6 +60489,16 @@
       ]
      }
     ]
+   },
+   "signature_weapon": {
+    "name": "Azure Oath",
+    "type": "Sword",
+    "rarity": 5,
+    "stat_type": "Crit. Rate",
+    "rank_name": "Unbending",
+    "effect": "Grants 12 All-Attribute DMG Bonus. After inflicting , the wielder gains 36 Heavy Attack DMG Amplification and their Heavy Attack DMG ignores 12 of the target's DEF, lasting for 8s.",
+    "img": "assets/weapons/yangyang-xuanling_sig.webp",
+    "source": "https://wutheringwaves.fandom.com/wiki/Azure_Oath"
    }
   },
   {
@@ -60556,6 +61172,12 @@
      "url": "https://wutheringwaves.fandom.com/wiki/Yinlin/Combat",
      "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
      "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
+    },
+    {
+     "title": "Wuthering Waves Wiki — Stringmaster",
+     "url": "https://wutheringwaves.fandom.com/wiki/Stringmaster",
+     "used_for": "vũ khí trấn phái",
+     "used_for_en": "signature weapon"
     }
    ],
    "level_costs": {
@@ -60913,6 +61535,16 @@
       ]
      }
     ]
+   },
+   "signature_weapon": {
+    "name": "Stringmaster",
+    "type": "Rectifier",
+    "rarity": 5,
+    "stat_type": "Crit. Rate",
+    "rank_name": "Electric Amplification",
+    "effect": "Grants 12% Attribute DMG Bonus. When dealing Resonance Skill DMG, increases ATK by 12%, stacking up to 2 times. This effect lasts for 5s. When the wielder is not on the field, increases their ATK by an additional 12%.",
+    "img": "assets/weapons/yinlin_sig.webp",
+    "source": "https://wutheringwaves.fandom.com/wiki/Stringmaster"
    }
   },
   {
@@ -61831,6 +62463,12 @@
      "url": "https://wutheringwaves.fandom.com/wiki/Zani/Combat",
      "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
      "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
+    },
+    {
+     "title": "Wuthering Waves Wiki — Blazing Justice",
+     "url": "https://wutheringwaves.fandom.com/wiki/Blazing_Justice",
+     "used_for": "vũ khí trấn phái",
+     "used_for_en": "signature weapon"
     }
    ],
    "level_costs": {
@@ -62188,6 +62826,16 @@
       ]
      }
     ]
+   },
+   "signature_weapon": {
+    "name": "Blazing Justice",
+    "type": "Gauntlets",
+    "rarity": 5,
+    "stat_type": "Crit. DMG",
+    "rank_name": "Darkness Breaker",
+    "effect": "Increases ATK by 12%. Casting Basic Attack grants the following effects: Dealing damage ignores 8% of the target's DEF and Amplifies Spectro Frazzle DMG dealt by 50% for 6s. Retriggering the effect resets its duration.",
+    "img": "assets/weapons/zani_sig.webp",
+    "source": "https://wutheringwaves.fandom.com/wiki/Blazing_Justice"
    }
   },
   {
@@ -63000,6 +63648,12 @@
      "url": "https://wutheringwaves.fandom.com/wiki/Zhezhi/Combat",
      "used_for": "hệ số kỹ năng Lv1–10 (Attribute Scaling, xem thêm trang từng kỹ năng), chi phí nâng cấp theo từng cấp",
      "used_for_en": "skill multipliers Lv1–10 (Attribute Scaling, see each skill page), per-level upgrade costs"
+    },
+    {
+     "title": "Wuthering Waves Wiki — Rime-Draped Sprouts",
+     "url": "https://wutheringwaves.fandom.com/wiki/Rime-Draped_Sprouts",
+     "used_for": "vũ khí trấn phái",
+     "used_for_en": "signature weapon"
     }
    ],
    "level_costs": {
@@ -63357,6 +64011,16 @@
       ]
      }
     ]
+   },
+   "signature_weapon": {
+    "name": "Rime-Draped Sprouts",
+    "type": "Rectifier",
+    "rarity": 5,
+    "stat_type": "Crit. DMG",
+    "rank_name": "Panorama",
+    "effect": "Increase ATK by 12%. While the wielder is on the field, using Resonance Skill grants 12% Basic Attack DMG Bonus, stacking up to 3 times for 6s. At 3 stacks or above, casting Outro Skill consumes all stacks of this effect and grants the wielder 52% Basic Attack DMG Bonus for 27s, effective when the wielder is off the field.",
+    "img": "assets/weapons/zhezhi_sig.webp",
+    "source": "https://wutheringwaves.fandom.com/wiki/Rime-Draped_Sprouts"
    }
   },
   {
@@ -64399,7 +65063,8 @@
       ]
      }
     ]
-   }
+   },
+   "signature_weapon": null
   },
   {
    "slug": "baizhi",
@@ -65481,7 +66146,8 @@
       ]
      }
     ]
-   }
+   },
+   "signature_weapon": null
   },
   {
    "slug": "buling",
@@ -66663,7 +67329,8 @@
       ]
      }
     ]
-   }
+   },
+   "signature_weapon": null
   },
   {
    "slug": "chixia",
@@ -67713,7 +68380,8 @@
       ]
      }
     ]
-   }
+   },
+   "signature_weapon": null
   },
   {
    "slug": "danjin",
@@ -68789,7 +69457,8 @@
       ]
      }
     ]
-   }
+   },
+   "signature_weapon": null
   },
   {
    "slug": "lumi",
@@ -70029,7 +70698,8 @@
       ]
      }
     ]
-   }
+   },
+   "signature_weapon": null
   },
   {
    "slug": "mortefi",
@@ -71074,7 +71744,8 @@
       ]
      }
     ]
-   }
+   },
+   "signature_weapon": null
   },
   {
    "slug": "sanhua",
@@ -72178,7 +72849,8 @@
       ]
      }
     ]
-   }
+   },
+   "signature_weapon": null
   },
   {
    "slug": "taoqi",
@@ -73305,7 +73977,8 @@
       ]
      }
     ]
-   }
+   },
+   "signature_weapon": null
   },
   {
    "slug": "yangyang",
@@ -74355,7 +75028,8 @@
       ]
      }
     ]
-   }
+   },
+   "signature_weapon": null
   },
   {
    "slug": "youhu",
@@ -75536,7 +76210,8 @@
       ]
      }
     ]
-   }
+   },
+   "signature_weapon": null
   },
   {
    "slug": "yuanwu",
@@ -76747,7 +77422,8 @@
       ]
      }
     ]
-   }
+   },
+   "signature_weapon": null
   }
  ]
 }
