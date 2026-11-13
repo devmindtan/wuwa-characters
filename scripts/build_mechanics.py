@@ -204,6 +204,9 @@ AUTO_PATTERNS = [
     ('resource', rf"\bstacks?\sof\s({_NAME})"),
     ('resource', rf"({_NAME})\sstacks?\b"),
     ('resource', rf"\bpoints?\sof\s({_NAME})"),
+    ('status', rf"\b(?:sends?|sending|puts?|putting)\s(?:the\s)?(?:targets?|enemies|them|it)\sinto\s({_NAME})"),
+    ('status', rf"\b(?:inflicts?|inflicting|applies|applying|removing|removes)\s({_NAME})"),
+    ('status', rf"({_NAME})\s(?:is|are)\striggered\b"),
 ]
 LEAD_DROP = re.compile(r"^(?:(?:The|In|Enter|Entering|Exit|Exiting|Leave|Leaving|Ending|Switching|Active|Available|"
                        r"Consuming|During|Upon|After|While|When|Under|Casting|Hold|Press|Each|Every|If|Resonance Liberation|"
@@ -346,8 +349,18 @@ def main():
             m['aliases'] = list(ALIASES[m['term']])
     taken = set(CURATED) | set(NO_LINK)
     autos = auto_terms(chars, taken)
+    # Another Resonator's kit may mention someone else's kit term (Phrolova: "…the target's
+    # Hazy Dream state" is Cantarella's). Link it there too, quoting the owner's definition.
+    for term, e in autos.items():
+        if len(term.split()) < 2:
+            continue  # single words ("Prayer", "Zoom") are too ambiguous across kits
+        # only when the other kit uses it as a state/stack ("Hazy Dream state"), not as part of a move name
+        word = re.compile(r"(?:\bstacks?\sof\s|\b(?:target|enemy)['’]s\s)" + re.escape(term) + r"(?![A-Za-z0-9])|(?<![A-Za-z0-9])"
+                          + re.escape(term) + r"\s(?:state|status|stacks?)\b")
+        e['refs'] = sorted(c['slug'] for c in chars if c['slug'] not in e['defs'] and any(
+            word.search(l) for s in c['skills'] + c.get('resonance_chain', []) for l in s['desc']))
     for term, e in sorted(autos.items()):
-        users = sorted(e['defs'])
+        users = sorted(set(e['defs']) | set(e.get('refs', [])))
         mechanics.append({
             'term': term,
             'kind': e['kind'],

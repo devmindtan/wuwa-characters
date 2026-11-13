@@ -1118,6 +1118,28 @@
    ]
   },
   {
+   "term": "Hazy Dream",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "cantarella": {
+     "kind": "skill",
+     "index": 1,
+     "line": 6,
+     "n": 2
+    }
+   },
+   "count": 2,
+   "characters": [
+    "cantarella",
+    "phrolova"
+   ],
+   "owners": [
+    "cantarella",
+    "phrolova"
+   ]
+  },
+  {
    "term": "Ordination Glow",
    "kind": "mode",
    "summary_vi": "Hiệu ứng Jinhsi nhận sau khi kết thúc Incarnation, tăng sát thương cho bộ chiêu.",
@@ -1624,6 +1646,26 @@
    ],
    "owners": [
     "sigrika"
+   ]
+  },
+  {
+   "term": "Botnet Mark",
+   "kind": "status",
+   "auto": true,
+   "defs": {
+    "lucy": {
+     "kind": "skill",
+     "index": 6,
+     "line": 0,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "lucy"
+   ],
+   "owners": [
+    "lucy"
    ]
   },
   {
@@ -2910,6 +2952,46 @@
    ]
   },
   {
+   "term": "Fixation",
+   "kind": "status",
+   "auto": true,
+   "defs": {
+    "jingran": {
+     "kind": "skill",
+     "index": 6,
+     "line": 2,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "jingran"
+   ],
+   "owners": [
+    "jingran"
+   ]
+  },
+  {
+   "term": "Fleeting Thunder",
+   "kind": "status",
+   "auto": true,
+   "defs": {
+    "hsin": {
+     "kind": "skill",
+     "index": 6,
+     "line": 3,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "hsin"
+   ],
+   "owners": [
+    "hsin"
+   ]
+  },
+  {
    "term": "Flickering Reverie",
    "kind": "system",
    "auto": true,
@@ -3253,26 +3335,6 @@
    ]
   },
   {
-   "term": "Hazy Dream",
-   "kind": "system",
-   "auto": true,
-   "defs": {
-    "cantarella": {
-     "kind": "skill",
-     "index": 1,
-     "line": 6,
-     "n": 2
-    }
-   },
-   "count": 1,
-   "characters": [
-    "cantarella"
-   ],
-   "owners": [
-    "cantarella"
-   ]
-  },
-  {
    "term": "Heart of Thunder",
    "kind": "resource",
    "auto": true,
@@ -3290,6 +3352,26 @@
    ],
    "owners": [
     "hsin"
+   ]
+  },
+  {
+   "term": "Heaven's Clarity",
+   "kind": "status",
+   "auto": true,
+   "defs": {
+    "qingxiao": {
+     "kind": "skill",
+     "index": 3,
+     "line": 13,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "qingxiao"
+   ],
+   "owners": [
+    "qingxiao"
    ]
   },
   {
@@ -3734,6 +3816,26 @@
    ]
   },
   {
+   "term": "Jolt",
+   "kind": "status",
+   "auto": true,
+   "defs": {
+    "cantarella": {
+     "kind": "skill",
+     "index": 1,
+     "line": 6,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "cantarella"
+   ],
+   "owners": [
+    "cantarella"
+   ]
+  },
+  {
    "term": "Knock Knock",
    "kind": "system",
    "auto": true,
@@ -4157,6 +4259,26 @@
    ]
   },
   {
+   "term": "Override",
+   "kind": "status",
+   "auto": true,
+   "defs": {
+    "lucy": {
+     "kind": "skill",
+     "index": 2,
+     "line": 3,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "lucy"
+   ],
+   "owners": [
+    "lucy"
+   ]
+  },
+  {
    "term": "Pack Hunt",
    "kind": "system",
    "auto": true,
@@ -4234,6 +4356,26 @@
    ],
    "owners": [
     "luuk-herssen"
+   ]
+  },
+  {
+   "term": "Photochromic Flux",
+   "kind": "status",
+   "auto": true,
+   "defs": {
+    "lynae": {
+     "kind": "skill",
+     "index": 3,
+     "line": 6,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "lynae"
+   ],
+   "owners": [
+    "lynae"
    ]
   },
   {
@@ -4640,6 +4782,26 @@
    ],
    "owners": [
     "phrolova"
+   ]
+  },
+  {
+   "term": "Resonant Chime",
+   "kind": "status",
+   "auto": true,
+   "defs": {
+    "qingxiao": {
+     "kind": "skill",
+     "index": 7,
+     "line": 0,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "qingxiao"
+   ],
+   "owners": [
+    "qingxiao"
    ]
   },
   {
@@ -5626,6 +5788,26 @@
    ]
   },
   {
+   "term": "Thunder Bane",
+   "kind": "status",
+   "auto": true,
+   "defs": {
+    "rover-electro": {
+     "kind": "skill",
+     "index": 3,
+     "line": 16,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "rover-electro"
+   ],
+   "owners": [
+    "rover-electro"
+   ]
+  },
+  {
    "term": "Thunder Rage",
    "kind": "resource",
    "auto": true,
@@ -5663,6 +5845,26 @@
    ],
    "owners": [
     "buling"
+   ]
+  },
+  {
+   "term": "Thunder Wedge",
+   "kind": "status",
+   "auto": true,
+   "defs": {
+    "yuanwu": {
+     "kind": "skill",
+     "index": 3,
+     "line": 8,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "yuanwu"
+   ],
+   "owners": [
+    "yuanwu"
    ]
   },
   {
@@ -5803,6 +6005,26 @@
    ],
    "owners": [
     "iuno"
+   ]
+  },
+  {
+   "term": "Unseen Snare",
+   "kind": "status",
+   "auto": true,
+   "defs": {
+    "chisa": {
+     "kind": "skill",
+     "index": 3,
+     "line": 6,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "chisa"
+   ],
+   "owners": [
+    "chisa"
    ]
   },
   {
