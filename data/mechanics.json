@@ -1140,6 +1140,37 @@
    ]
   },
   {
+   "term": "Melody",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "yangyang-xuanling": {
+     "kind": "skill",
+     "index": 0,
+     "line": 0,
+     "n": 1
+    },
+    "yangyang": {
+     "kind": "skill",
+     "index": 3,
+     "line": 2,
+     "n": 1
+    }
+   },
+   "count": 2,
+   "characters": [
+    "yangyang",
+    "yangyang-xuanling"
+   ],
+   "owners": [
+    "yangyang",
+    "yangyang-xuanling"
+   ],
+   "aliases": [
+    "Melodies"
+   ]
+  },
+  {
    "term": "Ordination Glow",
    "kind": "mode",
    "summary_vi": "Hiệu ứng Jinhsi nhận sau khi kết thúc Incarnation, tăng sát thương cho bộ chiêu.",
@@ -1300,6 +1331,26 @@
    ],
    "owners": [
     "phrolova"
+   ]
+  },
+  {
+   "term": "Annoyance",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "mortefi": {
+     "kind": "skill",
+     "index": 3,
+     "line": 1,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "mortefi"
+   ],
+   "owners": [
+    "mortefi"
    ]
   },
   {
@@ -1789,6 +1840,26 @@
    ]
   },
   {
+   "term": "Chi",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "jianxin": {
+     "kind": "skill",
+     "index": 3,
+     "line": 9,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "jianxin"
+   ],
+   "owners": [
+    "jianxin"
+   ]
+  },
+  {
    "term": "Chromatic Splendor",
    "kind": "system",
    "auto": true,
@@ -1806,6 +1877,26 @@
    ],
    "owners": [
     "carlotta"
+   ]
+  },
+  {
+   "term": "Clarity",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "sanhua": {
+     "kind": "skill",
+     "index": 3,
+     "line": 2,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "sanhua"
+   ],
+   "owners": [
+    "sanhua"
    ]
   },
   {
@@ -1846,6 +1937,29 @@
    ],
    "owners": [
     "suisui"
+   ]
+  },
+  {
+   "term": "Collapsed Core",
+   "kind": "status",
+   "auto": true,
+   "defs": {
+    "the-shorekeeper": {
+     "kind": "skill",
+     "index": 0,
+     "line": 1,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "the-shorekeeper"
+   ],
+   "owners": [
+    "the-shorekeeper"
+   ],
+   "aliases": [
+    "Collapsed Cores"
    ]
   },
   {
@@ -1906,6 +2020,29 @@
    ],
    "owners": [
     "phrolova"
+   ]
+  },
+  {
+   "term": "Concentration",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "baizhi": {
+     "kind": "skill",
+     "index": 3,
+     "line": 3,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "baizhi"
+   ],
+   "owners": [
+    "baizhi"
+   ],
+   "aliases": [
+    "Concentrations"
    ]
   },
   {
@@ -2009,6 +2146,72 @@
    ]
   },
   {
+   "term": "Crescent Divinity",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "jinhsi": {
+     "kind": "skill",
+     "index": 3,
+     "line": 3,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "jinhsi"
+   ],
+   "owners": [
+    "jinhsi"
+   ]
+  },
+  {
+   "term": "Crimson Bud",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "camellya": {
+     "kind": "skill",
+     "index": 3,
+     "line": 1,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "camellya"
+   ],
+   "owners": [
+    "camellya"
+   ],
+   "aliases": [
+    "Crimson Buds"
+   ]
+  },
+  {
+   "term": "Crimson Pistil",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "camellya": {
+     "kind": "skill",
+     "index": 3,
+     "line": 15,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "camellya"
+   ],
+   "owners": [
+    "camellya"
+   ],
+   "aliases": [
+    "Crimson Pistils"
+   ]
+  },
+  {
    "term": "Crisis Response Protocol",
    "kind": "system",
    "auto": true,
@@ -2049,6 +2252,26 @@
    ]
   },
   {
+   "term": "Cruelty",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "calcharo": {
+     "kind": "skill",
+     "index": 3,
+     "line": 0,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "calcharo"
+   ],
+   "owners": [
+    "calcharo"
+   ]
+  },
+  {
    "term": "Curtain Call",
    "kind": "system",
    "auto": true,
@@ -2077,7 +2300,7 @@
      "kind": "skill",
      "index": 3,
      "line": 0,
-     "n": 1
+     "n": 4
     }
    },
    "count": 1,
@@ -2169,6 +2392,26 @@
    ],
    "owners": [
     "carlotta"
+   ]
+  },
+  {
+   "term": "Death Messenger",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "calcharo": {
+     "kind": "skill",
+     "index": 3,
+     "line": 2,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "calcharo"
+   ],
+   "owners": [
+    "calcharo"
    ]
   },
   {
@@ -2272,6 +2515,26 @@
    ]
   },
   {
+   "term": "Deep Dream Fragrance",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "lily": {
+     "kind": "skill",
+     "index": 7,
+     "line": 4,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "lily"
+   ],
+   "owners": [
+    "lily"
+   ]
+  },
+  {
    "term": "Deep Mind",
    "kind": "mode",
    "auto": true,
@@ -2369,6 +2632,29 @@
    ],
    "owners": [
     "cantarella"
+   ]
+  },
+  {
+   "term": "Diminutive Sound",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "rover-spectro": {
+     "kind": "skill",
+     "index": 3,
+     "line": 3,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "rover-spectro"
+   ],
+   "owners": [
+    "rover-spectro"
+   ],
+   "aliases": [
+    "Diminutive Sounds"
    ]
   },
   {
@@ -2632,6 +2918,26 @@
    ]
   },
   {
+   "term": "Electro Core",
+   "kind": "status",
+   "auto": true,
+   "defs": {
+    "rover-electro": {
+     "kind": "skill",
+     "index": 8,
+     "line": 0,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "rover-electro"
+   ],
+   "owners": [
+    "rover-electro"
+   ]
+  },
+  {
    "term": "Empirical Data",
    "kind": "system",
    "auto": true,
@@ -2669,26 +2975,6 @@
    ],
    "owners": [
     "sigrika"
-   ]
-  },
-  {
-   "term": "Endnotes",
-   "kind": "resource",
-   "auto": true,
-   "defs": {
-    "luuk-herssen": {
-     "kind": "skill",
-     "index": 1,
-     "line": 7,
-     "n": 1
-    }
-   },
-   "count": 1,
-   "characters": [
-    "luuk-herssen"
-   ],
-   "owners": [
-    "luuk-herssen"
    ]
   },
   {
@@ -2749,6 +3035,46 @@
    ],
    "owners": [
     "changli"
+   ]
+  },
+  {
+   "term": "Entropy Shift",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "denia": {
+     "kind": "chain",
+     "index": 1,
+     "line": 2,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "denia"
+   ],
+   "owners": [
+    "denia"
+   ]
+  },
+  {
+   "term": "Erosion Field",
+   "kind": "status",
+   "auto": true,
+   "defs": {
+    "denia": {
+     "kind": "skill",
+     "index": 3,
+     "line": 8,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "denia"
+   ],
+   "owners": [
+    "denia"
    ]
   },
   {
@@ -2972,6 +3298,26 @@
    ]
   },
   {
+   "term": "Flame Zone",
+   "kind": "status",
+   "auto": true,
+   "defs": {
+    "encore": {
+     "kind": "skill",
+     "index": 7,
+     "line": 0,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "encore"
+   ],
+   "owners": [
+    "encore"
+   ]
+  },
+  {
    "term": "Fleeting Thunder",
    "kind": "status",
    "auto": true,
@@ -3009,6 +3355,26 @@
    ],
    "owners": [
     "cantarella"
+   ]
+  },
+  {
+   "term": "Flight Qi",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "qingxiao": {
+     "kind": "skill",
+     "index": 3,
+     "line": 20,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "qingxiao"
+   ],
+   "owners": [
+    "qingxiao"
    ]
   },
   {
@@ -3089,6 +3455,46 @@
    ],
    "owners": [
     "jingran"
+   ]
+  },
+  {
+   "term": "Frost",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "youhu": {
+     "kind": "skill",
+     "index": 0,
+     "line": 5,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "youhu"
+   ],
+   "owners": [
+    "youhu"
+   ]
+  },
+  {
+   "term": "Frostbite",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "sanhua": {
+     "kind": "skill",
+     "index": 3,
+     "line": 2,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "sanhua"
+   ],
+   "owners": [
+    "sanhua"
    ]
   },
   {
@@ -3192,6 +3598,26 @@
    ]
   },
   {
+   "term": "Gate of Quandary",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "aalto": {
+     "kind": "skill",
+     "index": 3,
+     "line": 0,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "aalto"
+   ],
+   "owners": [
+    "aalto"
+   ]
+  },
+  {
    "term": "Gathered Mind",
    "kind": "resource",
    "auto": true,
@@ -3229,6 +3655,29 @@
    ],
    "owners": [
     "jingran"
+   ]
+  },
+  {
+   "term": "Glacier",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "sanhua": {
+     "kind": "chain",
+     "index": 6,
+     "line": 0,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "sanhua"
+   ],
+   "owners": [
+    "sanhua"
+   ],
+   "aliases": [
+    "Glaciers"
    ]
   },
   {
@@ -3332,6 +3781,26 @@
    ],
    "owners": [
     "yangyang-xuanling"
+   ]
+  },
+  {
+   "term": "Heart Sword Intent",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "qingxiao": {
+     "kind": "skill",
+     "index": 3,
+     "line": 38,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "qingxiao"
+   ],
+   "owners": [
+    "qingxiao"
    ]
   },
   {
@@ -3478,6 +3947,29 @@
    ]
   },
   {
+   "term": "Hypercube",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "xiangli-yao": {
+     "kind": "skill",
+     "index": 2,
+     "line": 1,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "xiangli-yao"
+   ],
+   "owners": [
+    "xiangli-yao"
+   ],
+   "aliases": [
+    "Hypercubes"
+   ]
+  },
+  {
    "term": "Iai Stance",
    "kind": "system",
    "auto": true,
@@ -3495,6 +3987,52 @@
    ],
    "owners": [
     "hiyuki"
+   ]
+  },
+  {
+   "term": "Ice Prism",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "sanhua": {
+     "kind": "chain",
+     "index": 6,
+     "line": 0,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "sanhua"
+   ],
+   "owners": [
+    "sanhua"
+   ],
+   "aliases": [
+    "Ice Prisms"
+   ]
+  },
+  {
+   "term": "Ice Thorn",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "sanhua": {
+     "kind": "skill",
+     "index": 6,
+     "line": 0,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "sanhua"
+   ],
+   "owners": [
+    "sanhua"
+   ],
+   "aliases": [
+    "Ice Thorns"
    ]
   },
   {
@@ -3595,6 +4133,26 @@
    ],
    "owners": [
     "hsin"
+   ]
+  },
+  {
+   "term": "Illuminous Epiphany",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "jinhsi": {
+     "kind": "skill",
+     "index": 3,
+     "line": 11,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "jinhsi"
+   ],
+   "owners": [
+    "jinhsi"
    ]
   },
   {
@@ -3836,6 +4394,66 @@
    ]
   },
   {
+   "term": "Judgment Points",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "yinlin": {
+     "kind": "skill",
+     "index": 3,
+     "line": 0,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "yinlin"
+   ],
+   "owners": [
+    "yinlin"
+   ]
+  },
+  {
+   "term": "Killing Intent",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "calcharo": {
+     "kind": "skill",
+     "index": 3,
+     "line": 2,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "calcharo"
+   ],
+   "owners": [
+    "calcharo"
+   ]
+  },
+  {
+   "term": "Kingfisher",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "suisui": {
+     "kind": "chain",
+     "index": 3,
+     "line": 1,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "suisui"
+   ],
+   "owners": [
+    "suisui"
+   ]
+  },
+  {
    "term": "Knock Knock",
    "kind": "system",
    "auto": true,
@@ -3853,6 +4471,26 @@
    ],
    "owners": [
     "denia"
+   ]
+  },
+  {
+   "term": "Law of Heaven",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "hsin": {
+     "kind": "skill",
+     "index": 3,
+     "line": 8,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "hsin"
+   ],
+   "owners": [
+    "hsin"
    ]
   },
   {
@@ -3933,6 +4571,26 @@
    ],
    "owners": [
     "lingyang"
+   ]
+  },
+  {
+   "term": "Longing",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "lucilla": {
+     "kind": "chain",
+     "index": 6,
+     "line": 1,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "lucilla"
+   ],
+   "owners": [
+    "lucilla"
    ]
   },
   {
@@ -4056,23 +4714,23 @@
    ]
   },
   {
-   "term": "Melody",
+   "term": "Mercy",
    "kind": "resource",
    "auto": true,
    "defs": {
-    "yangyang-xuanling": {
+    "calcharo": {
      "kind": "skill",
-     "index": 0,
+     "index": 3,
      "line": 0,
      "n": 1
     }
    },
    "count": 1,
    "characters": [
-    "yangyang-xuanling"
+    "calcharo"
    ],
    "owners": [
-    "yangyang-xuanling"
+    "calcharo"
    ]
   },
   {
@@ -4116,8 +4774,91 @@
    ]
   },
   {
+   "term": "Mist",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "aalto": {
+     "kind": "skill",
+     "index": 3,
+     "line": 2,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "aalto"
+   ],
+   "owners": [
+    "aalto"
+   ]
+  },
+  {
+   "term": "Mist Avatar",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "aalto": {
+     "kind": "skill",
+     "index": 1,
+     "line": 0,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "aalto"
+   ],
+   "owners": [
+    "aalto"
+   ]
+  },
+  {
+   "term": "Mist Bullets",
+   "kind": "status",
+   "auto": true,
+   "defs": {
+    "aalto": {
+     "kind": "skill",
+     "index": 1,
+     "line": 0,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "aalto"
+   ],
+   "owners": [
+    "aalto"
+   ]
+  },
+  {
+   "term": "Mist Drop",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "aalto": {
+     "kind": "skill",
+     "index": 3,
+     "line": 2,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "aalto"
+   ],
+   "owners": [
+    "aalto"
+   ],
+   "aliases": [
+    "Mist Drops"
+   ]
+  },
+  {
    "term": "Mistcloak Dash",
-   "kind": "mode",
+   "kind": "resource",
    "auto": true,
    "defs": {
     "aalto": {
@@ -4159,6 +4900,26 @@
    ]
   },
   {
+   "term": "Momentum",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "jiyan": {
+     "kind": "chain",
+     "index": 6,
+     "line": 0,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "jiyan"
+   ],
+   "owners": [
+    "jiyan"
+   ]
+  },
+  {
    "term": "Musical Essence",
    "kind": "system",
    "auto": true,
@@ -4176,6 +4937,26 @@
    ],
    "owners": [
     "ciaccona"
+   ]
+  },
+  {
+   "term": "Necessary Means",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "calcharo": {
+     "kind": "skill",
+     "index": 2,
+     "line": 0,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "calcharo"
+   ],
+   "owners": [
+    "calcharo"
    ]
   },
   {
@@ -4307,7 +5088,7 @@
      "kind": "skill",
      "index": 3,
      "line": 16,
-     "n": 1
+     "n": 3
     }
    },
    "count": 1,
@@ -4376,6 +5157,46 @@
    ],
    "owners": [
     "lynae"
+   ]
+  },
+  {
+   "term": "Photosynthesis Energy",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "verina": {
+     "kind": "chain",
+     "index": 2,
+     "line": 0,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "verina"
+   ],
+   "owners": [
+    "verina"
+   ]
+  },
+  {
+   "term": "Photosynthesis Mark",
+   "kind": "status",
+   "auto": true,
+   "defs": {
+    "verina": {
+     "kind": "skill",
+     "index": 2,
+     "line": 0,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "verina"
+   ],
+   "owners": [
+    "verina"
    ]
   },
   {
@@ -4482,6 +5303,46 @@
    ]
   },
   {
+   "term": "Punishment Mark",
+   "kind": "status",
+   "auto": true,
+   "defs": {
+    "yinlin": {
+     "kind": "skill",
+     "index": 3,
+     "line": 0,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "yinlin"
+   ],
+   "owners": [
+    "yinlin"
+   ]
+  },
+  {
+   "term": "Purging Flame",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "galbrena": {
+     "kind": "skill",
+     "index": 3,
+     "line": 3,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "galbrena"
+   ],
+   "owners": [
+    "galbrena"
+   ]
+  },
+  {
    "term": "Qingloong Mode",
    "kind": "mode",
    "auto": true,
@@ -4539,6 +5400,26 @@
    ],
    "owners": [
     "hsin"
+   ]
+  },
+  {
+   "term": "Readiness",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "yuanwu": {
+     "kind": "skill",
+     "index": 3,
+     "line": 8,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "yuanwu"
+   ],
+   "owners": [
+    "yuanwu"
    ]
   },
   {
@@ -4765,6 +5646,66 @@
    ]
   },
   {
+   "term": "Resolution of Wishes",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "hsin": {
+     "kind": "skill",
+     "index": 3,
+     "line": 4,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "hsin"
+   ],
+   "owners": [
+    "hsin"
+   ]
+  },
+  {
+   "term": "Resolve",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "jiyan": {
+     "kind": "skill",
+     "index": 3,
+     "line": 2,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "jiyan"
+   ],
+   "owners": [
+    "jiyan"
+   ]
+  },
+  {
+   "term": "Resolving Caliber",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "taoqi": {
+     "kind": "skill",
+     "index": 3,
+     "line": 2,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "taoqi"
+   ],
+   "owners": [
+    "taoqi"
+   ]
+  },
+  {
    "term": "Resolving Chord",
    "kind": "mode",
    "auto": true,
@@ -4922,6 +5863,26 @@
    ],
    "owners": [
     "lucy"
+   ]
+  },
+  {
+   "term": "Ruby Blossom",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "danjin": {
+     "kind": "skill",
+     "index": 3,
+     "line": 3,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "danjin"
+   ],
+   "owners": [
+    "danjin"
    ]
   },
   {
@@ -5228,6 +6189,26 @@
    ]
   },
   {
+   "term": "Sillage",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "lily": {
+     "kind": "skill",
+     "index": 3,
+     "line": 12,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "lily"
+   ],
+   "owners": [
+    "lily"
+   ]
+  },
+  {
    "term": "Sinflame",
    "kind": "system",
    "auto": true,
@@ -5245,6 +6226,26 @@
    ],
    "owners": [
     "galbrena"
+   ]
+  },
+  {
+   "term": "Sinner's Mark",
+   "kind": "status",
+   "auto": true,
+   "defs": {
+    "yinlin": {
+     "kind": "skill",
+     "index": 3,
+     "line": 0,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "yinlin"
+   ],
+   "owners": [
+    "yinlin"
    ]
   },
   {
@@ -5325,6 +6326,46 @@
    ],
    "owners": [
     "sigrika"
+   ]
+  },
+  {
+   "term": "Source Intent",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "hsin": {
+     "kind": "skill",
+     "index": 3,
+     "line": 18,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "hsin"
+   ],
+   "owners": [
+    "hsin"
+   ]
+  },
+  {
+   "term": "Sparks",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "lumi": {
+     "kind": "skill",
+     "index": 3,
+     "line": 6,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "lumi"
+   ],
+   "owners": [
+    "lumi"
    ]
   },
   {
@@ -5748,6 +6789,26 @@
    ]
   },
   {
+   "term": "Thermobaric Bullets",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "chixia": {
+     "kind": "skill",
+     "index": 3,
+     "line": 5,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "chixia"
+   ],
+   "owners": [
+    "chixia"
+   ]
+  },
+  {
    "term": "Thread Withdrawn",
    "kind": "system",
    "auto": true,
@@ -5805,6 +6866,26 @@
    ],
    "owners": [
     "rover-electro"
+   ]
+  },
+  {
+   "term": "Thunder Field",
+   "kind": "status",
+   "auto": true,
+   "defs": {
+    "yuanwu": {
+     "kind": "skill",
+     "index": 1,
+     "line": 0,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "yuanwu"
+   ],
+   "owners": [
+    "yuanwu"
    ]
   },
   {
@@ -5976,7 +7057,7 @@
      "kind": "skill",
      "index": 0,
      "line": 3,
-     "n": 1
+     "n": 3
     }
    },
    "count": 1,
@@ -6211,6 +7292,49 @@
    ]
   },
   {
+   "term": "Windstring",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "rover-aero": {
+     "kind": "skill",
+     "index": 3,
+     "line": 10,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "rover-aero"
+   ],
+   "owners": [
+    "rover-aero"
+   ],
+   "aliases": [
+    "Windstrings"
+   ]
+  },
+  {
+   "term": "Wish of Praying Dream",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "lily": {
+     "kind": "skill",
+     "index": 3,
+     "line": 29,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "lily"
+   ],
+   "owners": [
+    "lily"
+   ]
+  },
+  {
    "term": "Wolfaith",
    "kind": "system",
    "auto": true,
@@ -6411,6 +7535,26 @@
    ],
    "owners": [
     "jingran"
+   ]
+  },
+  {
+   "term": "Zapstring",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "yinlin": {
+     "kind": "skill",
+     "index": 0,
+     "line": 0,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "yinlin"
+   ],
+   "owners": [
+    "yinlin"
    ]
   },
   {

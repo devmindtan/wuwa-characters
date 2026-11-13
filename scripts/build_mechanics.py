@@ -207,9 +207,13 @@ AUTO_PATTERNS = [
     ('status', rf"\b(?:sends?|sending|puts?|putting)\s(?:the\s)?(?:targets?|enemies|them|it)\sinto\s({_NAME})"),
     ('status', rf"\b(?:inflicts?|inflicting|applies|applying|removing|removes)\s({_NAME})"),
     ('status', rf"({_NAME})\s(?:is|are)\striggered\b"),
+    # named resources the game writes in quotes: "Cruelty", "Killing Intent", "Readiness"
+    ('resource', rf"[\"“]({_NAME})[\"”]"),
+    ('status', rf"({_NAME}\s(?:Mark|Marks|Field|Zone|Energy|Points|Core|Cores|Bullets))\b"),
+    ('resource', rf"\b(?:consumes?|consuming|obtains?|obtaining)\s(?:all\s|up\sto\s)?(?:\d+\s)?(?:points?\sof\s|stacks?\sof\s)?({_NAME})"),
 ]
 LEAD_DROP = re.compile(r"^(?:(?:The|In|Enter|Entering|Exit|Exiting|Leave|Leaving|Ending|Switching|Active|Available|"
-                       r"Consuming|During|Upon|After|While|When|Under|Casting|Hold|Press|Each|Every|If|Resonance Liberation|"
+                       r"Consuming|During|Upon|After|While|When|Under|Casting|Hold|Press|Each|Every|If|Obtain|Obtains|Inherits|Resonance Liberation|"
                        r"Resonance Skill|Forte Circuit|Intro Skill|Outro Skill|Basic Attack|Heavy Attack)\s)+")
 AUTO_STOP = set("""All Max HP Shield Cooldown Parry Sprint STA DMG ATK DEF HP Crit Echo Resonator Resonators Energy Concerto
 Co-op Mode Walking Mode Aiming Mode Wind Voice Mind Blazes Cooldown Photo Dodge Counter Mid-air Attack Plunging Attack
@@ -218,7 +222,7 @@ Havoc Fusion Glacio Aero Electro Spectro Physical Tune Break Boost Negative Stat
 AUTO_STOP = {w.strip() for line in AUTO_STOP for w in [line]} | {
     'All', 'Max HP', 'Shield', 'Cooldown', 'Parry', 'Sprint', 'STA', 'Co-op Mode', 'Walking Mode', 'Wind', 'Voice',
     'Mind', 'Blazes', 'Photo', 'Unbound', 'Avatar', 'Capacity', 'Overload', 'Overlimit', 'Enrichment',
-    'Each', 'The', 'This', 'Every', 'Form', 'Breath', 'Laser'}
+    'Each', 'The', 'This', 'Every', 'Form', 'Breath', 'Laser', 'Stamina', 'Energy'}
 AUTO_BAD_WORD = {'DMG', 'ATK', 'DEF', 'HP', 'Amplifies', 'Resonance', 'Liberation', 'Attack', 'Skill'}
 DEFINING = re.compile(r"\b(enters?|activates?|gains?|obtains?|grants?|can hold|up to|becomes?|is replaced|lasts?)\b", re.I)
 SKILL_HEAD = re.compile(r'^(Basic|Heavy|Mid-air|Plunging|Dodge|Resonance|Intro|Outro|Enhanced|Forte|Normal|Avatar|During|Upward)\b')
@@ -232,6 +236,9 @@ def clean_term(raw, char):
     t = raw.strip()
     t = re.sub(r"^" + re.escape(char['name'].split()[0]) + r"(?:\s\w+)?['’]s\s", '', t)
     t = LEAD_DROP.sub('', t).strip()
+    # "Shorekeeper's Energy", "Aemeath's Crit": a stat of the Resonator, not a named mechanic
+    if any(re.search(re.escape(w) + r"['’]s\b", t) for w in char['name'].replace('(', ' ').replace(')', ' ').split()):
+        return ''
     return t
 
 
@@ -285,11 +292,30 @@ def auto_terms(chars, taken):
                 if best is None or score > best[0]:
                     best = (score, {'kind': kind_src, 'index': idx, 'line': j, 'n': 1})
             if best:
-                offer(term, kind, best[1], 1)
+                ref = best[1]
+                if ref['kind'] == 'skill':  # "…obtain Frost in the following ways:" -> quote the list too
+                    lines = c['skills'][ref['index']]['desc']
+                    if lines[ref['line']].rstrip().endswith(':'):
+                        k = ref['line'] + 1
+                        while k < len(lines) and k - ref['line'] <= 3 and lines[k].startswith('• '):
+                            k += 1
+                        ref['n'] = k - ref['line']
+                offer(term, kind, ref, 1)
         blob = '\n'.join(l for *_, l in texts)
+        def singular(w):
+            return [w[:-3] + 'y', w[:-1]] if w.endswith('ies') else [w[:-1]] if w.endswith('s') else []
         for term, (kind, ref, _) in cands.items():
-            if len(re.findall(r'(?<![A-Za-z0-9])' + re.escape(term) + r'(?![A-Za-z0-9])', blob)) < 2:
+            plural = re.escape(term[:-1]) + 'ies' if term.endswith('y') else re.escape(term) + 's'
+            if len(re.findall(r'(?<![A-Za-z0-9])(?:' + plural + '|' + re.escape(term) + r')(?![A-Za-z0-9])', blob)) < 2:
                 continue  # mentioned once (only its heading): nothing to link
+            if any(x in cands or x in taken for x in singular(term)):
+                continue  # plural of a known term: linked through its alias
+            longer = [x for x in cands if x != term and term in x]
+            rest = blob
+            for x in sorted(longer, key=len, reverse=True):
+                rest = rest.replace(x, '')
+            if longer and not re.search(r'(?<![A-Za-z0-9])' + re.escape(term) + r'(?![A-Za-z0-9])', rest):
+                continue  # only ever part of a longer name ("Wide Field" in "Wide Field Observation Mode")
             e = found.setdefault(term, {'kind': kind, 'defs': {}})
             e['defs'][c['slug']] = ref
     # a shorter term fully contained in a longer auto term of the same Resonator is kept:
@@ -373,10 +399,11 @@ def main():
     # plural forms used in the text ("Volatile Notes") link to the singular term
     all_text = '\n'.join(l for c in chars for s in c['skills'] + c.get('resonance_chain', []) for l in s['desc'])
     for m in mechanics:
-        plural = m['term'] + 's'
-        if (not m['term'].endswith('s') and term_in(plural, all_text) and plural not in m.get('aliases', [])
-                and plural not in {x['term'] for x in mechanics}):
-            m.setdefault('aliases', []).append(plural)
+        term = m['term']
+        for plural in ([term[:-1] + 'ies'] if term.endswith('y') else []) + [term + 's']:
+            if (not term.endswith('s') and term_in(plural, all_text) and plural not in m.get('aliases', [])
+                    and plural not in {x['term'] for x in mechanics}):
+                m.setdefault('aliases', []).append(plural)
     print(f'auto kit terms: {len(autos)}')
     missing_owner = [t for t in OWNER_OF if t not in {m['term'] for m in mechanics}]
     if missing_owner:
