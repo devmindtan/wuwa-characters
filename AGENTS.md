@@ -39,7 +39,7 @@
 - Hệ số kỹ năng Lv1–10 (`skills[].scaling`) lấy từ template `Skill Scaling` trên trang từng kỹ năng của wiki, chỉ nhận khi `resonator` của trang khớp nhân vật; giữ nguyên chuỗi giá trị của wiki (ví dụ `31.74%+47.60`), không tự quy đổi. Chi phí từng cấp (`level_costs`) lấy từ trang `<Resonator>/Combat`.
 - Chưa có nguồn cho giá trị các nút Stat Bonus trong skill tree: không tự điền số.
 - Chạy dự án: `./run.sh` → `http://127.0.0.1:8000`.
-- API tối thiểu: `/api/meta`, `/api/characters`, `/api/characters/{slug}`, `/api/mechanics`, `/api/changes`.
+- API tối thiểu: `/api/meta`, `/api/summary`, `/api/search`, `/api/characters`, `/api/characters/{slug}`, `/api/mechanics`, `/api/index`, `/api/changes`. Frontend chỉ tải `/api/summary` + `/api/mechanics` + `/api/index` lúc mở trang; `/api/search` tải ngầm; dữ liệu đầy đủ của một nhân vật tải khi mở hồ sơ (`/api/characters/{slug}`, có cache). Không để frontend cần dữ liệu đầy đủ của nhân vật khác: thứ gì cần (ví dụ đoạn trích định nghĩa chéo) phải sinh sẵn ở bước build.
 
 ## 4. Hiển thị kỹ năng
 

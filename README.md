@@ -21,6 +21,8 @@ Lần đầu, script tự tạo `.venv` và cài `requirements.txt`. Sau đó m�
 | Endpoint | Trả về |
 |---|---|
 | `GET /api/meta` | Bản game hiện tại, ngày cập nhật, số nhân vật/kỹ năng, số nhân vật có thay đổi |
+| `GET /api/summary` | `meta` + các trường cần cho trang danh sách (~2 KB gzip); trang dùng endpoint này lúc mở |
+| `GET /api/search` | Chuỗi tìm kiếm toàn văn (tên, giới thiệu, kỹ năng, Resonance Chain; EN + VI) theo slug, tải ngầm |
 | `GET /api/characters` | `meta` + danh sách đầy đủ nhân vật |
 | `GET /api/characters/{slug}` | Một nhân vật (404 nếu không có), ví dụ `/api/characters/jinhsi` |
 | `GET /api/mechanics` | Danh sách cơ chế/thuật ngữ và phần giải thích |
