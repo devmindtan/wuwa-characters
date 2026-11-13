@@ -6,7 +6,7 @@ import pytest
 
 from build_combos import parse_step, title_vi
 from conftest import ROOT
-from kit_rules import INPUT_LINE, kind_trigger, negated
+from kit_rules import INPUT_LINE, kind_trigger, negated, outcomes_of
 
 
 @pytest.fixture(scope='module')
@@ -58,23 +58,46 @@ def test_title_vi():
     assert title_vi('4 DEATH MESSENGER COMBO (DIFFICULTY = IMPOSSIBLE)') == ''  # untranslatable: keep EN
 
 
-def test_phrolova_echo_step_activates_kit_chain_and_weapon(characters, combos):
-    c = next(x for x in characters if x['slug'] == 'phrolova')
-    loop = next(r for r in combos['phrolova']['rotations'] if r['title'] == 'Loop Rotation')
-    echo = next(s for s in loop['steps'] if s['kind'] == 'echo')
-    lines = [line_of(c, t, li) for t, li in echo['refs']]
-    assert any(l.startswith('Casting Echo Skill grants increased resistance') for l in lines)  # Inherent Accidental
-    assert any(t.startswith('chain-4') for t, _ in echo['refs'])  # S4
-    assert any(t == 'weapon' for t, _ in echo['refs'])  # Lethean Elegy: after dealing Echo Skill DMG
+def test_outcomes_are_short_and_grounded():
+    assert outcomes_of('When performing Basic Attack Stage 3, enter Reincarnate state.') == [
+        ('Vào trạng thái Reincarnate', 'Enter Reincarnate')]
+    assert ('+120% ATK', '+120% ATK') in outcomes_of('Gain 120% ATK increase.')
+    assert ('+14 Aftersound', '+14 Aftersound') in outcomes_of('Casting Scarlet Coda grants 14 stacks of Aftersound.')
+    # negations and timers are not results of the action
+    assert outcomes_of("Waltz of Forsaken Depths does not consume Resonance Energy.") == []
+    assert outcomes_of('Phrolova enters the Compose state every 25s.') == []
+    assert negated('Casting this skill is considered as casting Echo Skill.', 'echo')
 
 
-def test_every_reference_resolves(characters, combos):
+def flow_of_rot(combos, slug, title):
+    return next(r for r in combos[slug]['rotations'] if r['title'] == title)['flow']
+
+
+def test_phrolova_loop_reads_as_player_actions(combos):
+    flow = flow_of_rot(combos, 'phrolova', 'Loop Rotation')
+    says = [a['say_vi'] for a in flow]
+    assert says[0].startswith('Đổi vào sân bằng Intro Skill')
+    assert 'Đánh thường 3 đòn liên tiếp (đòn 1 → 3)' in says  # Basic 1, 2, 3 merged
+    assert not any(a['say_vi'] == 'Lướt (Dash)' for a in flow)  # Dash that only cancels is folded in
+    echo = next(a for a in flow if a['kind'] == 'echo')
+    vis = [o['vi'] for o in echo['out']]
+    assert 'Giảm 30% sát thương nhận vào' in vis  # Inherent Accidental
+    assert any(o['cond'] == 4 for o in echo['out']) and any(o['cond'] == 'weapon' for o in echo['out'])
+    lib = next(a for a in flow if a['kind'] == 'lib')
+    assert {'Vào trạng thái Maestro', '+120% ATK'} <= {o['vi'] for o in lib['out']}
+    coda = next(a for a in flow if 'Scarlet Coda' in a['say_en'])
+    assert not any('Scarlet Coda' in o['en'] for o in coda['out'])  # how you get the move is not its result
+
+
+def test_every_result_points_at_a_real_line(characters, combos):
     by = {c['slug']: c for c in characters}
     for slug, data in combos.items():
-        c = by[slug]
-        for ref in data['triggers'] + [r for rot in data['rotations'] for st in rot['steps'] for r in st['refs']]:
-            line = line_of(c, *ref)
-            assert line and not INPUT_LINE.match(line), (slug, ref)
+        for rot in data['rotations']:
+            for a in rot['flow']:
+                assert a['say_vi'] and a['say_en'] and a['token'], (slug, a)
+                for o in a['out']:
+                    line = line_of(by[slug], *o['ref'])
+                    assert line and not INPUT_LINE.match(line), (slug, o)
 
 
 def test_most_resonators_have_combos(combos):

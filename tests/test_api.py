@@ -51,5 +51,5 @@ def test_search_finds_signature_weapon(client):
 
 def test_combos(client):
     body = client.get('/api/combos/phrolova').json()
-    assert body['rotations'] and body['rotations'][0]['steps'][0]['refs'] is not None
+    assert body['rotations'] and body['rotations'][0]['flow'][0]['say_vi']
     assert client.get('/api/combos/khong-co').status_code == 404

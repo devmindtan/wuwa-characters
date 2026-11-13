@@ -8,8 +8,11 @@ data ("skill-3", "chain-1", "weapon"). Matching is keyword based (scripts/kit_ru
 and the UI labels it as automatic.
 
 Output per Resonator:
-  {source, rotations: [{title, title_vi, steps: [{text, label, kind, hint, hint_vi, n, refs}]}],
-   triggers: [[target, line], ...]}   # every conditional kit line, to show what a rotation leaves unused
+  {source, fetched, rotations: [{title, title_vi, flow: [action]}]}
+  action = {say_vi, say_en, token, kind, cond, hint, hint_vi, n, steps[], same?,
+            out: [{vi, en, ref: [target, line], cond: null | S-node | "weapon"}]}
+The flow says what the player presses (Basic 1 -> 3 merged, a cancelling Dash folded in) and the
+short results (scripts/kit_rules.py OUTCOME_RULES) of the lines each action activates.
 """
 
 import json
@@ -19,7 +22,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from kit_rules import (EFFECT_RX, INPUT_LINE, KIND_REF, KIND_TYPE, is_heading, kind_trigger,  # noqa: E402
-                       name_trigger, negated, step_kind)
+                       name_trigger, negated, outcomes_of, step_kind)
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / 'data' / 'characters.json'
@@ -185,6 +188,95 @@ def effect_lines(section_lines):
     return [(li, line) for li, line in section_lines if EFFECT_RX.search(line) and not INPUT_LINE.match(line)]
 
 
+# What the player presses, in plain words. Keys are the PC defaults (E skill, Q Echo, R Liberation).
+SAY = {
+    'basic': ('Đánh thường', 'Basic Attack'),
+    'heavy': ('Giữ đánh thường (Heavy Attack)', 'Hold Basic Attack (Heavy Attack)'),
+    'skill': ('Dùng Resonance Skill (E)', 'Use Resonance Skill (E)'),
+    'lib': ('Tung Resonance Liberation (R)', 'Cast Resonance Liberation (R)'),
+    'intro': ('Đổi vào sân bằng Intro Skill', 'Swap in with Intro Skill'),
+    'outro': ('Đổi nhân vật, kích hoạt Outro Skill', 'Swap out, triggering Outro Skill'),
+    'echo': ('Dùng Echo (Q)', 'Use Echo (Q)'),
+    'midair': ('Đánh trên không', 'Mid-air Attack'),
+    'dodge': ('Né đúng lúc rồi phản đòn (Dodge Counter)', 'Dodge, then counter (Dodge Counter)'),
+}
+MOVE_SAY = {'dash': ('Lướt (Dash)', 'Dash'), 'jump': ('Nhảy', 'Jump'), 'swap': ('Đổi nhân vật', 'Swap'),
+            'switch': ('Đổi vào sân', 'Swap in'), 'dodge': ('Né', 'Dodge')}
+TOKEN = {'basic': 'B', 'heavy': 'Heavy', 'skill': 'E', 'lib': 'R', 'intro': 'Intro', 'outro': 'Outro', 'echo': 'Q',
+         'midair': 'Air', 'dodge': 'Counter'}
+
+
+def say(st):
+    """(vi, en, token) for one parsed step."""
+    kind, name, stage, label = st['kind'], st['name'], st['stage'], st['label']
+    if kind in (None, 'move'):
+        word = label.split()[0].lower().rstrip(':') if label else ''
+        vi, en = MOVE_SAY.get(word.split('-')[0], (label, label))
+        if kind is None:
+            vi = en = label
+        return vi, en, (label.split()[0] if label else '?')
+    vi, en = SAY[kind]
+    token = TOKEN[kind]
+    if kind == 'basic' and stage:
+        vi, en, token = f'Đánh thường đòn {stage}', f'Basic Attack {stage}', f'B{stage}'
+    if name:
+        short = name if len(name) <= 22 else name[:20].rstrip() + '…'
+        vi, en = f'{vi}: {name}', f'{en}: {name}'
+        token = short if kind in ('basic', 'heavy') else f'{token} · {short}'
+    if st.get('state'):
+        vi, en = f'{vi} (trong {st["state"]})', f'{en} (in {st["state"]})'
+    return vi, en, token
+
+
+def flow_of(parsed, steps, step_outcomes):
+    """Player-facing sequence: Basic 1 -> 2 -> 3 merged, a Dash that only cancels folded into the step before."""
+    flow = []
+    for i, (st, out) in enumerate(zip(parsed, steps)):
+        if not st['label'].strip():
+            continue  # an empty bullet in the source list
+        vi, en, token = say(st)
+        hint, hint_vi = out['hint'], out['hint_vi']
+        prev = flow[-1] if flow else None
+        word = (st['label'].split() or [''])[0].lower()
+        if st['kind'] == 'move' and word == 'dash' and prev and 'dash' in (prev['hint'] or '').lower() and not hint:
+            prev['steps'].append(i)
+            continue
+        results = step_outcomes(out['refs'])
+        if st['name']:  # "Heavy Attack is replaced with Scarlet Coda" is how you get the move, not what it does
+            own = re.sub(r'\s+\d+$', '', st['name'])
+            results = [o for o in results if not (o['en'].endswith('becomes ' + own) or o['en'] == 'Unlock ' + own
+                                                   or o['en'].endswith('becomes ' + st['name']))]
+        item = {'say_vi': vi, 'say_en': en, 'token': token, 'kind': st['kind'] or 'other', 'cond': st['cond'],
+                'hint': hint, 'hint_vi': hint_vi, 'n': st['n'], 'steps': [i], 'out': results,
+                'stage': st['stage'] if st['kind'] == 'basic' and not st['name'] and not st.get('state') else None}
+        # Basic 1, Basic 2, Basic 3 in a row (no cancel in between) read as one action
+        if (item['stage'] and prev and prev.get('stage') and item['stage'] == prev['stage_to'] + 1
+                and not prev['hint'] and not prev['cond'] and not item['cond']):
+            prev['stage_to'] = item['stage']
+            a, z = prev['stage'], item['stage']
+            prev['say_vi'] = f'Đánh thường {z - a + 1} đòn liên tiếp (đòn {a} → {z})'
+            prev['say_en'] = f'Basic Attack {z - a + 1} times (stage {a} → {z})'
+            prev['token'] = f'B{a}–{z}'
+            prev['hint'], prev['hint_vi'] = hint, hint_vi
+            prev['steps'].append(i)
+            known = {o['vi'] for o in prev['out']}
+            prev['out'] += [o for o in item['out'] if o['vi'] not in known]
+            continue
+        item['stage_to'] = item['stage']
+        flow.append(item)
+    seen = {}
+    for k, item in enumerate(flow):
+        item.pop('stage', None)
+        item.pop('stage_to', None)
+        key = '|'.join(o['vi'] for o in item['out'])
+        if key and key in seen:  # same results as an earlier step: say so instead of repeating them
+            item['same'] = seen[key]
+            item['out'] = []
+        elif key:
+            seen[key] = k
+    return flow
+
+
 def build_char(c, raw):
     units = list(kit_units(c))
     text_of = {(t, li): line for t, li, line, _ in units}
@@ -248,6 +340,26 @@ def build_char(c, raw):
             out.append(list(r))
         return out
 
+    sw_name = (c.get('signature_weapon') or {}).get('name', '')
+
+    def step_outcomes(refs):
+        out, seen = [], set()
+        for t, li in refs:
+            if t == 'weapon':
+                pairs, cond = [(f'Kích hoạt hiệu ứng {sw_name}', f'Triggers {sw_name}')], 'weapon'
+            else:
+                pairs = outcomes_of(text_of[(t, li)])
+                cond = int(t.split('-')[1]) if t.startswith('chain') else None
+                if cond and not pairs:
+                    pairs = [(f'Kích hoạt S{cond}', f'Triggers S{cond}')]
+            for vi, en in pairs:
+                if vi in seen:
+                    continue
+                seen.add(vi)
+                out.append({'vi': vi, 'en': en, 'ref': [t, li], 'cond': cond})
+        base = [o for o in out if o['cond'] is None][:4]
+        return base + [o for o in out if o['cond'] is not None]
+
     rotations = []
     for b in raw.get('blocks', []):
         steps = [parse_step(s) for s in b['steps']]
@@ -263,16 +375,10 @@ def build_char(c, raw):
                 'n': st['n'], 'refs': step_refs(st) if st['kind'] not in (None, 'move') else [],
             })
         title = b['title'] or 'Rotation'
-        rotations.append({'title': title, 'title_vi': title_vi(title), 'steps': out_steps})
+        rotations.append({'title': title, 'title_vi': title_vi(title),
+                          'flow': flow_of(steps, out_steps, step_outcomes)})
 
-    all_triggers = []
-    for t, li, line, _ in units:
-        if INPUT_LINE.match(line):
-            continue
-        if any(rx.search(line) and not negated(line, k) for k, rx in triggers.items()):
-            all_triggers.append([t, li])
-    return {'source': raw.get('url', ''), 'fetched': raw.get('fetched', ''), 'rotations': rotations,
-            'triggers': all_triggers}
+    return {'source': raw.get('url', ''), 'fetched': raw.get('fetched', ''), 'rotations': rotations}
 
 
 def build(chars, raw):
@@ -285,8 +391,8 @@ def main():
     out = build(chars, raw)
     OUT.write_text(json.dumps(out, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
     rot = sum(len(v['rotations']) for v in out.values())
-    steps = sum(len(r['steps']) for v in out.values() for r in v['rotations'])
-    print(f'{len(out)} Resonators, {rot} rotations, {steps} steps -> {OUT.relative_to(ROOT)} '
+    steps = sum(len(r['flow']) for v in out.values() for r in v['rotations'])
+    print(f'{len(out)} Resonators, {rot} rotations, {steps} actions -> {OUT.relative_to(ROOT)} '
           f'({OUT.stat().st_size // 1024} KB)')
     print('no rotation:', [s for s, v in out.items() if not v['rotations']])
 

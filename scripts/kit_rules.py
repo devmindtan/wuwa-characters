@@ -245,8 +245,11 @@ INPUT_LINE = re.compile(r'^(?:•\s*)?(?:[^.:]{0,40}:\s*)?(?:Press|Hold|Tap|Rele
 
 
 def negated(line, kind):
-    """"switch in without casting Intro Skill": the action is explicitly not performed."""
-    return bool(re.search(r'\bwithout (?:casting|using|performing) (?:an? |the )?' + KIND_REF[kind], line, re.ASCII))
+    """"switch in without casting Intro Skill": the action is explicitly not performed;
+    "casting this skill is considered as casting Echo Skill": another move counts as one, not this step."""
+    ref = KIND_REF[kind]
+    return bool(re.search(r'\bwithout (?:casting|using|performing) (?:an? |the )?' + ref, line, re.ASCII)
+                or re.search(r'\bconsidered (?:as )?(?:casting |an? )?' + ref, line, re.ASCII))
 
 
 def step_kind(head):
@@ -275,3 +278,55 @@ def name_trigger(name):
 
 def is_heading(line):
     return not line.startswith('• ') and len(line) < 72 and not re.search(r'[.!?:]$', line)
+
+
+# ---- combos: short outcomes for the player-facing view ("Vào trạng thái Reincarnate", "+1 Volatile Note") ----
+# Each rule turns one kit line into a few words, keeping the in-game names; lines no rule covers are not
+# summarised (the original line stays one click away). Templates: {1}.. are the regex groups.
+_N = r"([A-Z][\w'’]*(?:(?:\s-\s|\s(?:of|the|and|in|a|to)\s|\s)[A-Z][\w'’]*){0,5})"
+_STAT = r"(ATK|DEF|Max HP|HP|Crit\. Rate|Crit\. DMG|Energy Regen|(?:[A-Z][\w-]*\s){0,3}DMG (?:Bonus|Amplification))"
+_STATUS = r'(Spectro Frazzle|Aero Erosion|Havoc Bane|Fusion Burst|Glacio Chafe|Electro Flare)'
+OUTCOME_RULES = [
+    (re.compile(r'\b(?:enters?|entering|activates|activating)\s+(?:the\s+|into\s+(?:the\s+)?)?' + _N + r'(?:\s(?:state|Mode|Form|Stance))', A),
+     'Vào trạng thái {1}', 'Enter {1}'),
+    (re.compile(r'\bsends?\s+\w+\s+into\s+(?:the\s+)?' + _N, A), 'Vào trạng thái {1}', 'Enter {1}'),
+    (re.compile(r'\bends?\s+(?:the\s+)?' + _N + r'\s(?:state|Mode|Form|Stance)', A), 'Kết thúc {1}', 'End {1}'),
+    (re.compile(r'\b(?:[Gg]rants?|[Gg]ains?|[Oo]btains?|[Gg]enerates?)\s+(?:the wielder\s+|\w+\s+)?(\d+)\s+(?:stacks?|points?)\s+of\s+' + _N, A),
+     '+{1} {2}', '+{1} {2}'),
+    (re.compile(r'\b(?:[Gg]rants?|[Gg]ains?|[Oo]btains?)\s+(\d+)\s+' + _N, A), '+{1} {2}', '+{1} {2}'),
+    (re.compile(r'\b(?:[Rr]estores?|[Rr]ecovers?)\s+(\d+)\s+(?:points? of\s+)?(Concerto Energy|Resonance Energy|STA)', A),
+     'Hồi {1} {2}', 'Restore {1} {2}'),
+    (re.compile(r'\b[Gg]ains?\s+(\d+(?:\.\d+)?%)\s+' + _STAT, A), '+{1} {2}', '+{1} {2}'),
+    (re.compile(r'\band\s+(\d+(?:\.\d+)?%)\s+' + _STAT, A), '+{1} {2}', '+{1} {2}'),
+    (re.compile(_STAT + r'\s(?:is\s)?increased by\s(\d+(?:\.\d+)?%)', A), '+{2} {1}', '+{2} {1}'),
+    (re.compile(r'\b(?:inflicts?|applies?|inflicting|applying)\s+(\d+)\s+stacks?\s+of\s+' + _STATUS, A),
+     'Gây {1} tầng {2}', 'Inflict {1} {2}'),
+    (re.compile(r'\b' + _N + r'\sis replaced (?:with|by)\s' + _N, A), '{1} đổi thành {2}', '{1} becomes {2}'),
+    (re.compile(r'\b' + _N + r'\sbecomes? available', A), 'Mở {1}', 'Unlock {1}'),
+    (re.compile(r'\breduces? (?:the )?damage taken by\s(\d+%)', A), 'Giảm {1} sát thương nhận vào', '-{1} DMG taken'),
+    (re.compile(r'\bconsumes?\s+(?:all\s+|up to\s+\d+\s+)?(?:stacks? of\s+|points? of\s+)?' + _N, A), 'Tiêu hao {1}', 'Consume {1}'),
+    (re.compile(r'\bStagnat(?:e|es|ing)\b', A), 'Gây Stagnate', 'Stagnate'),
+    (re.compile(r'\bpull(?:s|ing)? (?:in|the targets? in)\b', A), 'Kéo gom mục tiêu', 'Pull targets in'),
+    (re.compile(r'\b(?:heals?|healing)\b', A), 'Hồi máu', 'Heal'),
+]
+
+
+def outcomes_of(line):
+    """Short (vi, en) outcomes a kit line states, in rule order, without repeats."""
+    out = []
+    for rx, vi, en in OUTCOME_RULES:
+        for m in rx.finditer(line):
+            groups = [g.strip() for g in m.groups()]
+            if any(g in ('The', 'This', 'When', 'After', 'Resonators', 'Resonator') for g in groups):
+                continue
+            if re.search(r"\b(?:not|n't|cannot|no longer)\s+(?:\w+\s+)?$", line[max(0, m.start() - 20):m.start()]):
+                continue  # "does not consume Resonance Energy"
+            if len(groups) >= 2 and not groups[0].isdigit() and groups[0] == groups[1]:
+                continue
+            if vi.startswith('Vào trạng thái') and re.search(r'\bevery \d+(?:\.\d+)?s\b', line):
+                continue  # "enters the Compose state every 25s": a timer, not this action
+            fill = lambda tpl: re.sub(r'\{(\d)\}', lambda k: groups[int(k.group(1)) - 1], tpl)
+            pair = (fill(vi), fill(en))
+            if pair not in out:
+                out.append(pair)
+    return out
