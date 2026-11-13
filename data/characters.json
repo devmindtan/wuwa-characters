@@ -40110,8 +40110,8 @@
       "When Aftersound reaches the max, each new stack of Aftersound increases Phrolova's Crit. DMG by 1%, up to 100%. The increased Crit. DMG is removed when Aftersound stacks are cleared."
      ],
      "desc_vi": [
-      "Nhận được 10 điểm dư âm khi tham gia trận chiến. Hiệu ứng này không thể được kích hoạt lại trong vòng 4 giây sau khi thoát khỏi trạng thái chiến đấu. Với mỗi 1 tầng Aftersound, Crit. DMG được tăng thêm 2,5%.",
-      "Khi Aftersound đạt mức tối đa, mỗi tầng Aftersound mới sẽ tăng Phrolova của Crit. DMG thêm 1%, tối đa 100%. Crit. DMG tăng lên sẽ bị xóa khi xóa tầng Hậu âm."
+      "Nhận 10 tầng Aftersound khi vào chiến đấu. Hiệu ứng này không thể kích hoạt lại trong 4 giây sau khi rời trạng thái chiến đấu. Mỗi 1 tầng Aftersound tăng 2,5% Crit. DMG.",
+      "Khi Aftersound đạt tối đa, mỗi tầng Aftersound mới tăng 1% Crit. DMG của Phrolova, tối đa 100%. Crit. DMG tăng thêm sẽ bị xóa khi các tầng Aftersound bị xóa."
      ],
      "icon": "assets/skills/skill_octet.webp"
     },
