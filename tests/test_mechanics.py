@@ -84,3 +84,16 @@ def test_curated_file_schema(characters):
         assert t['kind'] in kinds, t
         assert t.get('owner') is None or t['owner'] in slugs, t
         assert t.get('source') in (None, 'wiki'), t
+
+
+def test_chain_node_without_image_field_uses_wiki_default():
+    # Camellya/Carlotta/Zani... leave "|image=" empty; the wiki shows "Sequence Node <title>.png".
+    from fetch_wiki import node_image
+    assert node_image('Somewhere No One Travelled') == 'Sequence Node Somewhere No One Travelled.png'
+
+
+def test_chain_icons_present(characters):
+    # Only nodes whose file does not exist on the wiki yet may lack an icon.
+    known_missing = {('lucilla', 4), ('rover-electro', 5)}
+    missing = {(c['slug'], n['node']) for c in characters for n in c.get('resonance_chain', []) if not n.get('img')}
+    assert missing <= known_missing

@@ -224,6 +224,11 @@ def image_urls(files):
     return out
 
 
+def node_image(title):
+    """Default file the wiki's Node Infobox shows when its |image= is empty."""
+    return f'Sequence Node {title}.png'
+
+
 def infobox(src, field):
     m = re.search(r'^\s*\|\s*' + field + r'\s*=\s*(.*?)(?=^\s*\||^\}\})', src, re.S | re.M)
     return m.group(1).strip() if m else ''
@@ -421,6 +426,10 @@ def main():
             'resonator': infobox(src, 'resonator'),
             'image': infobox(src, 'image'),
         }
+    # An empty "|image=" makes the Node Infobox fall back to "Sequence Node <title>.png".
+    for title, node in node_src.items():
+        if not node['image'].strip():
+            node['image'] = node_image(title)
     print('node pages:', len(node_src), 'missing:', sorted(set(want) - set(node_src)))
 
     sig = fetch_signature_weapons(cache, set(names))
