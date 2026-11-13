@@ -34,6 +34,9 @@ function originalLine(c, [target, li]) {
   return node ? `S${node.node} ${node.name}: ${(vi && node.desc_vi?.[li]) || node.desc?.[li] || ''}` : '';
 }
 
+// The button a step is about: E / Q / R / Basic... (movement steps show their own word: Dash, Jump, Swap).
+const capOf = (a) => (['move', 'other'].includes(a.kind) ? a.token : t('cb_cap_' + a.kind));
+
 // Assumptions: Resonance Chain owned up to S{n}, signature weapon equipped or not.
 const allowed = (o) => !(typeof o.cond === 'number' && o.cond > state.comboS) && !(o.cond === 'weapon' && !state.comboWeapon);
 
@@ -49,6 +52,7 @@ function summaryHTML(c, flow) {
   const en = state.showEn;
   const presses = {};
   const states = [], status = new Map(), resources = new Map(), self = [], next = [], guard = [], control = [], extra = [];
+  const energy = [], summons = [], spends = [], moves = [], damage = [];
   const push = (list, o) => { if (!list.some((x) => x.vi === o.vi)) list.push(o); };
   flow.forEach((a) => {
     if (!['move', 'other'].includes(a.kind)) presses[a.kind] = (presses[a.kind] || 0) + (a.times || 1);
@@ -64,6 +68,11 @@ function summaryHTML(c, flow) {
       else if (o.cat === 'defense' || o.cat === 'heal') push(guard, o);
       else if (o.cat === 'control') push(control, o);
       else if (o.cat === 'trigger') push(extra, o);
+      else if (o.cat === 'energy') push(energy, o);
+      else if (o.cat === 'summon') push(summons, o);
+      else if (o.cat === 'consume') push(spends, o);
+      else if (o.cat === 'unlock') push(moves, o);
+      else if (o.cat === 'damage') push(damage, o);
     });
   });
   const fmt = (n) => (Number.isInteger(n) ? n : Number(n.toFixed(1))).toLocaleString(en ? 'en' : 'vi');
@@ -71,10 +80,16 @@ function summaryHTML(c, flow) {
   const sum = (map, word) => [...map.values()].map(({qty, o}) => resultHTML(c, {...o, vi: `${word.vi}${fmt(qty)} ${o.name}`, en: `${word.en}${fmt(qty)} ${o.name}`})).join('');
   const kinds = ['basic', 'heavy', 'skill', 'echo', 'lib', 'intro', 'outro', 'midair', 'dodge'].filter((k) => presses[k]);
   const rows = [
-    [t('cb_sum_inputs'), `<span class="cb-sum-txt">${kinds.map((k) => `${esc(t('cb_key_' + k))} ×${presses[k]}`).join(' · ')}</span>`],
+    [t('cb_sum_inputs'), kinds.map((k) => {
+      const cap = t('cb_cap_' + k), name = t('cb_key_' + k);
+      return `<span class="cb-keycount k-${k}"><kbd>${esc(cap)}</kbd><b>×${presses[k]}</b>${name !== cap ? `<small>${esc(name)}</small>` : ''}</span>`;
+    }).join('')],
     states.length && [t('cb_sum_states'), `<span class="cb-sum-txt">${states.map(esc).join(' → ')}</span>`],
-    resources.size && [t('cb_sum_gain'), sum(resources, {vi: '+', en: '+'})],
-    (status.size || control.length) && [t('cb_sum_enemy'), sum(status, {vi: 'Gây ', en: 'Inflict '}) + chips(control)],
+    moves.length && [t('cb_sum_moves'), chips(moves)],
+    (resources.size || energy.length) && [t('cb_sum_gain'), sum(resources, {vi: '+', en: '+'}) + chips(energy)],
+    spends.length && [t('cb_sum_spend'), chips(spends)],
+    (status.size || control.length || damage.length) && [t('cb_sum_enemy'), chips(damage) + sum(status, {vi: 'Gây ', en: 'Inflict '}) + chips(control)],
+    summons.length && [t('cb_sum_summon'), chips(summons)],
     self.length && [t('cb_sum_self'), chips(self)],
     guard.length && [t('cb_sum_guard'), chips(guard)],
     next.length && [t('cb_sum_next'), chips(next)],
@@ -122,12 +137,13 @@ export async function renderCombo() {
     const res = a.out.filter(allowed);
     const hint = a.hint ? `<span class="cb-hint"${!en && a.hint_vi ? ` data-tip="${esc(a.hint)}"` : ''}>${esc((!en && a.hint_vi) || a.hint)}</span>` : '';
     let then = '';
-    if (a.same != null) then = `<p class="cb-then cb-then-same">${esc(t('cb_same_as', {k: a.same + 1}))}</p>`;
+    const same = a.same != null ? `<span class="cb-same-tag">${esc(t('cb_same_short', {k: a.same + 1}))}</span>` : '';
+    if (a.same != null) then = '';
     else if (res.length) then = `<p class="cb-then"><span class="cb-then-k">${esc(t('cb_then'))}</span>${res.map((o) => resultHTML(c, o)).join('')}</p>`;
-    return `<li class="cb-act k-${a.kind}">
+    return `<li class="cb-act k-${a.kind}${a.same != null ? ' is-same' : ''}">
       <span class="cb-n">${i + 1}</span>
       <div class="cb-act-body">
-        <p class="cb-say">${a.cond ? `<em>${esc(a.cond)}:</em> ` : ''}${esc(en ? a.say_en : a.say_vi)}${a.n ? ` <b>×${a.n}</b>` : ''}</p>
+        <p class="cb-say"><kbd class="cb-cap k-${a.kind}">${esc(capOf(a))}</kbd><span>${a.cond ? `<em>${esc(a.cond)}:</em> ` : ''}${esc(en ? a.say_en : a.say_vi)}${a.n ? ` <b>×${a.n}</b>` : ''}${same}</span></p>
         ${hint}${then}
       </div>
     </li>`;
