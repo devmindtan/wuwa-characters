@@ -68,6 +68,18 @@ if new != old and new['meta'].get('updated') != today:
 PY
 fi
 
+# 2b. Tests (pytest from requirements-dev.txt) when data, scripts, app or tests change.
+if printf '%s\n' "$staged" | grep -qE '^(data|scripts|app|tests)/'; then
+  if "$PY" -c 'import pytest' 2>/dev/null; then
+    echo "→ pytest"
+    out=$(mktemp)
+    "$PY" -m pytest -q -p no:cacheprovider tests >"$out" 2>&1 || { tail -25 "$out"; echo "✗ pytest FAIL"; fail=1; }
+    rm -f "$out"
+  else
+    echo "! pytest chưa cài: .venv/bin/pip install -r requirements-dev.txt"
+  fi
+fi
+
 # 3. Frontend/backend syntax.
 for f in $(printf '%s\n' "$staged" | grep -E '^public/.*\.js$' || true); do
   node --check "$f" || { echo "✗ Lỗi cú pháp JS: $f"; fail=1; }

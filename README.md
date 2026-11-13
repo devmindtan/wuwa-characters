@@ -85,6 +85,16 @@ Chạy bằng Python trong `.venv`:
 
 Không publish bản dịch máy thô: sau khi dịch phải chạy `python scripts/review.py`, đọc hết các dòng bị đánh dấu và rà thêm một mẫu ngẫu nhiên (xem [AGENTS.md](AGENTS.md) §2).
 
+## Kiểm thử
+
+```bash
+.venv/bin/pip install -r requirements-dev.txt
+.venv/bin/python -m pytest -q tests          # dữ liệu + quy tắc nhận diện (ca mẫu)
+./run.sh &                                    # rồi ở terminal khác:
+node tests/e2e/smoke.js                       # UI desktop + mobile (Playwright + Chrome)
+BASE_URL=https://wuwa-characters.vercel.app node tests/e2e/smoke.js   # kiểm tra bản production
+```
+
 ## Đóng góp
 
 Bật hook một lần sau khi clone:
@@ -93,7 +103,7 @@ Bật hook một lần sau khi clone:
 git config core.hooksPath .githooks
 ```
 
-- `pre-commit` chặn commit khi JSON hỏng, `review.py` fail, thông tin game của nhân vật đổi mà thiếu entry `changes`, lịch sử `changes` bị sửa, `meta.updated` chưa cập nhật, lỗi cú pháp JS/Python, hoặc stage nhầm file local.
+- `pre-commit` chặn commit khi JSON hỏng, `review.py` hoặc pytest fail, thông tin game của nhân vật đổi mà thiếu entry `changes`, lịch sử `changes` bị sửa, `meta.updated` chưa cập nhật, lỗi cú pháp JS/Python, hoặc stage nhầm file local.
 - `commit-msg` yêu cầu dạng `<type>(<scope>): <tóm tắt>`, ví dụ `ui(detail): sửa popup cơ chế`. Các type: `feat`, `fix`, `data`, `i18n`, `ui`, `api`, `docs`, `chore`, `refactor`, `test`.
 
 Trước khi mở PR, kiểm tra API bằng `curl` và giao diện ở cả desktop lẫn mobile: mở chi tiết, bấm link kỹ năng, mở popup cơ chế, đổi EN/VI, back, filter. Quy trình đầy đủ ở [AGENTS.md](AGENTS.md) §5–6.

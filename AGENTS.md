@@ -60,7 +60,8 @@
 ## 5. Kiểm chứng trước khi báo xong
 
 - `python scripts/review.py` phải pass (hoặc ghi rõ ngoại lệ đã kiểm tra).
-- Test API bằng `curl` và test UI bằng Playwright ở desktop + mobile.
+- `python -m pytest -q tests` phải pass (cài bằng `pip install -r requirements-dev.txt`). Mỗi lỗi phân loại/link đã sửa phải có một ca mẫu trong `tests/` để không tái phát.
+- Test API bằng `curl` và test UI bằng `node tests/e2e/smoke.js` (desktop + mobile; cần server đang chạy, `PLAYWRIGHT_CORE` trỏ tới playwright-core nếu chưa cài global). Test viết thêm thì đưa vào `tests/`, không để ở thư mục tạm.
 - Kiểm tra thực tế: mở chi tiết, đổi tab (Skill Tree / Bộ kỹ năng / Resonance Chain / Nguyên liệu), kéo thanh cấp, bấm link kỹ năng, mở popup cơ chế (danh sách Resonators, nhảy tới đoạn có hiệu ứng), đổi EN/VI, back, filter.
 - Không tuyên bố "đã kiểm tra" nếu chưa chạy lệnh thật.
 
