@@ -1045,12 +1045,14 @@ function traitsOf(c) {
 }
 const traitLabel = (k) => ('trait_' + k) in I18N.vi ? t('trait_' + k) : k.split('_').map((w) => w[0].toUpperCase() + w.slice(1)).join(' ');
 
+const traitDesc = (k) => (('traitd_' + k) in I18N.vi ? t('traitd_' + k) : t('trait_status_desc', {name: traitLabel(k)}));
+
 function renderTraits(c) {
   const tr = traitsOf(c);
   const keys = TRAIT_RULES.map(([k]) => k).filter((k) => tr[k]);
   $('d-traits').hidden = !keys.length;
   $('d-traits-list').innerHTML = keys.map((k) =>
-    `<button type="button" class="trait trait-${k}" data-trait="${k}">${esc(traitLabel(k))}<small>${tr[k].length}</small></button>`).join('');
+    `<button type="button" class="trait trait-${k}" data-trait="${k}" data-tip="${esc(traitDesc(k))}">${esc(traitLabel(k))}<small>${tr[k].length}</small></button>`).join('');
 }
 
 function openTrait(key) {
@@ -1063,7 +1065,7 @@ function openTrait(key) {
     return lines[o.lineIndex] || '';
   };
   const occ = ev.slice(0, 14).map((o) => ({...o, line: lineOf(o), go: o.target.startsWith('chain-') ? t('go_chain') : t('go_skill')}));
-  const desc = ('traitd_' + key) in I18N.vi ? t('traitd_' + key) : t('trait_status_desc', {name: traitLabel(key)});
+  const desc = traitDesc(key);
   openMechanic({term: traitLabel(key), kind: 'trait', trait: key, owners: [], occ,
     summary_vi: desc, summary_en: desc, source: t('trait_note', {n: ev.length})});
 }
@@ -1083,7 +1085,7 @@ function renderMechUsers() {
   const present = ROLE_RULES.map(([k]) => k).filter((k) => users.some((u) => u.roles.includes(k)));
   $('mech-roles').innerHTML = users.length > 1 && present.length > 1
     ? [['all', t('role_all')], ...present.map((k) => [k, roleLabel(k)])].map(([k, label]) =>
-      `<button type="button" class="role-chip" data-role="${k}" aria-pressed="${state.roleFilter === k}">${esc(label)}${k === 'all' ? '' : ` <small>${users.filter((u) => u.roles.includes(k)).length}</small>`}</button>`).join('')
+      `<button type="button" class="role-chip" data-role="${k}"${k === 'all' ? '' : ` data-tip="${esc(t('roled_' + k))}"`} aria-pressed="${state.roleFilter === k}">${esc(label)}${k === 'all' ? '' : ` <small>${users.filter((u) => u.roles.includes(k)).length}</small>`}</button>`).join('')
     : '';
   const shown = state.roleFilter === 'all' ? users : users.filter((u) => u.roles.includes(state.roleFilter));
   const me = users.find((u) => u.c.slug === state.current?.slug);
@@ -1092,7 +1094,7 @@ function renderMechUsers() {
     <button type="button" class="mech-user${mine ? ' is-current' : ''}" data-slug="${esc(c.slug)}" data-target="${esc(target)}" data-line="${line ?? ''}">
       <img src="${esc(c.img_icon)}" alt="" width="${mine ? 52 : 40}" height="${mine ? 52 : 40}">
       <span class="mu-main">${mine ? `<span class="mu-badge">${esc(t('me_badge'))}</span>` : ''}<b>${esc(c.name)}</b>${elIcon(c.element)}<small>${esc(t('n_places', {n: count}))}</small></span>
-      <span class="mu-roles">${roles.map((r) => `<i class="role role-${r}" title="${esc(t('roled_' + r))}">${esc(roleLabel(r))}</i>`).join('')}</span>
+      <span class="mu-roles">${roles.map((r) => `<i class="role role-${r}" data-tip="${esc(t('roled_' + r))}">${esc(roleLabel(r))}</i>`).join('')}</span>
       <span class="mu-go">${esc(mine ? t('go_here') : t('open_profile'))} <span aria-hidden="true">→</span></span>
     </button></li>`;
   $('mech-users-list').innerHTML = (me ? row(me, true) : '')
@@ -1263,6 +1265,72 @@ mechDialog.addEventListener('click', (e) => {
   }
 });
 mechDialog.addEventListener('close', () => { pressedOnBackdrop = false; });
+
+/* Custom tooltip: replaces the slow native one for every [title]/[data-tip] on the page. */
+const tip = document.createElement('div');
+tip.className = 'tip';
+tip.setAttribute('role', 'tooltip');
+tip.hidden = true;
+document.body.appendChild(tip);
+let tipFor = null;      // element whose tooltip is shown
+let tipPending = null;  // element waiting for its tooltip
+let tipTimer = 0;
+function tipTarget(node) {
+  const el = node?.closest?.('[data-tip], [title]');
+  if (!el || el === document.documentElement) return null;
+  if (el.hasAttribute('title')) {  // take the text over so the native tooltip never shows
+    const text = el.getAttribute('title');
+    el.removeAttribute('title');
+    if (text) el.dataset.tip = text;
+  }
+  return el.dataset.tip ? el : null;
+}
+function showTip(el) {
+  tipFor = el;
+  // inside a modal <dialog> the tooltip must live in the dialog's top layer
+  const host = el.closest('dialog[open]') || document.body;
+  if (tip.parentNode !== host) host.appendChild(tip);
+  tip.textContent = el.dataset.tip;
+  tip.hidden = false;
+  tip.classList.remove('show');
+  const r = el.getBoundingClientRect();
+  const w = tip.offsetWidth, h = tip.offsetHeight, pad = 8;
+  let top = r.top - h - 8;
+  let below = false;
+  if (top < pad) { top = r.bottom + 8; below = true; }
+  const left = Math.min(Math.max(pad, r.left + r.width / 2 - w / 2), innerWidth - w - pad);
+  tip.style.left = left + 'px';
+  tip.style.top = top + 'px';
+  tip.style.setProperty('--ax', (r.left + r.width / 2 - left) + 'px');
+  tip.classList.toggle('below', below);
+  requestAnimationFrame(() => tip.classList.add('show'));
+}
+function hideTip() {
+  clearTimeout(tipTimer);
+  tipFor = null;
+  tipPending = null;
+  tip.classList.remove('show');
+  tip.hidden = true;
+}
+document.addEventListener('pointerover', (e) => {
+  if (e.pointerType === 'touch') return;
+  const el = tipTarget(e.target);
+  if (el && (el === tipFor || el === tipPending)) return;  // moving between children of the same target
+  hideTip();
+  if (el) {
+    tipPending = el;
+    tipTimer = setTimeout(() => { tipPending = null; showTip(el); }, 60);
+  }
+});
+document.addEventListener('pointerout', (e) => {
+  const cur = tipFor || tipPending;
+  if (cur && !cur.contains(e.relatedTarget)) hideTip();
+});
+document.addEventListener('focusin', (e) => { const el = tipTarget(e.target); if (el && e.target.matches(':focus-visible')) showTip(el); });
+document.addEventListener('focusout', hideTip);
+document.addEventListener('pointerdown', hideTip);
+addEventListener('scroll', hideTip, {capture: true, passive: true});
+addEventListener('keydown', (e) => { if (e.key === 'Escape') hideTip(); });
 
 applyStaticI18n();
 boot();
