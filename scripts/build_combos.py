@@ -267,6 +267,9 @@ def flow_of(parsed, steps, step_outcomes, fallback):
             results = [fallback[st['kind']]] + results
         item = {'say_vi': vi, 'say_en': en, 'token': token, 'kind': st['kind'] or 'other', 'cond': st['cond'],
                 'hint': hint, 'hint_vi': hint_vi, 'n': st['n'], 'steps': [i], 'out': results,
+                # for the formula strip: the move's own name (no "E ·"), or the Basic Attack stage(s)
+                'name': st['name'] or (st['label'] if st['kind'] in (None, 'move') else ''),
+                'stages': str(st['stage']) if st['stage'] and not st['name'] else '',
                 'stage': st['stage'] if st['kind'] == 'basic' and not st['name'] and not st.get('state') else None}
         # Basic 1, Basic 2, Basic 3 in a row (no cancel in between) read as one action
         if (item['stage'] and prev and prev.get('stage') and item['stage'] == prev['stage_to'] + 1
@@ -276,6 +279,7 @@ def flow_of(parsed, steps, step_outcomes, fallback):
             prev['say_vi'] = f'Đánh thường {z - a + 1} đòn liên tiếp (đòn {a} → {z})'
             prev['say_en'] = f'Basic Attack {z - a + 1} times (stage {a} → {z})'
             prev['token'] = f'B{a}–{z}'
+            prev['stages'] = f'{a}–{z}'
             prev['hint'], prev['hint_vi'] = hint, hint_vi
             prev['times'] = z - a + 1
             prev['steps'].append(i)
