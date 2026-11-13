@@ -11,11 +11,11 @@ import './tooltip.js';  // side effects only: installs the page-wide tooltip
 async function boot() {
   try {
     const [charsRes, mechRes, indexRes] = await Promise.all([
-      fetch('/api/characters'),
+      fetch('/api/summary'),  // list fields only; a profile loads /api/characters/{slug} when opened
       fetch('/api/mechanics'),
       fetch('/api/index'),
     ]);
-    if (!charsRes.ok) throw new Error(`API /api/characters → HTTP ${charsRes.status}`);
+    if (!charsRes.ok) throw new Error(`API /api/summary → HTTP ${charsRes.status}`);
     const chars = await charsRes.json();
     state.meta = chars.meta;
     state.characters = chars.characters;
@@ -34,6 +34,12 @@ async function boot() {
     buildFilters();
     apply();
     route();
+    // Full-text search (skill and chain text, EN + VI) arrives in the background.
+    fetch('/api/search').then((r) => (r.ok ? r.json() : null)).then((s) => {
+      if (!s) return;
+      state.search = s;
+      if (q.value.trim()) apply();
+    }).catch(() => {});
   } catch (err) {
     loading.style.display = 'none';
     errorBox.style.display = 'block';

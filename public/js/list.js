@@ -191,13 +191,9 @@ export function apply() {
     if (w && c.weapon !== w) return false;
     if (r && String(c.rarity) !== r) return false;
     if (term) {
-      const blob = [
-        c.name, c.slug, c.element, elVi(c.element), c.weapon, weapVi(c.weapon),
-        c.intro, c.intro_vi,
-        (c.changes || []).map((ch) => ch.note).join(' '),
-        (c.skills || []).map((s) => [s.name, (s.desc_vi || []).join(' '), (s.desc || []).join(' ')].join(' ')).join(' '),
-        (c.resonance_chain || []).map((n) => [n.name, (n.desc_vi || []).join(' '), (n.desc || []).join(' ')].join(' ')).join(' '),
-      ].join(' ').toLowerCase();
+      // names always; skill/chain text once /api/search has arrived
+      const blob = [c.name, c.slug, c.element, elVi(c.element), c.weapon, weapVi(c.weapon)].join(' ').toLowerCase()
+        + ' ' + (state.search?.[c.slug] || '');
       if (!blob.includes(term)) return false;
     }
     return true;

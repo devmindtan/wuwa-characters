@@ -10,6 +10,7 @@ export const state = {
   meta: null,
   characters: [],
   mechanics: [],
+  search: null,  // /api/search: slug -> lowercase full text
   index: {rules: {}, chars: {}, mech_users: {}},  // /api/index (scripts/build_index.py)
   noLink: [],
   level: 10,

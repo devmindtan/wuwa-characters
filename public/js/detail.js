@@ -15,9 +15,29 @@ export function renderChanges(c) {
   box.open = list.length > 1;
 }
 
-export function openDetail(slug) {
-  const c = state.bySlug.get(slug);
-  if (!c) { location.hash = '#/'; return; }
+// Full Resonator data is fetched when a profile opens (the list only has summaries) and kept.
+const fullCache = new Map();
+const routeSlug = () => {
+  const m = location.hash.match(/^#\/nhan-vat\/(.+)$/);
+  return m ? decodeURIComponent(m[1]) : null;
+};
+
+export async function openDetail(slug) {
+  if (!state.bySlug.has(slug)) { location.hash = '#/'; return; }
+  let c = fullCache.get(slug);
+  if (!c) {
+    try {
+      const res = await fetch('/api/characters/' + encodeURIComponent(slug));
+      if (!res.ok) throw new Error(`API /api/characters/${slug} → HTTP ${res.status}`);
+      c = await res.json();
+      fullCache.set(slug, c);
+    } catch (err) {
+      console.error(err);
+      location.hash = '#/';
+      return;
+    }
+    if (routeSlug() !== slug) return;  // the visitor moved on while it was loading
+  }
   state.current = c;
   renderDetail(c);
   state.treeSel = null;

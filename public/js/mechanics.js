@@ -21,21 +21,14 @@ export function summaryHTML(text) {
 
 export function autoQuote(m, cur) {
   // A kit term mentioned in another Resonator's kit (Phrolova: Cantarella's "Hazy Dream")
-  // is explained with the owner's own definition, naming that owner.
-  let c = cur;
-  let ref = c && m.defs?.[c.slug];
-  if (!ref && m.defs) {
-    const owner = Object.keys(m.defs)[0];
-    c = state.bySlug.get(owner);
-    ref = m.defs[owner];
-  }
-  if (!c || !ref) return {text: '', title: ''};
-  const src = ref.kind === 'skill' ? c.skills[ref.index] : (c.resonance_chain || []).find((n) => n.node === ref.index);
-  if (!src) return {text: '', title: ''};
-  const lines = (state.showEn || !(src.desc_vi || []).length ? src.desc : src.desc_vi) || [];
-  const text = lines.slice(ref.line, ref.line + (ref.n || 1)).map((l) => l.replace(/^• /, '')).join(' ');
-  const title = ref.kind === 'skill' ? src.name : `S${src.node} · ${src.name}`;
-  return {text, title: c === cur ? title : `${title} (${c.name})`};
+  // is explained with the owner's own definition, naming that owner. Quotes are precomputed
+  // by scripts/build_mechanics.py, so no other Resonator has to be loaded.
+  const slug = cur && m.defs?.[cur.slug] ? cur.slug : Object.keys(m.defs || {})[0];
+  const ref = slug && m.defs[slug];
+  if (!ref) return {text: '', title: ''};
+  const text = state.showEn ? ref.text_en : ref.text_vi;
+  const owner = state.bySlug.get(slug)?.name || slug;
+  return {text, title: slug === cur?.slug ? ref.title : `${ref.title} (${owner})`};
 }
 
 export function openMechanic(termOrObj) {

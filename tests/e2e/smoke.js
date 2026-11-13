@@ -46,6 +46,12 @@ async function run(tag, viewport) {
   await page.fill('#q', 'phro');
   await page.waitForTimeout(250);
   check(await page.locator('.card:visible').count() === 1, `${tag}: search filter`);
+  // full-text search over skill text (arrives from /api/search in the background)
+  await page.waitForFunction(() => document.querySelector('#q') && true);
+  await page.waitForTimeout(600);
+  await page.fill('#q', 'aftersound');
+  await page.waitForTimeout(250);
+  check(await page.locator('.card:visible').count() >= 1, `${tag}: full-text search ("aftersound")`);
   await page.fill('#q', '');
 
   for (const slug of ['phrolova', 'cartethyia', 'jinhsi', 'hsin', 'calcharo']) {
