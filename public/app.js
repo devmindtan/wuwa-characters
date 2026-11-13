@@ -666,6 +666,10 @@ const MOVE_CAP = "(?:[A-Z][\\w'’!?-]*:?)(?:(?:\\s(?:of|the|in|a|to|for|is|on|b
 const MOVE_QUOTED = new RegExp(MOVE_TYPES + '\\s+"([^"]+)"', 'g');
 const MOVE_DASHED = new RegExp('(' + MOVE_TYPES + '\\s+-\\s+' + MOVE_CAP + ')', 'g');
 const MOVE_PLAIN = new RegExp(MOVE_TYPES + '\\s+(' + MOVE_CAP + ')', 'g');
+// "…to cast Movement of Fate and Finality": named moves introduced by a verb (may contain "and").
+const MOVE_CAST_CAP = "[A-Z][\\w'’!?-]*(?:(?:\\s(?:of|the|in|a|to|for|is|on|by|from|and)){0,2}\\s[A-Z][\\w'’!?-]*)*";
+const MOVE_CAST = new RegExp("\\b(?:[Cc]ast|[Cc]asts|[Cc]asting|[Pp]erform|[Pp]erforms|[Pp]erforming)\\s+(?:the\\s)?(" + MOVE_CAST_CAP + ')', 'g');
+const MOVE_CAST_SKIP = /^(?:Basic|Heavy|Mid-air|Mid-Air|Dodge|Plunging|Resonance|Intro|Outro|Forte|Inherent|Echo|Enhanced|Normal|Stage|Sprint|Tune)\b|\b(?:Attack|Skill|Attacks)\b|['’]s$/;
 const MOVE_SKIP = new Set(['Stage', 'DMG', 'Damage', 'Bonus', 'Multiplier', 'Cooldown', 'Concerto', 'Resonance', 'Skill', 'Attack', 'Liberation',
   'Intro', 'Outro', 'Forte', 'Circuit', 'Heavy', 'Basic', 'Dodge', 'Counter', 'Mid-air', 'Plunging', 'Echo', 'Inherent', 'I', 'II', 'III', 'IV', 'V']);
 const DEFINES = /(replaced (?:with|by)|becomes? available|is available|to cast|to perform|can be cast|enters?|summons?)/i;
@@ -676,7 +680,7 @@ const moveCache = new Map();
 function movesOf(c) {
   if (moveCache.has(c.slug)) return moveCache.get(c.slug);
   const skillNames = new Set((c.skills || []).map((s) => s.name));
-  const mech = new Set(state.mechanics.map((m) => m.term));
+  const mech = new Set(state.mechanics.flatMap((m) => [m.term, ...(m.aliases || [])]).concat(state.noLink));
   const found = new Map();
   const add = (name, ref, line) => {
     // Source lines sometimes run two sentences together ("…: Huntress Casting Comin' in Hot").
@@ -696,6 +700,9 @@ function movesOf(c) {
       let m;
       while ((m = re.exec(line))) add(m[1], {...ref, line: li}, line);
     }
+    MOVE_CAST.lastIndex = 0;
+    let m;
+    while ((m = MOVE_CAST.exec(line))) if (!MOVE_CAST_SKIP.test(m[1])) add(m[1], {...ref, line: li}, line);
   });
   (c.skills || []).forEach((s, i) => scan(s.desc, {kind: 'skill', index: i, title: s.name}));
   (c.resonance_chain || []).forEach((n) => scan(n.desc, {kind: 'chain', index: n.node, title: `S${n.node} · ${n.name}`}));
