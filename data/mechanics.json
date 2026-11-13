@@ -3,8 +3,8 @@
   {
    "term": "Resonance Mode",
    "kind": "system",
-   "summary_vi": "Chế độ cộng hưởng riêng của từng Resonator, thay đổi hiệu ứng của bộ kỹ năng.",
-   "summary_en": "Each Resonator's own resonance mode, which changes how their kit's effects work.",
+   "summary_vi": "Cơ chế cho phép Resonator chuyển giữa các chế độ gây hiệu ứng/loại sát thương khác nhau.",
+   "summary_en": "Mechanic that lets Resonators switch between applying different statuses / dealing different damage types.",
    "sample_en": "Resonance Mode",
    "sample_vi": "Resonance Mode",
    "count": 102,
@@ -15,13 +15,17 @@
     "lucilla",
     "lynae"
    ],
-   "owners": []
+   "owners": [],
+   "source": "wiki",
+   "aliases": [
+    "Resonance Modes"
+   ]
   },
   {
    "term": "Echo Skill",
    "kind": "system",
-   "summary_vi": "Kỹ năng có nguồn gốc từ Echo, được tính là Echo Skill DMG.",
-   "summary_en": "Skill originating from an Echo, counted as Echo Skill DMG.",
+   "summary_vi": "Kỹ năng chủ động đến từ Echo đặt ở ô chính; một số Resonator (như Phrolova, Qiuyuan) có đòn được tính là Echo Skill DMG.",
+   "summary_en": "Active skill from the Echo in the main slot; some Resonators (e.g. Phrolova, Qiuyuan) have attacks counted as Echo Skill DMG.",
    "sample_en": "When in Mirage, Resonance Skill becomes Flickering Reverie, which is considered an Echo Skill when being cast. Attack the target, dealing Havoc DMG, and send them into Hazy Dream.",
    "sample_vi": "Khi ở trong Mirage, Resonance Skill trở thành Flickering Reverie, được coi là Echo Skill khi được thi triển. Tấn công mục tiêu, gây Havoc DMG và đưa chúng vào Hazy Dream.",
    "count": 65,
@@ -36,7 +40,11 @@
     "sigrika",
     "mortefi"
    ],
-   "owners": []
+   "owners": [],
+   "source": "wiki",
+   "aliases": [
+    "Echo Skills"
+   ]
   },
   {
    "term": "Unison",
@@ -44,7 +52,7 @@
    "summary_vi": "Hiệu ứng/Resonance Mode dùng chung của một số Resonators (Hsin, Jinhsi, Suoming, Lily…); khi có Unison có thể kích hoạt Unison Response. Tóm tắt từ bộ kỹ năng.",
    "summary_en": "Effect/Resonance Mode shared by some Resonators (Hsin, Jinhsi, Suoming, Lily…); with Unison, Unison Response can be triggered. Summary from the kits.",
    "sample_en": "• While in Resonance Mode - Unison, Hsin gains the following effects: Hsin can trigger Unison Response, but not in Co-op Mode. After casting Intro Skill - Answering Form or Intro Skill - Answering Form: Manifold Unison, the next Resonance Liberation - Formshift grants Hsin Unison for 5s. When Hsin triggers Unison Respo",
-   "sample_vi": "• Khi ở Resonance Mode - Unison, Hsin đạt được các hiệu ứng sau: Hsin có thể kích hoạt Unison Response, nhưng không ở Chế độ Co-op. Sau khi sử dụng Intro Skill - Answering Form hoặc Intro Skill - Answering Form: Manifold Unison, Resonance Liberation - Formshift tiếp theo cấp Hsin Unison trong 5 giây. Khi Hsin kích hoạt",
+   "sample_vi": "• Khi ở Resonance Mode - Unison, Hsin nhận các hiệu ứng sau: Hsin có thể kích hoạt Unison Response, trừ trong Co-op Mode. Sau khi thi triển Intro Skill - Answering Form hoặc Intro Skill - Answering Form: Manifold Unison, Resonance Liberation - Formshift kế tiếp cấp cho Hsin Unison trong 5 giây. Khi Hsin kích hoạt Uniso",
    "count": 53,
    "characters": [
     "hsin",
@@ -70,10 +78,31 @@
    ]
   },
   {
+   "term": "Interfered",
+   "kind": "status",
+   "summary_vi": "Trạng thái của kẻ địch sau khi bị Tune Break khi đang mang dấu Shifting (Tune Strain - Interfered / Tune Rupture - Interfered); các Resonator có Response tương ứng sẽ phản ứng lên mục tiêu này.",
+   "summary_en": "Enemy state after a target marked with Shifting is Tune Broken (Tune Strain - Interfered / Tune Rupture - Interfered); Resonators with the matching Response react to it.",
+   "sample_en": "• In Resonance Mode - Tune Rupture, when Resonators in the team respond to Tune Rupture - Interfered, inflict 10 stacks of Rupturous Trail on the target for 30s, stacking up to 30 times.",
+   "sample_vi": "• Trong Resonance Mode - Tune Rupture, khi Resonators trong đội phản ứng với Tune Rupture - Interfered, gây 10 tầng Rupturous Trail lên mục tiêu trong 30 giây, cộng dồn tối đa 30 lần.",
+   "count": 46,
+   "characters": [
+    "aemeath",
+    "denia",
+    "lucy",
+    "luuk-herssen",
+    "lynae",
+    "mornye",
+    "qingxiao",
+    "rebecca"
+   ],
+   "owners": [],
+   "source": "wiki"
+  },
+  {
    "term": "Tune Strain",
    "kind": "system",
-   "summary_vi": "Dấu ấn lên mục tiêu; đòn đánh tiếp theo có thể làm đầy Off-Tune Level và kích hoạt Tune Break/Tune Rupture.",
-   "summary_en": "A mark on the target; follow-up hits can fill the Off-Tune Level and trigger Tune Break/Tune Rupture.",
+   "summary_vi": "Một nhánh của cơ chế Tune Break: Tune Strain - Shifting đánh dấu mục tiêu; khi mục tiêu bị Tune Break, dấu chuyển thành Tune Strain - Interfered và Resonator có Tune Strain Response gây thêm sát thương lên mục tiêu đó.",
+   "summary_en": "A subset of Tune Break: Tune Strain - Shifting marks the target; once it is Tune Broken the mark becomes Tune Strain - Interfered and Resonators with Tune Strain Response deal more damage to it.",
    "sample_en": "Resonance Mode - Tune Strain",
    "sample_vi": "Resonance Mode - Tune Strain",
    "count": 46,
@@ -84,13 +113,14 @@
     "mornye",
     "qingxiao"
    ],
-   "owners": []
+   "owners": [],
+   "source": "wiki"
   },
   {
    "term": "Tune Break",
    "kind": "system",
-   "summary_vi": "Đòn/hiệu ứng kích hoạt khi Off-Tune Level của mục tiêu đã đầy.",
-   "summary_en": "Attack/effect triggered when the target's Off-Tune Level is full.",
+   "summary_vi": "Loại Forte có thể kích hoạt thủ công khi kẻ địch vào trạng thái Mistune. Có ba nhánh: Tune Strain, Tune Rupture và Hack.",
+   "summary_en": "A Forte type that can be triggered manually once an enemy enters the Mistune state. Three branches: Tune Strain, Tune Rupture and Hack.",
    "sample_en": "When the target's Off-Tune Level is full, Aemeath can cast Tune Break on the target.",
    "sample_vi": "Khi Off-Tune Level của mục tiêu đầy, Aemeath có thể sử dụng Tune Break lên mục tiêu.",
    "count": 44,
@@ -114,13 +144,14 @@
     "suoming",
     "yangyang-xuanling"
    ],
-   "owners": []
+   "owners": [],
+   "source": "wiki"
   },
   {
    "term": "Concerto Energy",
    "kind": "resource",
-   "summary_vi": "Năng lượng tích lũy khi chiến đấu, dùng để thi triển Outro Skill khi chuyển Resonator.",
-   "summary_en": "Energy built up in combat, used to cast the Outro Skill when switching Resonators.",
+   "summary_vi": "Thanh năng lượng thể hiện mức sẵn sàng của Outro Skill (Resonator rời sân) và Intro Skill (Resonator vào sân).",
+   "summary_en": "Gauge showing how ready the outgoing Resonator's Outro Skill and the incoming Resonator's Intro Skill are.",
    "sample_en": "When Calcharo has 3 \"Cruelty\", his Heavy Attack is replaced with Heavy Attack \"Mercy\". When casting Heavy Attack \"Mercy\", Calcharo consumes 3 \"Cruelty\" to deal Electro DMG, considered as Heavy Attack damage, and recovers Resonance Energy and Concerto Energy.",
    "sample_vi": "Khi Calcharo có 3 \"Cruelty\", Heavy Attack của anh ta được thay thế bằng Heavy Attack \"Mercy\". Khi sử dụng Heavy Attack \"Mercy\", Calcharo tiêu tốn 3 \"Cruelty\" để gây Electro DMG, được coi là Heavy Attack sát thương và hồi phục Resonance Energy và Concerto Energy.",
    "count": 42,
@@ -148,13 +179,14 @@
     "verina",
     "baizhi"
    ],
-   "owners": []
+   "owners": [],
+   "source": "wiki"
   },
   {
    "term": "Glacio Chafe",
    "kind": "status",
-   "summary_vi": "Negative Status hệ Glacio, làm chậm/giảm hiệu suất mục tiêu.",
-   "summary_en": "Glacio Negative Status that slows / hinders the target.",
+   "summary_vi": "Negative Status hệ Glacio (có thể cộng dồn). Tác dụng cụ thể theo từng bộ kỹ năng: xem các đoạn trích bên dưới.",
+   "summary_en": "Glacio Negative Status (stackable). Its exact effect depends on each kit: see the quotes below.",
    "sample_en": "After Resonators in the team inflict Havoc Bane, Fusion Burst, Spectro Frazzle, Electro Flare, Glacio Chafe, or Aero Erosion, all Resonators in the team gain 20% DMG Bonus for all Attributes for 20s.",
    "sample_vi": "Sau khi Resonators trong đội gây Havoc Bane, Fusion Burst, Spectro Frazzle, Electro Flare, Glacio Chafe hoặc Aero Erosion, mọi Resonators trong đội nhận 20% DMG Bonus cho mọi Attribute trong 20 giây.",
    "count": 41,
@@ -166,7 +198,8 @@
     "suisui",
     "yangyang-xuanling"
    ],
-   "owners": []
+   "owners": [],
+   "source": "wiki"
   },
   {
    "term": "DMG Amplification",
@@ -174,7 +207,7 @@
    "summary_vi": "Hệ số khuếch đại sát thương cuối, khác với DMG Bonus.",
    "summary_en": "Final damage amplification multiplier, separate from DMG Bonus.",
    "sample_en": "In Instant Response, Heavy Attack - Aemeath and Heavy Attack - Mech gain 200% DMG Amplification.",
-   "sample_vi": "Trong Instant Response, Heavy Attack - Aemeath và Heavy Attack - Mech tăng 200% DMG Amplification.",
+   "sample_vi": "Trong Instant Response, Heavy Attack - Aemeath và Heavy Attack - Mech nhận 200% DMG Amplification.",
    "count": 38,
    "characters": [
     "aemeath",
@@ -201,6 +234,26 @@
     "suoming"
    ],
    "owners": []
+  },
+  {
+   "term": "Shifting",
+   "kind": "status",
+   "summary_vi": "Dấu Tune Strain - Shifting / Tune Rupture - Shifting một số Resonator gây lên kẻ địch; tự nó không có tác dụng, khi mục tiêu bị Tune Break thì chuyển thành Interfered. Kéo dài 25 giây.",
+   "summary_en": "Tune Strain - Shifting / Tune Rupture - Shifting mark applied by some Resonators; it does nothing on its own and turns into Interfered when the target is Tune Broken. Lasts 25s.",
+   "sample_en": "• In Resonance Mode - Tune Rupture/Resonance Mode - Fusion Burst, inflict Tune Rupture - Shifting/Fusion Burst when the following skills deal damage. The same skill can only trigger this effect on the same target once every 3s: Basic Attack - Aemeath Stage 3 & 4, Basic Attack - Mech Stage 3 & 4, Resonance Skill Sync St",
+   "sample_vi": "• Trong Resonance Mode - Tune Rupture/Resonance Mode - Fusion Burst, gây ra Tune Rupture - Shifting/Fusion Burst khi các kỹ năng sau gây sát thương. Kỹ năng tương tự chỉ có thể kích hoạt hiệu ứng này trên cùng một mục tiêu 3 giây một lần: Basic Attack - Aemeath Stage 3 & 4, Basic Attack - Mech Stage 3 & 4, Resonance Sk",
+   "count": 38,
+   "characters": [
+    "aemeath",
+    "denia",
+    "lucy",
+    "luuk-herssen",
+    "lynae",
+    "qingxiao",
+    "rebecca"
+   ],
+   "owners": [],
+   "source": "wiki"
   },
   {
    "term": "Chainsaw Mode",
@@ -235,8 +288,8 @@
   {
    "term": "Fusion Burst",
    "kind": "status",
-   "summary_vi": "Negative Status hệ Fusion, phát nổ gây sát thương.",
-   "summary_en": "Fusion Negative Status that explodes to deal damage.",
+   "summary_vi": "Negative Status hệ Fusion (có thể cộng dồn). Tác dụng cụ thể theo từng bộ kỹ năng: xem các đoạn trích bên dưới.",
+   "summary_en": "Fusion Negative Status (stackable). Its exact effect depends on each kit: see the quotes below.",
    "sample_en": "• In Resonance Mode - Fusion Burst, when Resonators in the team inflict Fusion Burst, inflict 1 stack of Fusion Trail for 30s, stacking up to 30 times.",
    "sample_vi": "• Trong Resonance Mode - Fusion Burst, khi Resonators trong đội gây ra Fusion Burst, gây 1 điểm Fusion Trail trong 30 giây, cộng dồn tối đa 30 lần.",
    "count": 34,
@@ -248,28 +301,30 @@
     "suisui",
     "yangyang-xuanling"
    ],
-   "owners": []
+   "owners": [],
+   "source": "wiki"
   },
   {
    "term": "Tune Rupture",
    "kind": "system",
-   "summary_vi": "Phản ứng khi phá vỡ Tune Strain, gây sát thương hoặc hiệu ứng theo bộ kỹ năng.",
-   "summary_en": "Reaction when Tune Strain is broken, dealing damage or effects depending on the kit.",
+   "summary_vi": "Một nhánh của cơ chế Tune Break: Tune Rupture - Shifting đánh dấu mục tiêu; khi mục tiêu bị Tune Break, dấu phát nổ gây một đòn sát thương lớn và mục tiêu chuyển sang Tune Rupture - Interfered.",
+   "summary_en": "A subset of Tune Break: Tune Rupture - Shifting marks the target; once it is Tune Broken the mark detonates for one massive hit and the target enters Tune Rupture - Interfered.",
    "sample_en": "• In Resonance Mode - Tune Rupture, when Resonators in the team respond to Tune Rupture - Interfered, inflict 10 stacks of Rupturous Trail on the target for 30s, stacking up to 30 times.",
-   "sample_vi": "• Trong Resonance Mode - Tune Rupture, khi Resonators trong đội phản ứng với Tune Rupture - Interfered, gây 10 điểm cộng dồn Rupturous Trail lên mục tiêu trong 30 giây, cộng dồn tối đa 30 lần.",
+   "sample_vi": "• Trong Resonance Mode - Tune Rupture, khi Resonators trong đội phản ứng với Tune Rupture - Interfered, gây 10 tầng Rupturous Trail lên mục tiêu trong 30 giây, cộng dồn tối đa 30 lần.",
    "count": 33,
    "characters": [
     "aemeath",
     "lynae",
     "mornye"
    ],
-   "owners": []
+   "owners": [],
+   "source": "wiki"
   },
   {
    "term": "Electro Flare",
    "kind": "status",
-   "summary_vi": "Negative Status hệ Electro, gây sát thương lan.",
-   "summary_en": "Electro Negative Status that deals spreading damage.",
+   "summary_vi": "Negative Status hệ Electro (có thể cộng dồn). Tác dụng cụ thể theo từng bộ kỹ năng: xem các đoạn trích bên dưới.",
+   "summary_en": "Electro Negative Status (stackable). Its exact effect depends on each kit: see the quotes below.",
    "sample_en": "After Resonators in the team inflict Havoc Bane, Fusion Burst, Spectro Frazzle, Electro Flare, Glacio Chafe, or Aero Erosion, all Resonators in the team gain 20% DMG Bonus for all Attributes for 20s.",
    "sample_vi": "Sau khi Resonators trong đội gây Havoc Bane, Fusion Burst, Spectro Frazzle, Electro Flare, Glacio Chafe hoặc Aero Erosion, mọi Resonators trong đội nhận 20% DMG Bonus cho mọi Attribute trong 20 giây.",
    "count": 32,
@@ -282,13 +337,14 @@
     "yangyang-xuanling",
     "buling"
    ],
-   "owners": []
+   "owners": [],
+   "source": "wiki"
   },
   {
    "term": "Resonance Energy",
    "kind": "resource",
-   "summary_vi": "Năng lượng dùng để thi triển Resonance Liberation.",
-   "summary_en": "Energy used to cast Resonance Liberation.",
+   "summary_vi": "Tài nguyên khi đầy cho phép thi triển Resonance Liberation.",
+   "summary_en": "Resource that, when maxed out, allows Resonance Liberation to be cast.",
    "sample_en": "In the 2D Digital Ghost state, Aemeath grants Resonators in the team a Shield equal to 360% of her ATK for 5s. As she exits from the 2D Digital Ghost state, she revives and recovers 100% of her Max HP and 30 points of Resonance Energy. This effect can be triggered once every 10 min.",
    "sample_vi": "Ở trạng thái 2D Digital Ghost, Aemeath cấp cho Resonators trong đội Shield bằng 360% ATK của cô trong 5 giây. Khi rời trạng thái 2D Digital Ghost, cô hồi sinh, hồi 100% Max HP và 30 điểm Resonance Energy. Hiệu ứng này kích hoạt được 1 lần mỗi 10 phút.",
    "count": 32,
@@ -318,15 +374,16 @@
     "yangyang",
     "yuanwu"
    ],
-   "owners": []
+   "owners": [],
+   "source": "wiki"
   },
   {
    "term": "Aero Erosion",
    "kind": "status",
-   "summary_vi": "Negative Status hệ Aero, tích lũy trên mục tiêu và gây sát thương.",
-   "summary_en": "Aero Negative Status that stacks on the target and deals damage.",
+   "summary_vi": "Negative Status hệ Aero (có thể cộng dồn). Tác dụng cụ thể theo từng bộ kỹ năng: xem các đoạn trích bên dưới.",
+   "summary_en": "Aero Negative Status (stackable). Its exact effect depends on each kit: see the quotes below.",
    "sample_en": "Following Basic Attack - Cartethyia Stage 4, inflict 1 stack of Aero Erosion on targets hit and summon Sword of Divinity's Shadow.",
-   "sample_vi": "Theo sau Basic Attack - Cartethyia Stage 4, gây 1 điểm cộng dồn Aero Erosion cho các mục tiêu đánh trúng và triệu hồi Sword of Divinity's Shadow.",
+   "sample_vi": "Theo sau Basic Attack - Cartethyia Stage 4, gây 1 tầng Aero Erosion cho các mục tiêu đánh trúng và triệu hồi Sword of Divinity's Shadow.",
    "count": 29,
    "characters": [
     "cartethyia",
@@ -335,13 +392,14 @@
     "suisui",
     "yangyang-xuanling"
    ],
-   "owners": []
+   "owners": [],
+   "source": "wiki"
   },
   {
    "term": "Havoc Bane",
    "kind": "status",
-   "summary_vi": "Negative Status hệ Havoc, làm mục tiêu nhận thêm sát thương.",
-   "summary_en": "Havoc Negative Status that makes the target take more damage.",
+   "summary_vi": "Negative Status hệ Havoc (có thể cộng dồn). Tác dụng cụ thể theo từng bộ kỹ năng: xem các đoạn trích bên dưới.",
+   "summary_en": "Havoc Negative Status (stackable). Its exact effect depends on each kit: see the quotes below.",
    "sample_en": "After Resonators in the team inflict Havoc Bane, Fusion Burst, Spectro Frazzle, Electro Flare, Glacio Chafe, or Aero Erosion, all Resonators in the team gain 20% DMG Bonus for all Attributes for 20s.",
    "sample_vi": "Sau khi Resonators trong đội gây Havoc Bane, Fusion Burst, Spectro Frazzle, Electro Flare, Glacio Chafe hoặc Aero Erosion, mọi Resonators trong đội nhận 20% DMG Bonus cho mọi Attribute trong 20 giây.",
    "count": 28,
@@ -353,7 +411,8 @@
     "suisui",
     "yangyang-xuanling"
    ],
-   "owners": []
+   "owners": [],
+   "source": "wiki"
   },
   {
    "term": "Heavenfall Edict",
@@ -368,6 +427,37 @@
    ],
    "owners": [
     "aemeath"
+   ]
+  },
+  {
+   "term": "Stagnate",
+   "kind": "status",
+   "summary_vi": "Làm chậm các mục tiêu trong một phạm vi nhất định (vai trò chiến đấu Stagnation).",
+   "summary_en": "Slows down targets within a certain range (Stagnation combat role).",
+   "sample_en": "• When Fleurdelys has Heart of Virtue in Manifest: Basic Attack - Fleurdelys Stage 4 will generate a force field to Stagnate the targets within the range. Fleurdelys's resistance to interruption increases. Heart of Virtue is removed when Manifest ends.",
+   "sample_vi": "Returned from Ashes khiến các mục tiêu ở gần tạm thời bị Stagnate trong lúc thi triển. Hiệu ứng Stagnate bị loại bỏ khi Brant rời sân.",
+   "count": 28,
+   "characters": [
+    "brant",
+    "cartethyia",
+    "chisa",
+    "hiyuki",
+    "lucy",
+    "mornye",
+    "phoebe",
+    "phrolova",
+    "qiuyuan",
+    "rover-electro",
+    "sigrika",
+    "yangyang-xuanling",
+    "zani"
+   ],
+   "owners": [],
+   "source": "wiki",
+   "aliases": [
+    "Stagnates",
+    "Stagnated",
+    "Stagnating"
    ]
   },
   {
@@ -391,7 +481,7 @@
    "summary_vi": "Hiệu ứng lên mục tiêu, dùng bởi Lucy và Rebecca (Hack - Shifting, Hack - Interfered). Tóm tắt từ bộ kỹ năng.",
    "summary_en": "Effect on targets used by Lucy and Rebecca (Hack - Shifting, Hack - Interfered). Summary from the kits.",
    "sample_en": "• Consume STA to attack the target, dealing Spectro DMG and inflicting Hack - Shifting on the target. SQL can be consumed for a 270% increase in this attack's DMG Multiplier.",
-   "sample_vi": "• Tiêu hao STA để tấn công mục tiêu, gây Spectro DMG và gây Hack - Shift mục tiêu. SQL có thể được sử dụng để tăng 270% trong DMG Multiplier của cuộc tấn công này.",
+   "sample_vi": "• Tiêu hao STA để tấn công mục tiêu, gây Spectro DMG và gây Hack - Shifting lên mục tiêu. Có thể tiêu hao SQL để tăng 270% DMG Multiplier của đòn này.",
    "count": 23,
    "characters": [
     "lucy",
@@ -431,8 +521,8 @@
   {
    "term": "Spectro Frazzle",
    "kind": "status",
-   "summary_vi": "Negative Status hệ Spectro, gây sát thương theo thời gian/làm suy yếu mục tiêu.",
-   "summary_en": "Spectro Negative Status that deals damage over time / weakens the target.",
+   "summary_vi": "Negative Status hệ Spectro (có thể cộng dồn). Tác dụng cụ thể theo từng bộ kỹ năng: xem các đoạn trích bên dưới.",
+   "summary_en": "Spectro Negative Status (stackable). Its exact effect depends on each kit: see the quotes below.",
    "sample_en": "After Resonators in the team inflict Havoc Bane, Fusion Burst, Spectro Frazzle, Electro Flare, Glacio Chafe, or Aero Erosion, all Resonators in the team gain 20% DMG Bonus for all Attributes for 20s.",
    "sample_vi": "Sau khi Resonators trong đội gây Havoc Bane, Fusion Burst, Spectro Frazzle, Electro Flare, Glacio Chafe hoặc Aero Erosion, mọi Resonators trong đội nhận 20% DMG Bonus cho mọi Attribute trong 20 giây.",
    "count": 23,
@@ -446,7 +536,8 @@
     "yangyang-xuanling",
     "zani"
    ],
-   "owners": []
+   "owners": [],
+   "source": "wiki"
   },
   {
    "term": "Ephemeral Transcendence",
@@ -454,7 +545,7 @@
    "summary_vi": "Trạng thái đặc biệt của Qingxiao sau khi tiêu hao Qin Heart và Sword Cadence.",
    "summary_en": "Qingxiao's special state after consuming Qin Heart and Sword Cadence.",
    "sample_en": "• Casting this skill consumes all Qin Heart and Sword Cadence and sends Qingxiao into the Ephemeral Transcendence state.",
-   "sample_vi": "• Thi triển kỹ năng này tiêu tốn tất cả Qin Heart và Sword Cadence và đưa Qingxiao vào trạng thái Ephemeral Transcendence.",
+   "sample_vi": "• Thi triển kỹ năng này tiêu hao toàn bộ Qin Heart và Sword Cadence và đưa Qingxiao vào trạng thái Ephemeral Transcendence.",
    "count": 22,
    "characters": [
     "qingxiao"
@@ -500,19 +591,22 @@
    "summary_en": "Effects Lucy selects in the Protocol Interface, costing RAM.",
    "sample_en": "• Lucy deep dives into cyberspace and pulls up the Protocol Interface for 10s. While the Protocol Interface is active, choose up to 7 different Spoofing Program effects, each requiring different RAM costs. Lucy starts with 24 points of RAM.",
    "sample_vi": "• Lucy đi sâu vào không gian ảo và kéo Protocol Interface lên trong 10 giây. Trong khi Protocol Interface đang hoạt động, hãy chọn tối đa 7 hiệu ứng Spoofing Program khác nhau, mỗi hiệu ứng yêu cầu chi phí RAM khác nhau. Lucy bắt đầu với 24 điểm RAM.",
-   "count": 15,
+   "count": 16,
    "characters": [
     "lucy"
    ],
    "owners": [
     "lucy"
+   ],
+   "aliases": [
+    "Spoofing Programs"
    ]
   },
   {
    "term": "Coordinated Attack",
    "kind": "system",
-   "summary_vi": "Đòn đánh phối hợp, kích hoạt ngoài lượt điều khiển của Resonator.",
-   "summary_en": "Follow-up attack triggered outside the Resonator's own actions.",
+   "summary_vi": "Đòn đánh bổ trợ do Resonator không trực tiếp điều khiển (ngoài sân) tự động thực hiện cùng Resonator đang trên sân.",
+   "summary_en": "Supplemental attack automatically executed by off-field Resonators alongside the on-field Resonator.",
    "sample_en": "When the Resonator on the field deals damage to a target, summon Dreamweavers to perform Coordinated Attack, dealing Havoc DMG (considered as Basic Attack DMG).",
    "sample_vi": "Khi Resonator trên sân gây sát thương cho mục tiêu, triệu hồi Dreamweavers để thực hiện Coordinated Attack, gây Havoc DMG (được coi là Basic Attack DMG).",
    "count": 13,
@@ -527,7 +621,11 @@
     "youhu",
     "yuanwu"
    ],
-   "owners": []
+   "owners": [],
+   "source": "wiki",
+   "aliases": [
+    "Coordinated Attacks"
+   ]
   },
   {
    "term": "Inferno Mode",
@@ -577,8 +675,8 @@
   {
    "term": "Vibration Strength",
    "kind": "system",
-   "summary_vi": "Độ bền kháng khống chế của mục tiêu; giảm về 0 thì mục tiêu bị choáng.",
-   "summary_en": "Target's resistance to crowd control; at 0 the target is stunned.",
+   "summary_vi": "Cơ chế trên kẻ địch: giảm Vibration Strength để buộc kẻ địch vào trạng thái bất động một thời gian và chịu thêm sát thương.",
+   "summary_en": "Enemy mechanic: reducing Vibration Strength forces the enemy into an immobilized state for a while, taking increased damage.",
    "sample_en": "The Vibration Strength Reduction Rate of Sawring - Blitz, Chainsaw Mode - Dodge Counter and Sawring - Eradication is increased by 50%.",
    "sample_vi": "Vibration Strength Reduction Rate của Sawring - Blitz, Chainsaw Mode - Dodge Counter và Sawring - Eradication tăng 50%.",
    "count": 13,
@@ -590,7 +688,8 @@
     "youhu",
     "yuanwu"
    ],
-   "owners": []
+   "owners": [],
+   "source": "wiki"
   },
   {
    "term": "Manifest",
@@ -625,10 +724,10 @@
   {
    "term": "Tune Break Boost",
    "kind": "stat",
-   "summary_vi": "Chỉ số tăng sát thương Tune Break của một số Resonator.",
-   "summary_en": "Stat that increases the Tune Break damage of some Resonators.",
+   "summary_vi": "Chỉ số tăng hiệu quả Tune Break; Resonator có Tune Strain Response nhận thêm tổng sát thương từ Tune Break Boost.",
+   "summary_en": "Stat that strengthens Tune Break; Resonators with Tune Strain Response gain total DMG increase from Tune Break Boost.",
    "sample_en": "When responding to Tune Strain - Interfered: For each stack of Tune Strain - Interfered on the target, each point of Denia's Tune Break Boost increases her total DMG against the target by 0.12%.",
-   "sample_vi": "Khi phản hồi Tune Strain - Interfered: Với mỗi điểm cộng dồn Tune Strain - Interfered vào mục tiêu, mỗi điểm Tune Break Boost của Denia sẽ tăng tổng DMG của cô ấy lên mục tiêu thêm 0,12%.",
+   "sample_vi": "Khi phản ứng với Tune Strain - Interfered: với mỗi tầng Tune Strain - Interfered trên mục tiêu, mỗi điểm Tune Break Boost của Denia tăng 0.12% tổng sát thương của cô lên mục tiêu đó.",
    "count": 11,
    "characters": [
     "denia",
@@ -638,7 +737,25 @@
     "qingxiao",
     "rebecca"
    ],
-   "owners": []
+   "owners": [],
+   "source": "wiki"
+  },
+  {
+   "term": "Negative Status",
+   "kind": "status",
+   "summary_vi": "Các hiệu ứng sát thương theo thời gian và hiệu ứng bất lợi có thể cộng dồn, áp lên cả kẻ địch lẫn Resonator: Spectro Frazzle, Aero Erosion, Havoc Bane, Fusion Burst, Glacio Chafe, Electro Flare.",
+   "summary_en": "Stackable damage-over-time effects and debuffs that can hit both enemies and Resonators: Spectro Frazzle, Aero Erosion, Havoc Bane, Fusion Burst, Glacio Chafe, Electro Flare.",
+   "sample_en": "• When an attack hits, increase the max stacks of Negative Status and Electro Rage the target can receive by 3 for 15s. Unstackable.",
+   "sample_vi": "Aero DMG gây ra bởi Resonator đang hoạt động trong nhóm không phải là Cartethyia/Fleurdelys đối với các mục tiêu có Negative Status được Amplified thêm 17,5% trong 20 giây.",
+   "count": 10,
+   "characters": [
+    "cartethyia",
+    "chisa",
+    "rover-electro",
+    "suisui"
+   ],
+   "owners": [],
+   "source": "wiki"
   },
   {
    "term": "Overflow",
@@ -701,26 +818,12 @@
    ]
   },
   {
-   "term": "Negative Status",
-   "kind": "status",
-   "summary_vi": "Hiệu ứng bất lợi gây lên mục tiêu, gồm Spectro Frazzle, Aero Erosion, Havoc Bane, Fusion Burst, Glacio Chafe, Electro Flare...",
-   "summary_en": "Debuffs inflicted on targets: Spectro Frazzle, Aero Erosion, Havoc Bane, Fusion Burst, Glacio Chafe, Electro Flare...",
-   "sample_en": "• When an attack hits, increase the max stacks of Negative Status and Electro Rage the target can receive by 3 for 15s. Unstackable.",
-   "sample_vi": "• Khi một đòn tấn công xảy ra, hãy tăng số điểm cộng dồn tối đa của Negative Status và Electro Rage mà mục tiêu có thể nhận thêm 3 trong 15 giây. Không thể xếp chồng lên nhau.",
-   "count": 8,
-   "characters": [
-    "chisa",
-    "suisui"
-   ],
-   "owners": []
-  },
-  {
    "term": "Afflatus",
    "kind": "resource",
    "summary_vi": "Tài nguyên tích lũy của Zhezhi.",
    "summary_en": "Zhezhi's accumulated resource.",
    "sample_en": "Deal Glacio DMG. If Afflatus is no less than 60, consume 60 Afflatus to summon Phantasmic Imprint - Left and Phantasmic Imprint - Right.",
-   "sample_vi": "Gây Glacio DMG. Nếu Afflatus không dưới 60, tiêu thụ 60 Afflatus để triệu hồi Phantasmic Imprint - Trái và Phantasmic Imprint - Phải.",
+   "sample_vi": "Gây Glacio DMG. Nếu Afflatus không ít hơn 60, tiêu hao 60 Afflatus để triệu hồi Phantasmic Imprint - Left và Phantasmic Imprint - Right.",
    "count": 7,
    "characters": [
     "zhezhi"
@@ -765,7 +868,7 @@
    "summary_vi": "Tài nguyên tích lũy của Qingxiao.",
    "summary_en": "Qingxiao's accumulated resource.",
    "sample_en": "• When Qin Heart and Sword Cadence are full, Heavy Attack - Stringblade becomes available.",
-   "sample_vi": "• Khi Qin Heart và Sword Cadence đã đầy, Heavy Attack - Stringblade sẽ khả dụng.",
+   "sample_vi": "• Khi Qin Heart và Sword Cadence đầy, có thể dùng Heavy Attack - Stringblade.",
    "count": 7,
    "characters": [
     "qingxiao"
@@ -840,7 +943,7 @@
    "summary_vi": "Tài nguyên tích lũy của Qingxiao.",
    "summary_en": "Qingxiao's accumulated resource.",
    "sample_en": "• When Qin Heart and Sword Cadence are full, Heavy Attack - Stringblade becomes available.",
-   "sample_vi": "• Khi Qin Heart và Sword Cadence đã đầy, Heavy Attack - Stringblade sẽ khả dụng.",
+   "sample_vi": "• Khi Qin Heart và Sword Cadence đầy, có thể dùng Heavy Attack - Stringblade.",
    "count": 6,
    "characters": [
     "qingxiao"
@@ -862,6 +965,9 @@
    ],
    "owners": [
     "ciaccona"
+   ],
+   "aliases": [
+    "Ensemble Sylphs"
    ]
   },
   {
@@ -885,7 +991,7 @@
    "summary_vi": "Trạng thái buff Aemeath nhận sau Resonance Liberation.",
    "summary_en": "Buff state Aemeath gains after Resonance Liberation.",
    "sample_en": "• Casting this skill grants the following effects: Enter Stardust Resonance for 30s. Enter Heavenfall Edict: Unbound for 60s.",
-   "sample_vi": "• Thi triển kỹ năng này sẽ mang lại các hiệu ứng sau: vào Stardust Resonance trong 30 giây. vào Heavenfall Edict: Unbound trong 60 giây.",
+   "sample_vi": "• Thi triển kỹ năng này nhận các hiệu ứng sau: vào Stardust Resonance trong 30 giây; vào Heavenfall Edict: Unbound trong 60 giây.",
    "count": 5,
    "characters": [
     "aemeath"
@@ -915,7 +1021,7 @@
    "summary_vi": "Trạng thái sau Resonance Liberation của Calcharo, thay đổi bộ chiêu.",
    "summary_en": "Calcharo's state after Resonance Liberation that changes his moveset.",
    "sample_en": "Calcharo attacks the target, dealing Electro DMG and enters Deathblade Gear state. After Resonance Liberation Deathblade Gear state ends, Calcharo's next Intro Skill is replaced with Intro Skill \"Necessary Means\", which deals Electro DMG, considered as Intro Skill damage.",
-   "sample_vi": "Calcharo tấn công mục tiêu, gây Electro DMG và rơi vào trạng thái Deathblade Gear. Sau khi trạng thái Resonance Liberation Deathblade Gear kết thúc, Intro Skill tiếp theo của Calcharo được thay thế bằng Intro Skill \"Phương tiện cần thiết\", gây ra Electro DMG, được coi là Intro Skill sát thương.",
+   "sample_vi": "Calcharo tấn công mục tiêu, gây Electro DMG và vào trạng thái Deathblade Gear. Sau khi trạng thái Resonance Liberation Deathblade Gear kết thúc, Intro Skill kế tiếp của Calcharo được thay bằng Intro Skill \"Necessary Means\", gây Electro DMG, tính là Intro Skill DMG.",
    "count": 4,
    "characters": [
     "calcharo"
@@ -968,6 +1074,34 @@
    "owners": []
   },
   {
+   "term": "Electro Rage",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "hsin": {
+     "kind": "skill",
+     "index": 3,
+     "line": 25,
+     "n": 1
+    },
+    "suisui": {
+     "kind": "skill",
+     "index": 8,
+     "line": 7,
+     "n": 1
+    }
+   },
+   "count": 2,
+   "characters": [
+    "hsin",
+    "suisui"
+   ],
+   "owners": [
+    "hsin",
+    "suisui"
+   ]
+  },
+  {
    "term": "Eras in Unity",
    "kind": "mode",
    "summary_vi": "Hiệu ứng cộng hưởng Jinhsi cấp cho các Resonator gần đó khi có mặt trong đội.",
@@ -998,6 +1132,2592 @@
    ]
   },
   {
+   "term": "Parry Stance",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "jianxin": {
+     "kind": "skill",
+     "index": 1,
+     "line": 0,
+     "n": 1
+    },
+    "rover-electro": {
+     "kind": "skill",
+     "index": 0,
+     "line": 1,
+     "n": 1
+    }
+   },
+   "count": 2,
+   "characters": [
+    "jianxin",
+    "rover-electro"
+   ],
+   "owners": [
+    "jianxin",
+    "rover-electro"
+   ]
+  },
+  {
+   "term": "Absolution",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "phoebe": {
+     "kind": "skill",
+     "index": 3,
+     "line": 1,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "phoebe"
+   ],
+   "owners": [
+    "phoebe"
+   ]
+  },
+  {
+   "term": "Abyssal Rebirth",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "cantarella": {
+     "kind": "skill",
+     "index": 3,
+     "line": 15,
+     "n": 2
+    }
+   },
+   "count": 1,
+   "characters": [
+    "cantarella"
+   ],
+   "owners": [
+    "cantarella"
+   ]
+  },
+  {
+   "term": "Additive Color",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "lynae": {
+     "kind": "skill",
+     "index": 1,
+     "line": 6,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "lynae"
+   ],
+   "owners": [
+    "lynae"
+   ]
+  },
+  {
+   "term": "Aflame",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "brant": {
+     "kind": "skill",
+     "index": 2,
+     "line": 3,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "brant"
+   ],
+   "owners": [
+    "brant"
+   ]
+  },
+  {
+   "term": "Afterflame",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "galbrena": {
+     "kind": "skill",
+     "index": 3,
+     "line": 29,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "galbrena"
+   ],
+   "owners": [
+    "galbrena"
+   ]
+  },
+  {
+   "term": "Aftersound",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "phrolova": {
+     "kind": "skill",
+     "index": 3,
+     "line": 5,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "phrolova"
+   ],
+   "owners": [
+    "phrolova"
+   ]
+  },
+  {
+   "term": "Answering Form",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "hsin": {
+     "kind": "skill",
+     "index": 3,
+     "line": 0,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "hsin"
+   ],
+   "owners": [
+    "hsin"
+   ]
+  },
+  {
+   "term": "Answering Heart",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "hsin": {
+     "kind": "skill",
+     "index": 3,
+     "line": 0,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "hsin"
+   ],
+   "owners": [
+    "hsin"
+   ]
+  },
+  {
+   "term": "Antique Appraisal",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "youhu": {
+     "kind": "skill",
+     "index": 1,
+     "line": 5,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "youhu"
+   ],
+   "owners": [
+    "youhu"
+   ]
+  },
+  {
+   "term": "Arc Beyond the Edge",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "iuno": {
+     "kind": "skill",
+     "index": 1,
+     "line": 9,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "iuno"
+   ],
+   "owners": [
+    "iuno"
+   ]
+  },
+  {
+   "term": "Ascendancy",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "augusta": {
+     "kind": "skill",
+     "index": 3,
+     "line": 21,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "augusta"
+   ],
+   "owners": [
+    "augusta"
+   ]
+  },
+  {
+   "term": "Aureate Judge",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "luuk-herssen": {
+     "kind": "skill",
+     "index": 3,
+     "line": 5,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "luuk-herssen"
+   ],
+   "owners": [
+    "luuk-herssen"
+   ]
+  },
+  {
+   "term": "Aureole of Execution",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "luuk-herssen": {
+     "kind": "skill",
+     "index": 1,
+     "line": 5,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "luuk-herssen"
+   ],
+   "owners": [
+    "luuk-herssen"
+   ]
+  },
+  {
+   "term": "Auspice",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "youhu": {
+     "kind": "skill",
+     "index": 3,
+     "line": 11,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "youhu"
+   ],
+   "owners": [
+    "youhu"
+   ],
+   "aliases": [
+    "Auspices"
+   ]
+  },
+  {
+   "term": "Awakened Mind",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "suoming": {
+     "kind": "skill",
+     "index": 3,
+     "line": 3,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "suoming"
+   ],
+   "owners": [
+    "suoming"
+   ]
+  },
+  {
+   "term": "Azure Plume",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "yangyang-xuanling": {
+     "kind": "skill",
+     "index": 3,
+     "line": 15,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "yangyang-xuanling"
+   ],
+   "owners": [
+    "yangyang-xuanling"
+   ]
+  },
+  {
+   "term": "Azure Sword Stance",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "yangyang-xuanling": {
+     "kind": "skill",
+     "index": 3,
+     "line": 0,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "yangyang-xuanling"
+   ],
+   "owners": [
+    "yangyang-xuanling"
+   ]
+  },
+  {
+   "term": "Bamboo's Shade",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "qiuyuan": {
+     "kind": "skill",
+     "index": 3,
+     "line": 3,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "qiuyuan"
+   ],
+   "owners": [
+    "qiuyuan"
+   ]
+  },
+  {
+   "term": "Baseline Mode",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "mornye": {
+     "kind": "skill",
+     "index": 3,
+     "line": 1,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "mornye"
+   ],
+   "owners": [
+    "mornye"
+   ]
+  },
+  {
+   "term": "Beyond Imagination",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "roccia": {
+     "kind": "skill",
+     "index": 3,
+     "line": 4,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "roccia"
+   ],
+   "owners": [
+    "roccia"
+   ]
+  },
+  {
+   "term": "Blaze",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "zani": {
+     "kind": "skill",
+     "index": 3,
+     "line": 20,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "zani"
+   ],
+   "owners": [
+    "zani"
+   ],
+   "aliases": [
+    "Blazes"
+   ]
+  },
+  {
+   "term": "Blessing",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "iuno": {
+     "kind": "skill",
+     "index": 3,
+     "line": 20,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "iuno"
+   ],
+   "owners": [
+    "iuno"
+   ]
+  },
+  {
+   "term": "Blessing of Runes",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "sigrika": {
+     "kind": "skill",
+     "index": 6,
+     "line": 3,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "sigrika"
+   ],
+   "owners": [
+    "sigrika"
+   ]
+  },
+  {
+   "term": "Breakdown Form",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "denia": {
+     "kind": "skill",
+     "index": 3,
+     "line": 4,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "denia"
+   ],
+   "owners": [
+    "denia"
+   ]
+  },
+  {
+   "term": "Budding Mode",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "camellya": {
+     "kind": "skill",
+     "index": 3,
+     "line": 8,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "camellya"
+   ],
+   "owners": [
+    "camellya"
+   ]
+  },
+  {
+   "term": "Burning Drive",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "galbrena": {
+     "kind": "skill",
+     "index": 3,
+     "line": 27,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "galbrena"
+   ],
+   "owners": [
+    "galbrena"
+   ]
+  },
+  {
+   "term": "Burning Matchpoint",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "lupa": {
+     "kind": "skill",
+     "index": 2,
+     "line": 11,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "lupa"
+   ],
+   "owners": [
+    "lupa"
+   ]
+  },
+  {
+   "term": "Burnout State",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "chisa": {
+     "kind": "skill",
+     "index": 3,
+     "line": 36,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "chisa"
+   ],
+   "owners": [
+    "chisa"
+   ]
+  },
+  {
+   "term": "Chainsaw Fever",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "chisa": {
+     "kind": "skill",
+     "index": 3,
+     "line": 35,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "chisa"
+   ],
+   "owners": [
+    "chisa"
+   ]
+  },
+  {
+   "term": "Chromatic Splendor",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "carlotta": {
+     "kind": "skill",
+     "index": 1,
+     "line": 4,
+     "n": 2
+    }
+   },
+   "count": 1,
+   "characters": [
+    "carlotta"
+   ],
+   "owners": [
+    "carlotta"
+   ]
+  },
+  {
+   "term": "Closing Refrain",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "iuno": {
+     "kind": "skill",
+     "index": 1,
+     "line": 3,
+     "n": 2
+    }
+   },
+   "count": 1,
+   "characters": [
+    "iuno"
+   ],
+   "owners": [
+    "iuno"
+   ]
+  },
+  {
+   "term": "Cloud Breath",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "suisui": {
+     "kind": "skill",
+     "index": 3,
+     "line": 0,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "suisui"
+   ],
+   "owners": [
+    "suisui"
+   ]
+  },
+  {
+   "term": "Color of Soul",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "lynae": {
+     "kind": "chain",
+     "index": 6,
+     "line": 0,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "lynae"
+   ],
+   "owners": [
+    "lynae"
+   ]
+  },
+  {
+   "term": "Compensate",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "lucilla": {
+     "kind": "skill",
+     "index": 1,
+     "line": 6,
+     "n": 2
+    }
+   },
+   "count": 1,
+   "characters": [
+    "lucilla"
+   ],
+   "owners": [
+    "lucilla"
+   ]
+  },
+  {
+   "term": "Compose",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "phrolova": {
+     "kind": "skill",
+     "index": 0,
+     "line": 7,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "phrolova"
+   ],
+   "owners": [
+    "phrolova"
+   ]
+  },
+  {
+   "term": "Confession",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "phoebe": {
+     "kind": "skill",
+     "index": 3,
+     "line": 2,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "phoebe"
+   ],
+   "owners": [
+    "phoebe"
+   ]
+  },
+  {
+   "term": "Conformal Charge",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "denia": {
+     "kind": "skill",
+     "index": 3,
+     "line": 28,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "denia"
+   ],
+   "owners": [
+    "denia"
+   ]
+  },
+  {
+   "term": "Convergent",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "sigrika": {
+     "kind": "skill",
+     "index": 5,
+     "line": 2,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "sigrika"
+   ],
+   "owners": [
+    "sigrika"
+   ]
+  },
+  {
+   "term": "Conviction",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "cartethyia": {
+     "kind": "skill",
+     "index": 3,
+     "line": 3,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "cartethyia"
+   ],
+   "owners": [
+    "cartethyia"
+   ]
+  },
+  {
+   "term": "Cosmos' Dissonance",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "encore": {
+     "kind": "skill",
+     "index": 3,
+     "line": 2,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "encore"
+   ],
+   "owners": [
+    "encore"
+   ]
+  },
+  {
+   "term": "Crisis Response Protocol",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "zani": {
+     "kind": "skill",
+     "index": 1,
+     "line": 4,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "zani"
+   ],
+   "owners": [
+    "zani"
+   ]
+  },
+  {
+   "term": "Crown of Wills",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "augusta": {
+     "kind": "skill",
+     "index": 7,
+     "line": 4,
+     "n": 2
+    }
+   },
+   "count": 1,
+   "characters": [
+    "augusta"
+   ],
+   "owners": [
+    "augusta"
+   ]
+  },
+  {
+   "term": "Curtain Call",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "phrolova": {
+     "kind": "skill",
+     "index": 2,
+     "line": 25,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "phrolova"
+   ],
+   "owners": [
+    "phrolova"
+   ]
+  },
+  {
+   "term": "DAKA DAKA",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "chixia": {
+     "kind": "skill",
+     "index": 3,
+     "line": 0,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "chixia"
+   ],
+   "owners": [
+    "chixia"
+   ]
+  },
+  {
+   "term": "Dark Core",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "denia": {
+     "kind": "skill",
+     "index": 3,
+     "line": 20,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "denia"
+   ],
+   "owners": [
+    "denia"
+   ],
+   "aliases": [
+    "Dark Cores"
+   ]
+  },
+  {
+   "term": "Dark Surge",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "rover-havoc": {
+     "kind": "skill",
+     "index": 3,
+     "line": 1,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "rover-havoc"
+   ],
+   "owners": [
+    "rover-havoc"
+   ]
+  },
+  {
+   "term": "Dawnlit Keep",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "luuk-herssen": {
+     "kind": "skill",
+     "index": 3,
+     "line": 14,
+     "n": 2
+    }
+   },
+   "count": 1,
+   "characters": [
+    "luuk-herssen"
+   ],
+   "owners": [
+    "luuk-herssen"
+   ]
+  },
+  {
+   "term": "Death Knell",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "carlotta": {
+     "kind": "skill",
+     "index": 2,
+     "line": 10,
+     "n": 2
+    }
+   },
+   "count": 1,
+   "characters": [
+    "carlotta"
+   ],
+   "owners": [
+    "carlotta"
+   ]
+  },
+  {
+   "term": "Death Snip",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "chisa": {
+     "kind": "skill",
+     "index": 0,
+     "line": 8,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "chisa"
+   ],
+   "owners": [
+    "chisa"
+   ]
+  },
+  {
+   "term": "Debut of Meteoric Radiance",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "aemeath": {
+     "kind": "skill",
+     "index": 7,
+     "line": 6,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "aemeath"
+   ],
+   "owners": [
+    "aemeath"
+   ]
+  },
+  {
+   "term": "Decipher",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "sigrika": {
+     "kind": "skill",
+     "index": 3,
+     "line": 21,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "sigrika"
+   ],
+   "owners": [
+    "sigrika"
+   ]
+  },
+  {
+   "term": "Deconstruction",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "carlotta": {
+     "kind": "skill",
+     "index": 2,
+     "line": 3,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "carlotta"
+   ],
+   "owners": [
+    "carlotta"
+   ]
+  },
+  {
+   "term": "Dedication",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "hiyuki": {
+     "kind": "skill",
+     "index": 3,
+     "line": 20,
+     "n": 2
+    }
+   },
+   "count": 1,
+   "characters": [
+    "hiyuki"
+   ],
+   "owners": [
+    "hiyuki"
+   ]
+  },
+  {
+   "term": "Deep Mind",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "suoming": {
+     "kind": "skill",
+     "index": 3,
+     "line": 0,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "suoming"
+   ],
+   "owners": [
+    "suoming"
+   ]
+  },
+  {
+   "term": "Degenerate Voidmatter",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "denia": {
+     "kind": "chain",
+     "index": 2,
+     "line": 0,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "denia"
+   ],
+   "owners": [
+    "denia"
+   ]
+  },
+  {
+   "term": "Delusion",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "suoming": {
+     "kind": "skill",
+     "index": 3,
+     "line": 13,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "suoming"
+   ],
+   "owners": [
+    "suoming"
+   ]
+  },
+  {
+   "term": "Demon Hypostasis",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "galbrena": {
+     "kind": "skill",
+     "index": 3,
+     "line": 3,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "galbrena"
+   ],
+   "owners": [
+    "galbrena"
+   ]
+  },
+  {
+   "term": "Diffusion",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "cantarella": {
+     "kind": "skill",
+     "index": 2,
+     "line": 4,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "cantarella"
+   ],
+   "owners": [
+    "cantarella"
+   ]
+  },
+  {
+   "term": "Discernment",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "the-shorekeeper": {
+     "kind": "skill",
+     "index": 6,
+     "line": 3,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "the-shorekeeper"
+   ],
+   "owners": [
+    "the-shorekeeper"
+   ]
+  },
+  {
+   "term": "Dispersion",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "carlotta": {
+     "kind": "skill",
+     "index": 1,
+     "line": 2,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "carlotta"
+   ],
+   "owners": [
+    "carlotta"
+   ]
+  },
+  {
+   "term": "Dissonance",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "encore": {
+     "kind": "skill",
+     "index": 3,
+     "line": 0,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "encore"
+   ],
+   "owners": [
+    "encore"
+   ]
+  },
+  {
+   "term": "Distributed Array",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "mornye": {
+     "kind": "skill",
+     "index": 1,
+     "line": 8,
+     "n": 2
+    }
+   },
+   "count": 1,
+   "characters": [
+    "mornye"
+   ],
+   "owners": [
+    "mornye"
+   ]
+  },
+  {
+   "term": "Divergent",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "sigrika": {
+     "kind": "skill",
+     "index": 2,
+     "line": 2,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "sigrika"
+   ],
+   "owners": [
+    "sigrika"
+   ]
+  },
+  {
+   "term": "Divine Voice",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "phoebe": {
+     "kind": "skill",
+     "index": 3,
+     "line": 14,
+     "n": 2
+    }
+   },
+   "count": 1,
+   "characters": [
+    "phoebe"
+   ],
+   "owners": [
+    "phoebe"
+   ]
+  },
+  {
+   "term": "Drawn Stance",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "qingxiao": {
+     "kind": "skill",
+     "index": 3,
+     "line": 35,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "qingxiao"
+   ],
+   "owners": [
+    "qingxiao"
+   ]
+  },
+  {
+   "term": "Dream Perfume",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "lily": {
+     "kind": "skill",
+     "index": 3,
+     "line": 6,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "lily"
+   ],
+   "owners": [
+    "lily"
+   ]
+  },
+  {
+   "term": "Dream Shelter",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "lily": {
+     "kind": "skill",
+     "index": 3,
+     "line": 6,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "lily"
+   ],
+   "owners": [
+    "lily"
+   ]
+  },
+  {
+   "term": "Dreambell Chime",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "lily": {
+     "kind": "skill",
+     "index": 3,
+     "line": 8,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "lily"
+   ],
+   "owners": [
+    "lily"
+   ]
+  },
+  {
+   "term": "Drizzle Stance",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "suisui": {
+     "kind": "skill",
+     "index": 7,
+     "line": 1,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "suisui"
+   ],
+   "owners": [
+    "suisui"
+   ]
+  },
+  {
+   "term": "Edict",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "hsin": {
+     "kind": "skill",
+     "index": 2,
+     "line": 8,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "hsin"
+   ],
+   "owners": [
+    "hsin"
+   ]
+  },
+  {
+   "term": "Electric Surge",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "rover-electro": {
+     "kind": "skill",
+     "index": 3,
+     "line": 18,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "rover-electro"
+   ],
+   "owners": [
+    "rover-electro"
+   ]
+  },
+  {
+   "term": "Empirical Data",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "the-shorekeeper": {
+     "kind": "skill",
+     "index": 3,
+     "line": 7,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "the-shorekeeper"
+   ],
+   "owners": [
+    "the-shorekeeper"
+   ]
+  },
+  {
+   "term": "Encapsulated",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "sigrika": {
+     "kind": "skill",
+     "index": 8,
+     "line": 2,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "sigrika"
+   ],
+   "owners": [
+    "sigrika"
+   ]
+  },
+  {
+   "term": "Endnotes",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "luuk-herssen": {
+     "kind": "skill",
+     "index": 1,
+     "line": 7,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "luuk-herssen"
+   ],
+   "owners": [
+    "luuk-herssen"
+   ]
+  },
+  {
+   "term": "Endnotes on the Endgame",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "luuk-herssen": {
+     "kind": "skill",
+     "index": 1,
+     "line": 25,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "luuk-herssen"
+   ],
+   "owners": [
+    "luuk-herssen"
+   ]
+  },
+  {
+   "term": "Energized Rebound",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "lumi": {
+     "kind": "skill",
+     "index": 3,
+     "line": 5,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "lumi"
+   ],
+   "owners": [
+    "lumi"
+   ]
+  },
+  {
+   "term": "Enflamement",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "changli": {
+     "kind": "skill",
+     "index": 3,
+     "line": 3,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "changli"
+   ],
+   "owners": [
+    "changli"
+   ]
+  },
+  {
+   "term": "Eternal Bloom",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "lily": {
+     "kind": "skill",
+     "index": 7,
+     "line": 2,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "lily"
+   ],
+   "owners": [
+    "lily"
+   ]
+  },
+  {
+   "term": "Exorcising Seal",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "qingxiao": {
+     "kind": "chain",
+     "index": 1,
+     "line": 2,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "qingxiao"
+   ],
+   "owners": [
+    "qingxiao"
+   ]
+  },
+  {
+   "term": "Fatal Finale",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "carlotta": {
+     "kind": "skill",
+     "index": 2,
+     "line": 13,
+     "n": 2
+    }
+   },
+   "count": 1,
+   "characters": [
+    "carlotta"
+   ],
+   "owners": [
+    "carlotta"
+   ]
+  },
+  {
+   "term": "Feather Sword Stance",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "yangyang-xuanling": {
+     "kind": "skill",
+     "index": 3,
+     "line": 0,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "yangyang-xuanling"
+   ],
+   "owners": [
+    "yangyang-xuanling"
+   ]
+  },
+  {
+   "term": "Feathered Oath",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "yangyang-xuanling": {
+     "kind": "skill",
+     "index": 3,
+     "line": 20,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "yangyang-xuanling"
+   ],
+   "owners": [
+    "yangyang-xuanling"
+   ]
+  },
+  {
+   "term": "Fervor",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "rebecca": {
+     "kind": "skill",
+     "index": 3,
+     "line": 16,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "rebecca"
+   ],
+   "owners": [
+    "rebecca"
+   ]
+  },
+  {
+   "term": "Fiery Feather",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "changli": {
+     "kind": "skill",
+     "index": 2,
+     "line": 2,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "changli"
+   ],
+   "owners": [
+    "changli"
+   ]
+  },
+  {
+   "term": "Film Roll",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "lucilla": {
+     "kind": "skill",
+     "index": 3,
+     "line": 6,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "lucilla"
+   ],
+   "owners": [
+    "lucilla"
+   ]
+  },
+  {
+   "term": "Final Bow",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "carlotta": {
+     "kind": "skill",
+     "index": 3,
+     "line": 5,
+     "n": 2
+    }
+   },
+   "count": 1,
+   "characters": [
+    "carlotta"
+   ],
+   "owners": [
+    "carlotta"
+   ]
+  },
+  {
+   "term": "Fire of Life",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "jingran": {
+     "kind": "skill",
+     "index": 3,
+     "line": 13,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "jingran"
+   ],
+   "owners": [
+    "jingran"
+   ]
+  },
+  {
+   "term": "Flickering Reverie",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "cantarella": {
+     "kind": "skill",
+     "index": 1,
+     "line": 3,
+     "n": 2
+    }
+   },
+   "count": 1,
+   "characters": [
+    "cantarella"
+   ],
+   "owners": [
+    "cantarella"
+   ]
+  },
+  {
+   "term": "Floral Epistle",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "suisui": {
+     "kind": "skill",
+     "index": 3,
+     "line": 1,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "suisui"
+   ],
+   "owners": [
+    "suisui"
+   ]
+  },
+  {
+   "term": "Foreclaimed Self",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "hiyuki": {
+     "kind": "skill",
+     "index": 3,
+     "line": 7,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "hiyuki"
+   ],
+   "owners": [
+    "hiyuki"
+   ]
+  },
+  {
+   "term": "Fortune Rolling",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "youhu": {
+     "kind": "skill",
+     "index": 0,
+     "line": 6,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "youhu"
+   ],
+   "owners": [
+    "youhu"
+   ]
+  },
+  {
+   "term": "Fortune in Disguise",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "jingran": {
+     "kind": "skill",
+     "index": 7,
+     "line": 4,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "jingran"
+   ],
+   "owners": [
+    "jingran"
+   ]
+  },
+  {
+   "term": "Frostharden Iai",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "hiyuki": {
+     "kind": "skill",
+     "index": 3,
+     "line": 26,
+     "n": 2
+    }
+   },
+   "count": 1,
+   "characters": [
+    "hiyuki"
+   ],
+   "owners": [
+    "hiyuki"
+   ]
+  },
+  {
+   "term": "Frostheart",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "hiyuki": {
+     "kind": "skill",
+     "index": 3,
+     "line": 23,
+     "n": 2
+    }
+   },
+   "count": 1,
+   "characters": [
+    "hiyuki"
+   ],
+   "owners": [
+    "hiyuki"
+   ]
+  },
+  {
+   "term": "Full Moon Domain",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "iuno": {
+     "kind": "skill",
+     "index": 3,
+     "line": 19,
+     "n": 2
+    }
+   },
+   "count": 1,
+   "characters": [
+    "iuno"
+   ],
+   "owners": [
+    "iuno"
+   ]
+  },
+  {
+   "term": "Full Stop",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "sigrika": {
+     "kind": "skill",
+     "index": 3,
+     "line": 24,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "sigrika"
+   ],
+   "owners": [
+    "sigrika"
+   ]
+  },
+  {
+   "term": "Fusion Trail",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "aemeath": {
+     "kind": "skill",
+     "index": 3,
+     "line": 12,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "aemeath"
+   ],
+   "owners": [
+    "aemeath"
+   ]
+  },
+  {
+   "term": "Gathered Mind",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "qingxiao": {
+     "kind": "skill",
+     "index": 5,
+     "line": 0,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "qingxiao"
+   ],
+   "owners": [
+    "qingxiao"
+   ]
+  },
+  {
+   "term": "Ghost Shroud",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "jingran": {
+     "kind": "skill",
+     "index": 6,
+     "line": 1,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "jingran"
+   ],
+   "owners": [
+    "jingran"
+   ]
+  },
+  {
+   "term": "Glacio Bite",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "hiyuki": {
+     "kind": "skill",
+     "index": 3,
+     "line": 1,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "hiyuki"
+   ],
+   "owners": [
+    "hiyuki"
+   ]
+  },
+  {
+   "term": "Golden Rule",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "luuk-herssen": {
+     "kind": "skill",
+     "index": 3,
+     "line": 11,
+     "n": 2
+    }
+   },
+   "count": 1,
+   "characters": [
+    "luuk-herssen"
+   ],
+   "owners": [
+    "luuk-herssen"
+   ],
+   "aliases": [
+    "Golden Rules"
+   ]
+  },
+  {
+   "term": "Half Moon",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "iuno": {
+     "kind": "skill",
+     "index": 3,
+     "line": 1,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "iuno"
+   ],
+   "owners": [
+    "iuno"
+   ]
+  },
+  {
+   "term": "Hanging Finality",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "chisa": {
+     "kind": "skill",
+     "index": 0,
+     "line": 30,
+     "n": 2
+    }
+   },
+   "count": 1,
+   "characters": [
+    "chisa"
+   ],
+   "owners": [
+    "chisa"
+   ]
+  },
+  {
+   "term": "Hark the Wind",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "yangyang-xuanling": {
+     "kind": "skill",
+     "index": 3,
+     "line": 16,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "yangyang-xuanling"
+   ],
+   "owners": [
+    "yangyang-xuanling"
+   ]
+  },
+  {
+   "term": "Hazy Dream",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "cantarella": {
+     "kind": "skill",
+     "index": 1,
+     "line": 6,
+     "n": 2
+    }
+   },
+   "count": 1,
+   "characters": [
+    "cantarella"
+   ],
+   "owners": [
+    "cantarella"
+   ]
+  },
+  {
+   "term": "Heart of Thunder",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "hsin": {
+     "kind": "skill",
+     "index": 3,
+     "line": 25,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "hsin"
+   ],
+   "owners": [
+    "hsin"
+   ]
+  },
+  {
+   "term": "Heliacal Ember",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "zani": {
+     "kind": "skill",
+     "index": 3,
+     "line": 1,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "zani"
+   ],
+   "owners": [
+    "zani"
+   ],
+   "aliases": [
+    "Heliacal Embers"
+   ]
+  },
+  {
+   "term": "Hellstride",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "galbrena": {
+     "kind": "skill",
+     "index": 3,
+     "line": 24,
+     "n": 2
+    }
+   },
+   "count": 1,
+   "characters": [
+    "galbrena"
+   ],
+   "owners": [
+    "galbrena"
+   ]
+  },
+  {
+   "term": "Herald of Revival",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "jinhsi": {
+     "kind": "chain",
+     "index": 1,
+     "line": 0,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "jinhsi"
+   ],
+   "owners": [
+    "jinhsi"
+   ]
+  },
+  {
+   "term": "High Syntony Field",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "mornye": {
+     "kind": "skill",
+     "index": 2,
+     "line": 5,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "mornye"
+   ],
+   "owners": [
+    "mornye"
+   ]
+  },
+  {
+   "term": "Hot Hand",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "rebecca": {
+     "kind": "skill",
+     "index": 3,
+     "line": 21,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "rebecca"
+   ],
+   "owners": [
+    "rebecca"
+   ]
+  },
+  {
+   "term": "Iai Stance",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "hiyuki": {
+     "kind": "skill",
+     "index": 3,
+     "line": 9,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "hiyuki"
+   ],
+   "owners": [
+    "hiyuki"
+   ]
+  },
+  {
+   "term": "Ichor Deposit",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "luuk-herssen": {
+     "kind": "skill",
+     "index": 1,
+     "line": 23,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "luuk-herssen"
+   ],
+   "owners": [
+    "luuk-herssen"
+   ]
+  },
+  {
+   "term": "Ichor Flow",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "luuk-herssen": {
+     "kind": "skill",
+     "index": 3,
+     "line": 25,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "luuk-herssen"
+   ],
+   "owners": [
+    "luuk-herssen"
+   ]
+  },
+  {
+   "term": "Illation",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "the-shorekeeper": {
+     "kind": "skill",
+     "index": 3,
+     "line": 3,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "the-shorekeeper"
+   ],
+   "owners": [
+    "the-shorekeeper"
+   ]
+  },
+  {
+   "term": "Illumining Form",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "hsin": {
+     "kind": "skill",
+     "index": 3,
+     "line": 1,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "hsin"
+   ],
+   "owners": [
+    "hsin"
+   ]
+  },
+  {
+   "term": "Illumining Heart",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "hsin": {
+     "kind": "skill",
+     "index": 3,
+     "line": 1,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "hsin"
+   ],
+   "owners": [
+    "hsin"
+   ]
+  },
+  {
+   "term": "Imagination",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "roccia": {
+     "kind": "skill",
+     "index": 3,
+     "line": 6,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "roccia"
+   ],
+   "owners": [
+    "roccia"
+   ]
+  },
+  {
+   "term": "Immortal's Descendancy",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "jinhsi": {
+     "kind": "chain",
+     "index": 3,
+     "line": 0,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "jinhsi"
+   ],
+   "owners": [
+    "jinhsi"
+   ]
+  },
+  {
+   "term": "Incandescence",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "jinhsi": {
+     "kind": "skill",
+     "index": 3,
+     "line": 16,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "jinhsi"
+   ],
+   "owners": [
+    "jinhsi"
+   ]
+  },
+  {
+   "term": "Inklit Spirit",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "zhezhi": {
+     "kind": "skill",
+     "index": 2,
+     "line": 3,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "zhezhi"
+   ],
+   "owners": [
+    "zhezhi"
+   ],
+   "aliases": [
+    "Inklit Spirits"
+   ]
+  },
+  {
+   "term": "Inksplash of Mind",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "qiuyuan": {
+     "kind": "skill",
+     "index": 3,
+     "line": 5,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "qiuyuan"
+   ],
+   "owners": [
+    "qiuyuan"
+   ]
+  },
+  {
+   "term": "Innate Gift",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "sigrika": {
+     "kind": "skill",
+     "index": 3,
+     "line": 17,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "sigrika"
+   ],
+   "owners": [
+    "sigrika"
+   ]
+  },
+  {
+   "term": "Inner Stellarealm",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "the-shorekeeper": {
+     "kind": "skill",
+     "index": 2,
+     "line": 3,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "the-shorekeeper"
+   ],
+   "owners": [
+    "the-shorekeeper"
+   ]
+  },
+  {
+   "term": "Instant Response",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "aemeath": {
+     "kind": "chain",
+     "index": 1,
+     "line": 1,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "aemeath"
+   ],
+   "owners": [
+    "aemeath"
+   ]
+  },
+  {
+   "term": "Interfered Marker",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "mornye": {
+     "kind": "skill",
+     "index": 3,
+     "line": 28,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "mornye"
+   ],
+   "owners": [
+    "mornye"
+   ]
+  },
+  {
+   "term": "Invoked Form",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "hsin": {
+     "kind": "skill",
+     "index": 2,
+     "line": 15,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "hsin"
+   ],
+   "owners": [
+    "hsin"
+   ]
+  },
+  {
    "term": "Involuntary Sharing",
    "kind": "system",
    "summary_vi": "Hiệu ứng Lucy cấp cho Resonator trong đội, cho phép thấy mục tiêu sau vật cản.",
@@ -1010,6 +3730,2504 @@
    ],
    "owners": [
     "lucy"
+   ]
+  },
+  {
+   "term": "Knock Knock",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "denia": {
+     "kind": "skill",
+     "index": 7,
+     "line": 4,
+     "n": 2
+    }
+   },
+   "count": 1,
+   "characters": [
+    "denia"
+   ],
+   "owners": [
+    "denia"
+   ]
+  },
+  {
+   "term": "Letting It Go",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "lucilla": {
+     "kind": "skill",
+     "index": 2,
+     "line": 14,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "lucilla"
+   ],
+   "owners": [
+    "lucilla"
+   ]
+  },
+  {
+   "term": "Lifethread",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "chisa": {
+     "kind": "skill",
+     "index": 3,
+     "line": 56,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "chisa"
+   ],
+   "owners": [
+    "chisa"
+   ]
+  },
+  {
+   "term": "Lightning Infused",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "yuanwu": {
+     "kind": "skill",
+     "index": 3,
+     "line": 0,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "yuanwu"
+   ],
+   "owners": [
+    "yuanwu"
+   ]
+  },
+  {
+   "term": "Lion's Vigor",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "lingyang": {
+     "kind": "skill",
+     "index": 3,
+     "line": 2,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "lingyang"
+   ],
+   "owners": [
+    "lingyang"
+   ]
+  },
+  {
+   "term": "Lucky Draw",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "youhu": {
+     "kind": "skill",
+     "index": 1,
+     "line": 2,
+     "n": 2
+    }
+   },
+   "count": 1,
+   "characters": [
+    "youhu"
+   ],
+   "owners": [
+    "youhu"
+   ]
+  },
+  {
+   "term": "Lunar Cycle",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "iuno": {
+     "kind": "skill",
+     "index": 3,
+     "line": 1,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "iuno"
+   ],
+   "owners": [
+    "iuno"
+   ]
+  },
+  {
+   "term": "Maestro",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "phrolova": {
+     "kind": "skill",
+     "index": 2,
+     "line": 5,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "phrolova"
+   ],
+   "owners": [
+    "phrolova"
+   ]
+  },
+  {
+   "term": "Magic Box",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "roccia": {
+     "kind": "skill",
+     "index": 5,
+     "line": 2,
+     "n": 2
+    }
+   },
+   "count": 1,
+   "characters": [
+    "roccia"
+   ],
+   "owners": [
+    "roccia"
+   ]
+  },
+  {
+   "term": "Majesty",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "augusta": {
+     "kind": "skill",
+     "index": 2,
+     "line": 17,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "augusta"
+   ],
+   "owners": [
+    "augusta"
+   ]
+  },
+  {
+   "term": "Mechanism Dominion",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "hsin": {
+     "kind": "skill",
+     "index": 3,
+     "line": 14,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "hsin"
+   ],
+   "owners": [
+    "hsin"
+   ]
+  },
+  {
+   "term": "Melody",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "yangyang-xuanling": {
+     "kind": "skill",
+     "index": 0,
+     "line": 0,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "yangyang-xuanling"
+   ],
+   "owners": [
+    "yangyang-xuanling"
+   ]
+  },
+  {
+   "term": "Mindlock",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "qingxiao": {
+     "kind": "chain",
+     "index": 3,
+     "line": 1,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "qingxiao"
+   ],
+   "owners": [
+    "qingxiao"
+   ]
+  },
+  {
+   "term": "Mirage",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "cantarella": {
+     "kind": "skill",
+     "index": 0,
+     "line": 5,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "cantarella"
+   ],
+   "owners": [
+    "cantarella"
+   ]
+  },
+  {
+   "term": "Mistcloak Dash",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "aalto": {
+     "kind": "skill",
+     "index": 3,
+     "line": 0,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "aalto"
+   ],
+   "owners": [
+    "aalto"
+   ]
+  },
+  {
+   "term": "Moldable Crystal",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "carlotta": {
+     "kind": "skill",
+     "index": 3,
+     "line": 15,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "carlotta"
+   ],
+   "owners": [
+    "carlotta"
+   ],
+   "aliases": [
+    "Moldable Crystals"
+   ]
+  },
+  {
+   "term": "Musical Essence",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "ciaccona": {
+     "kind": "skill",
+     "index": 3,
+     "line": 5,
+     "n": 2
+    }
+   },
+   "count": 1,
+   "characters": [
+    "ciaccona"
+   ],
+   "owners": [
+    "ciaccona"
+   ]
+  },
+  {
+   "term": "Oblivion",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "lucilla": {
+     "kind": "skill",
+     "index": 3,
+     "line": 10,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "lucilla"
+   ],
+   "owners": [
+    "lucilla"
+   ]
+  },
+  {
+   "term": "Observation Marker",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "mornye": {
+     "kind": "skill",
+     "index": 3,
+     "line": 26,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "mornye"
+   ],
+   "owners": [
+    "mornye"
+   ]
+  },
+  {
+   "term": "Optical Illusion",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "lucy": {
+     "kind": "skill",
+     "index": 5,
+     "line": 0,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "lucy"
+   ],
+   "owners": [
+    "lucy"
+   ]
+  },
+  {
+   "term": "Optimal Solution",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "mornye": {
+     "kind": "skill",
+     "index": 1,
+     "line": 5,
+     "n": 2
+    }
+   },
+   "count": 1,
+   "characters": [
+    "mornye"
+   ],
+   "owners": [
+    "mornye"
+   ]
+  },
+  {
+   "term": "Pack Hunt",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "lupa": {
+     "kind": "skill",
+     "index": 2,
+     "line": 6,
+     "n": 2
+    }
+   },
+   "count": 1,
+   "characters": [
+    "lupa"
+   ],
+   "owners": [
+    "lupa"
+   ]
+  },
+  {
+   "term": "Painter's Delight",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "zhezhi": {
+     "kind": "skill",
+     "index": 3,
+     "line": 16,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "zhezhi"
+   ],
+   "owners": [
+    "zhezhi"
+   ]
+  },
+  {
+   "term": "Performance Capacity",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "xiangli-yao": {
+     "kind": "skill",
+     "index": 3,
+     "line": 13,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "xiangli-yao"
+   ],
+   "owners": [
+    "xiangli-yao"
+   ]
+  },
+  {
+   "term": "Perpetuating Daytime",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "luuk-herssen": {
+     "kind": "skill",
+     "index": 5,
+     "line": 4,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "luuk-herssen"
+   ],
+   "owners": [
+    "luuk-herssen"
+   ]
+  },
+  {
+   "term": "Prayer",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "phoebe": {
+     "kind": "skill",
+     "index": 3,
+     "line": 11,
+     "n": 2
+    }
+   },
+   "count": 1,
+   "characters": [
+    "phoebe"
+   ],
+   "owners": [
+    "phoebe"
+   ],
+   "aliases": [
+    "Prayers"
+   ]
+  },
+  {
+   "term": "Premixed Hue",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "lynae": {
+     "kind": "chain",
+     "index": 3,
+     "line": 1,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "lynae"
+   ],
+   "owners": [
+    "lynae"
+   ]
+  },
+  {
+   "term": "Present Self",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "hiyuki": {
+     "kind": "skill",
+     "index": 3,
+     "line": 5,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "hiyuki"
+   ],
+   "owners": [
+    "hiyuki"
+   ]
+  },
+  {
+   "term": "Primordial Qi",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "buling": {
+     "kind": "skill",
+     "index": 3,
+     "line": 3,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "buling"
+   ],
+   "owners": [
+    "buling"
+   ]
+  },
+  {
+   "term": "Prowess",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "augusta": {
+     "kind": "skill",
+     "index": 0,
+     "line": 27,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "augusta"
+   ],
+   "owners": [
+    "augusta"
+   ]
+  },
+  {
+   "term": "Qingloong Mode",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "jiyan": {
+     "kind": "skill",
+     "index": 2,
+     "line": 0,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "jiyan"
+   ],
+   "owners": [
+    "jiyan"
+   ]
+  },
+  {
+   "term": "RAM",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "lucy": {
+     "kind": "skill",
+     "index": 2,
+     "line": 1,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "lucy"
+   ],
+   "owners": [
+    "lucy"
+   ]
+  },
+  {
+   "term": "Radiance Ward",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "hsin": {
+     "kind": "chain",
+     "index": 1,
+     "line": 0,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "hsin"
+   ],
+   "owners": [
+    "hsin"
+   ]
+  },
+  {
+   "term": "Ready Stance",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "zani": {
+     "kind": "skill",
+     "index": 3,
+     "line": 5,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "zani"
+   ],
+   "owners": [
+    "zani"
+   ]
+  },
+  {
+   "term": "Rebound",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "lumi": {
+     "kind": "skill",
+     "index": 1,
+     "line": 4,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "lumi"
+   ],
+   "owners": [
+    "lumi"
+   ]
+  },
+  {
+   "term": "Recital",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "ciaccona": {
+     "kind": "skill",
+     "index": 2,
+     "line": 2,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "ciaccona"
+   ],
+   "owners": [
+    "ciaccona"
+   ]
+  },
+  {
+   "term": "Red Light Mode",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "lumi": {
+     "kind": "skill",
+     "index": 1,
+     "line": 8,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "lumi"
+   ],
+   "owners": [
+    "lumi"
+   ]
+  },
+  {
+   "term": "Red Light Spark",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "lumi": {
+     "kind": "skill",
+     "index": 3,
+     "line": 20,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "lumi"
+   ],
+   "owners": [
+    "lumi"
+   ],
+   "aliases": [
+    "Red Light Sparks"
+   ]
+  },
+  {
+   "term": "Red Spotlight Mode",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "lumi": {
+     "kind": "skill",
+     "index": 3,
+     "line": 1,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "lumi"
+   ],
+   "owners": [
+    "lumi"
+   ]
+  },
+  {
+   "term": "Redundant Energy",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "zani": {
+     "kind": "skill",
+     "index": 3,
+     "line": 13,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "zani"
+   ],
+   "owners": [
+    "zani"
+   ]
+  },
+  {
+   "term": "Reincarnate",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "phrolova": {
+     "kind": "skill",
+     "index": 0,
+     "line": 2,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "phrolova"
+   ],
+   "owners": [
+    "phrolova"
+   ]
+  },
+  {
+   "term": "Relative Momentum",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "mornye": {
+     "kind": "skill",
+     "index": 3,
+     "line": 37,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "mornye"
+   ],
+   "owners": [
+    "mornye"
+   ]
+  },
+  {
+   "term": "Remnant Entities",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "baizhi": {
+     "kind": "skill",
+     "index": 2,
+     "line": 1,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "baizhi"
+   ],
+   "owners": [
+    "baizhi"
+   ]
+  },
+  {
+   "term": "Rending Lunge",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "chisa": {
+     "kind": "skill",
+     "index": 0,
+     "line": 4,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "chisa"
+   ],
+   "owners": [
+    "chisa"
+   ]
+  },
+  {
+   "term": "Resolving Chord",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "phrolova": {
+     "kind": "skill",
+     "index": 0,
+     "line": 15,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "phrolova"
+   ],
+   "owners": [
+    "phrolova"
+   ]
+  },
+  {
+   "term": "Rest Mass Energy",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "mornye": {
+     "kind": "skill",
+     "index": 3,
+     "line": 34,
+     "n": 2
+    }
+   },
+   "count": 1,
+   "characters": [
+    "mornye"
+   ],
+   "owners": [
+    "mornye"
+   ]
+  },
+  {
+   "term": "Ring of Chainsaw",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "chisa": {
+     "kind": "skill",
+     "index": 3,
+     "line": 51,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "chisa"
+   ],
+   "owners": [
+    "chisa"
+   ]
+  },
+  {
+   "term": "Ring of Mirrors",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "phoebe": {
+     "kind": "skill",
+     "index": 1,
+     "line": 3,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "phoebe"
+   ],
+   "owners": [
+    "phoebe"
+   ]
+  },
+  {
+   "term": "Roaming Transcendent",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "suisui": {
+     "kind": "skill",
+     "index": 2,
+     "line": 0,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "suisui"
+   ],
+   "owners": [
+    "suisui"
+   ]
+  },
+  {
+   "term": "Rocksteady Defense",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "taoqi": {
+     "kind": "skill",
+     "index": 0,
+     "line": 1,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "taoqi"
+   ],
+   "owners": [
+    "taoqi"
+   ]
+  },
+  {
+   "term": "Root Access",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "lucy": {
+     "kind": "skill",
+     "index": 3,
+     "line": 20,
+     "n": 2
+    }
+   },
+   "count": 1,
+   "characters": [
+    "lucy"
+   ],
+   "owners": [
+    "lucy"
+   ]
+  },
+  {
+   "term": "Ruler's Realm",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "augusta": {
+     "kind": "skill",
+     "index": 2,
+     "line": 14,
+     "n": 2
+    }
+   },
+   "count": 1,
+   "characters": [
+    "augusta"
+   ],
+   "owners": [
+    "augusta"
+   ]
+  },
+  {
+   "term": "Rune",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "sigrika": {
+     "kind": "skill",
+     "index": 3,
+     "line": 20,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "sigrika"
+   ],
+   "owners": [
+    "sigrika"
+   ],
+   "aliases": [
+    "Runes"
+   ]
+  },
+  {
+   "term": "Runic Chain Whip",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "sigrika": {
+     "kind": "skill",
+     "index": 3,
+     "line": 11,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "sigrika"
+   ],
+   "owners": [
+    "sigrika"
+   ]
+  },
+  {
+   "term": "Runic Outburst",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "sigrika": {
+     "kind": "skill",
+     "index": 3,
+     "line": 9,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "sigrika"
+   ],
+   "owners": [
+    "sigrika"
+   ]
+  },
+  {
+   "term": "Runic Soliskin",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "sigrika": {
+     "kind": "skill",
+     "index": 3,
+     "line": 13,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "sigrika"
+   ],
+   "owners": [
+    "sigrika"
+   ]
+  },
+  {
+   "term": "Rupturous Trail",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "aemeath": {
+     "kind": "skill",
+     "index": 2,
+     "line": 8,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "aemeath"
+   ],
+   "owners": [
+    "aemeath"
+   ]
+  },
+  {
+   "term": "SQL",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "lucy": {
+     "kind": "skill",
+     "index": 3,
+     "line": 4,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "lucy"
+   ],
+   "owners": [
+    "lucy"
+   ]
+  },
+  {
+   "term": "Scarlet Coda",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "phrolova": {
+     "kind": "skill",
+     "index": 0,
+     "line": 7,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "phrolova"
+   ],
+   "owners": [
+    "phrolova"
+   ]
+  },
+  {
+   "term": "Scorching Light",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "zani": {
+     "kind": "skill",
+     "index": 3,
+     "line": 3,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "zani"
+   ],
+   "owners": [
+    "zani"
+   ]
+  },
+  {
+   "term": "Sealed Trail",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "aemeath": {
+     "kind": "chain",
+     "index": 1,
+     "line": 6,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "aemeath"
+   ],
+   "owners": [
+    "aemeath"
+   ]
+  },
+  {
+   "term": "Sentience",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "iuno": {
+     "kind": "skill",
+     "index": 3,
+     "line": 24,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "iuno"
+   ],
+   "owners": [
+    "iuno"
+   ]
+  },
+  {
+   "term": "Seraphic Duo",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "aemeath": {
+     "kind": "skill",
+     "index": 3,
+     "line": 1,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "aemeath"
+   ],
+   "owners": [
+    "aemeath"
+   ]
+  },
+  {
+   "term": "Serrated Loop",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "chisa": {
+     "kind": "skill",
+     "index": 1,
+     "line": 6,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "chisa"
+   ],
+   "owners": [
+    "chisa"
+   ]
+  },
+  {
+   "term": "Sheathed Stance",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "qingxiao": {
+     "kind": "skill",
+     "index": 3,
+     "line": 32,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "qingxiao"
+   ],
+   "owners": [
+    "qingxiao"
+   ]
+  },
+  {
+   "term": "Shiver",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "cantarella": {
+     "kind": "skill",
+     "index": 3,
+     "line": 25,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "cantarella"
+   ],
+   "owners": [
+    "cantarella"
+   ]
+  },
+  {
+   "term": "Sinflame",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "galbrena": {
+     "kind": "skill",
+     "index": 3,
+     "line": 33,
+     "n": 2
+    }
+   },
+   "count": 1,
+   "characters": [
+    "galbrena"
+   ],
+   "owners": [
+    "galbrena"
+   ]
+  },
+  {
+   "term": "Snow Rust",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "hiyuki": {
+     "kind": "skill",
+     "index": 5,
+     "line": 0,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "hiyuki"
+   ],
+   "owners": [
+    "hiyuki"
+   ]
+  },
+  {
+   "term": "Snowforged Blade",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "hiyuki": {
+     "kind": "skill",
+     "index": 3,
+     "line": 32,
+     "n": 2
+    }
+   },
+   "count": 1,
+   "characters": [
+    "hiyuki"
+   ],
+   "owners": [
+    "hiyuki"
+   ]
+  },
+  {
+   "term": "Soliskin Vitality",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "sigrika": {
+     "kind": "skill",
+     "index": 3,
+     "line": 26,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "sigrika"
+   ],
+   "owners": [
+    "sigrika"
+   ]
+  },
+  {
+   "term": "Soliskin to the Aid",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "sigrika": {
+     "kind": "skill",
+     "index": 1,
+     "line": 7,
+     "n": 2
+    }
+   },
+   "count": 1,
+   "characters": [
+    "sigrika"
+   ],
+   "owners": [
+    "sigrika"
+   ]
+  },
+  {
+   "term": "Spotlight",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "lucilla": {
+     "kind": "skill",
+     "index": 1,
+     "line": 9,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "lucilla"
+   ],
+   "owners": [
+    "lucilla"
+   ]
+  },
+  {
+   "term": "Spring's Birth",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "suisui": {
+     "kind": "skill",
+     "index": 5,
+     "line": 0,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "suisui"
+   ],
+   "owners": [
+    "suisui"
+   ]
+  },
+  {
+   "term": "Stagecraft Form",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "denia": {
+     "kind": "skill",
+     "index": 3,
+     "line": 8,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "denia"
+   ],
+   "owners": [
+    "denia"
+   ]
+  },
+  {
+   "term": "Starflux",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "aemeath": {
+     "kind": "skill",
+     "index": 3,
+     "line": 38,
+     "n": 2
+    }
+   },
+   "count": 1,
+   "characters": [
+    "aemeath"
+   ],
+   "owners": [
+    "aemeath"
+   ]
+  },
+  {
+   "term": "Starflux Thrust",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "aemeath": {
+     "kind": "skill",
+     "index": 3,
+     "line": 25,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "aemeath"
+   ],
+   "owners": [
+    "aemeath"
+   ]
+  },
+  {
+   "term": "Starlume Acceleration",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "aemeath": {
+     "kind": "skill",
+     "index": 7,
+     "line": 12,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "aemeath"
+   ],
+   "owners": [
+    "aemeath"
+   ]
+  },
+  {
+   "term": "Street Smarts",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "rebecca": {
+     "kind": "chain",
+     "index": 1,
+     "line": 3,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "rebecca"
+   ],
+   "owners": [
+    "rebecca"
+   ]
+  },
+  {
+   "term": "Striding Lion",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "lingyang": {
+     "kind": "skill",
+     "index": 3,
+     "line": 2,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "lingyang"
+   ],
+   "owners": [
+    "lingyang"
+   ]
+  },
+  {
+   "term": "Substance",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "carlotta": {
+     "kind": "skill",
+     "index": 3,
+     "line": 8,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "carlotta"
+   ],
+   "owners": [
+    "carlotta"
+   ]
+  },
+  {
+   "term": "Suite of Immortality",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "phrolova": {
+     "kind": "skill",
+     "index": 6,
+     "line": 4,
+     "n": 2
+    }
+   },
+   "count": 1,
+   "characters": [
+    "phrolova"
+   ],
+   "owners": [
+    "phrolova"
+   ]
+  },
+  {
+   "term": "Sunburst",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "zani": {
+     "kind": "skill",
+     "index": 1,
+     "line": 9,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "zani"
+   ],
+   "owners": [
+    "zani"
+   ]
+  },
+  {
+   "term": "Supernal Stellarealm",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "the-shorekeeper": {
+     "kind": "skill",
+     "index": 2,
+     "line": 5,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "the-shorekeeper"
+   ],
+   "owners": [
+    "the-shorekeeper"
+   ]
+  },
+  {
+   "term": "Sword Flight",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "qingxiao": {
+     "kind": "skill",
+     "index": 0,
+     "line": 10,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "qingxiao"
+   ],
+   "owners": [
+    "qingxiao"
+   ]
+  },
+  {
+   "term": "Sword Stance",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "yangyang-xuanling": {
+     "kind": "skill",
+     "index": 3,
+     "line": 0,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "yangyang-xuanling"
+   ],
+   "owners": [
+    "yangyang-xuanling"
+   ]
+  },
+  {
+   "term": "Swordlight Ward",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "qingxiao": {
+     "kind": "skill",
+     "index": 3,
+     "line": 17,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "qingxiao"
+   ],
+   "owners": [
+    "qingxiao"
+   ]
+  },
+  {
+   "term": "Swordster's Soliloquy",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "qiuyuan": {
+     "kind": "skill",
+     "index": 3,
+     "line": 10,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "qiuyuan"
+   ],
+   "owners": [
+    "qiuyuan"
+   ]
+  },
+  {
+   "term": "Sworn Allegiance",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "augusta": {
+     "kind": "skill",
+     "index": 2,
+     "line": 4,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "augusta"
+   ],
+   "owners": [
+    "augusta"
+   ]
+  },
+  {
+   "term": "Synchronization Rate",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "aemeath": {
+     "kind": "skill",
+     "index": 3,
+     "line": 27,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "aemeath"
+   ],
+   "owners": [
+    "aemeath"
+   ]
+  },
+  {
+   "term": "Syntony Field",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "mornye": {
+     "kind": "skill",
+     "index": 3,
+     "line": 16,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "mornye"
+   ],
+   "owners": [
+    "mornye"
+   ]
+  },
+  {
+   "term": "TCP",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "lucy": {
+     "kind": "skill",
+     "index": 3,
+     "line": 15,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "lucy"
+   ],
+   "owners": [
+    "lucy"
+   ]
+  },
+  {
+   "term": "The Last Stand",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "zani": {
+     "kind": "skill",
+     "index": 2,
+     "line": 3,
+     "n": 2
+    }
+   },
+   "count": 1,
+   "characters": [
+    "zani"
+   ],
+   "owners": [
+    "zani"
+   ]
+  },
+  {
+   "term": "Thread Withdrawn",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "chisa": {
+     "kind": "skill",
+     "index": 0,
+     "line": 13,
+     "n": 2
+    }
+   },
+   "count": 1,
+   "characters": [
+    "chisa"
+   ],
+   "owners": [
+    "chisa"
+   ]
+  },
+  {
+   "term": "Thread of Bane",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "chisa": {
+     "kind": "skill",
+     "index": 3,
+     "line": 8,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "chisa"
+   ],
+   "owners": [
+    "chisa"
+   ]
+  },
+  {
+   "term": "Thunder Rage",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "rover-electro": {
+     "kind": "skill",
+     "index": 3,
+     "line": 20,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "rover-electro"
+   ],
+   "owners": [
+    "rover-electro"
+   ]
+  },
+  {
+   "term": "Thunder Spell",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "buling": {
+     "kind": "skill",
+     "index": 3,
+     "line": 3,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "buling"
+   ],
+   "owners": [
+    "buling"
+   ]
+  },
+  {
+   "term": "Thunderglow",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "hsin": {
+     "kind": "skill",
+     "index": 6,
+     "line": 1,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "hsin"
+   ],
+   "owners": [
+    "hsin"
+   ]
+  },
+  {
+   "term": "Trance",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "cantarella": {
+     "kind": "skill",
+     "index": 3,
+     "line": 18,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "cantarella"
+   ],
+   "owners": [
+    "cantarella"
+   ]
+  },
+  {
+   "term": "True Color",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "lynae": {
+     "kind": "skill",
+     "index": 3,
+     "line": 37,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "lynae"
+   ],
+   "owners": [
+    "lynae"
+   ]
+  },
+  {
+   "term": "Twilight Tango",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "carlotta": {
+     "kind": "skill",
+     "index": 2,
+     "line": 5,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "carlotta"
+   ],
+   "owners": [
+    "carlotta"
+   ]
+  },
+  {
+   "term": "Umbra",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "rover-havoc": {
+     "kind": "skill",
+     "index": 3,
+     "line": 6,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "rover-havoc"
+   ],
+   "owners": [
+    "rover-havoc"
+   ]
+  },
+  {
+   "term": "Unbound Form",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "the-shorekeeper": {
+     "kind": "skill",
+     "index": 0,
+     "line": 3,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "the-shorekeeper"
+   ],
+   "owners": [
+    "the-shorekeeper"
+   ]
+  },
+  {
+   "term": "Unfinished Refrain",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "iuno": {
+     "kind": "skill",
+     "index": 1,
+     "line": 6,
+     "n": 2
+    }
+   },
+   "count": 1,
+   "characters": [
+    "iuno"
+   ],
+   "owners": [
+    "iuno"
+   ]
+  },
+  {
+   "term": "Visual Field",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "mornye": {
+     "kind": "skill",
+     "index": 3,
+     "line": 30,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "mornye"
+   ],
+   "owners": [
+    "mornye"
+   ]
+  },
+  {
+   "term": "Void Particle",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "denia": {
+     "kind": "skill",
+     "index": 3,
+     "line": 4,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "denia"
+   ],
+   "owners": [
+    "denia"
+   ]
+  },
+  {
+   "term": "Volatile Note",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "phrolova": {
+     "kind": "skill",
+     "index": 3,
+     "line": 9,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "phrolova"
+   ],
+   "owners": [
+    "phrolova"
+   ],
+   "aliases": [
+    "Volatile Notes"
+   ]
+  },
+  {
+   "term": "Waves of Acclaims",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "brant": {
+     "kind": "skill",
+     "index": 3,
+     "line": 3,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "brant"
+   ],
+   "owners": [
+    "brant"
+   ]
+  },
+  {
+   "term": "Wayfarer's Mark",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "jingran": {
+     "kind": "skill",
+     "index": 2,
+     "line": 8,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "jingran"
+   ],
+   "owners": [
+    "jingran"
+   ]
+  },
+  {
+   "term": "Whiteout Bitterfrost",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "hiyuki": {
+     "kind": "skill",
+     "index": 3,
+     "line": 29,
+     "n": 2
+    }
+   },
+   "count": 1,
+   "characters": [
+    "hiyuki"
+   ],
+   "owners": [
+    "hiyuki"
+   ]
+  },
+  {
+   "term": "Wide Field Observation Mode",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "mornye": {
+     "kind": "skill",
+     "index": 3,
+     "line": 6,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "mornye"
+   ],
+   "owners": [
+    "mornye"
+   ]
+  },
+  {
+   "term": "Wild Hunt",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "lupa": {
+     "kind": "skill",
+     "index": 2,
+     "line": 7,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "lupa"
+   ],
+   "owners": [
+    "lupa"
+   ]
+  },
+  {
+   "term": "Windbound",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "yangyang-xuanling": {
+     "kind": "skill",
+     "index": 6,
+     "line": 1,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "yangyang-xuanling"
+   ],
+   "owners": [
+    "yangyang-xuanling"
+   ]
+  },
+  {
+   "term": "Wolfaith",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "lupa": {
+     "kind": "skill",
+     "index": 3,
+     "line": 20,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "lupa"
+   ],
+   "owners": [
+    "lupa"
+   ]
+  },
+  {
+   "term": "Wolflame",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "lupa": {
+     "kind": "skill",
+     "index": 3,
+     "line": 15,
+     "n": 3
+    }
+   },
+   "count": 1,
+   "characters": [
+    "lupa"
+   ],
+   "owners": [
+    "lupa"
+   ]
+  },
+  {
+   "term": "World in Chorus",
+   "kind": "resource",
+   "auto": true,
+   "defs": {
+    "qingxiao": {
+     "kind": "chain",
+     "index": 3,
+     "line": 1,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "qingxiao"
+   ],
+   "owners": [
+    "qingxiao"
+   ]
+  },
+  {
+   "term": "Yang Font",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "jingran": {
+     "kind": "skill",
+     "index": 4,
+     "line": 2,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "jingran"
+   ],
+   "owners": [
+    "jingran"
+   ]
+  },
+  {
+   "term": "Yellow Light Mode",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "lumi": {
+     "kind": "skill",
+     "index": 1,
+     "line": 6,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "lumi"
+   ],
+   "owners": [
+    "lumi"
+   ]
+  },
+  {
+   "term": "Yellow Light Spark",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "lumi": {
+     "kind": "skill",
+     "index": 3,
+     "line": 13,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "lumi"
+   ],
+   "owners": [
+    "lumi"
+   ],
+   "aliases": [
+    "Yellow Light Sparks"
+   ]
+  },
+  {
+   "term": "Yellow Spotlight Mode",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "lumi": {
+     "kind": "skill",
+     "index": 3,
+     "line": 5,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "lumi"
+   ],
+   "owners": [
+    "lumi"
+   ]
+  },
+  {
+   "term": "Yin Vessel",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "jingran": {
+     "kind": "skill",
+     "index": 4,
+     "line": 1,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "jingran"
+   ],
+   "owners": [
+    "jingran"
+   ]
+  },
+  {
+   "term": "Yin-Yang Balance",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "buling": {
+     "kind": "skill",
+     "index": 3,
+     "line": 1,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "buling"
+   ],
+   "owners": [
+    "buling"
+   ]
+  },
+  {
+   "term": "Yinghuo",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "jingran": {
+     "kind": "skill",
+     "index": 3,
+     "line": 15,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "jingran"
+   ],
+   "owners": [
+    "jingran"
+   ]
+  },
+  {
+   "term": "Zephyr Stance",
+   "kind": "mode",
+   "auto": true,
+   "defs": {
+    "suisui": {
+     "kind": "skill",
+     "index": 3,
+     "line": 0,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "suisui"
+   ],
+   "owners": [
+    "suisui"
+   ]
+  },
+  {
+   "term": "Zoom",
+   "kind": "system",
+   "auto": true,
+   "defs": {
+    "lucilla": {
+     "kind": "skill",
+     "index": 3,
+     "line": 8,
+     "n": 1
+    }
+   },
+   "count": 1,
+   "characters": [
+    "lucilla"
+   ],
+   "owners": [
+    "lucilla"
    ]
   }
  ],
