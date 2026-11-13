@@ -737,7 +737,9 @@ function scrollToId(id, term = '', line = null) {
   if (hits.length) {
     hits.forEach((h) => h.classList.add('hit'));
     hits[0].scrollIntoView({behavior: 'smooth', block: 'center'});
-    setTimeout(() => detailView.querySelectorAll('.hit, .hit-term').forEach((x) => x.classList.remove('hit', 'hit-term')), 6000);
+    // one timer at a time: an older highlight's timer must not wipe this one
+    clearTimeout(scrollToId.timer);
+    scrollToId.timer = setTimeout(() => detailView.querySelectorAll('.hit, .hit-term').forEach((x) => x.classList.remove('hit', 'hit-term')), 6000);
   } else {
     el.scrollIntoView({behavior: 'smooth', block: 'start'});
     el.classList.remove('flash');
