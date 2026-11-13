@@ -178,6 +178,8 @@ async function run(tag, viewport) {
   await page.click('[data-cb-rot="1"]');
   await page.waitForSelector('.cb-act');
   check((await page.locator('.cb-say').allInnerTexts()).some((x) => x.includes('Đánh thường 3 đòn liên tiếp')), `${tag}: Basic 1-3 not merged`);
+  const sumText = await page.locator('.cb-sum').innerText();
+  check(/Reincarnate → Resolving Chord → Maestro/.test(sumText) && /\+5 Volatile Note - Strings/.test(sumText), `${tag}: combo summary`);
   const results = async (sel) => page.locator(sel).count();
   check(await results('.cb-res.is-weapon') > 0, `${tag}: weapon result missing`);
   const s0 = await results('.cb-res.is-chain');

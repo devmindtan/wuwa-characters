@@ -44,6 +44,48 @@ function resultHTML(c, o) {
     data-tip="${esc(originalLine(c, o.ref).replace(/^(.*?:\s)•\s*/, '$1'))}">${badge}${esc(state.showEn ? o.en : o.vi)}</button>`;
 }
 
+// "What this combo gives you", added up from the per-action results (already classified by the build).
+function summaryHTML(c, flow) {
+  const en = state.showEn;
+  const presses = {};
+  const states = [], status = new Map(), resources = new Map(), self = [], next = [], guard = [], control = [], extra = [];
+  const push = (list, o) => { if (!list.some((x) => x.vi === o.vi)) list.push(o); };
+  flow.forEach((a) => {
+    if (!['move', 'other'].includes(a.kind)) presses[a.kind] = (presses[a.kind] || 0) + (a.times || 1);
+    a.out.filter(allowed).forEach((o) => {
+      const reps = a.n || 1;
+      if (o.cat === 'state') { if (!states.includes(o.name)) states.push(o.name); }
+      else if (o.cat === 'resource' || o.cat === 'status') {
+        const map = o.cat === 'status' ? status : resources;
+        const cur = map.get(o.name) || {qty: 0, o};
+        cur.qty += (o.qty || 0) * reps;
+        map.set(o.name, cur);
+      } else if (o.cat === 'stat') push(a.kind === 'outro' ? next : self, o);
+      else if (o.cat === 'defense' || o.cat === 'heal') push(guard, o);
+      else if (o.cat === 'control') push(control, o);
+      else if (o.cat === 'trigger') push(extra, o);
+    });
+  });
+  const fmt = (n) => (Number.isInteger(n) ? n : Number(n.toFixed(1))).toLocaleString(en ? 'en' : 'vi');
+  const chips = (list) => list.map((o) => resultHTML(c, o)).join('');
+  const sum = (map, word) => [...map.values()].map(({qty, o}) => resultHTML(c, {...o, vi: `${word.vi}${fmt(qty)} ${o.name}`, en: `${word.en}${fmt(qty)} ${o.name}`})).join('');
+  const kinds = ['basic', 'heavy', 'skill', 'echo', 'lib', 'intro', 'outro', 'midair', 'dodge'].filter((k) => presses[k]);
+  const rows = [
+    [t('cb_sum_inputs'), `<span class="cb-sum-txt">${kinds.map((k) => `${esc(t('cb_key_' + k))} ×${presses[k]}`).join(' · ')}</span>`],
+    states.length && [t('cb_sum_states'), `<span class="cb-sum-txt">${states.map(esc).join(' → ')}</span>`],
+    resources.size && [t('cb_sum_gain'), sum(resources, {vi: '+', en: '+'})],
+    (status.size || control.length) && [t('cb_sum_enemy'), sum(status, {vi: 'Gây ', en: 'Inflict '}) + chips(control)],
+    self.length && [t('cb_sum_self'), chips(self)],
+    guard.length && [t('cb_sum_guard'), chips(guard)],
+    next.length && [t('cb_sum_next'), chips(next)],
+    extra.length && [t('cb_sum_extra'), chips(extra)],
+  ].filter(Boolean);
+  return `<section class="cb-sum">
+    <h4>${esc(t('cb_sum_title'))} <small>${esc(t('cb_sum_auto'))}</small></h4>
+    <dl>${rows.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${v}</dd></div>`).join('')}</dl>
+  </section>`;
+}
+
 export async function renderCombo() {
   const c = state.current;
   const box = $('d-combo');
@@ -91,7 +133,9 @@ export async function renderCombo() {
     </li>`;
   }).join('')}</ol>`;
 
-  box.innerHTML = `${pick}${formula}${assume}${steps}<p class="cb-note">${t('cb_note_html', {src: srcLink})}</p>`;
+  const cancelHelp = flow.some((a) => a.hint) ? `<details class="cb-help"><summary>${esc(t('cb_cancel_q'))}</summary>
+    <p>${esc(t('cb_cancel_a'))}</p></details>` : '';
+  box.innerHTML = `${pick}${assume}${summaryHTML(c, flow)}${formula}${cancelHelp}${steps}<p class="cb-note">${t('cb_note_html', {src: srcLink})}</p>`;
 }
 
 // Events (delegated from main.js). Returns true when handled.
