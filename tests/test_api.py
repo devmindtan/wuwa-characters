@@ -47,3 +47,9 @@ def test_api_is_gzipped(client):
 
 def test_search_finds_signature_weapon(client):
     assert 'lethean elegy' in client.get('/api/search').json()['phrolova']
+
+
+def test_combos(client):
+    body = client.get('/api/combos/phrolova').json()
+    assert body['rotations'] and body['rotations'][0]['steps'][0]['refs'] is not None
+    assert client.get('/api/combos/khong-co').status_code == 404

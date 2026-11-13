@@ -87,6 +87,16 @@ def character(slug: str):
     raise HTTPException(status_code=404, detail='Character not found')
 
 
+@app.get('/api/combos/{slug}')
+def combos(slug: str):
+    # Built by scripts/build_combos.py: rotation steps + the kit lines each step activates
+    # (references into this Resonator's /api/characters/{slug} data). Loaded when the tab opens.
+    data = load_json('combos.json')
+    if slug not in data:
+        raise HTTPException(status_code=404, detail='No combos for this Resonator')
+    return data[slug]
+
+
 @app.get('/api/mechanics')
 def mechanics():
     return load_json('mechanics.json')
