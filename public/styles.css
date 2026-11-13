@@ -536,3 +536,19 @@ dialog#mechDialog::backdrop{background:rgba(3,6,8,.7);backdrop-filter:blur(3px)}
 .trait-energy{--c:#a8f0ff}.trait-defense{--c:#c9d3dc}.trait-tune{--c:#d6b3ff}
 .trait-spectro_frazzle{--c:var(--spectro)}.trait-aero_erosion{--c:var(--aero)}.trait-havoc_bane{--c:var(--havoc)}
 .trait-fusion_burst{--c:var(--fusion)}.trait-glacio_chafe{--c:var(--glacio)}.trait-electro_flare{--c:var(--electro)}
+
+/* role label legend in the mechanic dialog */
+.role-help{margin:0 0 12px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.02)}
+.role-help summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;padding:8px 12px;font-size:12.5px;color:var(--soft)}
+.role-help summary::-webkit-details-marker{display:none}
+.role-help summary::before{content:"?";display:inline-grid;place-items:center;width:16px;height:16px;border-radius:50%;border:1px solid var(--line2);font-size:10px;color:var(--gold2);flex:none}
+.role-help summary::after{content:"";margin-left:auto;width:7px;height:7px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:rotate(45deg) translateY(-2px);transition:transform .18s}
+.role-help[open] summary::after{transform:rotate(-135deg) translateY(-2px)}
+.role-help summary:hover{color:var(--text)}
+.role-help dl{margin:0;padding:2px 12px 4px;display:grid;gap:9px}
+.role-help dl div{display:grid;grid-template-columns:150px minmax(0,1fr);gap:10px;align-items:baseline}
+.role-help dt{margin:0}
+.role-help dd{margin:0;font-size:12.5px;line-height:1.55;color:var(--soft)}
+.role-help dd small{display:block;color:var(--muted);font-size:11px;margin-top:2px}
+.role-help > p{margin:0;padding:8px 12px 10px;font-size:11.5px;line-height:1.55;color:var(--muted);border-top:1px solid var(--line)}
+@media (max-width: 520px){ .role-help dl div{grid-template-columns:minmax(0,1fr);gap:4px} }

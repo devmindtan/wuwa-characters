@@ -871,14 +871,23 @@ function findMechanic(term) {
   return list.find((x) => x.owners?.includes(slug)) || list.find((x) => !x.owners?.length) || list[0];
 }
 
-function autoQuote(m, c) {
-  const ref = c && m.defs?.[c.slug];
-  if (!ref) return {text: '', title: ''};
+function autoQuote(m, cur) {
+  // A kit term mentioned in another Resonator's kit (Phrolova: Cantarella's "Hazy Dream")
+  // is explained with the owner's own definition, naming that owner.
+  let c = cur;
+  let ref = c && m.defs?.[c.slug];
+  if (!ref && m.defs) {
+    const owner = Object.keys(m.defs)[0];
+    c = state.bySlug.get(owner);
+    ref = m.defs[owner];
+  }
+  if (!c || !ref) return {text: '', title: ''};
   const src = ref.kind === 'skill' ? c.skills[ref.index] : (c.resonance_chain || []).find((n) => n.node === ref.index);
   if (!src) return {text: '', title: ''};
   const lines = (state.showEn || !(src.desc_vi || []).length ? src.desc : src.desc_vi) || [];
   const text = lines.slice(ref.line, ref.line + (ref.n || 1)).map((l) => l.replace(/^• /, '')).join(' ');
-  return {text, title: ref.kind === 'skill' ? src.name : `S${src.node} · ${src.name}`};
+  const title = ref.kind === 'skill' ? src.name : `S${src.node} · ${src.name}`;
+  return {text, title: c === cur ? title : `${title} (${c.name})`};
 }
 
 function openMechanic(termOrObj) {
@@ -953,6 +962,13 @@ const ROLE_RULES = [
   ['restore', 'role_restore', /(restor|recover|regen)/i],
 ];
 const roleLabel = (k) => t('role_' + k);
+const ROLE_KEYWORDS = {
+  apply: 'inflict, apply, trigger, grant, gain, enter, cause, summon',
+  stack: 'stack limit, max stacks, additional stacks, stacks increased/doubled',
+  amplify: 'Amplified, DMG Bonus, DMG Multiplier, more/increased DMG',
+  use: 'consume, remove, affected by, inflicted with, targets with, has N stacks',
+  restore: 'restore, recover, regen',
+};
 
 function mechUsers(m) {
   if (m.trait) {
@@ -1057,6 +1073,12 @@ function renderMechUsers() {
   const users = mechUsers(m);
   const box = $('mech-users');
   box.hidden = !users.length || m.kind === 'move';  // moves belong to one Resonator
+  const hasRoles = users.some((u) => u.roles.length);
+  $('role-help').hidden = !hasRoles;
+  if (hasRoles) {
+    $('role-help-list').innerHTML = ROLE_RULES.map(([k]) =>
+      `<div><dt><i class="role role-${k}">${esc(roleLabel(k))}</i></dt><dd>${esc(t('roled_' + k))} <small>${esc(t('role_kw', {kw: ROLE_KEYWORDS[k]}))}</small></dd></div>`).join('');
+  }
   $('mech-users-count').textContent = `(${users.length})`;
   const present = ROLE_RULES.map(([k]) => k).filter((k) => users.some((u) => u.roles.includes(k)));
   $('mech-roles').innerHTML = users.length > 1 && present.length > 1
@@ -1070,7 +1092,7 @@ function renderMechUsers() {
     <button type="button" class="mech-user${mine ? ' is-current' : ''}" data-slug="${esc(c.slug)}" data-target="${esc(target)}" data-line="${line ?? ''}">
       <img src="${esc(c.img_icon)}" alt="" width="${mine ? 52 : 40}" height="${mine ? 52 : 40}">
       <span class="mu-main">${mine ? `<span class="mu-badge">${esc(t('me_badge'))}</span>` : ''}<b>${esc(c.name)}</b>${elIcon(c.element)}<small>${esc(t('n_places', {n: count}))}</small></span>
-      <span class="mu-roles">${roles.map((r) => `<i class="role role-${r}">${esc(roleLabel(r))}</i>`).join('')}</span>
+      <span class="mu-roles">${roles.map((r) => `<i class="role role-${r}" title="${esc(t('roled_' + r))}">${esc(roleLabel(r))}</i>`).join('')}</span>
       <span class="mu-go">${esc(mine ? t('go_here') : t('open_profile'))} <span aria-hidden="true">→</span></span>
     </button></li>`;
   $('mech-users-list').innerHTML = (me ? row(me, true) : '')
