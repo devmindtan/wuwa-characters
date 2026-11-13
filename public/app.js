@@ -9,6 +9,7 @@ const state = {
   meta: null,
   characters: [],
   mechanics: [],
+  index: {rules: {}, chars: {}, mech_users: {}},  // /api/index (scripts/build_index.py)
   noLink: [],
   level: 10,
   treeSel: null,
@@ -661,53 +662,12 @@ function linkifyAll() {
 }
 
 /* ---------- sub-moves ("Basic Attack Hounds Roar", "Heavy Attack - Thunderoar: Backstep") ---------- */
-const MOVE_TYPES = '(?:Basic Attack|Heavy Attack|Mid-air Attack|Dodge Counter|Plunging Attack|Resonance Skill|Resonance Liberation|Intro Skill|Outro Skill|Forte Circuit|Inherent Skill|Echo Skill|Enhanced Heavy Attack|Enhanced Basic Attack)';
-const MOVE_CAP = "(?:[A-Z][\\w'’!?-]*:?)(?:(?:\\s(?:of|the|in|a|to|for|is|on|by|from)){0,2}\\s[A-Z\"][\\w'’!?\"-]*:?)*";
-const MOVE_QUOTED = new RegExp(MOVE_TYPES + '\\s+"([^"]+)"', 'g');
-const MOVE_DASHED = new RegExp('(' + MOVE_TYPES + '\\s+-\\s+' + MOVE_CAP + ')', 'g');
-const MOVE_PLAIN = new RegExp(MOVE_TYPES + '\\s+(' + MOVE_CAP + ')', 'g');
-// "…to cast Movement of Fate and Finality": named moves introduced by a verb (may contain "and").
-const MOVE_CAST_CAP = "[A-Z][\\w'’!?-]*(?:(?:\\s(?:of|the|in|a|to|for|is|on|by|from|and)){0,2}\\s[A-Z][\\w'’!?-]*)*";
-const MOVE_CAST = new RegExp("\\b(?:[Cc]ast|[Cc]asts|[Cc]asting|[Pp]erform|[Pp]erforms|[Pp]erforming)\\s+(?:the\\s)?(" + MOVE_CAST_CAP + ')', 'g');
-const MOVE_CAST_SKIP = /^(?:Basic|Heavy|Mid-air|Mid-Air|Dodge|Plunging|Resonance|Intro|Outro|Forte|Inherent|Echo|Enhanced|Normal|Stage|Sprint|Tune)\b|\b(?:Attack|Skill|Attacks)\b|['’]s$/;
-const MOVE_SKIP = new Set(['Stage', 'DMG', 'Damage', 'Bonus', 'Multiplier', 'Cooldown', 'Concerto', 'Resonance', 'Skill', 'Attack', 'Liberation',
-  'Intro', 'Outro', 'Forte', 'Circuit', 'Heavy', 'Basic', 'Dodge', 'Counter', 'Mid-air', 'Plunging', 'Echo', 'Inherent', 'I', 'II', 'III', 'IV', 'V']);
-const DEFINES = /(replaced (?:with|by)|becomes? available|is available|to cast|to perform|can be cast|enters?|summons?)/i;
+// Named sub-moves of one Resonator ("Basic Attack Hounds Roar", Heavy Attack "Mercy"), each with
+// the line that best defines it. Derived at build time (scripts/kit_rules.py -> /api/index).
 const moveCache = new Map();
-
-// Named sub-moves of one Resonator, mined from the English kit text. Each gets the
-// line that best defines it (a "replaced with"/"to cast" line, else its first mention).
 function movesOf(c) {
-  if (moveCache.has(c.slug)) return moveCache.get(c.slug);
-  const skillNames = new Set((c.skills || []).map((s) => s.name));
-  const mech = new Set(state.mechanics.flatMap((m) => [m.term, ...(m.aliases || [])]).concat(state.noLink));
-  const found = new Map();
-  const add = (name, ref, line) => {
-    // Source lines sometimes run two sentences together ("…: Huntress Casting Comin' in Hot").
-    name = name.replace(/\s(?:Casting|Performing|Pressing|Holding|Using|Press|Hold|Use|When|While|After)\b.*$/, '');
-    name = name.replace(/\s+Stage\s*$/, '').replace(/[\s:!]+$/, '').trim();
-    const tail = name.includes(' - ') ? name.split(' - ').slice(1).join(' - ') : name;
-    if (name.length < 3 || skillNames.has(name) || skillNames.has(tail) || mech.has(name) || mech.has(tail)) return;
-    // "Heavy Attack - X" names legitimately start with a skill-type word; only plain names are filtered.
-    if (!name.includes(' - ') && MOVE_SKIP.has(name.split(' ')[0])) return;
-    const cur = found.get(name);
-    const defines = DEFINES.test(line);
-    if (!cur || (defines && !cur.defines)) found.set(name, {...ref, defines});
-  };
-  const scan = (lines, ref) => (lines || []).forEach((line, li) => {
-    for (const re of [MOVE_QUOTED, MOVE_DASHED, MOVE_PLAIN]) {
-      re.lastIndex = 0;
-      let m;
-      while ((m = re.exec(line))) add(m[1], {...ref, line: li}, line);
-    }
-    MOVE_CAST.lastIndex = 0;
-    let m;
-    while ((m = MOVE_CAST.exec(line))) if (!MOVE_CAST_SKIP.test(m[1])) add(m[1], {...ref, line: li}, line);
-  });
-  (c.skills || []).forEach((s, i) => scan(s.desc, {kind: 'skill', index: i, title: s.name}));
-  (c.resonance_chain || []).forEach((n) => scan(n.desc, {kind: 'chain', index: n.node, title: `S${n.node} · ${n.name}`}));
-  moveCache.set(c.slug, found);
-  return found;
+  if (!moveCache.has(c.slug)) moveCache.set(c.slug, new Map(Object.entries(state.index.chars[c.slug]?.moves || {})));
+  return moveCache.get(c.slug);
 }
 
 function openMove(name) {
@@ -963,22 +923,10 @@ function openMechanic(termOrObj) {
   });
 }
 
-// Heuristic roles from the English line that mentions a mechanic.
-const ROLE_RULES = [
-  ['apply', 'role_apply', /\b(inflicts?|inflicted|appl(y|ies)|triggers?|triggered|grants?|gains?|enters?|causes?|summons?)\b/i],
-  ['stack', 'role_stack', /(stack limit|max(imum)?( stack| number of stacks)|additional(ly)?[^.]*\bstacks?\b|\bstacks?\b[^.]*\b(increased|doubled)\b)/i],
-  ['amplify', 'role_amplify', /(amplif|dmg bonus|dmg multiplier|more dmg|increased dmg|take[s]? \d+(\.\d+)?% (more|increased))/i],
-  ['use', 'role_use', /(consum|\bremov|affected by|inflicted with|targets? with|has \d+ stacks)/i],
-  ['restore', 'role_restore', /(restor|recover|regen)/i],
-];
+// Role labels (keyword heuristics, see scripts/kit_rules.py ROLE_RULES), in display order.
+const roleKeys = () => (state.index.rules?.roles || []).map((r) => r.key);
+const roleKeywords = (k) => (state.index.rules?.roles || []).find((r) => r.key === k)?.kw || '';
 const roleLabel = (k) => t('role_' + k);
-const ROLE_KEYWORDS = {
-  apply: 'inflict, apply, trigger, grant, gain, enter, cause, summon',
-  stack: 'stack limit, max stacks, additional stacks, stacks increased/doubled',
-  amplify: 'Amplified, DMG Bonus, DMG Multiplier, more/increased DMG',
-  use: 'consume, remove, affected by, inflicted with, targets with, has N stacks',
-  restore: 'restore, recover, regen',
-};
 
 function mechUsers(m) {
   if (m.trait) {
@@ -987,102 +935,16 @@ function mechUsers(m) {
       .map(({c, ev}) => ({c, roles: [], target: ev[0].target, line: ev[0].lineIndex, count: ev.length}))
       .sort((a, b) => b.count - a.count || a.c.name.localeCompare(b.c.name));
   }
-  const re = new RegExp('(?<![A-Za-z0-9])(' + [m.term, ...(m.aliases || [])].map(regexEsc).join('|') + ')(?![A-Za-z0-9])');
-  const noLink = state.noLink.filter((t) => t.includes(m.term));
-  const users = [];
-  for (const c of state.characters) {
-    if (m.owners?.length && !m.owners.includes(c.slug)) continue;
-    const roles = new Set();
-    let target = null;
-    let count = 0;
-    const scan = (lines, tgt) => {
-      for (const line of lines || []) {
-        let probe = line;
-        for (const t of noLink) probe = probe.split(t).join('');  // "Unison Boon" is not "Unison"
-        if (!re.test(probe)) continue;
-        count += 1;
-        target = target || tgt;
-        for (const [key, , rx] of ROLE_RULES) if (rx.test(line)) roles.add(key);
-      }
-    };
-    (c.skills || []).forEach((s, i) => scan(s.desc, 'skill-' + i));
-    (c.resonance_chain || []).forEach((n) => scan(n.desc, 'chain-' + n.node));
-    if (count) users.push({c, roles: [...roles], target, count});
-  }
-  return users.sort((a, b) => b.count - a.count || a.c.name.localeCompare(b.c.name));
+  return (state.index.mech_users[m.term] || [])
+    .map((u) => ({...u, c: state.bySlug.get(u.slug)}))
+    .filter((u) => u.c);
 }
 
-// Kit traits: keyword rules over the English kit text. Every trait keeps the exact
-// lines it was found in, so the UI can always show (and jump to) the evidence.
-let TEAM_RX;
-const TRAIT_RULES = [
-  ['heal', /\bheal(?:s|ing|ed)?\b|\b(?:restores?|recovers?|regenerates?)\b[^.]{0,40}\bHP\b|Healing Bonus/i],
-  ['shield', /\bshields?\b/i],
-  ['cc', /\bStagnat\w*|\bpull(?:s|ing)?\b[^.]{0,25}\b(?:targets?|enemies)\b|\bimmobili[sz]\w*|\bVibration Strength\b|\bknocks?\s(?:back|up|down)\b/i],
-  ['team', TEAM_RX = /(?:\b(?:all|other)\s(?:nearby\s)?Resonators\b|Resonators?\s(?:on|in)\s(?:the\s)?(?:team|party)|\b(?:all|the)\steam\b|\b(?:team|party) members?\b|\bcharacters on (?:a\s)?nearby teams?\b|\bResonator on the field\b|incoming Resonator|next Resonator|\bteammates?\b)[^.]*\b(?:increase[sd]?|gains?|Amplif\w*|Bonus|boost\w*|deals? \d+(?:\.\d+)?% more)\b/i],
-  ['debuff', /\b(?:reduc\w*|decreas\w*|ignor\w*|lower\w*)\b[^.]{0,40}\b(?:DEF|RES)\b|\b(?:DEF|RES)\b[^.]{0,20}\b(?:reduced|decreased|ignored)\b|\btakes?\s\d+(?:\.\d+)?%\s(?:more|increased)\sDMG/i],
-  ['energy', (l) => /\b(?:Resonance Energy|Concerto Energy|Energy Regen)\b/.test(l)
-    && /\b(?:restor\w*|recover\w*|regenerat\w*|gains?|grants?|obtain\w*|increas\w*|refund\w*|does not consume)\b/i.test(l)],
-  // own damage up (lines that buff the team are counted under "team" instead)
-  ['dmgup', (l) => !TEAM_RX.test(l) && !/\bnot (?:be )?affected by\b[^.]{0,20}\b(?:DMG Bonus|DMG Amplif)/i.test(l) && (
-    /\b(?:DMG Bonus|DMG Amplif\w*|DMG Deepen)\b|\bDMG (?:dealt )?(?:is |are )?(?:increased|Amplified)\b|\bDMG Multiplier\b[^.]{0,60}\bincreased\b|\bincreases? (?:the )?DMG\b|\bdeals? (?:\d+(?:\.\d+)?% )?(?:more|additional|increased) DMG\b|\bATK (?:is )?increased\b|\bincreases? [^.]{0,15}\bATK\b/.test(l))],
-  ['crit', /\bCrit\.? (?:Rate|DMG)\b[^.]{0,30}\b(?:increased|increases?|by \d)|\bincreases? [^.]{0,20}\bCrit\.? (?:Rate|DMG)\b/i],
-  ['cdr', /\bcooldown\b[^.]{0,40}\b(?:reduced|decreased|reset|shortened)\b|\b(?:reduces?|resets?|shortens?)\b[^.]{0,40}\bcooldown\b/i],
-  ['summon', /(?<!-\s)\b[Ss]ummon(?:s|ed|ing)?\b(?!\s+and\s+Smite)/],
-  ['transform', /\b(?:enters?|transforms?|switch(?:es)? to)\b[^.]{0,40}\b(?:state|Mode|Form|Stance)\b|\bis replaced (?:with|by)\b/],
-  ['revive', /\bfatal (?:blow|damage|attack|hit)s?\b|\b[Rr]evives?\b|\bwill not be knocked out\b|\bis knocked out\b[^.]{0,40}\brevive/],
-  ['defense', /Interruption Resistance|resistance to interruption|\bDMG Reduction\b|\bDMG taken\b[^.]{0,20}\breduced\b|\breduces?\b[^.]{0,20}\bDMG taken\b|\binvincib\w*|\bimmun\w*/i],
-  ['coord', /\bCoordinated Attacks?\b/],
-  ['tune', /\b(?:Tune Break|Tune Strain|Tune Rupture|Off-Tune)\b/],
-  ['offfield', /\bnot the active Resonator\b|\boff-field\b/i],
-  ['echo', /\bEcho Skill DMG\b/],
-  ['spectro_frazzle', /\bSpectro Frazzle\b/],
-  ['aero_erosion', /\bAero Erosion\b/],
-  ['havoc_bane', /\bHavoc Bane\b/],
-  ['fusion_burst', /\bFusion Burst\b/],
-  ['glacio_chafe', /\bGlacio Chafe\b/],
-  ['electro_flare', /\bElectro Flare\b/],
-];
-// What each rule looks for, shown under the trait's definition.
-const TRAIT_KW = {
-  heal: 'heal, restore/recover … HP, Healing Bonus',
-  shield: 'shield',
-  cc: 'Stagnate, pull … targets, immobilize, Vibration Strength, knock back/up',
-  team: 'all/other Resonators, party/team members, incoming/next Resonator … increase, gain, Amplify, Bonus',
-  debuff: 'reduce/ignore … DEF/RES, take N% more DMG',
-  energy: 'Resonance Energy / Concerto Energy / Energy Regen + restore, recover, regen, gain, grant, increase',
-  dmgup: 'DMG Bonus, DMG Amplified/Deepen, DMG increased, DMG Multiplier increased, more DMG, ATK increased',
-  crit: 'Crit. Rate / Crit. DMG increased',
-  cdr: 'cooldown reduced/reset, reduces cooldown',
-  summon: 'summon',
-  transform: 'enter/transform/switch to … state, Mode, Form, Stance; is replaced with',
-  revive: 'fatal, revive, will not be knocked out',
-  defense: 'Interruption Resistance, DMG taken reduced, DMG Reduction, invincible, immune',
-  coord: 'Coordinated Attack',
-  tune: 'Tune Break, Tune Strain, Tune Rupture, Off-Tune',
-  offfield: 'not the active Resonator, off-field',
-  echo: 'Echo Skill DMG',
-};
-const traitCache = new Map();
+// Kit traits with their evidence lines, derived at build time (scripts/kit_rules.py -> /api/index).
 const STATUS_KEYS = new Set(['spectro_frazzle', 'aero_erosion', 'havoc_bane', 'fusion_burst', 'glacio_chafe', 'electro_flare']);
-function traitsOf(c) {
-  if (traitCache.has(c.slug)) return traitCache.get(c.slug);
-  const out = {};
-  const STATUS = /Spectro Frazzle|Aero Erosion|Havoc Bane|Fusion Burst|Glacio Chafe|Electro Flare/g;
-  const scan = (lines, target, title) => (lines || []).forEach((line, i) => {
-    // a line naming 3+ Negative Statuses is a generic "any Negative Status" rule, not a trait of the kit
-    const generic = new Set(line.match(STATUS) || []).size >= 3;
-    for (const [key, rx] of TRAIT_RULES) {
-      if (generic && STATUS_KEYS.has(key)) continue;
-      if (!(typeof rx === 'function' ? rx(line) : rx.test(line))) continue;
-      (out[key] = out[key] || []).push({target, title, lineIndex: i});
-    }
-  });
-  (c.skills || []).forEach((s, i) => scan(s.desc, 'skill-' + i, s.name));
-  (c.resonance_chain || []).forEach((n) => scan(n.desc, 'chain-' + n.node, `S${n.node} · ${n.name}`));
-  traitCache.set(c.slug, out);
-  return out;
-}
+const traitKeys = () => (state.index.rules?.traits || []).map((r) => r.key);
+const traitKeywords = (k) => (state.index.rules?.traits || []).find((r) => r.key === k)?.kw || '';
+const traitsOf = (c) => state.index.chars[c.slug]?.traits || {};
 const traitLabel = (k) => ('trait_' + k) in I18N.vi ? t('trait_' + k) : k.split('_').map((w) => w[0].toUpperCase() + w.slice(1)).join(' ');
 
 const traitDesc = (k, full = false) => {
@@ -1095,7 +957,7 @@ const traitDesc = (k, full = false) => {
 
 function renderTraits(c) {
   const tr = traitsOf(c);
-  const keys = TRAIT_RULES.map(([k]) => k).filter((k) => tr[k]);
+  const keys = traitKeys().filter((k) => tr[k]);
   $('d-traits').hidden = !keys.length;
   $('d-traits-list').innerHTML = keys.map((k) =>
     `<button type="button" class="trait trait-${k}" data-trait="${k}" data-tip="${esc(traitDesc(k))}">${esc(traitLabel(k))}<small>${tr[k].length}</small></button>`).join('');
@@ -1114,7 +976,7 @@ function openTrait(key) {
   const desc = traitDesc(key, true);
   openMechanic({term: traitLabel(key), kind: 'trait', trait: key, owners: [], occ,
     summary_vi: desc, summary_en: desc,
-    source: (STATUS_KEYS.has(key) ? t('src_wiki') + ' · ' : '') + t('trait_note', {kw: TRAIT_KW[key] || traitLabel(key), n: ev.length})});
+    source: (STATUS_KEYS.has(key) ? t('src_wiki') + ' · ' : '') + t('trait_note', {kw: traitKeywords(key) || traitLabel(key), n: ev.length})});
 }
 
 function renderMechUsers() {
@@ -1125,11 +987,11 @@ function renderMechUsers() {
   const hasRoles = users.some((u) => u.roles.length);
   $('role-help').hidden = !hasRoles;
   if (hasRoles) {
-    $('role-help-list').innerHTML = ROLE_RULES.map(([k]) =>
-      `<div><dt><i class="role role-${k}">${esc(roleLabel(k))}</i></dt><dd>${esc(t('roled_' + k))} <small>${esc(t('role_kw', {kw: ROLE_KEYWORDS[k]}))}</small></dd></div>`).join('');
+    $('role-help-list').innerHTML = roleKeys().map((k) =>
+      `<div><dt><i class="role role-${k}">${esc(roleLabel(k))}</i></dt><dd>${esc(t('roled_' + k))} <small>${esc(t('role_kw', {kw: roleKeywords(k)}))}</small></dd></div>`).join('');
   }
   $('mech-users-count').textContent = `(${users.length})`;
-  const present = ROLE_RULES.map(([k]) => k).filter((k) => users.some((u) => u.roles.includes(k)));
+  const present = roleKeys().filter((k) => users.some((u) => u.roles.includes(k)));
   $('mech-roles').innerHTML = users.length > 1 && present.length > 1
     ? [['all', t('role_all')], ...present.map((k) => [k, roleLabel(k)])].map(([k, label]) =>
       `<button type="button" class="role-chip" data-role="${k}"${k === 'all' ? '' : ` data-tip="${esc(t('roled_' + k))}"`} aria-pressed="${state.roleFilter === k}">${esc(label)}${k === 'all' ? '' : ` <small>${users.filter((u) => u.roles.includes(k)).length}</small>`}</button>`).join('')
@@ -1151,9 +1013,10 @@ function renderMechUsers() {
 
 async function boot() {
   try {
-    const [charsRes, mechRes] = await Promise.all([
+    const [charsRes, mechRes, indexRes] = await Promise.all([
       fetch('/api/characters'),
       fetch('/api/mechanics'),
+      fetch('/api/index'),
     ]);
     if (!charsRes.ok) throw new Error(`API /api/characters → HTTP ${charsRes.status}`);
     const chars = await charsRes.json();
@@ -1164,6 +1027,9 @@ async function boot() {
       const mech = await mechRes.json();
       state.mechanics = mech.mechanics || [];
       state.noLink = mech.no_link || [];
+    }
+    if (indexRes.ok) {
+      state.index = await indexRes.json();
     }
     loading.style.display = 'none';
     renderMeta();
