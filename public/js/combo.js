@@ -47,6 +47,36 @@ function resultHTML(c, o) {
     data-tip="${esc(originalLine(c, o.ref).replace(/^(.*?:\s)•\s*/, '$1'))}">${badge}${esc(state.showEn ? o.en : o.vi)}</button>`;
 }
 
+// Formula strip: consecutive moves of the same name collapse ("Foreclaimed Self 1–5", "Hounds Roar ×5"),
+// each chip shows its button and jumps to its step.
+function formulaHTML(flow) {
+  const groups = [];
+  flow.forEach((a, i) => {
+    const m = a.name.match(/^(.*?)\s+(P?)(\d+)$/);
+    const base = m ? m[1] : a.name;
+    const last = groups[groups.length - 1];
+    if (last && base && a.kind === last.a.kind && base === last.base && !['move', 'other'].includes(a.kind)) {
+      last.nums.push(m ? Number(m[3]) : null);
+      last.count += a.n || 1;
+      return;
+    }
+    groups.push({a, i, base, prefix: m ? m[2] : '', nums: [m ? Number(m[3]) : null], count: a.n || 1});
+  });
+  const label = (g) => {
+    if (g.nums.length === 1) return g.a.name || (g.a.stages ? t('cb_stage', {s: g.a.stages}) : '');
+    const run = g.nums.every((n, k) => n !== null && (k === 0 || n === g.nums[k - 1] + 1));
+    return run ? `${g.base} ${g.prefix}${g.nums[0]}–${g.prefix}${g.nums[g.nums.length - 1]}` : g.base;
+  };
+  return `<div class="cb-formula" aria-label="${esc(t('cb_formula'))}">${groups.map((g) => {
+    const {a} = g;
+    const times = g.nums.length > 1 && !label(g).includes('–') ? g.count : (a.n || 0);
+    if (['move', 'other'].includes(a.kind)) return `<span class="cb-tok is-move">${esc(a.name || a.token)}</span>`;
+    const text = label(g);
+    return `<button type="button" class="cb-tok k-${a.kind}" data-cb-go="${g.i}" data-tip="${esc(t('cb_go_step', {k: g.i + 1}))}">
+      <kbd>${esc(t('cb_cap_' + a.kind))}</kbd>${text ? `<span>${esc(text)}</span>` : ''}${times > 1 ? `<em>×${times}</em>` : ''}</button>`;
+  }).join('')}</div>`;
+}
+
 // "What this combo gives you", added up from the per-action results (already classified by the build).
 function summaryHTML(c, flow) {
   const en = state.showEn;
@@ -105,6 +135,10 @@ export async function renderCombo() {
   const c = state.current;
   const box = $('d-combo');
   if (!c || !box) return;
+  if (box.dataset.slug !== c.slug) {  // never show the previous Resonator's combo while this one loads
+    box.dataset.slug = c.slug;
+    box.innerHTML = `<p class="cb-empty">${esc(t('loading'))}</p>`;
+  }
   const data = await load(c.slug);
   if (state.current !== c) return;  // the visitor opened another profile meanwhile
   const rots = data?.rotations || [];
@@ -130,8 +164,7 @@ export async function renderCombo() {
     ${c.signature_weapon ? `<label class="cb-check"><input type="checkbox" data-cb-weapon ${state.comboWeapon ? 'checked' : ''}><span>${esc(c.signature_weapon.name)}</span></label>` : ''}
   </div>`;
 
-  const formula = `<p class="cb-formula" aria-label="${esc(t('cb_formula'))}">${flow.map((a) =>
-    `<span class="cb-tok k-${a.kind}">${esc(a.token)}${a.n ? `×${a.n}` : ''}</span>`).join('<span class="cb-arrow" aria-hidden="true">→</span>')}</p>`;
+  const formula = formulaHTML(flow);
 
   const steps = `<ol class="cb-list">${flow.map((a, i) => {
     const res = a.out.filter(allowed);
@@ -156,6 +189,17 @@ export async function renderCombo() {
 
 // Events (delegated from main.js). Returns true when handled.
 export function onComboClick(target) {
+  const go = target.closest('[data-cb-go]');
+  if (go) {
+    const li = $('d-combo').querySelectorAll('.cb-act')[Number(go.dataset.cbGo)];
+    if (li) {
+      li.scrollIntoView({behavior: 'smooth', block: 'center'});
+      li.classList.remove('flash');
+      void li.offsetWidth;
+      li.classList.add('flash');
+    }
+    return true;
+  }
   const rot = target.closest('[data-cb-rot]');
   if (rot) { state.comboRot = Number(rot.dataset.cbRot); renderCombo(); return true; }
   const s = target.closest('[data-cb-s]');

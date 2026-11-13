@@ -192,6 +192,15 @@ async function run(tag, viewport) {
   check(await page.evaluate(() => !document.querySelector('#tab-skills').hidden) && (await page.locator('[data-line].hit').count()) === 1,
     `${tag}: combo result did not jump to its kit line`);
 
+  // formula strip: same-name moves in a row collapse, a chip jumps to its step
+  await open(page, 'hiyuki');
+  await page.click('#tab-btn-combo');
+  await page.waitForFunction(() => document.querySelector('#d-combo')?.dataset.slug === 'hiyuki' && document.querySelector('.cb-formula'));
+  check((await page.locator('.cb-formula').innerText()).includes('Foreclaimed Self 1–5'), `${tag}: formula did not group Foreclaimed Self 1-5`);
+  await page.locator('.cb-tok[data-cb-go]').nth(2).click();
+  await page.waitForTimeout(100);
+  check(await page.locator('.cb-act.flash').count() === 1, `${tag}: formula chip did not jump to its step`);
+
   // old Vietnamese route still opens and is rewritten to the English one
   await page.goto(`${BASE}/#/nhan-vat/chisa`);
   await page.waitForSelector('#d-crumb span', {state: 'attached'});
