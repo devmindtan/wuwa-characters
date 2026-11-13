@@ -89,6 +89,49 @@ async function run(tag, viewport) {
     check(await page.evaluate(() => location.hash) === '#/', `${tag} ${slug}: back did not return to the list`);
   }
 
+  // interactions: element filter dropdown, level slider, Forte tree, material upgrade slider, list language
+  await page.goto(`${BASE}/#/`);
+  await page.waitForSelector('.card');
+  const dd = page.locator('.dd').first();  // element filter (custom dropdown over #f-el)
+  await dd.locator('.dd-btn').click();
+  await dd.locator('.dd-opt:not(.dd-all)').first().click();
+  await page.waitForTimeout(200);
+  const filtered = await page.locator('.card:visible').count();
+  check(filtered > 0 && filtered < total, `${tag}: element dropdown filter (${filtered}/${total})`);
+  await dd.locator('.dd-btn').click();
+  await dd.locator('.dd-all').click();
+  await page.click('.head-meta .lang-switch [data-lang="en"]').catch(() => {});
+  await page.waitForTimeout(150);
+  check(await page.evaluate(() => document.documentElement.lang) === 'en', `${tag}: list page language switch`);
+  await page.click('.head-meta .lang-switch [data-lang="vi"]').catch(() => {});
+
+  await open(page, 'jinhsi');
+  await page.click('#tab-btn-skills');
+  const lv = page.locator('#tab-skills .lv-range').first();
+  if (await lv.count()) {
+    const panel = page.locator('#tab-skills details.mult').first();  // the slider lives in the collapsed multipliers panel
+    if (!(await panel.evaluate((d) => d.open))) await panel.locator('summary').click();
+    await lv.scrollIntoViewIfNeeded();
+    await lv.fill('7');
+    await page.waitForTimeout(150);
+    check(await page.evaluate(() => [...document.querySelectorAll('.lv-range')].every((r) => r.value === '7')), `${tag}: level slider sync`);
+  }
+  await page.click('#tab-btn-tree');
+  const nodes = page.locator('#d-tree .fn');
+  await nodes.nth(1).click();
+  await page.waitForTimeout(150);
+  check(await page.locator('#d-tree .fn.is-sel').count() === 1 && (await page.locator('#d-tree-detail').innerText()).length > 0,
+    `${tag}: Forte tree selection`);
+  await page.click('#tab-btn-mats');
+  const up = page.locator('.up-range').first();
+  if (await up.count()) {
+    const before = await page.locator('#tab-mats').innerText();
+    await up.scrollIntoViewIfNeeded();
+    await up.fill(await up.getAttribute('min'));
+    await page.waitForTimeout(150);
+    check((await page.locator('#tab-mats').innerText()) !== before, `${tag}: material upgrade slider`);
+  }
+
   // known cases
   await open(page, 'phrolova');
   await page.click('#tab-btn-skills');
