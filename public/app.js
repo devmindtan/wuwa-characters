@@ -871,6 +871,15 @@ function findMechanic(term) {
   return list.find((x) => x.owners?.includes(slug)) || list.find((x) => !x.owners?.length) || list[0];
 }
 
+// "Definition.\n• point\n• point" -> paragraph + bullet list
+function summaryHTML(text) {
+  const lines = String(text).split('\n').filter((l) => l.trim());
+  const head = lines.filter((l) => !l.startsWith('• '));
+  const items = lines.filter((l) => l.startsWith('• '));
+  return head.map((l) => `<span class="ms-p">${esc(l)}</span>`).join('')
+    + (items.length ? `<ul class="ms-list">${items.map((l) => `<li>${esc(l.slice(2))}</li>`).join('')}</ul>` : '');
+}
+
 function autoQuote(m, cur) {
   // A kit term mentioned in another Resonator's kit (Phrolova: Cantarella's "Hazy Dream")
   // is explained with the owner's own definition, naming that owner.
@@ -902,7 +911,7 @@ function openMechanic(termOrObj) {
     summary = q.text;
     source = q.title ? t('move_from', {skill: q.title}) : '';
   }
-  $('mech-summary').textContent = summary || '';
+  $('mech-summary').innerHTML = summaryHTML(summary || '');
   $('mech-source').hidden = !source;
   $('mech-source').textContent = source;
   document.querySelector('.mech-lead').hidden = !summary && !source;
@@ -1076,7 +1085,13 @@ function traitsOf(c) {
 }
 const traitLabel = (k) => ('trait_' + k) in I18N.vi ? t('trait_' + k) : k.split('_').map((w) => w[0].toUpperCase() + w.slice(1)).join(' ');
 
-const traitDesc = (k) => (('traitd_' + k) in I18N.vi ? t('traitd_' + k) : t('trait_status_desc', {name: traitLabel(k)}));
+const traitDesc = (k, full = false) => {
+  if (('traitd_' + k) in I18N.vi) return t('traitd_' + k);
+  const m = state.mechanics.find((x) => x.term === traitLabel(k) && !x.owners?.length);
+  const sum = m && ((state.showEn ? m.summary_en : m.summary_vi) || m.summary_vi);
+  if (!sum) return t('trait_status_desc', {name: traitLabel(k)});
+  return full ? sum : sum.split('\n')[0];
+};
 
 function renderTraits(c) {
   const tr = traitsOf(c);
@@ -1096,9 +1111,10 @@ function openTrait(key) {
     return lines[o.lineIndex] || '';
   };
   const occ = ev.slice(0, 14).map((o) => ({...o, line: lineOf(o), go: o.target.startsWith('chain-') ? t('go_chain') : t('go_skill')}));
-  const desc = traitDesc(key);
+  const desc = traitDesc(key, true);
   openMechanic({term: traitLabel(key), kind: 'trait', trait: key, owners: [], occ,
-    summary_vi: desc, summary_en: desc, source: t('trait_note', {kw: TRAIT_KW[key] || traitLabel(key), n: ev.length})});
+    summary_vi: desc, summary_en: desc,
+    source: (STATUS_KEYS.has(key) ? t('src_wiki') + ' · ' : '') + t('trait_note', {kw: TRAIT_KW[key] || traitLabel(key), n: ev.length})});
 }
 
 function renderMechUsers() {

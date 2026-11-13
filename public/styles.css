@@ -568,3 +568,8 @@ dialog#mechDialog::backdrop{background:rgba(3,6,8,.7);backdrop-filter:blur(3px)}
 .tip.below::after{bottom:auto;top:-5px;transform:rotate(225deg)}
 .role[data-tip]{cursor:help}
 .trait-dmgup{--c:#ffa36b}.trait-crit{--c:#ff7a8a}.trait-cdr{--c:#8fd3ff}.trait-summon{--c:#c7b8ff}.trait-transform{--c:#e7c8ff}.trait-revive{--c:#9ff0c0}
+
+.mech-summary .ms-p{display:block}
+.mech-summary .ms-list{margin:8px 0 0;padding:0;list-style:none;display:grid;gap:5px}
+.mech-summary .ms-list li{position:relative;padding-left:16px;color:var(--soft);font-size:14px;line-height:1.6}
+.mech-summary .ms-list li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;border-radius:1px;transform:rotate(45deg);background:var(--gold)}
