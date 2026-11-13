@@ -567,3 +567,4 @@ dialog#mechDialog::backdrop{background:rgba(3,6,8,.7);backdrop-filter:blur(3px)}
   border-right:1px solid var(--line2);border-bottom:1px solid var(--line2);transform:rotate(45deg)}
 .tip.below::after{bottom:auto;top:-5px;transform:rotate(225deg)}
 .role[data-tip]{cursor:help}
+.trait-dmgup{--c:#ffa36b}.trait-crit{--c:#ff7a8a}.trait-cdr{--c:#8fd3ff}.trait-summon{--c:#c7b8ff}.trait-transform{--c:#e7c8ff}.trait-revive{--c:#9ff0c0}

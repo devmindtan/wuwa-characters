@@ -1005,13 +1005,23 @@ function mechUsers(m) {
 
 // Kit traits: keyword rules over the English kit text. Every trait keeps the exact
 // lines it was found in, so the UI can always show (and jump to) the evidence.
+let TEAM_RX;
 const TRAIT_RULES = [
   ['heal', /\bheal(?:s|ing|ed)?\b|\b(?:restores?|recovers?|regenerates?)\b[^.]{0,40}\bHP\b|Healing Bonus/i],
   ['shield', /\bshields?\b/i],
   ['cc', /\bStagnat\w*|\bpull(?:s|ing)?\b[^.]{0,25}\b(?:targets?|enemies)\b|\bimmobili[sz]\w*|\bVibration Strength\b|\bknocks?\s(?:back|up|down)\b/i],
-  ['team', /(?:\b(?:all|other)\s(?:nearby\s)?Resonators\b|Resonators?\s(?:on|in)\s(?:the\s)?(?:team|party)|\b(?:all|the)\steam\b|\b(?:team|party) members?\b|\bcharacters on (?:a\s)?nearby teams?\b|\bResonator on the field\b|incoming Resonator|next Resonator|\bteammates?\b)[^.]*\b(?:increase[sd]?|gains?|Amplif\w*|Bonus|boost\w*)\b/i],
+  ['team', TEAM_RX = /(?:\b(?:all|other)\s(?:nearby\s)?Resonators\b|Resonators?\s(?:on|in)\s(?:the\s)?(?:team|party)|\b(?:all|the)\steam\b|\b(?:team|party) members?\b|\bcharacters on (?:a\s)?nearby teams?\b|\bResonator on the field\b|incoming Resonator|next Resonator|\bteammates?\b)[^.]*\b(?:increase[sd]?|gains?|Amplif\w*|Bonus|boost\w*|deals? \d+(?:\.\d+)?% more)\b/i],
   ['debuff', /\b(?:reduc\w*|decreas\w*|ignor\w*|lower\w*)\b[^.]{0,40}\b(?:DEF|RES)\b|\b(?:DEF|RES)\b[^.]{0,20}\b(?:reduced|decreased|ignored)\b|\btakes?\s\d+(?:\.\d+)?%\s(?:more|increased)\sDMG/i],
-  ['energy', /\b(?:restores?|regenerates?|recovers?|grants?|gains?)\b[^.]{0,30}\b(?:Resonance Energy|Concerto Energy)\b/i],
+  ['energy', (l) => /\b(?:Resonance Energy|Concerto Energy|Energy Regen)\b/.test(l)
+    && /\b(?:restor\w*|recover\w*|regenerat\w*|gains?|grants?|obtain\w*|increas\w*|refund\w*|does not consume)\b/i.test(l)],
+  // own damage up (lines that buff the team are counted under "team" instead)
+  ['dmgup', (l) => !TEAM_RX.test(l) && !/\bnot (?:be )?affected by\b[^.]{0,20}\b(?:DMG Bonus|DMG Amplif)/i.test(l) && (
+    /\b(?:DMG Bonus|DMG Amplif\w*|DMG Deepen)\b|\bDMG (?:dealt )?(?:is |are )?(?:increased|Amplified)\b|\bDMG Multiplier\b[^.]{0,60}\bincreased\b|\bincreases? (?:the )?DMG\b|\bdeals? (?:\d+(?:\.\d+)?% )?(?:more|additional|increased) DMG\b|\bATK (?:is )?increased\b|\bincreases? [^.]{0,15}\bATK\b/.test(l))],
+  ['crit', /\bCrit\.? (?:Rate|DMG)\b[^.]{0,30}\b(?:increased|increases?|by \d)|\bincreases? [^.]{0,20}\bCrit\.? (?:Rate|DMG)\b/i],
+  ['cdr', /\bcooldown\b[^.]{0,40}\b(?:reduced|decreased|reset|shortened)\b|\b(?:reduces?|resets?|shortens?)\b[^.]{0,40}\bcooldown\b/i],
+  ['summon', /(?<!-\s)\b[Ss]ummon(?:s|ed|ing)?\b(?!\s+and\s+Smite)/],
+  ['transform', /\b(?:enters?|transforms?|switch(?:es)? to)\b[^.]{0,40}\b(?:state|Mode|Form|Stance)\b|\bis replaced (?:with|by)\b/],
+  ['revive', /\bfatal (?:blow|damage|attack|hit)s?\b|\b[Rr]evives?\b|\bwill not be knocked out\b|\bis knocked out\b[^.]{0,40}\brevive/],
   ['defense', /Interruption Resistance|resistance to interruption|\bDMG Reduction\b|\bDMG taken\b[^.]{0,20}\breduced\b|\breduces?\b[^.]{0,20}\bDMG taken\b|\binvincib\w*|\bimmun\w*/i],
   ['coord', /\bCoordinated Attacks?\b/],
   ['tune', /\b(?:Tune Break|Tune Strain|Tune Rupture|Off-Tune)\b/],
@@ -1031,7 +1041,13 @@ const TRAIT_KW = {
   cc: 'Stagnate, pull … targets, immobilize, Vibration Strength, knock back/up',
   team: 'all/other Resonators, party/team members, incoming/next Resonator … increase, gain, Amplify, Bonus',
   debuff: 'reduce/ignore … DEF/RES, take N% more DMG',
-  energy: 'restore/regen/gain … Resonance Energy, Concerto Energy',
+  energy: 'Resonance Energy / Concerto Energy / Energy Regen + restore, recover, regen, gain, grant, increase',
+  dmgup: 'DMG Bonus, DMG Amplified/Deepen, DMG increased, DMG Multiplier increased, more DMG, ATK increased',
+  crit: 'Crit. Rate / Crit. DMG increased',
+  cdr: 'cooldown reduced/reset, reduces cooldown',
+  summon: 'summon',
+  transform: 'enter/transform/switch to … state, Mode, Form, Stance; is replaced with',
+  revive: 'fatal, revive, will not be knocked out',
   defense: 'Interruption Resistance, DMG taken reduced, DMG Reduction, invincible, immune',
   coord: 'Coordinated Attack',
   tune: 'Tune Break, Tune Strain, Tune Rupture, Off-Tune',
@@ -1049,7 +1065,7 @@ function traitsOf(c) {
     const generic = new Set(line.match(STATUS) || []).size >= 3;
     for (const [key, rx] of TRAIT_RULES) {
       if (generic && STATUS_KEYS.has(key)) continue;
-      if (!rx.test(line)) continue;
+      if (!(typeof rx === 'function' ? rx(line) : rx.test(line))) continue;
       (out[key] = out[key] || []).push({target, title, lineIndex: i});
     }
   });
