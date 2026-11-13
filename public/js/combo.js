@@ -72,7 +72,8 @@ function formulaHTML(flow) {
     const times = g.nums.length > 1 && !label(g).includes('–') ? g.count : (a.n || 0);
     if (['move', 'other'].includes(a.kind)) return `<span class="cb-tok is-move">${esc(a.name || a.token)}</span>`;
     const text = label(g);
-    return `<button type="button" class="cb-tok k-${a.kind}" data-cb-go="${g.i}" data-tip="${esc(t('cb_go_step', {k: g.i + 1}))}">
+    const bare = !text && times <= 1;  // just a button (R, Q, Intro...): no frame around it
+    return `<button type="button" class="cb-tok k-${a.kind}${bare ? ' is-key' : ''}" data-cb-go="${g.i}" data-tip="${esc(t('cb_go_step', {k: g.i + 1}))}">
       <kbd>${esc(t('cb_cap_' + a.kind))}</kbd>${text ? `<span>${esc(text)}</span>` : ''}${times > 1 ? `<em>×${times}</em>` : ''}</button>`;
   }).join('')}</div>`;
 }
