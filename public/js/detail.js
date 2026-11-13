@@ -4,7 +4,7 @@ import {t} from './i18n.js';
 import {renderMaterials, renderReferences, renderSkills} from './kit.js';
 import {scrollToId} from './links.js';
 import {renderTraits} from './mechanics.js';
-import {renderWeapon, renderWeaponCard} from './weapon.js';
+import {renderWeapon} from './weapon.js';
 
 export function renderChanges(c) {
   const box = $('d-changes');
@@ -81,7 +81,6 @@ export function renderDetail(c) {
     <div class="stat"><div class="k">${esc(t('k_weapon'))}</div><div class="v v-ico">${weapIcon(c.weapon, 'ico-lg')}<span>${esc(c.weapon)}${vi ? `<small>${esc(weapVi(c.weapon))}</small>` : ''}</span></div></div>
     <div class="stat"><div class="k">${esc(t('k_rarity'))}</div><div class="v" style="color:${c.rarity===5?'var(--r5)':'var(--r4)'}">${c.rarity ? c.rarity + '★' : '—'}</div></div>
     <div class="stat"><div class="k">${esc(t('k_skills'))}</div><div class="v">${(c.skills || []).length}<small>${esc(t('skills_unit'))}</small></div></div>`;
-  renderWeaponCard(c);
   renderWeapon();
   renderTraits(c);
   renderMaterials(c);

@@ -55,7 +55,6 @@ export const I18N = {
     sec_weapon_kicker: 'Signature Weapon',
     sec_weapon_title: 'Vũ khí trấn phái',
     sec_weapon_note: 'Theo Wuthering Waves Wiki · thuật ngữ giữ tiếng Anh',
-    sw_open: 'Xem chi tiết',
     wp_sub: 'Chỉ số phụ: {s}',
     wp_stats: 'Chỉ số theo cấp',
     wp_stats_hint: 'Kéo để xem Base ATK và chỉ số phụ ở từng mốc cấp',
@@ -87,7 +86,6 @@ export const I18N = {
 
     k_element: 'Nguyên tố',
     k_weapon: 'Vũ khí',
-    k_sig_weapon: 'Vũ khí trấn phái',
     k_rarity: 'Độ hiếm',
     k_skills: 'Kỹ năng',
     skills_unit: 'mục chính',
@@ -251,7 +249,6 @@ export const I18N = {
     sec_weapon_kicker: 'Signature Weapon',
     sec_weapon_title: 'Signature Weapon',
     sec_weapon_note: 'From the Wuthering Waves Wiki',
-    sw_open: 'Details',
     wp_sub: 'Sub-stat: {s}',
     wp_stats: 'Stats by level',
     wp_stats_hint: 'Drag to see Base ATK and the sub-stat at each level milestone',
@@ -283,7 +280,6 @@ export const I18N = {
 
     k_element: 'Element',
     k_weapon: 'Weapon',
-    k_sig_weapon: 'Signature Weapon',
     k_rarity: 'Rarity',
     k_skills: 'Skills',
     skills_unit: 'entries',

@@ -115,12 +115,7 @@ detailView.addEventListener('click', (e) => {
   }
   if (onWeaponClick(e.target)) return;
   const tg = e.target.closest('[data-tabgo]');
-  if (tg) {
-    setTab(tg.dataset.tabgo);
-    const top = $('d-tabs').getBoundingClientRect().top + window.scrollY - 84;
-    if (tg.closest('#d-sig-weapon')) window.scrollTo({top, behavior: 'smooth'});
-    return;
-  }
+  if (tg) { setTab(tg.dataset.tabgo); return; }
   const go = e.target.closest('[data-goto]');
   if (go) scrollToId(go.dataset.goto);
 });

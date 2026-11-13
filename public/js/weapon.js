@@ -1,4 +1,4 @@
-// Signature weapon: summary card under the stats and the "Vũ khí" tab (stats by level, R1-R5 effect, ascension).
+// Signature weapon: the "Vũ khí" tab (stats by level, R1-R5 effect, ascension).
 import {$, esc, state, weapIcon, weapVi} from './core.js';
 import {t} from './i18n.js';
 import {matCards, sumSteps} from './kit.js';
@@ -16,33 +16,13 @@ function effectHTML(line, ranks, rank) {
 }
 
 const lines = (en, vi) => (state.showEn || !vi?.length ? en : vi) || [];
-const maxRow = (w) => w.stats[w.stats.length - 1];
 const lvLabel = (row) => t('wp_level_html', {lv: esc(row.level), a: esc(row.ascension)});
 const fill = (input, i, max) => input.style.setProperty('--p', `${(i / Math.max(max, 1)) * 100}%`);
-
-export function renderWeaponCard(c) {
-  const box = $('d-sig-weapon');
-  const w = c.signature_weapon;
-  box.hidden = !w;
-  $('tab-btn-weapon').hidden = !w;
-  if (!w) { box.innerHTML = ''; return; }
-  const top = w.stats?.length ? maxRow(w) : null;
-  box.innerHTML = `<button type="button" class="sw-card" data-tabgo="weapon">
-    <span class="sw-icon">${w.img ? `<img src="${esc(w.img)}" alt="" loading="lazy" width="56" height="56">` : ''}</span>
-    <span class="sw-body">
-      <span class="sw-k">${esc(t('k_sig_weapon'))}</span>
-      <span class="sw-name">${esc(w.name)} <span class="sw-stars" aria-label="${w.rarity}★">${'★'.repeat(w.rarity || 5)}</span></span>
-      <span class="sw-meta">${weapIcon(w.type)}<span>${esc(w.type)}</span>${top
-        ? `<span class="sw-dot" aria-hidden="true">·</span><span>ATK <b>${esc(top.atk)}</b></span><span class="sw-dot" aria-hidden="true">·</span><span>${esc(w.stat_type)} <b>${esc(top.sub)}</b></span>`
-        : `<span class="sw-dot" aria-hidden="true">·</span><span>${esc(w.stat_type)}</span>`}</span>
-    </span>
-    <span class="sw-go">${esc(t('sw_open'))}<svg viewBox="0 0 16 16" aria-hidden="true" width="12" height="12"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-  </button>`;
-}
 
 export function renderWeapon() {
   const w = sw();
   const box = $('d-weapon-body');
+  $('tab-btn-weapon').hidden = !w;
   if (!w) { box.innerHTML = ''; return; }
   const rank = state.wRank;
   const desc = lines(w.description, w.description_vi);
