@@ -905,6 +905,7 @@ function openMechanic(termOrObj) {
   $('mech-summary').textContent = summary || '';
   $('mech-source').hidden = !source;
   $('mech-source').textContent = source;
+  document.querySelector('.mech-lead').hidden = !summary && !source;
   const c = state.current;
   const occurrences = [];
   const seen = new Set();
@@ -1023,6 +1024,20 @@ const TRAIT_RULES = [
   ['glacio_chafe', /\bGlacio Chafe\b/],
   ['electro_flare', /\bElectro Flare\b/],
 ];
+// What each rule looks for, shown under the trait's definition.
+const TRAIT_KW = {
+  heal: 'heal, restore/recover … HP, Healing Bonus',
+  shield: 'shield',
+  cc: 'Stagnate, pull … targets, immobilize, Vibration Strength, knock back/up',
+  team: 'all/other Resonators, party/team members, incoming/next Resonator … increase, gain, Amplify, Bonus',
+  debuff: 'reduce/ignore … DEF/RES, take N% more DMG',
+  energy: 'restore/regen/gain … Resonance Energy, Concerto Energy',
+  defense: 'Interruption Resistance, DMG taken reduced, DMG Reduction, invincible, immune',
+  coord: 'Coordinated Attack',
+  tune: 'Tune Break, Tune Strain, Tune Rupture, Off-Tune',
+  offfield: 'not the active Resonator, off-field',
+  echo: 'Echo Skill DMG',
+};
 const traitCache = new Map();
 const STATUS_KEYS = new Set(['spectro_frazzle', 'aero_erosion', 'havoc_bane', 'fusion_burst', 'glacio_chafe', 'electro_flare']);
 function traitsOf(c) {
@@ -1067,7 +1082,7 @@ function openTrait(key) {
   const occ = ev.slice(0, 14).map((o) => ({...o, line: lineOf(o), go: o.target.startsWith('chain-') ? t('go_chain') : t('go_skill')}));
   const desc = traitDesc(key);
   openMechanic({term: traitLabel(key), kind: 'trait', trait: key, owners: [], occ,
-    summary_vi: desc, summary_en: desc, source: t('trait_note', {n: ev.length})});
+    summary_vi: desc, summary_en: desc, source: t('trait_note', {kw: TRAIT_KW[key] || traitLabel(key), n: ev.length})});
 }
 
 function renderMechUsers() {

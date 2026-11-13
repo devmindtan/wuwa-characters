@@ -166,7 +166,7 @@ input:focus,select:focus{border-color:var(--line2);box-shadow:0 0 0 3px rgba(214
 .mech-link{color:#ffe6a6}
 .move-link{color:#cfe6ff;text-decoration-style:dashed}
 .move-link:hover{color:#fff}
-.mech-source{margin:-12px 0 18px;font-size:11.5px;color:var(--muted);font-style:italic}
+.mech-source{margin:10px 0 0;padding-top:9px;border-top:1px dashed rgba(214,196,161,.2);font-size:11.5px;line-height:1.55;color:var(--muted);font-style:italic}
 .move-link.hit-term{color:#081014;background:#cfe6ff;border-radius:4px;padding:0 3px;text-decoration:none}
 .mech-link::after{content:"?";display:inline-grid;place-items:center;width:13px;height:13px;margin-left:2px;border:1px solid rgba(255,230,166,.6);border-radius:50%;font-size:9px;line-height:1;vertical-align:super;text-decoration:none}
 /* repeated mentions in the same section: colour only, underline on hover */
@@ -436,7 +436,10 @@ dialog#mechDialog::backdrop{background:rgba(3,6,8,.7);backdrop-filter:blur(3px)}
 .mech-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
 .mech-head h2{font-size:34px;line-height:1;margin:0;color:var(--gold2)}
 .mech-close{padding:6px 10px;line-height:1}
-.mech-summary{color:var(--soft);line-height:1.8;font-size:14.5px;margin:16px 0 20px}
+.mech-lead{position:relative;margin:16px 0 22px;padding:14px 16px 13px 18px;border-radius:12px;
+  background:linear-gradient(135deg,rgba(214,196,161,.13),rgba(214,196,161,.04));border:1px solid rgba(214,196,161,.28)}
+.mech-lead::before{content:"";position:absolute;left:0;top:12px;bottom:12px;width:3px;border-radius:0 3px 3px 0;background:var(--gold)}
+.mech-summary{color:var(--text);line-height:1.75;font-size:14.5px;margin:0}
 .mech-occ h3{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-family:"Be Vietnam Pro",sans-serif;margin:0 0 10px}
 .mech-occ-item{display:block;width:100%;text-align:left;font:inherit;color:var(--muted);background:rgba(255,255,255,.025);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin:0 0 8px;line-height:1.6}
 .mech-occ-item b{color:var(--gold2);font-weight:600}
