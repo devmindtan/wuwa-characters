@@ -170,6 +170,23 @@ async function run(tag, viewport) {
   check(/^ATK is increased by 24%/.test(await page.locator('.wp-eff-text').innerText()), `${tag}: weapon effect in EN`);
   await page.click('.detail-actions [data-lang="vi"]');
 
+  // combo tab: steps with activated effects, assumptions (S0-S6, weapon) change what is listed
+  await page.click('#tab-btn-combo');
+  await page.waitForSelector('.cb-step');
+  check(await page.locator('[data-cb-rot]').count() >= 2, `${tag}: combo rotation picker`);
+  const sumAt = async () => page.locator('.cb-sum .cb-eff').count();
+  const s0 = await sumAt();
+  await page.click('[data-cb-s="6"]');
+  const s6 = await sumAt();
+  check(s0 > 0 && s6 > s0, `${tag}: chain assumption did not add effects (${s0} -> ${s6})`);
+  const withW = await page.locator('.cb-sum .cb-eff.is-weapon').count();
+  await page.click('[data-cb-weapon]');
+  check(withW > 0 && (await page.locator('.cb-sum .cb-eff.is-weapon').count()) === 0, `${tag}: weapon assumption`);
+  await page.locator('.cb-step .cb-src[data-cb-target^="skill-"]').first().click();
+  await page.waitForTimeout(450);
+  check(await page.evaluate(() => !document.querySelector('#tab-skills').hidden) && (await page.locator('[data-line].hit').count()) === 1,
+    `${tag}: combo effect did not jump to its kit line`);
+
   // old Vietnamese route still opens and is rewritten to the English one
   await page.goto(`${BASE}/#/nhan-vat/chisa`);
   await page.waitForSelector('#d-crumb span', {state: 'attached'});

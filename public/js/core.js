@@ -19,6 +19,9 @@ export const state = {
   wRank: 1,      // signature weapon: rank shown in the effect (R1-R5)
   wLv: null,     // stats row index (null = max level)
   wAsc: null,    // ascension steps summed (null = all)
+  comboRot: 0,   // Combo tab: rotation shown
+  comboS: 0,     // assumed Resonance Chain (S0-S6)
+  comboWeapon: true,  // assume the signature weapon is equipped
   tab: 'tree',
   pendingTarget: null,
   roleFilter: 'all',

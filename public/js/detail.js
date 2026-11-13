@@ -5,6 +5,7 @@ import {renderMaterials, renderReferences, renderSkills} from './kit.js';
 import {scrollToId} from './links.js';
 import {renderTraits} from './mechanics.js';
 import {renderWeapon} from './weapon.js';
+import {renderCombo} from './combo.js';
 
 export function renderChanges(c) {
   const box = $('d-changes');
@@ -35,7 +36,7 @@ export async function openDetail(slug) {
     }
     if (routeSlug() !== slug) return;  // the visitor moved on while it was loading
   }
-  if (state.current?.slug !== c.slug) Object.assign(state, {wRank: 1, wLv: null, wAsc: null});
+  if (state.current?.slug !== c.slug) Object.assign(state, {wRank: 1, wLv: null, wAsc: null, comboRot: 0, comboS: 0, comboWeapon: true});
   state.current = c;
   renderDetail(c);
   state.treeSel = null;
@@ -102,7 +103,7 @@ export function route() {
 }
 
 /* tabs, sliders, tree selection, goto buttons */
-export const TAB_ORDER = ['tree', 'skills', 'chain', 'weapon', 'mats'];
+export const TAB_ORDER = ['tree', 'skills', 'chain', 'combo', 'weapon', 'mats'];
 export function setTab(name, focus = false) {
   if (!TAB_ORDER.includes(name) || $('tab-btn-' + name).hidden) name = 'skills';
   state.tab = name;
@@ -114,4 +115,5 @@ export function setTab(name, focus = false) {
     $('tab-' + t).hidden = !on;
   }
   if (focus) $('tab-btn-' + name).focus();
+  if (name === 'combo') renderCombo();
 }

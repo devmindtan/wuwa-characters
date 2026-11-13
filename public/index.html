@@ -33,7 +33,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=b0b0aaa49b">
+<link rel="stylesheet" href="styles.css?v=b97afeb51c">
 </head>
 <body>
 <div class="wrap">
@@ -114,11 +114,12 @@
         </header>
         <div class="stat-row" id="d-stats"></div>
         <nav class="tabs" role="tablist" id="d-tabs" data-i18n-attr="aria-label:tabs_aria">
-          <button type="button" role="tab" id="tab-btn-tree" aria-controls="tab-tree" data-tab="tree" data-i18n="tab_tree"></button>
-          <button type="button" role="tab" id="tab-btn-skills" aria-controls="tab-skills" data-tab="skills" data-i18n="tab_skills"></button>
+          <button type="button" role="tab" id="tab-btn-tree" aria-controls="tab-tree" data-tab="tree"><span class="hide-xs" data-i18n="tab_tree"></span><span class="show-xs" data-i18n="tab_tree_short"></span></button>
+          <button type="button" role="tab" id="tab-btn-skills" aria-controls="tab-skills" data-tab="skills"><span class="hide-xs" data-i18n="tab_skills"></span><span class="show-xs" data-i18n="tab_skills_short"></span></button>
           <button type="button" role="tab" id="tab-btn-chain" aria-controls="tab-chain" data-tab="chain"><span class="hide-xs" data-i18n="tab_chain"></span><span class="show-xs" data-i18n="tab_chain_short"></span></button>
+          <button type="button" role="tab" id="tab-btn-combo" aria-controls="tab-combo" data-tab="combo" data-i18n="tab_combo"></button>
           <button type="button" role="tab" id="tab-btn-weapon" aria-controls="tab-weapon" data-tab="weapon" data-i18n="tab_weapon" hidden></button>
-          <button type="button" role="tab" id="tab-btn-mats" aria-controls="tab-mats" data-tab="mats" data-i18n="tab_mats"></button>
+          <button type="button" role="tab" id="tab-btn-mats" aria-controls="tab-mats" data-tab="mats"><span class="hide-xs" data-i18n="tab_mats"></span><span class="show-xs" data-i18n="tab_mats_short"></span></button>
         </nav>
 
         <section class="tab-panel" role="tabpanel" id="tab-tree" aria-labelledby="tab-btn-tree" tabindex="-1">
@@ -144,6 +145,14 @@
             <span class="note" data-i18n="sec_chain_note"></span>
           </div>
           <div id="d-chain" class="chain-grid"></div>
+        </section>
+
+        <section class="tab-panel" role="tabpanel" id="tab-combo" aria-labelledby="tab-btn-combo" tabindex="-1" hidden>
+          <div class="section-head">
+            <div><p class="sec-kicker" data-i18n="sec_combo_kicker"></p><h2 data-i18n="sec_combo_title"></h2></div>
+            <span class="note" data-i18n="sec_combo_note"></span>
+          </div>
+          <div id="d-combo" class="combo"></div>
         </section>
 
         <section class="tab-panel" role="tabpanel" id="tab-weapon" aria-labelledby="tab-btn-weapon" tabindex="-1" hidden>
@@ -231,6 +240,6 @@
   <p class="mech-note" data-i18n="mech_note"></p>
 </dialog>
 
-<script type="module" src="js/main.js?v=b0b0aaa49b"></script>
+<script type="module" src="js/main.js?v=b97afeb51c"></script>
 </body>
 </html>

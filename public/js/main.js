@@ -7,6 +7,7 @@ import {openMove, scrollToId, scrollToSkill} from './links.js';
 import {apply, applyStaticI18n, buildFilters, renderHero, renderMeta, setLang} from './list.js';
 import {openMechanic} from './mechanics.js';
 import {onWeaponClick, onWeaponInput} from './weapon.js';
+import {onComboClick, onComboInput} from './combo.js';
 import './tooltip.js';  // side effects only: installs the page-wide tooltip
 
 async function boot() {
@@ -102,6 +103,7 @@ detailView.addEventListener('input', (e) => {
   if (e.target.classList.contains('lv-range')) { state.level = Number(e.target.value); applyLevel(); }
   if (e.target.classList.contains('up-range')) updateUpgrade(e.target);
   onWeaponInput(e.target);
+  onComboInput(e.target);
 });
 detailView.addEventListener('click', (e) => {
   const n = e.target.closest('.fn[data-sel]');
@@ -114,6 +116,13 @@ detailView.addEventListener('click', (e) => {
     return;
   }
   if (onWeaponClick(e.target)) return;
+  if (onComboClick(e.target)) return;
+  const src = e.target.closest('.cb-src[data-cb-target]');
+  if (src) {
+    if (src.dataset.cbTarget === 'weapon') { setTab('weapon'); $('tab-weapon').scrollIntoView({behavior: 'smooth', block: 'start'}); }
+    else scrollToId(src.dataset.cbTarget, '', src.dataset.cbLine);
+    return;
+  }
   const tg = e.target.closest('[data-tabgo]');
   if (tg) { setTab(tg.dataset.tabgo); return; }
   const go = e.target.closest('[data-goto]');
