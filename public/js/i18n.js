@@ -69,6 +69,7 @@ export const I18N = {
 
     k_element: 'Nguyên tố',
     k_weapon: 'Vũ khí',
+    k_sig_weapon: 'Vũ khí trấn phái',
     k_rarity: 'Độ hiếm',
     k_skills: 'Kỹ năng',
     skills_unit: 'mục chính',
@@ -246,6 +247,7 @@ export const I18N = {
 
     k_element: 'Element',
     k_weapon: 'Weapon',
+    k_sig_weapon: 'Signature Weapon',
     k_rarity: 'Rarity',
     k_skills: 'Skills',
     skills_unit: 'entries',
