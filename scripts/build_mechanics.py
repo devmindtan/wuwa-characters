@@ -187,7 +187,7 @@ NO_LINK = [
     'Tune Rupture Response', 'Hack Response',
 ]
 # Inflected forms that should link to the same mechanic.
-ALIASES = {'Stagnate': ['Stagnates', 'Stagnated', 'Stagnating']}
+ALIASES = {'Stagnate': ['Stagnates', 'Stagnated', 'Stagnating', 'Stagnation']}
 OWNER_OF = {term: slug for slug, terms in OWNERS.items() for term in terms}
 
 
