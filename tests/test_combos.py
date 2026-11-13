@@ -125,3 +125,16 @@ def test_results_carry_what_the_summary_adds_up(combos):
     assert states.index('Reincarnate') < states.index('Maestro')
     outro = next(a for a in flow if a['kind'] == 'outro')
     assert all(o['cat'] == 'stat' for o in outro['out'])  # buffs handed to the next Resonator
+
+
+def test_calcharo_quoted_resources_energy_and_summon(combos):
+    # Calcharo's kit writes resources in quotes ("Cruelty", "Killing Intent") and moves with P1/P2 suffixes
+    assert outcomes_of('When Resonance Skill Extermination Order hits the target, gain 1 "Cruelty".') == [('+1 Cruelty', '+1 Cruelty')]
+    flow = flow_of_rot(combos, 'calcharo', 'BASIC BURST COMBO')
+    vis = {o['vi'] for a in flow for o in a['out']}
+    assert {'+1 Killing Intent', 'Tiêu hao Killing Intent', 'Hồi Resonance Energy và Concerto Energy', 'Triệu hồi Phantom'} <= vis
+    assert not any('Death Messenger' in o['en'] and 'becomes' in o['en']
+                   for a in flow if 'Death Messenger' in a['say_en'] for o in a['out'])
+    intro = next(a for a in flow if a['kind'] == 'intro')
+    assert [o['vi'] for o in intro['out']] == ['Gây Electro DMG']  # damage-only action still says something
+    assert all(r['flow'] and any(a['out'] for a in r['flow']) for d in combos.values() for r in d['rotations'])

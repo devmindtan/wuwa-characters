@@ -22,7 +22,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from kit_rules import (EFFECT_RX, INPUT_LINE, KIND_REF, KIND_TYPE, is_heading, kind_trigger,  # noqa: E402
-                       name_trigger, negated, outcome_details, step_kind)
+                       name_trigger, negated, outcome_details, step_kind, damage_of)
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / 'data' / 'characters.json'
@@ -87,6 +87,7 @@ HINT_VI = [
     (r'^happens automatically off-field$', 'Tự diễn ra khi nhân vật ở ngoài sân'),
     (r'^Cast automatically$', 'Tự động thi triển'),
     (r'^pre-rotation$', 'Làm trước khi bắt đầu combo'),
+    (r'^Use before combo and swap cancel$', 'Dùng trước khi vào combo, rồi đổi nhân vật để cắt động tác'),
     (r'^If Available$', 'Nếu đang có sẵn'),
     (r'^Enter (.+)$', 'Vào {1}'),
     (r'^Switch to (.+) form$', 'Chuyển sang dạng {1}'),
@@ -241,7 +242,7 @@ def say(st):
     return vi, en, token
 
 
-def flow_of(parsed, steps, step_outcomes):
+def flow_of(parsed, steps, step_outcomes, fallback):
     """Player-facing sequence: Basic 1 -> 2 -> 3 merged, a Dash that only cancels folded into the step before."""
     flow = []
     for i, (st, out) in enumerate(zip(parsed, steps)):
@@ -256,9 +257,14 @@ def flow_of(parsed, steps, step_outcomes):
             continue
         results = step_outcomes(out['refs'])
         if st['name']:  # "Heavy Attack is replaced with Scarlet Coda" is how you get the move, not what it does
-            own = re.sub(r'\s+\d+$', '', st['name'])
-            results = [o for o in results if not (o['en'].endswith('becomes ' + own) or o['en'] == 'Unlock ' + own
-                                                   or o['en'].endswith('becomes ' + st['name']))]
+            own = re.sub(r'\s+P?\d+$', '', st['name'])
+            results = [o for o in results if not (('becomes' in o['en'] and (o['en'].endswith(' ' + own)
+                                                                              or o['en'].endswith(' ' + st['name'])))
+                                                   or o['en'] == 'Unlock ' + own)]
+        # "Calcharo's Forte Gauge is replaced with ...": a gauge note, not a result of pressing anything
+        results = [o for o in results if not ('becomes' in o['en'] and re.search(r"['’]s\b", o['en'].split(' becomes ')[0]))]
+        if not [o for o in results if o['cond'] is None] and st['kind'] in fallback:
+            results = [fallback[st['kind']]] + results
         item = {'say_vi': vi, 'say_en': en, 'token': token, 'kind': st['kind'] or 'other', 'cond': st['cond'],
                 'hint': hint, 'hint_vi': hint_vi, 'n': st['n'], 'steps': [i], 'out': results,
                 'stage': st['stage'] if st['kind'] == 'basic' and not st['name'] and not st.get('state') else None}
@@ -328,7 +334,7 @@ def build_char(c, raw):
         kind, name, stage = st['kind'], st['name'], st['stage']
         names = []
         if name:
-            names = [name, re.sub(r'\s+\d+$', '', name)]
+            names = [name, re.sub(r'\s+P?\d+$', '', name)]
         if st.get('state'):
             names.append(st['state'])
         for nm in dict.fromkeys(n for n in names if len(n) > 2):
@@ -375,7 +381,28 @@ def build_char(c, raw):
                 seen.add(o['vi'])
                 out.append({**o, 'ref': [t, li], 'cond': cond})
         base = [o for o in out if o['cond'] is None][:4]
+        if not base:  # nothing else to say: at least the damage it deals
+            for t, li in refs:
+                line = text_of[(t, li)]
+                dmg = damage_of(line) if t.startswith('skill') and not INPUT_LINE.match(line) else None
+                if dmg:
+                    base = [{**dmg, 'ref': [t, li], 'cond': None}]
+                    break
         return base + [o for o in out if o['cond'] is not None]
+
+    # An Intro/Skill/Liberation/Outro with no other result still deals the damage its entry describes.
+    fallback = {}
+    for kind, typ in KIND_TYPE.items():
+        for i, sk in enumerate(skills):
+            if sk.get('type') != typ:
+                continue
+            for li, line in enumerate(sk.get('desc') or []):
+                dmg = None if INPUT_LINE.match(line) else damage_of(line)
+                if dmg:
+                    fallback[kind] = {**dmg, 'ref': ['skill-%d' % i, li], 'cond': None}
+                    break
+            if kind in fallback:
+                break
 
     rotations = []
     for b in raw.get('blocks', []):
@@ -393,7 +420,7 @@ def build_char(c, raw):
             })
         title = b['title'] or 'Rotation'
         rotations.append({'title': title, 'title_vi': title_vi(title),
-                          'flow': flow_of(steps, out_steps, step_outcomes)})
+                          'flow': flow_of(steps, out_steps, step_outcomes, fallback)})
 
     return {'source': raw.get('url', ''), 'fetched': raw.get('fetched', ''), 'rotations': rotations}
 

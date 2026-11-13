@@ -296,6 +296,9 @@ OUTCOME_RULES = [
     (re.compile(r'\b(?:[Gg]rants?|[Gg]ains?|[Oo]btains?)\s+(\d+)\s+' + _N, A), '+{1} {2}', '+{1} {2}'),
     (re.compile(r'\b(?:[Rr]estores?|[Rr]ecovers?)\s+(\d+)\s+(?:points? of\s+)?(Concerto Energy|Resonance Energy|STA)', A),
      'Hồi {1} {2}', 'Restore {1} {2}'),
+    (re.compile(r'\b(?:[Rr]estores?|[Rr]ecovers?)\s+((?:Resonance|Concerto) Energy(?: and (?:Resonance|Concerto) Energy)?)', A),
+     'Hồi {1}', 'Restore {1}'),
+    (re.compile(r'\b[Ss]ummons?\s+(?:a\s+|an\s+|the\s+)?' + _N, A), 'Triệu hồi {1}', 'Summon {1}'),
     (re.compile(r'\b[Gg]ains?\s+(\d+(?:\.\d+)?%)\s+' + _STAT, A), '+{1} {2}', '+{1} {2}'),
     (re.compile(r'\band\s+(\d+(?:\.\d+)?%)\s+' + _STAT, A), '+{1} {2}', '+{1} {2}'),
     (re.compile(_STAT + r'\s(?:is\s)?increased by\s(\d+(?:\.\d+)?%)', A), '+{2} {1}', '+{2} {1}'),
@@ -304,11 +307,19 @@ OUTCOME_RULES = [
     (re.compile(r'\b' + _N + r'\sis replaced (?:with|by)\s' + _N, A), '{1} đổi thành {2}', '{1} becomes {2}'),
     (re.compile(r'\b' + _N + r'\sbecomes? available', A), 'Mở {1}', 'Unlock {1}'),
     (re.compile(r'\breduces? (?:the )?damage taken by\s(\d+%)', A), 'Giảm {1} sát thương nhận vào', '-{1} DMG taken'),
-    (re.compile(r'\bconsumes?\s+(?:all\s+|up to\s+\d+\s+)?(?:stacks? of\s+|points? of\s+)?' + _N, A), 'Tiêu hao {1}', 'Consume {1}'),
+    (re.compile(r'\bconsumes?\s+(?:all\s+|up to\s+)?(?:\d+\s+)?(?:stacks? of\s+|points? of\s+)?' + _N, A), 'Tiêu hao {1}', 'Consume {1}'),
     (re.compile(r'\bStagnat(?:e|es|ing)\b', A), 'Gây Stagnate', 'Stagnate'),
     (re.compile(r'\bpull(?:s|ing)? (?:in|the targets? in)\b', A), 'Kéo gom mục tiêu', 'Pull targets in'),
     (re.compile(r'\b(?:heals?|healing)\b', A), 'Hồi máu', 'Heal'),
 ]
+# Used only when an action has no other result: at least say what damage it deals.
+DAMAGE_RULE = re.compile(r'\b(?:[Dd]eal(?:s|ing)?|[Dd]amage)\s+(?:\w+\s+){0,2}?(Spectro|Havoc|Aero|Electro|Fusion|Glacio|Physical) DMG', A)
+
+
+def damage_of(line):
+    m = DAMAGE_RULE.search(line.replace('"', ''))
+    return {'vi': f'Gây {m.group(1)} DMG', 'en': f'Deal {m.group(1)} DMG', 'cat': 'damage', 'qty': None,
+            'name': m.group(1)} if m else None
 
 
 def _category(vi, groups):
@@ -319,8 +330,12 @@ def _category(vi, groups):
         return 'end', None, groups[0]
     if vi.startswith('Hồi máu'):
         return 'heal', None, ''
-    if vi.startswith('Hồi '):
+    if vi.startswith('Hồi ') and groups[0].isdigit():
         return 'resource', float(groups[0]), groups[1]
+    if vi.startswith('Hồi '):
+        return 'energy', None, ' + '.join(g for g in groups if g)
+    if vi.startswith('Triệu hồi'):
+        return 'summon', None, groups[0]
     if vi.startswith('Gây') and 'tầng' in vi:
         return 'status', float(groups[0]), groups[1]
     if vi in ('Gây Stagnate', 'Kéo gom mục tiêu'):
@@ -353,10 +368,11 @@ def outcomes_of(line):
 
 
 def _outcomes(line):
+    line = re.sub(r'["“”]', '', line)  # quoted names ("Cruelty", "Mercy") read like any other name
     out = []
     for rx, vi, en in OUTCOME_RULES:
         for m in rx.finditer(line):
-            groups = [g.strip() for g in m.groups()]
+            groups = [(g or '').strip() for g in m.groups()]
             if any(g in ('The', 'This', 'When', 'After', 'Resonators', 'Resonator') for g in groups):
                 continue
             if re.search(r"\b(?:not|n't|cannot|no longer)\s+(?:\w+\s+)?$", line[max(0, m.start() - 20):m.start()]):
@@ -365,8 +381,9 @@ def _outcomes(line):
                 continue
             if vi.startswith('Vào trạng thái') and re.search(r'\bevery \d+(?:\.\d+)?s\b', line):
                 continue  # "enters the Compose state every 25s": a timer, not this action
+            groups = [g or '' for g in groups]
             fill = lambda tpl: re.sub(r'\{(\d)\}', lambda k: groups[int(k.group(1)) - 1], tpl)
-            item = (fill(vi), fill(en), *_category(vi, groups))
+            item = (fill(vi).replace(' and ', ' và '), fill(en), *_category(vi, groups))
             if all(o[0] != item[0] for o in out):
                 out.append(item)
     return out
