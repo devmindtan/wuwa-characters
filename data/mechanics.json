@@ -185,8 +185,8 @@
   {
    "term": "Glacio Chafe",
    "kind": "status",
-   "summary_vi": "Negative Status hệ Glacio (có thể cộng dồn). Tác dụng cụ thể theo từng bộ kỹ năng: xem các đoạn trích bên dưới.",
-   "summary_en": "Glacio Negative Status (stackable). Its exact effect depends on each kit: see the quotes below.",
+   "summary_vi": "Negative Status hệ Glacio: khi bị gây Glacio Chafe, mục tiêu nhận Glacio DMG.\n• Cộng dồn tối đa 10 tầng (mặc định).\n• Mỗi tầng giảm tốc độ di chuyển của mục tiêu.\n• Khi đạt tối đa, mục tiêu bị đóng băng (frozen) và toàn bộ tầng bị xóa.",
+   "summary_en": "Glacio Negative Status: when inflicted, the target takes Glacio DMG.\n• Stacks up to 10 times by default.\n• Each stack reduces the target's Movement Speed.\n• At max stacks the target is frozen and all stacks are removed.",
    "sample_en": "After Resonators in the team inflict Havoc Bane, Fusion Burst, Spectro Frazzle, Electro Flare, Glacio Chafe, or Aero Erosion, all Resonators in the team gain 20% DMG Bonus for all Attributes for 20s.",
    "sample_vi": "Sau khi Resonators trong đội gây Havoc Bane, Fusion Burst, Spectro Frazzle, Electro Flare, Glacio Chafe hoặc Aero Erosion, mọi Resonators trong đội nhận 20% DMG Bonus cho mọi Attribute trong 20 giây.",
    "count": 41,
@@ -288,8 +288,8 @@
   {
    "term": "Fusion Burst",
    "kind": "status",
-   "summary_vi": "Negative Status hệ Fusion (có thể cộng dồn). Tác dụng cụ thể theo từng bộ kỹ năng: xem các đoạn trích bên dưới.",
-   "summary_en": "Fusion Negative Status (stackable). Its exact effect depends on each kit: see the quotes below.",
+   "summary_vi": "Negative Status hệ Fusion: tích tầng trên mục tiêu, đủ tầng thì phát nổ.\n• Cộng dồn tối đa 10 tầng (mặc định).\n• Khi đạt tối đa, toàn bộ tầng bị xóa để gây một vụ nổ Fusion DMG quanh mục tiêu.\n• Càng nhiều tầng, sát thương vụ nổ càng cao.",
+   "summary_en": "Fusion Negative Status: builds up on the target and explodes when full.\n• Stacks up to 10 times by default.\n• At max stacks, all stacks are removed to trigger an explosion dealing Fusion DMG around the target.\n• The more stacks, the more damage.",
    "sample_en": "• In Resonance Mode - Fusion Burst, when Resonators in the team inflict Fusion Burst, inflict 1 stack of Fusion Trail for 30s, stacking up to 30 times.",
    "sample_vi": "• Trong Resonance Mode - Fusion Burst, khi Resonators trong đội gây ra Fusion Burst, gây 1 điểm Fusion Trail trong 30 giây, cộng dồn tối đa 30 lần.",
    "count": 34,
@@ -323,8 +323,8 @@
   {
    "term": "Electro Flare",
    "kind": "status",
-   "summary_vi": "Negative Status hệ Electro (có thể cộng dồn). Tác dụng cụ thể theo từng bộ kỹ năng: xem các đoạn trích bên dưới.",
-   "summary_en": "Electro Negative Status (stackable). Its exact effect depends on each kit: see the quotes below.",
+   "summary_vi": "Negative Status hệ Electro: gây Electro DMG định kỳ lên mục tiêu.\n• Cộng dồn tối đa 10 tầng (mặc định); càng nhiều tầng sát thương càng cao.\n• Mỗi lần gây sát thương, mục tiêu mất một nửa số tầng.\n• Khi đã tối đa, tầng mới chuyển thành Electro Rage (tối đa 10 tầng): tăng sát thương lần kích hoạt Electro Flare kế tiếp, kích hoạt xong thì bị xóa.",
+   "summary_en": "Electro Negative Status: deals periodic Electro DMG to the target.\n• Stacks up to 10 times by default; more stacks deal more damage.\n• The target loses half of the stacks with each instance of damage.\n• At max stacks, new stacks become Electro Rage (up to 10 stacks), which increases the damage of the next Electro Flare trigger and is removed once triggered.",
    "sample_en": "After Resonators in the team inflict Havoc Bane, Fusion Burst, Spectro Frazzle, Electro Flare, Glacio Chafe, or Aero Erosion, all Resonators in the team gain 20% DMG Bonus for all Attributes for 20s.",
    "sample_vi": "Sau khi Resonators trong đội gây Havoc Bane, Fusion Burst, Spectro Frazzle, Electro Flare, Glacio Chafe hoặc Aero Erosion, mọi Resonators trong đội nhận 20% DMG Bonus cho mọi Attribute trong 20 giây.",
    "count": 32,
@@ -380,8 +380,8 @@
   {
    "term": "Aero Erosion",
    "kind": "status",
-   "summary_vi": "Negative Status hệ Aero (có thể cộng dồn). Tác dụng cụ thể theo từng bộ kỹ năng: xem các đoạn trích bên dưới.",
-   "summary_en": "Aero Negative Status (stackable). Its exact effect depends on each kit: see the quotes below.",
+   "summary_vi": "Negative Status hệ Aero: gây Aero DMG định kỳ lên mục tiêu khi còn hiệu lực.\n• Giới hạn mặc định 3 tầng; chỉ một số hiệu ứng (ví dụ Outro Skill của Rover Aero, các kỹ năng bên dưới) mới nâng được giới hạn này.\n• Sát thương tăng theo số tầng (theo bảng hệ số trên wiki: 3 tầng ≈ gấp 5 lần 1 tầng).\n• Số tầng giảm dần mỗi 15 giây.",
+   "summary_en": "Aero Negative Status: deals periodic Aero DMG to the target while it lasts.\n• Default cap is 3 stacks; only certain effects (e.g. Aero Rover's Outro Skill, the skills below) can raise it.\n• Damage scales with stacks (per the wiki's multiplier table, 3 stacks ≈ 5× one stack).\n• Stacks are reduced every 15s.",
    "sample_en": "Following Basic Attack - Cartethyia Stage 4, inflict 1 stack of Aero Erosion on targets hit and summon Sword of Divinity's Shadow.",
    "sample_vi": "Theo sau Basic Attack - Cartethyia Stage 4, gây 1 tầng Aero Erosion cho các mục tiêu đánh trúng và triệu hồi Sword of Divinity's Shadow.",
    "count": 29,
@@ -398,8 +398,8 @@
   {
    "term": "Havoc Bane",
    "kind": "status",
-   "summary_vi": "Negative Status hệ Havoc (có thể cộng dồn). Tác dụng cụ thể theo từng bộ kỹ năng: xem các đoạn trích bên dưới.",
-   "summary_en": "Havoc Negative Status (stackable). Its exact effect depends on each kit: see the quotes below.",
+   "summary_vi": "Negative Status hệ Havoc: trong thời gian tồn tại, DEF của mục tiêu bị giảm.\n• Cộng dồn tối đa 3 tầng (mặc định).\n• Mỗi tầng giảm 2% DEF của mục tiêu (đủ 3 tầng: giảm 6% DEF).\n• Một số Resonator tăng giới hạn tầng hoặc tận dụng Havoc Bane: xem các đoạn bên dưới.",
+   "summary_en": "Havoc Negative Status: while it lasts, the target's DEF is reduced.\n• Stacks up to 3 times by default.\n• Each stack reduces the target's DEF by 2% (6% at 3 stacks).\n• Some Resonators raise the stack limit or make use of Havoc Bane: see the lines below.",
    "sample_en": "After Resonators in the team inflict Havoc Bane, Fusion Burst, Spectro Frazzle, Electro Flare, Glacio Chafe, or Aero Erosion, all Resonators in the team gain 20% DMG Bonus for all Attributes for 20s.",
    "sample_vi": "Sau khi Resonators trong đội gây Havoc Bane, Fusion Burst, Spectro Frazzle, Electro Flare, Glacio Chafe hoặc Aero Erosion, mọi Resonators trong đội nhận 20% DMG Bonus cho mọi Attribute trong 20 giây.",
    "count": 28,
@@ -522,8 +522,8 @@
   {
    "term": "Spectro Frazzle",
    "kind": "status",
-   "summary_vi": "Negative Status hệ Spectro (có thể cộng dồn). Tác dụng cụ thể theo từng bộ kỹ năng: xem các đoạn trích bên dưới.",
-   "summary_en": "Spectro Negative Status (stackable). Its exact effect depends on each kit: see the quotes below.",
+   "summary_vi": "Negative Status hệ Spectro: gây Spectro DMG định kỳ lên mục tiêu.\n• Mỗi lần gây sát thương (khoảng mỗi 3 giây), mục tiêu mất 1 tầng.\n• Sát thương tăng theo số tầng (bảng hệ số trên wiki tính tới 10 tầng: 10 tầng ≈ gấp 8 lần 1 tầng).",
+   "summary_en": "Spectro Negative Status: deals periodic Spectro DMG to the target.\n• Each time it deals damage (about every 3s), the target loses 1 stack.\n• Damage scales with stacks (the wiki's multiplier table goes up to 10 stacks: 10 stacks ≈ 8× one stack).",
    "sample_en": "After Resonators in the team inflict Havoc Bane, Fusion Burst, Spectro Frazzle, Electro Flare, Glacio Chafe, or Aero Erosion, all Resonators in the team gain 20% DMG Bonus for all Attributes for 20s.",
    "sample_vi": "Sau khi Resonators trong đội gây Havoc Bane, Fusion Burst, Spectro Frazzle, Electro Flare, Glacio Chafe hoặc Aero Erosion, mọi Resonators trong đội nhận 20% DMG Bonus cho mọi Attribute trong 20 giây.",
    "count": 23,
@@ -744,8 +744,8 @@
   {
    "term": "Negative Status",
    "kind": "status",
-   "summary_vi": "Các hiệu ứng sát thương theo thời gian và hiệu ứng bất lợi có thể cộng dồn, áp lên cả kẻ địch lẫn Resonator: Spectro Frazzle, Aero Erosion, Havoc Bane, Fusion Burst, Glacio Chafe, Electro Flare.",
-   "summary_en": "Stackable damage-over-time effects and debuffs that can hit both enemies and Resonators: Spectro Frazzle, Aero Erosion, Havoc Bane, Fusion Burst, Glacio Chafe, Electro Flare.",
+   "summary_vi": "Hiệu ứng sát thương theo thời gian / bất lợi có thể cộng dồn, gây lên cả kẻ địch lẫn Resonator.\n• Gồm 6 loại: Spectro Frazzle, Aero Erosion, Havoc Bane, Fusion Burst, Glacio Chafe, Electro Flare.\n• Sát thương kích hoạt mỗi 3 giây kể từ tầng đầu tiên, tính theo chỉ số của Resonator gây tầng gần nhất.\n• Chỉ các hiệu ứng Amplify dành riêng cho Negative Status đó mới tăng sát thương của nó; Amplify theo nguyên tố chung không có tác dụng.",
+   "summary_en": "Stackable damage-over-time effects and debuffs that can hit both enemies and Resonators.\n• Six types: Spectro Frazzle, Aero Erosion, Havoc Bane, Fusion Burst, Glacio Chafe, Electro Flare.\n• Their damage triggers every 3s after the first stack, based on the stats of the Resonator who applied the latest stack.\n• Only Amplify effects aimed at that specific Negative Status increase its damage; generic Attribute DMG Amplify does not.",
    "sample_en": "• When an attack hits, increase the max stacks of Negative Status and Electro Rage the target can receive by 3 for 15s. Unstackable.",
    "sample_vi": "Aero DMG gây ra bởi Resonator đang hoạt động trong nhóm không phải là Cartethyia/Fleurdelys đối với các mục tiêu có Negative Status được Amplified thêm 17,5% trong 20 giây.",
    "count": 10,
@@ -832,6 +832,22 @@
    "owners": [
     "zhezhi"
    ]
+  },
+  {
+   "term": "Electro Rage",
+   "kind": "status",
+   "summary_vi": "Tầng phụ của Electro Flare: khi Electro Flare trên mục tiêu đã tối đa, tầng mới chuyển thành Electro Rage.\n• Cộng dồn tối đa 10 tầng (mặc định).\n• Tăng sát thương của lần kích hoạt Electro Flare kế tiếp; càng nhiều tầng càng mạnh.\n• Bị xóa sau khi kích hoạt.",
+   "summary_en": "Extra stacks of Electro Flare: once Electro Flare on the target is at max, new stacks become Electro Rage.\n• Stacks up to 10 times by default.\n• Increases the damage of the next Electro Flare trigger; more stacks, more damage.\n• Removed once triggered.",
+   "sample_en": "• When an attack hits, increase the max stacks of Negative Status and Electro Rage the target can receive by 3 for 15s. Unstackable.",
+   "sample_vi": "• Khi đòn tấn công trúng đích, số tầng tối đa của Negative Status và Electro Rage mà mục tiêu có thể nhận tăng thêm 3 trong 15 giây. Không cộng dồn.",
+   "count": 7,
+   "characters": [
+    "chisa",
+    "hsin",
+    "suisui"
+   ],
+   "owners": [],
+   "source": "wiki"
   },
   {
    "term": "Optical Sampling Stage",
@@ -1073,34 +1089,6 @@
     "aemeath"
    ],
    "owners": []
-  },
-  {
-   "term": "Electro Rage",
-   "kind": "resource",
-   "auto": true,
-   "defs": {
-    "hsin": {
-     "kind": "skill",
-     "index": 3,
-     "line": 25,
-     "n": 1
-    },
-    "suisui": {
-     "kind": "skill",
-     "index": 8,
-     "line": 7,
-     "n": 1
-    }
-   },
-   "count": 2,
-   "characters": [
-    "hsin",
-    "suisui"
-   ],
-   "owners": [
-    "hsin",
-    "suisui"
-   ]
   },
   {
    "term": "Eras in Unity",
