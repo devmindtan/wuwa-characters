@@ -40,7 +40,8 @@ data/mechanics_curated.json  Nội dung cơ chế do người viết (VI/EN, own
 data/mechanics.json    Cơ chế/thuật ngữ, sinh bởi scripts/build_mechanics.py
 data/kit_index.json    Đòn con, tag đặc điểm, Resonators theo cơ chế (scripts/build_index.py)
 data/translations/     Bản dịch tiếng Việt của Resonance Chain (kèm bản EN gốc để đối chiếu)
-public/                Giao diện tĩnh (index.html, app.js, styles.css)
+public/                Giao diện tĩnh (index.html, styles.css)
+public/js/             ES module: main, core, i18n, list, detail, kit, links, mechanics, tooltip
 public/assets/icons/   Icon nguyên tố và vũ khí gốc của game (dùng làm favicon, thẻ, bộ lọc)
 scripts/               Pipeline trích xuất, dịch, rà soát
 legacy/                Bản dựng cũ, chỉ để tham khảo

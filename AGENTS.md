@@ -19,8 +19,8 @@
   - Sửa các câu sai nghĩa do dịch máy (ví dụ "Deal DMG" bị dịch thành "giao dịch/thỏa thuận/chia").
 - Thuật ngữ cố định: luôn viết **Resonators** (không dùng "cộng hưởng giả", "Bộ cộng hưởng", "Đồ cộng hưởng"). Các thuật ngữ khác lấy theo `data/mechanics.json` và glossary trong `scripts/glossary.py`.
 - Giải thích cơ chế phải bám vào dữ liệu nguồn; không tự bịa. Nếu chỉ là tóm tắt, ghi rõ "Tóm tắt".
-- Tooltip dùng component tùy chỉnh trong `public/app.js` (hiện sau ~60ms, tự nằm trong dialog nếu cần): đặt `data-tip="..."` (hoặc `title`, sẽ tự chuyển), không dựa vào tooltip gốc của trình duyệt.
-- Giao diện có công tắc VI | EN cho toàn trang (lưu trong localStorage). Không viết cứng chuỗi giao diện trong HTML/JS: thêm key vào `public/i18n.js` (cả `vi` và `en`) rồi dùng `t()` / `data-i18n`.
+- Tooltip dùng component tùy chỉnh trong `public/js/tooltip.js` (hiện sau ~60ms, tự nằm trong dialog nếu cần): đặt `data-tip="..."` (hoặc `title`, sẽ tự chuyển), không dựa vào tooltip gốc của trình duyệt.
+- Giao diện có công tắc VI | EN cho toàn trang (lưu trong localStorage). Không viết cứng chuỗi giao diện trong HTML/JS: thêm key vào `public/js/i18n.js` (cả `vi` và `en`) rồi dùng `t()` / `data-i18n`.
   - VI: mọi tiêu đề, nhãn, nút là tiếng Việt; chỉ tên riêng trong game (tên kỹ năng, loại kỹ năng, nguyên tố, cơ chế, vật phẩm) giữ tiếng Anh. Tiêu đề tab có dòng nhỏ ghi thuật ngữ gốc (Forte, Combat Skills, Resonance Chain...).
   - EN: không còn chữ tiếng Việt nào (trừ tên tác giả). Dữ liệu cần cả hai bản: `summary_vi`/`summary_en` cho cơ chế, `used_for`/`used_for_en` cho references.
 
@@ -28,7 +28,7 @@
 
 - `data/characters.json` là nguồn dữ liệu canonical (JSON, `meta.patch` = bản game hiện tại).
 - `app/main.py` là FastAPI server, mở port và trả JSON cho frontend. Frontend không nhúng dữ liệu, chỉ gọi API.
-- `public/` chứa HTML/CSS/JS tĩnh. Không chỉnh sửa trực tiếp file sinh tự động (nếu có).
+- `public/` chứa HTML/CSS/JS tĩnh. JS là ES module trong `public/js/` (không cần bước build): `core.js` (state, DOM, tiện ích; không import gì để luôn nạp trước), `i18n.js`, `list.js`, `detail.js`, `kit.js` (các tab), `links.js` (linkify + nhảy tới đoạn), `mechanics.js` (popup cơ chế/đặc điểm), `tooltip.js`, `main.js` (khởi động). Module chỉ có tác dụng phụ phải được `import './x.js'` trong `main.js`. Không chỉnh sửa trực tiếp file sinh tự động (nếu có).
 - `scripts/` chứa pipeline extract/dịch/review. Chạy script bằng Python trong `.venv`.
 - Dữ liệu bổ sung từ Wuthering Waves Wiki (Fandom, qua MediaWiki API công khai): `scripts/fetch_wiki.py` (cache vào `data/wiki_raw.json`, không commit) → `scripts/merge_wiki.py` ghi `resonance_chain`, `materials`, `references` vào `data/characters.json`.
 - Bản dịch Resonance Chain nằm ở `data/translations/resonance_chain_vi.json` (khóa theo tên node, kèm bản EN gốc). Khi EN trên wiki đổi, bản dịch cũ tự bị bỏ và `merge_wiki.py --export-missing FILE` liệt kê node cần dịch lại; dịch xong chạy `review.py` (kiểm tra số dòng và các con số khớp EN).
