@@ -24,6 +24,7 @@ Lần đầu, script tự tạo `.venv` và cài `requirements.txt`. Sau đó m�
 | `GET /api/characters` | `meta` + danh sách đầy đủ nhân vật |
 | `GET /api/characters/{slug}` | Một nhân vật (404 nếu không có), ví dụ `/api/characters/jinhsi` |
 | `GET /api/mechanics` | Danh sách cơ chế/thuật ngữ và phần giải thích |
+| `GET /api/index` | Chỉ mục sinh sẵn: đòn con, tag đặc điểm (kèm dòng bằng chứng), Resonators và vai trò theo cơ chế |
 | `GET /api/changes` | Các nhân vật có thay đổi thông tin trong game, kèm lịch sử |
 | `GET /api/version` | Bản game hiện tại và ngày cập nhật |
 | `GET /api/health` | Kiểm tra server |
@@ -35,7 +36,9 @@ Frontend không nhúng dữ liệu, mọi thứ đều lấy qua API.
 ```
 app/main.py            FastAPI: API + phục vụ thư mục public/
 data/characters.json   Dữ liệu canonical (meta.patch = bản game hiện tại)
+data/mechanics_curated.json  Nội dung cơ chế do người viết (VI/EN, owner, nguồn)
 data/mechanics.json    Cơ chế/thuật ngữ, sinh bởi scripts/build_mechanics.py
+data/kit_index.json    Đòn con, tag đặc điểm, Resonators theo cơ chế (scripts/build_index.py)
 data/translations/     Bản dịch tiếng Việt của Resonance Chain (kèm bản EN gốc để đối chiếu)
 public/                Giao diện tĩnh (index.html, app.js, styles.css)
 public/assets/icons/   Icon nguyên tố và vũ khí gốc của game (dùng làm favicon, thẻ, bộ lọc)
@@ -74,7 +77,8 @@ Chạy bằng Python trong `.venv`:
 |---|---|
 | `scripts/extract.py` | Tải trang nhân vật từ prydwen.gg, ghi `data/en_raw.json` (file local, không commit). Cần thêm `beautifulsoup4`. |
 | `scripts/fix_context.py` | Khôi phục tên riêng/thuật ngữ bị dịch máy về tiếng Anh, dựa trên dòng EN tương ứng. Dùng `--dry-run` để xem trước. |
-| `scripts/build_mechanics.py` | Sinh `data/mechanics.json` từ dữ liệu nhân vật. |
+| `scripts/build_mechanics.py` | Sinh `data/mechanics.json` từ `data/mechanics_curated.json` + thuật ngữ kit nhận diện tự động. |
+| `scripts/build_index.py` | Sinh `data/kit_index.json` (quy tắc trong `scripts/kit_rules.py`): đòn con, tag đặc điểm kèm dòng bằng chứng, Resonators/vai trò của từng cơ chế. |
 | `scripts/fetch_wiki.py` | Lấy Resonance Chain, tổng nguyên liệu, chi phí từng cấp (trang `/Combat`) và hệ số kỹ năng Lv1–10 (trang từng kỹ năng) từ [Wuthering Waves Wiki](https://wutheringwaves.fandom.com/) qua MediaWiki API công khai; cache ở `data/wiki_raw.json` (không commit). `--refresh` để lấy lại toàn bộ. |
 | `scripts/merge_wiki.py` | Ghi `resonance_chain`, `materials`, `references` vào `data/characters.json`, ghép bản dịch từ `data/translations/`. `--export-missing FILE` xuất các node chưa có bản dịch. |
 | `scripts/fetch_assets.py` | Tải icon kỹ năng, icon nút chuỗi, icon vật phẩm, ảnh icon/card nhân vật về `public/assets/` và trỏ dữ liệu về file nội bộ (ảnh full giữ remote). `--check` chỉ báo còn bao nhiêu ảnh remote. |
