@@ -43,3 +43,7 @@ def test_api_is_gzipped(client):
     assert r.status_code == 200
     r = client.get('/api/search', headers={'Accept-Encoding': 'gzip'})
     assert r.headers.get('content-encoding') == 'gzip'
+
+
+def test_search_finds_signature_weapon(client):
+    assert 'lethean elegy' in client.get('/api/search').json()['phrolova']

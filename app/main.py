@@ -65,6 +65,8 @@ def summary():
 def search_text(c: dict) -> str:
     parts = [c['name'], c['slug'], c.get('element') or '', c.get('weapon') or '', c.get('intro') or '', c.get('intro_vi') or '']
     parts += [ch.get('note', '') for ch in c.get('changes') or []]
+    sw = c.get('signature_weapon') or {}
+    parts += [sw.get('name', ''), sw.get('rank_name', '')]
     for s in (c.get('skills') or []) + (c.get('resonance_chain') or []):
         parts += [s['name'], *(s.get('desc_vi') or []), *(s.get('desc') or [])]
     return ' '.join(parts).lower()
