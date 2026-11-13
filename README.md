@@ -60,12 +60,13 @@ Mục tiêu của dự án không phải dịch lại wiki, mà là **giữ nguy
 - Tab **Combat Skills** với mô tả đầy đủ, icon từng kỹ năng và bảng hệ số mở rộng.
 - Thanh kéo **Lv.1–10** cập nhật đồng thời hệ số kỹ năng, node cây và bảng chỉ số.
 - **Resonance Chain** S1–S6, kèm bản EN gốc để đối chiếu.
+- **Vũ khí trấn phái**: hiệu ứng R1–R5 (VI/EN), Base ATK và chỉ số phụ theo cấp, mô tả, nguyên liệu đột phá.
 - **Nguyên liệu**: tổng nguyên liệu và chi phí theo từng cấp, icon vật phẩm lưu nội bộ.
 - Mục **Tham khảo** ghi rõ nguồn cho từng phần dữ liệu.
 
 ### Tra cứu và liên kết
 
-- Tìm kiếm toàn văn theo tên, giới thiệu, kỹ năng và Resonance Chain, ở cả EN và VI.
+- Tìm kiếm toàn văn theo tên, giới thiệu, kỹ năng, Resonance Chain và tên vũ khí trấn phái, ở cả EN và VI.
 - Bộ lọc nguyên tố, vũ khí và độ hiếm; bộ lọc tùy biến có hỗ trợ bàn phím.
 - Trong mô tả kỹ năng, tên kỹ năng khác của cùng nhân vật là liên kết: bấm để cuộn tới đúng mục và làm nổi bật.
 - Thuật ngữ cơ chế mở **popup giải thích** kèm:
@@ -126,15 +127,15 @@ Frontend gọi API cùng origin; không cần cấu hình biến môi trường 
 ```
 app/main.py                  FastAPI: API JSON + phục vụ public/ khi chạy local
 data/
-  characters.json            Dữ liệu canonical (meta.patch, hồ sơ, kỹ năng, chain, materials)
+  characters.json            Dữ liệu canonical (meta.patch, hồ sơ, kỹ năng, chain, materials, vũ khí trấn phái)
   mechanics_curated.json     Nội dung cơ chế do người viết (VI/EN, owner, nguồn)
   mechanics.json             Cơ chế sinh bởi scripts/build_mechanics.py
   kit_index.json             Đòn con, đặc điểm, Resonators theo cơ chế (build_index.py)
-  translations/              Bản dịch Resonance Chain và override kỹ năng
+  translations/              Bản dịch Resonance Chain, vũ khí trấn phái và override kỹ năng
 public/
   index.html                 Shell của ứng dụng
   styles.css                 Design system và giao diện
-  js/                        ES module: core, i18n, list, detail, kit, links, mechanics, tooltip
+  js/                        ES module: core, i18n, list, detail, kit, links, mechanics, weapon, tooltip
   assets/                    Icon, ảnh nhân vật, vật phẩm, OG image
 scripts/                     Pipeline dữ liệu, kiểm tra và build index
 tests/                       pytest + E2E smoke test
@@ -207,8 +208,8 @@ Chạy bằng Python trong `.venv`:
 | Script | Việc làm |
 |---|---|
 | `scripts/extract.py` | Tải dữ liệu nhân vật từ prydwen.gg, ghi `data/en_raw.json` (local, không commit). |
-| `scripts/fetch_wiki.py` | Lấy Resonance Chain, nguyên liệu và hệ số kỹ năng từ Wuthering Waves Wiki qua MediaWiki API; cache `data/wiki_raw.json` (local). |
-| `scripts/merge_wiki.py` | Ghi chain, materials, references vào `characters.json`; ghép bản dịch và báo node còn thiếu. |
+| `scripts/fetch_wiki.py` | Lấy Resonance Chain, nguyên liệu, hệ số kỹ năng và vũ khí trấn phái (hiệu ứng R1–R5, chỉ số, đột phá) từ Wuthering Waves Wiki qua MediaWiki API; cache `data/wiki_raw.json` (local). |
+| `scripts/merge_wiki.py` | Ghi chain, materials, vũ khí trấn phái, references vào `characters.json`; ghép bản dịch và báo node/vũ khí còn thiếu. |
 | `scripts/fix_context.py` | Khôi phục tên riêng/thuật ngữ bị dịch máy về tiếng Anh, đối chiếu từng dòng EN. |
 | `scripts/apply_overrides.py` | Áp các dòng dịch thủ công khi bản EN gốc vẫn khớp. |
 | `scripts/check_names.py` | Phát hiện bản dịch làm mất tên riêng của game. |
