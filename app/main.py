@@ -52,6 +52,30 @@ def characters():
     return {'meta': meta_payload(), 'characters': payload['characters']}
 
 
+SUMMARY_FIELDS = ('slug', 'name', 'rarity', 'element', 'weapon', 'img_icon', 'img_card', 'img_full')
+
+
+@app.get('/api/summary')
+def summary():
+    # What the list page needs to render at once (~15 KB instead of the full ~2.6 MB).
+    payload = character_payload()
+    return {'meta': meta_payload(), 'characters': [{k: c.get(k) for k in SUMMARY_FIELDS} for c in payload['characters']]}
+
+
+def search_text(c: dict) -> str:
+    parts = [c['name'], c['slug'], c.get('element') or '', c.get('weapon') or '', c.get('intro') or '', c.get('intro_vi') or '']
+    parts += [ch.get('note', '') for ch in c.get('changes') or []]
+    for s in (c.get('skills') or []) + (c.get('resonance_chain') or []):
+        parts += [s['name'], *(s.get('desc_vi') or []), *(s.get('desc') or [])]
+    return ' '.join(parts).lower()
+
+
+@app.get('/api/search')
+def search():
+    # Full-text search blob per Resonator (names, intros, skills, Resonance Chain, EN + VI).
+    return {c['slug']: search_text(c) for c in character_payload()['characters']}
+
+
 @app.get('/api/characters/{slug}')
 def character(slug: str):
     payload = character_payload()
