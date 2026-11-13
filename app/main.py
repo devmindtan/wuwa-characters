@@ -66,6 +66,12 @@ def mechanics():
     return load_json('mechanics.json')
 
 
+@app.get('/api/index')
+def kit_index():
+    # Derived by scripts/build_index.py: sub-moves, kit traits with evidence, mechanic users.
+    return load_json('kit_index.json')
+
+
 @app.get('/api/changes')
 def changes():
     payload = character_payload()

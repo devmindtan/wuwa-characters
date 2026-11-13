@@ -25,6 +25,7 @@ def test_kit_terms_link_on_owner_pages(mechanics):
     assert 'phrolova' in by_term['Aftersound']['owners']
     assert 'phrolova' in by_term['Resolving Chord']['owners']
     assert 'calcharo' in by_term['Cruelty']['owners']
+    assert 'calcharo' in by_term['Mercy']['owners']  # Heavy Attack "Mercy" is explained as a kit term
     assert 'cantarella' in by_term['Jolt']['owners']
 
 
