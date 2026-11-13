@@ -84,5 +84,18 @@ def version():
 
 
 # Vercel serves public/ from its CDN, so only mount it for local/Uvicorn runs.
+class RevalidatingStatic(StaticFiles):
+    """Same cache policy as vercel.json: HTML/CSS/JS always revalidate, so a browser never
+    pairs a new app.js with a stale styles.css; downloaded images may be cached for a week."""
+
+    async def get_response(self, path, scope):
+        resp = await super().get_response(path, scope)
+        if path.startswith('assets/'):
+            resp.headers['Cache-Control'] = 'public, max-age=604800'
+        else:
+            resp.headers['Cache-Control'] = 'no-cache'
+        return resp
+
+
 if not os.environ.get('VERCEL'):
-    app.mount('/', StaticFiles(directory=str(PUBLIC), html=True), name='public')
+    app.mount('/', RevalidatingStatic(directory=str(PUBLIC), html=True), name='public')
