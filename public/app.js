@@ -593,7 +593,9 @@ function linkifyAll() {
   for (const m of state.mechanics) {
     // Resonator-specific mechanics only link on their owner's page.
     if (m.owners?.length && !m.owners.includes(c.slug)) continue;
-    if (!byText.has(m.term)) byText.set(m.term, {type: 'mech', term: m.term, text: m.term});
+    for (const text of [m.term, ...(m.aliases || [])]) {
+      if (!byText.has(text)) byText.set(text, {type: 'mech', term: m.term, text});
+    }
   }
   for (const name of movesOf(c).keys()) {
     if (!byText.has(name)) byText.set(name, {type: 'move', term: name, text: name});
@@ -851,14 +853,38 @@ function route() {
   else closeDetail();
 }
 
+// Same term can be a global mechanic or a kit term of several Resonators: prefer the one for this page.
+function findMechanic(term) {
+  const slug = state.current?.slug;
+  const list = state.mechanics.filter((x) => x.term === term);
+  return list.find((x) => x.owners?.includes(slug)) || list.find((x) => !x.owners?.length) || list[0];
+}
+
+function autoQuote(m, c) {
+  const ref = c && m.defs?.[c.slug];
+  if (!ref) return {text: '', title: ''};
+  const src = ref.kind === 'skill' ? c.skills[ref.index] : (c.resonance_chain || []).find((n) => n.node === ref.index);
+  if (!src) return {text: '', title: ''};
+  const lines = (state.showEn || !(src.desc_vi || []).length ? src.desc : src.desc_vi) || [];
+  const text = lines.slice(ref.line, ref.line + (ref.n || 1)).map((l) => l.replace(/^• /, '')).join(' ');
+  return {text, title: ref.kind === 'skill' ? src.name : `S${src.node} · ${src.name}`};
+}
+
 function openMechanic(termOrObj) {
-  const m = typeof termOrObj === 'string' ? state.mechanics.find((x) => x.term === termOrObj) : termOrObj;
+  const m = typeof termOrObj === 'string' ? findMechanic(termOrObj) : termOrObj;
   if (!m) return;
   $('mech-kind').textContent = t('kind_' + m.kind) || t('mech_kind');
   $('mech-title').textContent = m.term;
-  $('mech-summary').textContent = (state.showEn ? m.summary_en : m.summary_vi) || m.summary_vi;
-  $('mech-source').hidden = !m.source;
-  $('mech-source').textContent = m.source || '';
+  let summary = (state.showEn ? m.summary_en : m.summary_vi) || m.summary_vi;
+  let source = m.source === 'wiki' ? t('src_wiki') : (m.source || '');
+  if (m.auto) {  // kit term: quote the defining lines of the data, never a written summary
+    const q = autoQuote(m, state.current);
+    summary = q.text;
+    source = q.title ? t('move_from', {skill: q.title}) : '';
+  }
+  $('mech-summary').textContent = summary || '';
+  $('mech-source').hidden = !source;
+  $('mech-source').textContent = source;
   const c = state.current;
   const occurrences = [];
   const seen = new Set();
@@ -917,7 +943,7 @@ const ROLE_RULES = [
 const roleLabel = (k) => t('role_' + k);
 
 function mechUsers(m) {
-  const re = new RegExp('(?<![A-Za-z0-9])' + regexEsc(m.term) + '(?![A-Za-z0-9])');
+  const re = new RegExp('(?<![A-Za-z0-9])(' + [m.term, ...(m.aliases || [])].map(regexEsc).join('|') + ')(?![A-Za-z0-9])');
   const noLink = state.noLink.filter((t) => t.includes(m.term));
   const users = [];
   for (const c of state.characters) {
