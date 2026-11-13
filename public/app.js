@@ -293,14 +293,14 @@ function lineHTML(line) {
 
 function linesHTML(lines) {
   let body = '', inList = false;
-  for (const line of lines) {
+  for (const [i, line] of lines.entries()) {
     const l = lineHTML(line);
     if (l.li) {
       if (!inList) { body += '<ul>'; inList = true; }
-      body += `<li>${esc(l.text)}</li>`;
+      body += `<li data-line="${i}">${esc(l.text)}</li>`;
     } else {
       if (inList) { body += '</ul>'; inList = false; }
-      body += `<p${l.sub ? ' class="sub"' : ''}>${esc(l.text)}</p>`;
+      body += `<p data-line="${i}"${l.sub ? ' class="sub"' : ''}>${esc(l.text)}</p>`;
     }
   }
   if (inList) body += '</ul>';
@@ -758,14 +758,17 @@ function scrollToSkill(index) {
 
 // Scroll to a skill/chain section (switching to its tab). With a term, highlight
 // only the paragraphs that mention it, and the term itself, instead of the whole section.
-function scrollToId(id, term = '') {
+function scrollToId(id, term = '', line = null) {
   if (id.startsWith('skill-')) setTab('skills');
   else if (id.startsWith('chain-')) setTab('chain');
   const el = $(id);
   if (!el) return;
   detailView.querySelectorAll('.hit, .hit-term').forEach((x) => x.classList.remove('hit', 'hit-term'));
   let hits = [];
-  if (term) {
+  if (line !== null && line !== '' && !Number.isNaN(Number(line))) {
+    hits = [...el.querySelectorAll(`.skill-body [data-line="${Number(line)}"], .chain-body [data-line="${Number(line)}"]`)];
+  }
+  if (!hits.length && term) {
     const terms = [...el.querySelectorAll('.mech-link, .move-link')].filter((b) => (b.dataset.mech || b.dataset.move) === term);
     terms.forEach((b) => b.classList.add('hit-term'));
     hits = [...new Set(terms.map((b) => b.closest('p, li')).filter(Boolean))];
@@ -810,9 +813,9 @@ function openDetail(slug) {
   window.scrollTo({top: 0, behavior: 'instant'});
   backBtn.focus({preventScroll: true, focusVisible: false});
   if (state.pendingTarget) {
-    const {id, term} = state.pendingTarget;
+    const {id, term, line} = state.pendingTarget;
     state.pendingTarget = null;
-    requestAnimationFrame(() => scrollToId(id, term));
+    requestAnimationFrame(() => scrollToId(id, term, line ?? null));
   }
 }
 
@@ -839,6 +842,7 @@ function renderDetail(c) {
     <div class="stat"><div class="k">${esc(t('k_weapon'))}</div><div class="v v-ico">${weapIcon(c.weapon, 'ico-lg')}<span>${esc(c.weapon)}${vi ? `<small>${esc(weapVi(c.weapon))}</small>` : ''}</span></div></div>
     <div class="stat"><div class="k">${esc(t('k_rarity'))}</div><div class="v" style="color:${c.rarity===5?'var(--r5)':'var(--r4)'}">${c.rarity ? c.rarity + '★' : '—'}</div></div>
     <div class="stat"><div class="k">${esc(t('k_skills'))}</div><div class="v">${(c.skills || []).length}<small>${esc(t('skills_unit'))}</small></div></div>`;
+  renderTraits(c);
   renderMaterials(c);
   renderReferences(c);
   renderChanges(c);
@@ -902,7 +906,8 @@ function openMechanic(termOrObj) {
   ];
   const cap = {skill: 8, chain: 6};
   const used = {skill: 0, chain: 0};
-  for (const src of sources) {
+  if (m.occ) occurrences.push(...m.occ);
+  else for (const src of sources) {
     const kind = src.target.startsWith('chain-') ? 'chain' : 'skill';
     for (const line of src.lines) {
       if (used[kind] >= cap[kind]) break;
@@ -918,7 +923,7 @@ function openMechanic(termOrObj) {
   if (occurrences.length) {
     occBox.innerHTML = occurrences.map((o) =>
       `<div class="mech-occ-item">
-        <div class="mech-occ-head"><b>${esc(o.title)}</b><button type="button" class="mech-go" data-target="${esc(o.target)}" data-term="${esc(m.term)}">${esc(o.go)} <span aria-hidden="true">↓</span></button></div>
+        <div class="mech-occ-head"><b>${esc(o.title)}</b><button type="button" class="mech-go" data-target="${esc(o.target)}" data-term="${m.trait ? '' : esc(m.term)}" data-line="${o.lineIndex ?? ''}">${esc(o.go)} <span aria-hidden="true">↓</span></button></div>
         <p class="mech-occ-text">${esc(o.line)}</p>
         <button type="button" class="mech-more" hidden aria-expanded="false">${esc(t('more'))}</button>
       </div>`
@@ -950,6 +955,12 @@ const ROLE_RULES = [
 const roleLabel = (k) => t('role_' + k);
 
 function mechUsers(m) {
+  if (m.trait) {
+    return state.characters.map((c) => ({c, ev: traitsOf(c)[m.trait] || []}))
+      .filter((u) => u.ev.length)
+      .map(({c, ev}) => ({c, roles: [], target: ev[0].target, line: ev[0].lineIndex, count: ev.length}))
+      .sort((a, b) => b.count - a.count || a.c.name.localeCompare(b.c.name));
+  }
   const re = new RegExp('(?<![A-Za-z0-9])(' + [m.term, ...(m.aliases || [])].map(regexEsc).join('|') + ')(?![A-Za-z0-9])');
   const noLink = state.noLink.filter((t) => t.includes(m.term));
   const users = [];
@@ -975,6 +986,72 @@ function mechUsers(m) {
   return users.sort((a, b) => b.count - a.count || a.c.name.localeCompare(b.c.name));
 }
 
+// Kit traits: keyword rules over the English kit text. Every trait keeps the exact
+// lines it was found in, so the UI can always show (and jump to) the evidence.
+const TRAIT_RULES = [
+  ['heal', /\bheal(?:s|ing|ed)?\b|\b(?:restores?|recovers?|regenerates?)\b[^.]{0,40}\bHP\b|Healing Bonus/i],
+  ['shield', /\bshields?\b/i],
+  ['cc', /\bStagnat\w*|\bpull(?:s|ing)?\b[^.]{0,25}\b(?:targets?|enemies)\b|\bimmobili[sz]\w*|\bVibration Strength\b|\bknocks?\s(?:back|up|down)\b/i],
+  ['team', /(?:\b(?:all|other)\s(?:nearby\s)?Resonators\b|Resonators?\s(?:on|in)\s(?:the\s)?(?:team|party)|\b(?:all|the)\steam\b|\b(?:team|party) members?\b|\bcharacters on (?:a\s)?nearby teams?\b|\bResonator on the field\b|incoming Resonator|next Resonator|\bteammates?\b)[^.]*\b(?:increase[sd]?|gains?|Amplif\w*|Bonus|boost\w*)\b/i],
+  ['debuff', /\b(?:reduc\w*|decreas\w*|ignor\w*|lower\w*)\b[^.]{0,40}\b(?:DEF|RES)\b|\b(?:DEF|RES)\b[^.]{0,20}\b(?:reduced|decreased|ignored)\b|\btakes?\s\d+(?:\.\d+)?%\s(?:more|increased)\sDMG/i],
+  ['energy', /\b(?:restores?|regenerates?|recovers?|grants?|gains?)\b[^.]{0,30}\b(?:Resonance Energy|Concerto Energy)\b/i],
+  ['defense', /Interruption Resistance|resistance to interruption|\bDMG Reduction\b|\bDMG taken\b[^.]{0,20}\breduced\b|\breduces?\b[^.]{0,20}\bDMG taken\b|\binvincib\w*|\bimmun\w*/i],
+  ['coord', /\bCoordinated Attacks?\b/],
+  ['tune', /\b(?:Tune Break|Tune Strain|Tune Rupture|Off-Tune)\b/],
+  ['offfield', /\bnot the active Resonator\b|\boff-field\b/i],
+  ['echo', /\bEcho Skill DMG\b/],
+  ['spectro_frazzle', /\bSpectro Frazzle\b/],
+  ['aero_erosion', /\bAero Erosion\b/],
+  ['havoc_bane', /\bHavoc Bane\b/],
+  ['fusion_burst', /\bFusion Burst\b/],
+  ['glacio_chafe', /\bGlacio Chafe\b/],
+  ['electro_flare', /\bElectro Flare\b/],
+];
+const traitCache = new Map();
+const STATUS_KEYS = new Set(['spectro_frazzle', 'aero_erosion', 'havoc_bane', 'fusion_burst', 'glacio_chafe', 'electro_flare']);
+function traitsOf(c) {
+  if (traitCache.has(c.slug)) return traitCache.get(c.slug);
+  const out = {};
+  const STATUS = /Spectro Frazzle|Aero Erosion|Havoc Bane|Fusion Burst|Glacio Chafe|Electro Flare/g;
+  const scan = (lines, target, title) => (lines || []).forEach((line, i) => {
+    // a line naming 3+ Negative Statuses is a generic "any Negative Status" rule, not a trait of the kit
+    const generic = new Set(line.match(STATUS) || []).size >= 3;
+    for (const [key, rx] of TRAIT_RULES) {
+      if (generic && STATUS_KEYS.has(key)) continue;
+      if (!rx.test(line)) continue;
+      (out[key] = out[key] || []).push({target, title, lineIndex: i});
+    }
+  });
+  (c.skills || []).forEach((s, i) => scan(s.desc, 'skill-' + i, s.name));
+  (c.resonance_chain || []).forEach((n) => scan(n.desc, 'chain-' + n.node, `S${n.node} · ${n.name}`));
+  traitCache.set(c.slug, out);
+  return out;
+}
+const traitLabel = (k) => ('trait_' + k) in I18N.vi ? t('trait_' + k) : k.split('_').map((w) => w[0].toUpperCase() + w.slice(1)).join(' ');
+
+function renderTraits(c) {
+  const tr = traitsOf(c);
+  const keys = TRAIT_RULES.map(([k]) => k).filter((k) => tr[k]);
+  $('d-traits').hidden = !keys.length;
+  $('d-traits-list').innerHTML = keys.map((k) =>
+    `<button type="button" class="trait trait-${k}" data-trait="${k}">${esc(traitLabel(k))}<small>${tr[k].length}</small></button>`).join('');
+}
+
+function openTrait(key) {
+  const c = state.current;
+  const ev = traitsOf(c)[key] || [];
+  const lineOf = (o) => {
+    const [kind, idx] = o.target.split('-');
+    const src = kind === 'skill' ? c.skills[Number(idx)] : (c.resonance_chain || []).find((n) => n.node === Number(idx));
+    const lines = (state.showEn || !(src?.desc_vi || []).length ? src?.desc : src?.desc_vi) || [];
+    return lines[o.lineIndex] || '';
+  };
+  const occ = ev.slice(0, 14).map((o) => ({...o, line: lineOf(o), go: o.target.startsWith('chain-') ? t('go_chain') : t('go_skill')}));
+  const desc = ('traitd_' + key) in I18N.vi ? t('traitd_' + key) : t('trait_status_desc', {name: traitLabel(key)});
+  openMechanic({term: traitLabel(key), kind: 'trait', trait: key, owners: [], occ,
+    summary_vi: desc, summary_en: desc, source: t('trait_note', {n: ev.length})});
+}
+
 function renderMechUsers() {
   const m = state.mechTerm;
   const users = mechUsers(m);
@@ -989,8 +1066,8 @@ function renderMechUsers() {
   const shown = state.roleFilter === 'all' ? users : users.filter((u) => u.roles.includes(state.roleFilter));
   const me = users.find((u) => u.c.slug === state.current?.slug);
   const others = shown.filter((u) => u !== me);
-  const row = ({c, roles, target, count}, mine) => `<li${mine ? ' class="mu-me"' : ''}>
-    <button type="button" class="mech-user${mine ? ' is-current' : ''}" data-slug="${esc(c.slug)}" data-target="${esc(target)}">
+  const row = ({c, roles, target, count, line}, mine) => `<li${mine ? ' class="mu-me"' : ''}>
+    <button type="button" class="mech-user${mine ? ' is-current' : ''}" data-slug="${esc(c.slug)}" data-target="${esc(target)}" data-line="${line ?? ''}">
       <img src="${esc(c.img_icon)}" alt="" width="${mine ? 52 : 40}" height="${mine ? 52 : 40}">
       <span class="mu-main">${mine ? `<span class="mu-badge">${esc(t('me_badge'))}</span>` : ''}<b>${esc(c.name)}</b>${elIcon(c.element)}<small>${esc(t('n_places', {n: count}))}</small></span>
       <span class="mu-roles">${roles.map((r) => `<i class="role role-${r}">${esc(roleLabel(r))}</i>`).join('')}</span>
@@ -1073,10 +1150,15 @@ $('mech-users-list').addEventListener('click', (e) => {
   const btn = e.target.closest('.mech-user');
   if (!btn) return;
   mechDialog.close();
-  const term = state.mechTerm?.term || '';
-  if (btn.dataset.slug === state.current?.slug) { scrollToId(btn.dataset.target, term); return; }
-  state.pendingTarget = {id: btn.dataset.target, term};
+  const term = state.mechTerm?.trait ? '' : (state.mechTerm?.term || '');
+  const line = btn.dataset.line;
+  if (btn.dataset.slug === state.current?.slug) { scrollToId(btn.dataset.target, term, line); return; }
+  state.pendingTarget = {id: btn.dataset.target, term, line};
   location.hash = '#/nhan-vat/' + encodeURIComponent(btn.dataset.slug);
+});
+$('d-traits-list').addEventListener('click', (e) => {
+  const b = e.target.closest('.trait');
+  if (b) openTrait(b.dataset.trait);
 });
 /* tabs, sliders, tree selection, goto buttons */
 const TAB_ORDER = ['tree', 'skills', 'chain', 'mats'];
@@ -1155,7 +1237,7 @@ mechDialog.addEventListener('click', (e) => {
   const go = e.target.closest('.mech-go[data-target]');
   if (go) {
     mechDialog.close();
-    scrollToId(go.dataset.target, go.dataset.term);
+    scrollToId(go.dataset.target, go.dataset.term, go.dataset.line);
   }
 });
 mechDialog.addEventListener('close', () => { pressedOnBackdrop = false; });

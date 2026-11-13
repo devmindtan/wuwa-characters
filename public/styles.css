@@ -521,3 +521,18 @@ dialog#mechDialog::backdrop{background:rgba(3,6,8,.7);backdrop-filter:blur(3px)}
 @media (max-width: 360px){
   .crumb-root,.crumb-sep{display:none}
 }
+
+/* kit traits (auto-classified, each with evidence) */
+.traits{margin:-4px 0 20px}
+.traits-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:0 0 9px;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.traits-head small{font-size:11px;letter-spacing:0;text-transform:none;color:var(--muted)}
+.traits-list{display:flex;flex-wrap:wrap;gap:7px}
+.trait{--c:var(--soft);font:inherit;font-size:12.5px;display:inline-flex;align-items:center;gap:7px;padding:5px 6px 5px 11px;border-radius:8px;cursor:pointer;
+  color:var(--c);background:color-mix(in srgb,var(--c) 7%,transparent);border:1px solid color-mix(in srgb,var(--c) 26%,transparent);transition:background .15s,border-color .15s}
+.trait:hover{background:color-mix(in srgb,var(--c) 15%,transparent);border-color:color-mix(in srgb,var(--c) 50%,transparent)}
+.trait:focus-visible{outline:2px solid var(--gold2);outline-offset:2px}
+.trait small{min-width:20px;padding:1px 5px;border-radius:5px;font-size:11px;text-align:center;color:var(--muted);background:rgba(255,255,255,.06)}
+.trait-heal{--c:#7fe0a6}.trait-shield{--c:#9ec9ff}.trait-cc{--c:#ffb27a}.trait-team{--c:#ffe6a6}.trait-debuff{--c:#ff8f9a}
+.trait-energy{--c:#a8f0ff}.trait-defense{--c:#c9d3dc}.trait-tune{--c:#d6b3ff}
+.trait-spectro_frazzle{--c:var(--spectro)}.trait-aero_erosion{--c:var(--aero)}.trait-havoc_bane{--c:var(--havoc)}
+.trait-fusion_burst{--c:var(--fusion)}.trait-glacio_chafe{--c:var(--glacio)}.trait-electro_flare{--c:var(--electro)}
