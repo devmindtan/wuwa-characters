@@ -4,4 +4,5 @@ __pycache__/
 .playwright-cli/
 data/en_raw.json
 data/wiki_raw.json
+data/rotations_raw.json
 .pytest_cache/

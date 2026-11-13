@@ -200,3 +200,78 @@ def mechanic_users(m, chars, no_link):
     for u in users:
         del u['name']
     return users
+
+
+# ---- combos: which kit lines a rotation step activates (scripts/build_combos.py) ----
+# Step kinds parsed from a rotation step ("Basic 3 (...)", "Skill: Crimson Blossom", "Ultimate", ...).
+STEP_KIND = [
+    ('basic', re.compile(r'^(?:Basic|Normal Attack|Basic Attack)\b', AI)),
+    ('heavy', re.compile(r'^(?:Heavy|Charged|Full Charge|Hold Basic)\b', AI)),
+    ('skill', re.compile(r'^(?:Hold\s+)?(?:Skill|Resonance Skill|E)\b', AI)),
+    ('lib', re.compile(r'^(?:Ultimate|Liberation|Resonance Liberation|Ult)\b', AI)),
+    ('intro', re.compile(r'^(?:Intro|Intro Skill)\b', AI)),
+    ('outro', re.compile(r'^(?:Outro|Outro Skill)\b', AI)),
+    ('echo', re.compile(r'^Echo\b', AI)),
+    ('midair', re.compile(r'^(?:Mid-?Air|Plunge|Plunging)\b', AI)),
+    ('dodge', re.compile(r'^(?:Dodge|Counter)\b', AI)),
+    ('move', re.compile(r'^(?:Dash|Jump|Swap|Switch(?:-in)?|Grapple|Walk|Sprint)\b', AI)),
+]
+# How the kit refers to each kind ("Resonance Skill", "Basic Attack Stage 3" ...).
+KIND_REF = {
+    'basic': r'(?:Basic Attacks?|Normal Attacks?)',
+    'heavy': r'Heavy Attacks?',
+    'skill': r'Resonance Skills?',
+    'lib': r'Resonance Liberations?',
+    'intro': r'Intro Skills?',
+    'outro': r'Outro Skills?',
+    'echo': r'Echo Skills?',
+    'midair': r'(?:Mid-air Attacks?|Plunging Attacks?)',
+    'dodge': r'Dodge Counters?',
+}
+# Which skill entry a kind belongs to (its own lines are what casting it does).
+KIND_TYPE = {'skill': 'Resonance Skill', 'lib': 'Resonance Liberation', 'intro': 'Intro Skill', 'outro': 'Outro Skill'}
+# A reference only counts when the line says the action happens: "casting X", "after X hits", "dealing X DMG".
+TRIGGER_VERB = (r"(?:\b(?:[Cc]ast(?:s|ing)?|[Pp]erform(?:s|ing)?|[Uu]s(?:e|es|ing)|[Rr]eleas(?:e|es|ing)|[Tt]rigger(?:s|ing)?|"
+                r"[Hh]itting(?:\s(?:a|the))?\s(?:targets?|enem(?:y|ies))\swith|[Dd]eal(?:s|ing)|[Aa]fter|[Ww]hen|[Uu]pon|[Ee]very\stime)"
+                r"\s+(?:(?:a|an|the|her|his|their|any|each|[A-Z][\w-]*['’]s)\s+)?)")
+_NOT_A_MOVE = r'(?!\s*(?:-|"|Stage|[A-Z][a-z]))'
+EFFECT_RX = re.compile(r'\b(?:this skill|enters?|entering|gains?|grants?|obtains?|restores?|recovers?|consumes?|summons?|'
+                       r'activates?|increas\w*|Amplif\w*|inflicts?|removes?|resets?|refresh\w*|replaced|considered)\b', A)
+
+
+# Input instructions ("Press Normal Attack shortly after ...", "• Cue - Reset: Press Jump ...") say how to
+# chain moves, not what a move activates.
+INPUT_LINE = re.compile(r'^(?:•\s*)?(?:[^.:]{0,40}:\s*)?(?:Press|Hold|Tap|Release|Long press)\b', A)
+
+
+def negated(line, kind):
+    """"switch in without casting Intro Skill": the action is explicitly not performed."""
+    return bool(re.search(r'\bwithout (?:casting|using|performing) (?:an? |the )?' + KIND_REF[kind], line, re.ASCII))
+
+
+def step_kind(head):
+    head = re.sub(r'^Hold\s+(?=(?:Ultimate|Liberation|Intro|Outro|Echo)\b)', '', head, flags=re.I)
+    for kind, rx in STEP_KIND:
+        if rx.match(head):
+            return kind
+    if re.match(r'^Timed Counter\b', head, re.I):
+        return 'dodge'
+    return None
+
+
+def kind_trigger(kind, stage=None):
+    """Regex for a line saying that a step of this kind happens (optionally a Basic Attack stage)."""
+    ref = KIND_REF[kind]
+    parts = [TRIGGER_VERB + ref + _NOT_A_MOVE, ref + _NOT_A_MOVE + r"\s+(?:hits?|lands?|is cast|ends?)\b"]
+    if kind == 'basic' and stage:
+        parts.append(r'\bBasic Attack Stage ' + str(stage) + r'\b')
+        parts.append(r'\bStage ' + str(stage) + r' of (?:the )?Basic Attack')
+    return re.compile('|'.join('(?:' + p + ')' for p in parts), A)
+
+
+def name_trigger(name):
+    return re.compile(r'(?<![\w-])' + re.escape(name) + r'(?![\w])', A)
+
+
+def is_heading(line):
+    return not line.startswith('• ') and len(line) < 72 and not re.search(r'[.!?:]$', line)
