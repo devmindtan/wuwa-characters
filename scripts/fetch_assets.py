@@ -84,6 +84,10 @@ def main() -> None:
         sw = c.get('signature_weapon')
         if sw and sw.get('img'):
             targets.append((sw, 'img', 'weapons', f"assets/weapons/{c['slug']}_sig"))
+        for step in (sw or {}).get('ascension', []):
+            for it in step['items']:
+                if it.get('img'):
+                    targets.append((it, 'img', 'items', None))
         for s in c['skills']:
             if s.get('icon'):
                 targets.append((s, 'icon', 'skills', None))

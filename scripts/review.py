@@ -127,6 +127,10 @@ def main():
                 for it in block.get('items', []):
                     if not it.get('name') or not isinstance(it.get('qty'), int) or it['qty'] <= 0:
                         err(f'{where}/materials/{key}', f'bad item {it}')
+        sw = c.get('signature_weapon')
+        if sw:
+            check_weapon(f"{where}/weapon/{sw.get('name', '?')}", sw, sample_pool)
+
         if not c.get('references'):
             err(where, 'missing references[]')
         for ref in c.get('references') or []:
@@ -134,6 +138,43 @@ def main():
                 err(where, f'reference without https url: {ref}')
 
     finish(args, sample_pool)
+
+
+PLACEHOLDER = re.compile(r'\{(\d)\}')
+
+
+def check_weapon(label, sw, sample_pool):
+    """Signature weapon: R1-R5 values for every placeholder, VI keeps the placeholders and numbers."""
+    for key in ('name', 'type', 'stat_type', 'img'):
+        if not sw.get(key):
+            err(label, f'missing {key}')
+    ranks = sw.get('ranks') or {}
+    used = {n for line in sw.get('passive') or [] for n in PLACEHOLDER.findall(line)}
+    if not sw.get('passive'):
+        err(label, 'empty passive')
+    for n in used - set(ranks):
+        err(label, f'placeholder {{{n}}} has no rank values')
+    for n, vals in ranks.items():
+        if len(vals) != 5 or not all(re.fullmatch(r'\d+(?:\.\d+)?', v) for v in vals):
+            err(label, f'rank values for {{{n}}} must be 5 bare numbers: {vals}')
+    for en_key, vi_key in (('passive', 'passive_vi'), ('description', 'description_vi')):
+        en, vi = sw.get(en_key) or [], sw.get(vi_key) or []
+        if len(en) != len(vi):
+            err(label, f'{vi_key} missing or line count differs from {en_key}')
+        for e_line, v_line in zip(en, vi):
+            if sorted(PLACEHOLDER.findall(e_line)) != sorted(PLACEHOLDER.findall(v_line)):
+                err(label, f'{vi_key}: placeholders differ from EN')
+            plain = lambda t: set(re.findall(r'\d+(?:\.\d+)?', PLACEHOLDER.sub('', t)))
+            if plain(e_line) - plain(v_line):
+                err(label, f'{vi_key}: numbers lost in translation: {sorted(plain(e_line) - plain(v_line))}')
+        check_vi_lines(label, vi, sample_pool)
+    for row in sw.get('stats') or []:
+        if not all(row.get(k) for k in ('ascension', 'level', 'atk', 'sub')):
+            err(label, f'bad stats row {row}')
+    for step in sw.get('ascension') or []:
+        for it in step.get('items', []):
+            if not it.get('name') or not isinstance(it.get('qty'), int) or it['qty'] <= 0:
+                err(f'{label}/ascension', f'bad item {it}')
 
 
 def check_vi_lines(label, lines, sample_pool):

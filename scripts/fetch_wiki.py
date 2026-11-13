@@ -240,11 +240,55 @@ WIKI_TO_OUR = {
 }
 
 
+SIG_SCHEMA = 2  # bump when the cached weapon fields change, to refetch them
+
+
+def parse_weapon_stats(page):
+    """'Ascensions and Stats' table of a weapon page.
+
+    -> stats [{ascension, level, atk, sub}] and ascension [{label, items[{name, qty, rarity, image_key}]}]
+    """
+    i = page.find('ascension-stats')
+    if i < 0:
+        return [], []
+    seg = page[i:page.find('</table>', i)]
+    stats, steps = [], []
+    asc = ''
+    for tr in re.split(r'<tr', seg)[1:]:
+        tr = tr.split('</tr>', 1)[0]
+        if 'Ascension Cost' in tr:
+            label = text(re.search(r'</b>\s*\(([^)]*)\)', tr).group(1))
+            items = []
+            for block in re.split(r'<div class="card-container', tr)[1:]:
+                rar = re.search(r'card-rarity-(\d)', block)
+                key = re.search(r'data-image-name="([^"]+)"', block)
+                name = re.search(r'<a href="/wiki/[^"]+" title="([^"]+)"', block)
+                qty = re.search(r'<span class="card-text[^"]*">\s*([\d,.]+)\s*</span>', block)
+                if name and qty:
+                    items.append({'name': html.unescape(name.group(1)),
+                                  'qty': int(qty.group(1).replace(',', '').replace('.', '')),
+                                  'rarity': int(rar.group(1)) if rar else 0,
+                                  'image_key': html.unescape(key.group(1)) if key else ''})
+            steps.append({'label': label, 'items': items})
+            continue
+        tds = [text(td) for td in re.findall(r'<td[^>]*>(.*?)</td>', tr, re.S)]
+        if len(tds) == 4:
+            asc = tds.pop(0)
+        if len(tds) == 3 and '/' in tds[0]:
+            stats.append({'ascension': asc, 'level': tds[0], 'atk': tds[1], 'sub': tds[2]})
+    return stats, steps
+
+
 def fetch_signature_weapons(cache, our_names):
-    """5★ signature weapons (weapon infobox |resonator=...) -> cache['signature_weapons']."""
+    """5★ signature weapons (weapon infobox |resonator=...) -> cache['signature_weapons'].
+
+    Keeps the raw effect template with its per-rank values (R1-R5), the in-game
+    description, and the stats/ascension table rendered on the weapon page.
+    """
     sig = cache.setdefault('signature_weapons', {})
-    if sig:
+    if sig and all(w.get('schema') == SIG_SCHEMA for w in sig.values()):
         return sig
+    sig.clear()
     titles = []
     cont = {}
     while True:
@@ -277,27 +321,39 @@ def fetch_signature_weapons(cache, our_names):
 
             def field(name):
                 return infobox(wt, name)
-            effect = field('effect')
+            effect_src = field('effect')
+            ranks = {}
             for k in range(1, 9):
-                v = field(f'eff_rank1_var{k}')
-                if v:
-                    effect = effect.replace(f'(var{k})%', v).replace(f'(var{k})', v)
+                vals = [field(f'eff_rank{r}_var{k}') for r in range(1, 6)]
+                if any(vals):
+                    ranks[str(k)] = vals
+            effect = effect_src
+            for k, vals in ranks.items():
+                effect = effect.replace(f'(var{k})%', vals[0]).replace(f'(var{k})', vals[0])
             effect = re.sub(r'<br\s*/?>', '\n', effect)
             effect = re.sub(r'\[\[([^\]|]+)\|([^\]]+)\]\]', r'\2', effect)
             effect = re.sub(r'\[\[([^\]]+)\]\]', r'\1', effect)
             effect = re.sub(r'\{\{[^}]+\}\}', '', effect).strip()
+            desc = re.search(r'\{\{Description\|(.*?)\}\}\s*$', wt, re.M)
+            stats, steps = parse_weapon_stats(page_html(page['title']) or '')
             sig[res] = {
+                'schema': SIG_SCHEMA,
                 'name': field('name') or page['title'],
                 'type': field('type'),
                 'rarity': 5,
                 'stat_type': field('2nd_stat_type'),
                 'rank_name': field('rank_name'),
                 'effect': effect,
+                'effect_src': effect_src,
+                'ranks': ranks,
+                'description_src': desc.group(1) if desc else '',
+                'stats': stats,
+                'ascension': steps,
                 'image_key': field('image').split('\n')[0].strip(),
                 'source': f"https://wutheringwaves.fandom.com/wiki/{page['title'].replace(' ', '_')}",
             }
+            print(f"{res:24} {sig[res]['name']:32} stats={len(stats)} steps={len(steps)} ranks={len(ranks)}", flush=True)
     return sig
-
 
 
 def main():
@@ -378,6 +434,7 @@ def main():
     files |= {i['image_key'].replace('_', ' ') for c in combat.values() for rows in c['level_costs'].values()
               for r in rows for i in r['items']}
     files |= {w['image_key'].replace('_', ' ') for w in sig.values() if w.get('image_key')}
+    files |= {i['image_key'].replace('_', ' ') for w in sig.values() for st in w.get('ascension', []) for i in st['items'] if i['image_key']}
     need = sorted(files - set(images))
     images.update(image_urls(need))
     print('images:', len(images), 'missing:', sorted(files - set(images))[:10])
