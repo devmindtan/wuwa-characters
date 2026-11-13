@@ -19,6 +19,7 @@
   - Sửa các câu sai nghĩa do dịch máy (ví dụ "Deal DMG" bị dịch thành "giao dịch/thỏa thuận/chia").
 - Thuật ngữ cố định: luôn viết **Resonators** (không dùng "cộng hưởng giả", "Bộ cộng hưởng", "Đồ cộng hưởng"). Các thuật ngữ khác lấy theo `data/mechanics.json` và glossary trong `scripts/glossary.py`.
 - Giải thích cơ chế phải bám vào dữ liệu nguồn; không tự bịa. Nếu chỉ là tóm tắt, ghi rõ "Tóm tắt".
+- Tooltip dùng component tùy chỉnh trong `public/app.js` (hiện sau ~60ms, tự nằm trong dialog nếu cần): đặt `data-tip="..."` (hoặc `title`, sẽ tự chuyển), không dựa vào tooltip gốc của trình duyệt.
 - Giao diện có công tắc VI | EN cho toàn trang (lưu trong localStorage). Không viết cứng chuỗi giao diện trong HTML/JS: thêm key vào `public/i18n.js` (cả `vi` và `en`) rồi dùng `t()` / `data-i18n`.
   - VI: mọi tiêu đề, nhãn, nút là tiếng Việt; chỉ tên riêng trong game (tên kỹ năng, loại kỹ năng, nguyên tố, cơ chế, vật phẩm) giữ tiếng Anh. Tiêu đề tab có dòng nhỏ ghi thuật ngữ gốc (Forte, Combat Skills, Resonance Chain...).
   - EN: không còn chữ tiếng Việt nào (trừ tên tác giả). Dữ liệu cần cả hai bản: `summary_vi`/`summary_en` cho cơ chế, `used_for`/`used_for_en` cho references.
